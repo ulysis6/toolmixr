@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Sitemap Generator" 
+  description="Free online XML sitemap generator. Create sitemaps for your website to help search engines discover and index your pages."
+>
+  <section class="tool-page">
+    <h1>🗺️ Sitemap Generator</h1>
+    <p class="subtitle">Create XML sitemaps for search engine indexing</p>
+    
+    <div class="tool-box">
+      <div id="urls">
+        <div class="url-row" style="display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;align-items:end;">
+          <div class="form-group" style="flex:3;min-width:250px;margin-bottom:0;">
+            <label>Page URL *</label>
+            <input type="url" class="url-input" placeholder="https://example.com/page" />
+          </div>
+          <div class="form-group" style="flex:1;min-width:120px;margin-bottom:0;">
+            <label>Priority</label>
+            <select class="priority-select">
+              <option value="1.0">1.0</option>
+              <option value="0.8" selected>0.8</option>
+              <option value="0.6">0.6</option>
+              <option value="0.5">0.5</option>
+              <option value="0.4">0.4</option>
+              <option value="0.2">0.2</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:1;min-width:120px;margin-bottom:0;">
+            <label>Frequency</label>
+            <select class="freq-select">
+              <option value="always">Always</option>
+              <option value="hourly">Hourly</option>
+              <option value="daily">Daily</option>
+              <option value="weekly" selected>Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+              <option value="never">Never</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-secondary" onclick="addURL()" style="margin-bottom:20px;">+ Add URL</button>
+      
+      <div style="display:flex;gap:12px;">
+        <button class="btn btn-primary" onclick="generateSitemap()">Generate Sitemap</button>
+        <button class="btn btn-secondary" onclick="copyOutput()">📋 Copy</button>
+      </div>
+      
+      <div class="output-box" id="output" style="display:none;margin-top:20px;">
+        <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        <pre id="code"></pre>
+      </div>
+    </div>
+    
+    <section class="content-section">
+      <h2>How to Use the Sitemap Generator</h2>
+      <p>Add all your website URLs above. Set the priority (1.0 = most important) and change frequency for each page. When done, click Generate and save the output as <code>sitemap.xml</code> in your website root directory. Then submit it to Google Search Console and Bing Webmaster Tools.</p>
+    </section>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is an XML sitemap?</h3>
+        <p>An XML sitemap is a file that lists all the pages on your website, helping search engines like Google and Bing discover and crawl your content more efficiently.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need a sitemap?</h3>
+        <p>If your site is small (under 500 pages) with good internal linking, search engines can usually find all pages. Sitemaps become essential for large sites, new sites with few backlinks, or sites with isolated pages.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Where should I put my sitemap?</h3>
+        <p>Place it at the root of your domain: <code>https://example.com/sitemap.xml</code>. Also reference it in your robots.txt file with: <code>Sitemap: https://example.com/sitemap.xml</code></p>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function addURL() {
+      var container = document.getElementById('urls');
+      var row = document.createElement('div');
+      row.className = 'url-row';
+      row.style.cssText = 'display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;align-items:end;';
+      row.innerHTML = '<div class="form-group" style="flex:3;min-width:250px;margin-bottom:0;"><label>Page URL *</label><input type="url" class="url-input" placeholder="https://example.com/page"></div><div class="form-group" style="flex:1;min-width:120px;margin-bottom:0;"><label>Priority</label><select class="priority-select"><option value="1.0">1.0</option><option value="0.8" selected>0.8</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.2">0.2</option></select></div><div class="form-group" style="flex:1;min-width:120px;margin-bottom:0;"><label>Frequency</label><select class="freq-select"><option value="always">Always</option><option value="hourly">Hourly</option><option value="daily">Daily</option><option value="weekly" selected>Weekly</option><option value="monthly">Monthly</option><option value="yearly">Yearly</option><option value="never">Never</option></select></div><button class="btn btn-secondary" onclick="this.parentElement.remove()" style="padding:8px 12px;">✕</button>';
+      container.appendChild(row);
+    }
+    
+    function generateSitemap() {
+      var rows = document.querySelectorAll('.url-row');
+      var today = new Date().toISOString().split('T')[0];
+      var xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+      xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+      
+      rows.forEach(function(row) {
+        var url = row.querySelector('.url-input').value.trim();
+        var priority = row.querySelector('.priority-select').value;
+        var freq = row.querySelector('.freq-select').value;
+        if (url) {
+          xml += '  <url>\n';
+          xml += '    <loc>' + url + '</loc>\n';
+          xml += '    <lastmod>' + today + '</lastmod>\n';
+          xml += '    <changefreq>' + freq + '</changefreq>\n';
+          xml += '    <priority>' + priority + '</priority>\n';
+          xml += '  </url>\n';
+        }
+      });
+      
+      xml += '</urlset>';
+      document.getElementById('output').style.display = 'block';
+      document.getElementById('code').textContent = xml;
+    }
+    
+    function copyOutput() {
+      var code = document.getElementById('code').textContent;
+      navigator.clipboard.writeText(code).then(function() {
+        document.querySelector('.copy-btn').textContent = 'Copied!';
+        setTimeout(function() { document.querySelector('.copy-btn').textContent = 'Copy'; }, 2000);
+      });
+    }
+  </script>
+</BaseLayout>

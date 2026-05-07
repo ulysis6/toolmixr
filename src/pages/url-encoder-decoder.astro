@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="URL Encoder/Decoder" 
+  description="Free online URL encoder and decoder. Encode or decode URLs and query parameters instantly."
+>
+  <section class="tool-page">
+    <h1>🔗 URL Encoder / Decoder</h1>
+    <p class="subtitle">Encode or decode URLs and query parameters instantly</p>
+    
+    <div class="tool-box">
+      <div class="form-group">
+        <label for="input">Input</label>
+        <textarea id="input" rows="6" placeholder="Enter URL or encoded string..."></textarea>
+      </div>
+      
+      <div style="display:flex;gap:12px;flex-wrap:wrap;" id="actionBtns">
+        <button class="btn btn-primary action-btn" onclick="encodeURL(this)">Encode URL</button>
+        <button class="btn btn-secondary action-btn" onclick="decodeURL(this)">Decode URL</button>
+        <button class="btn btn-secondary action-btn" onclick="encodeComponent(this)">Encode Component</button>
+        <button class="btn btn-secondary action-btn" onclick="decodeComponent(this)">Decode Component</button>
+        <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+      </div>
+      
+      <div class="output-box" id="output" style="display:none;margin-top:20px;">
+        <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        <pre id="code"></pre>
+      </div>
+    </div>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is URL encoding?</h3>
+        <p>URL encoding converts special characters into percent-encoded format (e.g., space becomes %20). This ensures URLs remain valid when they contain characters that have special meaning in URL syntax.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What's the difference between encodeURI and encodeURIComponent?</h3>
+        <p><code>encodeURI</code> encodes a full URL but preserves characters like :, /, ?, &, = that are part of URL structure. <code>encodeURIComponent</code> encodes everything, including those characters — use it for individual query parameter values.</p>
+      </div>
+      <div class="faq-item">
+        <h3>When should I URL-encode?</h3>
+        <p>Always encode values you're putting into query parameters. For example, if a search term contains spaces or special characters, encode it before appending to a URL.</p>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function setActive(btn) {
+      var btns = document.querySelectorAll('.action-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].className = 'btn btn-secondary action-btn';
+      }
+      btn.className = 'btn btn-primary action-btn';
+    }
+    function encodeURL(btn) {
+      setActive(btn);
+      var input = document.getElementById('input').value;
+      showOutput(encodeURI(input));
+    }
+    function decodeURL(btn) {
+      setActive(btn);
+      try { showOutput(decodeURI(document.getElementById('input').value)); }
+      catch(e) { alert('Decoding failed: ' + e.message); }
+    }
+    function encodeComponent(btn) {
+      setActive(btn);
+      var input = document.getElementById('input').value;
+      showOutput(encodeURIComponent(input));
+    }
+    function decodeComponent(btn) {
+      setActive(btn);
+      try { showOutput(decodeURIComponent(document.getElementById('input').value)); }
+      catch(e) { alert('Decoding failed: ' + e.message); }
+    }
+    function showOutput(text) {
+      document.getElementById('output').style.display = 'block';
+      document.getElementById('code').textContent = text;
+    }
+    function clearAll() {
+      document.getElementById('input').value = '';
+      document.getElementById('output').style.display = 'none';
+    }
+    function copyOutput() {
+      var code = document.getElementById('code').textContent;
+      navigator.clipboard.writeText(code).then(function() {
+        document.querySelector('.copy-btn').textContent = 'Copied!';
+        setTimeout(function() { document.querySelector('.copy-btn').textContent = 'Copy'; }, 2000);
+      });
+    }
+  </script>
+</BaseLayout>

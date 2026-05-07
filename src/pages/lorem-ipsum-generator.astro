@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Lorem Ipsum Generator" 
+  description="Free online lorem ipsum generator. Generate placeholder text for your designs and mockups."
+>
+  <section class="tool-page">
+    <h1>📄 Lorem Ipsum Generator</h1>
+    <p class="subtitle">Generate placeholder text for designs and mockups</p>
+    
+    <div class="tool-box">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
+        <div class="form-group" style="flex:1;min-width:120px;margin-bottom:0;">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" value="3" min="1" max="50" />
+        </div>
+        <div class="form-group" style="flex:1;min-width:160px;margin-bottom:0;">
+          <label for="type">Type</label>
+          <select id="type">
+            <option value="paragraphs">Paragraphs</option>
+            <option value="sentences">Sentences</option>
+            <option value="words">Words</option>
+          </select>
+        </div>
+        <div style="margin-bottom:4px;">
+          <button class="btn btn-primary" onclick="generate()">Generate</button>
+        </div>
+      </div>
+      
+      <div style="margin-top:16px;display:flex;gap:12px;">
+        <button class="btn btn-secondary" onclick="copyOutput()">📋 Copy</button>
+      </div>
+      
+      <div id="result" style="margin-top:20px;padding:20px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);font-size:14px;line-height:1.8;color:var(--text-secondary);max-height:400px;overflow-y:auto;"></div>
+    </div>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is Lorem Ipsum?</h3>
+        <p>Lorem Ipsum is dummy text used in printing, typesetting, and web design since the 1500s. It's derived from a Latin text by Cicero but scrambled to be nonsensical, so readers focus on the visual layout rather than the content.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why use Lorem Ipsum instead of real text?</h3>
+        <p>Using readable real text can distract reviewers from evaluating the design itself. Lorem Ipsum looks natural enough to show text flow but doesn't carry meaning, keeping the focus on layout and typography.</p>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    var words = [
+      'lorem','ipsum','dolor','sit','amet','consectetur','adipiscing','elit','sed','do',
+      'eiusmod','tempor','incididunt','ut','labore','et','dolore','magna','aliqua','enim',
+      'ad','minim','veniam','quis','nostrud','exercitation','ullamco','laboris','nisi','aliquip',
+      'ex','ea','commodo','consequat','duis','aute','irure','in','reprehenderit','voluptate',
+      'velit','esse','cillum','fugiat','nulla','pariatur','excepteur','sint','occaecat','cupidatat',
+      'non','proident','sunt','culpa','qui','officia','deserunt','mollit','anim','id',
+      'est','laborum','vitae','elementum','curabitur','felis','sapien','varius','vel','porta',
+      'ac','cursus','mauris','augue','neque','gravida','fermentum','praesent','semper','ligula',
+      'pellentesque','habitant','morbi','tristique','senectus','netus','malesuada','fames','turpis','egestas'
+    ];
+    
+    function randomWord() { return words[Math.floor(Math.random() * words.length)]; }
+    
+    function randomSentence() {
+      var len = 8 + Math.floor(Math.random() * 12);
+      var sentence = [];
+      for (var i = 0; i < len; i++) sentence.push(randomWord());
+      sentence[0] = sentence[0].charAt(0).toUpperCase() + sentence[0].slice(1);
+      return sentence.join(' ') + '.';
+    }
+    
+    function randomParagraph() {
+      var count = 3 + Math.floor(Math.random() * 4);
+      var sentences = [];
+      for (var i = 0; i < count; i++) sentences.push(randomSentence());
+      return sentences.join(' ');
+    }
+    
+    function generate() {
+      var amount = parseInt(document.getElementById('amount').value);
+      var type = document.getElementById('type').value;
+      var result = '';
+      
+      if (type === 'paragraphs') {
+        var paras = [];
+        for (var i = 0; i < amount; i++) paras.push(randomParagraph());
+        result = paras.join('\n\n');
+      } else if (type === 'sentences') {
+        var sentences = [];
+        for (var i = 0; i < amount; i++) sentences.push(randomSentence());
+        result = sentences.join(' ');
+      } else {
+        var w = [];
+        for (var i = 0; i < amount; i++) w.push(randomWord());
+        result = w.join(' ');
+      }
+      
+      var el = document.getElementById('result');
+      if (type === 'paragraphs') {
+        el.innerHTML = result.split('\n\n').map(function(p){ return '<p style="margin-bottom:12px;">' + p + '</p>'; }).join('');
+      } else {
+        el.innerHTML = '<p>' + result + '</p>';
+      }
+      el.dataset.text = result;
+    }
+    
+    generate();
+    
+    function copyOutput() {
+      var text = document.getElementById('result').dataset.text || '';
+      navigator.clipboard.writeText(text).then(function() { alert('Copied!'); });
+    }
+  </script>
+</BaseLayout>

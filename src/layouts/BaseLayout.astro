@@ -1,0 +1,349 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: string;
+}
+
+const { title, description, canonicalURL } = Astro.props;
+const siteTitle = 'ToolMixr - Free Online Web Tools';
+const fullTitle = title === 'Home' ? siteTitle : `${title} | ToolMixr`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL || Astro.url.href} />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="ToolMixr" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <title>{fullTitle}</title>
+    
+    <!-- Google AdSense (replace with your publisher ID after approval) -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+    
+    <!-- Google Analytics (add after setup) -->
+    
+    <style is:global>
+      :root {
+        --primary: #4F46E5;
+        --primary-hover: #4338CA;
+        --bg: #F9FAFB;
+        --surface: #FFFFFF;
+        --text: #111827;
+        --text-secondary: #6B7280;
+        --border: #E5E7EB;
+        --success: #10B981;
+        --radius: 8px;
+      }
+      
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      
+      a { color: var(--primary); text-decoration: none; }
+      a:hover { color: var(--primary-hover); }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      /* Header */
+      .header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .logo span { color: var(--text-secondary); font-weight: 400; font-size: 14px; }
+      
+      nav { display: flex; gap: 24px; align-items: center; }
+      nav a {
+        color: var(--text-secondary);
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      nav a:hover { color: var(--primary); }
+      
+      /* Hero */
+      .hero {
+        text-align: center;
+        padding: 60px 0 40px;
+      }
+      .hero h1 {
+        font-size: 40px;
+        font-weight: 800;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero p {
+        font-size: 18px;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      /* Tool Grid */
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+        padding: 40px 0;
+      }
+      
+      .tool-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        transition: all 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+      .tool-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 4px 12px rgba(79,70,229,0.1);
+        transform: translateY(-2px);
+      }
+      .tool-card .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: #EEF2FF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+      .tool-card h3 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .tool-card p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        flex: 1;
+      }
+      .tool-card .tag {
+        display: inline-block;
+        font-size: 12px;
+        color: var(--primary);
+        background: #EEF2FF;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-top: 12px;
+      }
+      
+      /* Tool Page */
+      .tool-page { padding: 40px 0; }
+      .tool-page h1 {
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .tool-page .subtitle {
+        color: var(--text-secondary);
+        margin-bottom: 32px;
+        font-size: 16px;
+      }
+      
+      .tool-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 32px;
+        margin-bottom: 40px;
+      }
+      
+      /* Form elements */
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        font-size: 14px;
+        transition: border-color 0.2s;
+        font-family: inherit;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+      }
+      
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: var(--radius);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        border: 1px solid var(--primary);
+      }
+      .btn-primary:hover {
+        background: var(--primary-hover);
+      }
+      .btn-secondary {
+        background: var(--bg);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+      .btn-secondary:hover {
+        background: var(--border);
+      }
+      
+      .output-box {
+        background: #1E1E2E;
+        color: #CDD6F4;
+        border-radius: var(--radius);
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        overflow-x: auto;
+        position: relative;
+        margin-top: 20px;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255,255,255,0.1);
+        color: #CDD6F4;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      .copy-btn:hover { background: rgba(255,255,255,0.2); }
+      
+      /* FAQ */
+      .faq { margin-top: 40px; }
+      .faq h2 { font-size: 24px; margin-bottom: 20px; }
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+        padding: 16px 0;
+      }
+      .faq-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+      .faq-item p { font-size: 14px; color: var(--text-secondary); }
+      
+      /* Content Section */
+      .content-section {
+        margin-top: 40px;
+        padding: 32px 0;
+        border-top: 1px solid var(--border);
+      }
+      .content-section h2 { font-size: 24px; margin-bottom: 16px; }
+      .content-section p { color: var(--text-secondary); margin-bottom: 12px; font-size: 15px; }
+      
+      /* Footer */
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 32px 0;
+        margin-top: 60px;
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 14px;
+      }
+      .footer a { color: var(--text-secondary); }
+      .footer a:hover { color: var(--primary); }
+      
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 { font-size: 28px; }
+        .hero p { font-size: 16px; }
+        nav { gap: 16px; }
+        .tool-page h1 { font-size: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="/" class="logo">
+          🔧 ToolMixr
+          <span>Free Online Tools</span>
+        </a>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="container">
+      <slot />
+    </main>
+    
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2026 ToolMixr. Free online tools for everyone.</p>
+        <p style="margin-top:8px;">
+          <a href="/privacy">Privacy Policy</a> · 
+          <a href="/terms">Terms of Service</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

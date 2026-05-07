@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Meta Tag Generator" 
+  description="Free online meta tag generator. Create SEO-friendly HTML meta tags, Open Graph tags, and Twitter Card tags for your website."
+>
+  <section class="tool-page">
+    <h1>🏷️ Meta Tag Generator</h1>
+    <p class="subtitle">Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards</p>
+    
+    <div class="tool-box">
+      <div class="form-group">
+        <label for="title">Page Title *</label>
+        <input type="text" id="title" placeholder="e.g. Best Online Tools for Web Developers" maxlength="70" />
+        <small style="color:var(--text-secondary);font-size:12px;">Recommended: 50-60 characters</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Meta Description *</label>
+        <textarea id="description" rows="3" placeholder="Briefly describe your page content..." maxlength="160"></textarea>
+        <small style="color:var(--text-secondary);font-size:12px;">Recommended: 120-160 characters</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="keywords">Keywords</label>
+        <input type="text" id="keywords" placeholder="e.g. web tools, SEO, meta tags" />
+        <small style="color:var(--text-secondary);font-size:12px;">Comma-separated keywords</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="url">Page URL</label>
+        <input type="url" id="url" placeholder="https://example.com/page" />
+      </div>
+      
+      <div class="form-group">
+        <label for="image">OG Image URL</label>
+        <input type="url" id="image" placeholder="https://example.com/image.jpg" />
+      </div>
+      
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div class="form-group" style="flex:1;min-width:200px;">
+          <label for="type">OG Type</label>
+          <select id="type">
+            <option value="website">Website</option>
+            <option value="article">Article</option>
+            <option value="product">Product</option>
+          </select>
+        </div>
+        <div class="form-group" style="flex:1;min-width:200px;">
+          <label for="robots">Robots</label>
+          <select id="robots">
+            <option value="index, follow">Index, Follow</option>
+            <option value="noindex, follow">No Index, Follow</option>
+            <option value="index, nofollow">Index, No Follow</option>
+            <option value="noindex, nofollow">No Index, No Follow</option>
+          </select>
+        </div>
+        <div class="form-group" style="flex:1;min-width:200px;">
+          <label for="viewport">Viewport</label>
+          <input type="text" id="viewport" value="width=device-width, initial-scale=1.0" />
+        </div>
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button class="btn btn-primary" onclick="generateMeta()">Generate Tags</button>
+        <button class="btn btn-secondary" onclick="copyOutput()">📋 Copy</button>
+      </div>
+      
+      <div class="output-box" id="output" style="display:none;">
+        <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        <pre id="code"></pre>
+      </div>
+    </div>
+    
+    <section class="content-section">
+      <h2>How to Use the Meta Tag Generator</h2>
+      <p>Fill in the fields above with your page information and click "Generate Tags". The tool creates a complete set of meta tags including basic SEO tags, Open Graph tags for social media sharing, and Twitter Card tags.</p>
+      <p>Copy the generated code and paste it into the <code>&lt;head&gt;</code> section of your HTML document. Meta tags help search engines understand your content and improve how your page appears in search results and social media feeds.</p>
+    </section>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What are meta tags?</h3>
+        <p>Meta tags are HTML elements that provide metadata about a web page. They sit in the head section of your HTML and tell search engines and social media platforms what your page is about, how to display it, and whether to index it.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why are Open Graph tags important?</h3>
+        <p>Open Graph tags control how your content appears when shared on Facebook, LinkedIn, and other social platforms. Without them, social platforms may choose random images or text, making your shares look unprofessional.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How long should my meta description be?</h3>
+        <p>Google typically displays 120-160 characters of a meta description. Aim for 150-160 characters to ensure your full message appears in search results without being cut off.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do keywords meta tags still matter?</h3>
+        <p>Google has not used the keywords meta tag for ranking since 2009. However, some smaller search engines and tools may still reference it, so it doesn't hurt to include relevant keywords.</p>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function generateMeta() {
+      var title = document.getElementById('title').value.trim();
+      var desc = document.getElementById('description').value.trim();
+      var keywords = document.getElementById('keywords').value.trim();
+      var url = document.getElementById('url').value.trim();
+      var image = document.getElementById('image').value.trim();
+      var type = document.getElementById('type').value;
+      var robots = document.getElementById('robots').value;
+      var viewport = document.getElementById('viewport').value.trim();
+      
+      var tags = [];
+      tags.push('<meta charset="UTF-8">');
+      if (viewport) tags.push('<meta name="viewport" content="' + viewport + '">');
+      if (title) tags.push('<title>' + title + '</title>');
+      if (desc) tags.push('<meta name="description" content="' + desc + '">');
+      if (keywords) tags.push('<meta name="keywords" content="' + keywords + '">');
+      tags.push('<meta name="robots" content="' + robots + '">');
+      
+      if (url) {
+        tags.push('\n<!-- Open Graph -->');
+        tags.push('<meta property="og:type" content="' + type + '">');
+        tags.push('<meta property="og:url" content="' + url + '">');
+        if (title) tags.push('<meta property="og:title" content="' + title + '">');
+        if (desc) tags.push('<meta property="og:description" content="' + desc + '">');
+        if (image) tags.push('<meta property="og:image" content="' + image + '">');
+      }
+      
+      if (title || url) {
+        tags.push('\n<!-- Twitter Card -->');
+        tags.push('<meta name="twitter:card" content="summary_large_image">');
+        if (title) tags.push('<meta name="twitter:title" content="' + title + '">');
+        if (desc) tags.push('<meta name="twitter:description" content="' + desc + '">');
+        if (image) tags.push('<meta name="twitter:image" content="' + image + '">');
+      }
+      
+      document.getElementById('output').style.display = 'block';
+      document.getElementById('code').textContent = tags.join('\n');
+    }
+    
+    function copyOutput() {
+      var code = document.getElementById('code').textContent;
+      navigator.clipboard.writeText(code).then(function() {
+        document.querySelector('.copy-btn').textContent = 'Copied!';
+        setTimeout(function() { document.querySelector('.copy-btn').textContent = 'Copy'; }, 2000);
+      });
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="QR Code Generator" 
+  description="Free online QR code generator. Create QR codes for URLs, text, WiFi, email, and more. Download as PNG."
+>
+  <section class="tool-page">
+    <h1>📱 QR Code Generator</h1>
+    <p class="subtitle">Create QR codes for URLs, text, WiFi, and more</p>
+    
+    <div class="tool-box">
+      <div class="form-group">
+        <label for="qrType">Content Type</label>
+        <select id="qrType" onchange="updatePlaceholder()">
+          <option value="url">URL</option>
+          <option value="text">Plain Text</option>
+          <option value="wifi">WiFi</option>
+          <option value="email">Email</option>
+        </select>
+      </div>
+      
+      <div id="urlFields">
+        <div class="form-group">
+          <label for="urlInput">URL</label>
+          <input type="url" id="urlInput" placeholder="https://example.com" />
+        </div>
+      </div>
+      
+      <div id="textFields" style="display:none;">
+        <div class="form-group">
+          <label for="textInput">Text</label>
+          <textarea id="textInput" rows="3" placeholder="Enter your text here..."></textarea>
+        </div>
+      </div>
+      
+      <div id="wifiFields" style="display:none;">
+        <div class="form-group">
+          <label for="wifiSSID">Network Name (SSID)</label>
+          <input type="text" id="wifiSSID" placeholder="MyWiFi" />
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <div class="form-group" style="flex:1;min-width:160px;">
+            <label for="wifiPass">Password</label>
+            <input type="text" id="wifiPass" placeholder="password123" />
+          </div>
+          <div class="form-group" style="flex:1;min-width:160px;">
+            <label for="wifiEnc">Encryption</label>
+            <select id="wifiEnc">
+              <option value="WPA">WPA/WPA2</option>
+              <option value="WEP">WEP</option>
+              <option value="">None</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div id="emailFields" style="display:none;">
+        <div class="form-group">
+          <label for="emailAddr">Email Address</label>
+          <input type="email" id="emailAddr" placeholder="hello@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="emailSubject">Subject (optional)</label>
+          <input type="text" id="emailSubject" placeholder="Hello" />
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="qrSize">Size: <span id="sizeVal">256</span>px</label>
+        <input type="range" id="qrSize" min="128" max="512" value="256" step="64" oninput="document.getElementById('sizeVal').textContent=this.value" style="width:100%;" />
+      </div>
+      
+      <div style="display:flex;gap:12px;">
+        <button class="btn btn-primary" onclick="generateQR()">Generate QR Code</button>
+      </div>
+      
+      <div id="qrResult" style="display:none;margin-top:24px;text-align:center;">
+        <div style="background:white;padding:24px;border-radius:var(--radius);display:inline-block;">
+          <img id="qrImage" alt="QR Code" style="display:block;" />
+        </div>
+        <div style="margin-top:16px;">
+          <button class="btn btn-secondary" onclick="downloadQR()">💾 Download PNG</button>
+        </div>
+      </div>
+    </div>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is a QR code?</h3>
+        <p>A QR (Quick Response) code is a two-dimensional barcode that can store URLs, text, contact info, and other data. Scan it with a smartphone camera to instantly access the encoded information.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is there a limit to QR code content?</h3>
+        <p>QR codes can store up to ~4,000 characters, but shorter content creates smaller, more scannable codes. For best results, keep URLs short and use URL shorteners if needed.</p>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function updatePlaceholder() {
+      var type = document.getElementById('qrType').value;
+      document.getElementById('urlFields').style.display = type === 'url' ? '' : 'none';
+      document.getElementById('textFields').style.display = type === 'text' ? '' : 'none';
+      document.getElementById('wifiFields').style.display = type === 'wifi' ? '' : 'none';
+      document.getElementById('emailFields').style.display = type === 'email' ? '' : 'none';
+    }
+    
+    function generateQR() {
+      var type = document.getElementById('qrType').value;
+      var size = document.getElementById('qrSize').value;
+      var data = '';
+      
+      if (type === 'url') {
+        data = document.getElementById('urlInput').value.trim();
+      } else if (type === 'text') {
+        data = document.getElementById('textInput').value.trim();
+      } else if (type === 'wifi') {
+        var ssid = document.getElementById('wifiSSID').value.trim();
+        var pass = document.getElementById('wifiPass').value.trim();
+        var enc = document.getElementById('wifiEnc').value;
+        data = 'WIFI:T:' + enc + ';S:' + ssid + ';P:' + pass + ';;';
+      } else if (type === 'email') {
+        var addr = document.getElementById('emailAddr').value.trim();
+        var subject = document.getElementById('emailSubject').value.trim();
+        data = subject ? 'mailto:' + addr + '?subject=' + encodeURIComponent(subject) : 'mailto:' + addr;
+      }
+      
+      if (!data) { alert('Please enter some content'); return; }
+      
+      var img = document.getElementById('qrImage');
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' + size + '&data=' + encodeURIComponent(data) + '&format=png';
+      img.width = parseInt(size);
+      img.height = parseInt(size);
+      document.getElementById('qrResult').style.display = '';
+    }
+    
+    function downloadQR() {
+      var img = document.getElementById('qrImage');
+      var a = document.createElement('a');
+      a.href = img.src;
+      a.download = 'qrcode.png';
+      a.target = '_blank';
+      a.click();
+    }
+  </script>
+</BaseLayout>

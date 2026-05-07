@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Word Counter" 
+  description="Free online word counter. Count words, characters, sentences, and paragraphs instantly. Perfect for writers and content creators."
+>
+  <section class="tool-page">
+    <h1>📝 Word Counter</h1>
+    <p class="subtitle">Count words, characters, sentences, and paragraphs instantly</p>
+    
+    <div class="tool-box">
+      <div class="form-group">
+        <textarea id="textInput" rows="10" placeholder="Type or paste your text here..." oninput="countWords()"></textarea>
+      </div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:20px;">
+        <div style="text-align:center;padding:16px;background:var(--bg);border-radius:var(--radius);">
+          <div style="font-size:28px;font-weight:800;color:var(--primary);" id="wordCount">0</div>
+          <div style="font-size:13px;color:var(--text-secondary);">Words</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg);border-radius:var(--radius);">
+          <div style="font-size:28px;font-weight:800;color:var(--primary);" id="charCount">0</div>
+          <div style="font-size:13px;color:var(--text-secondary);">Characters</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg);border-radius:var(--radius);">
+          <div style="font-size:28px;font-weight:800;color:var(--primary);" id="charNoSpace">0</div>
+          <div style="font-size:13px;color:var(--text-secondary);">No Spaces</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg);border-radius:var(--radius);">
+          <div style="font-size:28px;font-weight:800;color:var(--primary);" id="sentenceCount">0</div>
+          <div style="font-size:13px;color:var(--text-secondary);">Sentences</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg);border-radius:var(--radius);">
+          <div style="font-size:28px;font-weight:800;color:var(--primary);" id="paraCount">0</div>
+          <div style="font-size:13px;color:var(--text-secondary);">Paragraphs</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg);border-radius:var(--radius);">
+          <div style="font-size:28px;font-weight:800;color:var(--primary);" id="readTime">0</div>
+          <div style="font-size:13px;color:var(--text-secondary);">Min Read</div>
+        </div>
+      </div>
+      
+      <div style="margin-top:16px;">
+        <button class="btn btn-secondary" onclick="clearText()">Clear</button>
+      </div>
+    </div>
+    
+    <section class="content-section">
+      <h2>About Word Counter</h2>
+      <p>Our word counter tool provides instant, accurate text analysis. Whether you're writing a blog post, academic paper, or social media caption, knowing your word count helps you meet requirements and stay concise.</p>
+      <p>The average reading speed is approximately 200-250 words per minute. Our tool estimates reading time based on 225 words per minute.</p>
+    </section>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>How does the word counter work?</h3>
+        <p>Simply type or paste your text into the box above. The tool instantly counts words, characters, sentences, and paragraphs in real-time as you type.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does the word counter store my text?</h3>
+        <p>No. All processing happens in your browser. Your text is never sent to any server. Your data stays completely private.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How is reading time calculated?</h3>
+        <p>Reading time is estimated based on an average reading speed of 225 words per minute, which is the typical speed for adult readers of English content.</p>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function countWords() {
+      var text = document.getElementById('textInput').value;
+      var words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      var chars = text.length;
+      var charsNoSpace = text.replace(/\s/g, '').length;
+      var sentences = text.trim() ? text.split(/[.!?]+/).filter(function(s){return s.trim()}).length : 0;
+      var paragraphs = text.trim() ? text.split(/\n\n+/).filter(function(p){return p.trim()}).length : 0;
+      var readTime = Math.ceil(words / 225);
+      
+      document.getElementById('wordCount').textContent = words;
+      document.getElementById('charCount').textContent = chars;
+      document.getElementById('charNoSpace').textContent = charsNoSpace;
+      document.getElementById('sentenceCount').textContent = sentences;
+      document.getElementById('paraCount').textContent = paragraphs;
+      document.getElementById('readTime').textContent = readTime;
+    }
+    
+    function clearText() {
+      document.getElementById('textInput').value = '';
+      countWords();
+    }
+  </script>
+</BaseLayout>

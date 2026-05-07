@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Privacy Policy" description="ToolMixr privacy policy - your data stays in your browser.">
+
+  <div class="legal-page">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: May 2026</p>
+
+    <div class="legal-section">
+      <h2>Data Collection</h2>
+      <p>ToolMixr does <strong>not</strong> collect, store, or transmit any personal data. All tool operations run entirely in your browser. The text you type, files you process, and results you generate never leave your device.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Analytics</h2>
+      <p>We may use Google Analytics to understand how visitors interact with the site. This collects anonymous data such as page views, referral sources, and device types. No personally identifiable information is collected. You can opt out by using browser extensions that block analytics scripts.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Advertising</h2>
+      <p>ToolMixr may display advertisements through Google AdSense. These ads may use cookies to serve personalized content. For more information on how Google uses your data, please refer to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Cookies</h2>
+      <p>ToolMixr itself does not set cookies. However, third-party services (analytics, advertising) may set cookies in your browser. You can manage or disable cookies through your browser settings.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Third-Party Services</h2>
+      <ul>
+        <li><strong>Google Analytics</strong> — Anonymous traffic analysis</li>
+        <li><strong>Google AdSense</strong> — Advertising</li>
+        <li><strong>Cloudflare</strong> — Hosting and CDN</li>
+        <li><strong>QR Code API</strong> (api.qrserver.com) — Used by the QR Code Generator tool. The text you enter is sent to this API to generate the image. Do not enter sensitive information in the QR Code Generator.</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>Children's Privacy</h2>
+      <p>ToolMixr is not directed at children under 13. We do not knowingly collect data from children.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Changes to This Policy</h2>
+      <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated date.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Contact</h2>
+      <p>If you have questions about this privacy policy, please contact us at <a href="mailto:privacy@toolmixr.com">privacy@toolmixr.com</a>.</p>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .legal-page { padding: 40px 0 80px; max-width: 720px; }
+  .legal-page h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+  .legal-page .updated { color: var(--text-secondary); margin-bottom: 40px; font-size: 14px; }
+  .legal-section { margin-bottom: 32px; }
+  .legal-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .legal-section p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 8px; }
+  .legal-section ul { color: var(--text-secondary); line-height: 1.8; padding-left: 24px; }
+  .legal-section ul li { margin-bottom: 6px; }
+</style>

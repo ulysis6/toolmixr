@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" description="Learn about ToolMixr - free online tools for developers, designers, and content creators.">
+  
+  <div class="about-page">
+    <h1>About ToolMixr</h1>
+    <p class="subtitle">Free online tools that respect your privacy.</p>
+
+    <div class="about-section">
+      <h2>What is ToolMixr?</h2>
+      <p>ToolMixr is a collection of free online tools built for developers, designers, SEO specialists, and content creators. Every tool runs <strong>entirely in your browser</strong> — no data is ever sent to a server, no sign-up required, no tracking.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Why ToolMixr?</h2>
+      <p>We got tired of online tools that:</p>
+      <ul>
+        <li>Force you to create an account just to format some JSON</li>
+        <li>Upload your data to unknown servers for "processing"</li>
+        <li>Bombard you with pop-ups, ads, and paywalls</li>
+        <li>Break your workflow with slow, bloated interfaces</li>
+      </ul>
+      <p>ToolMixr is our answer: fast, clean, private. That's it.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Our Principles</h2>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-icon">🔒</div>
+          <h3>Privacy First</h3>
+          <p>All processing happens locally in your browser. Your data never leaves your device.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">⚡</div>
+          <h3>Instant & Free</h3>
+          <p>No sign-up, no limits, no paywalls. Just open and use.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">🎯</div>
+          <h3>Does One Thing Well</h3>
+          <p>Each tool is focused on a single task. No feature creep, no confusion.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">🌐</div>
+          <h3>Works Everywhere</h3>
+          <p>Desktop, tablet, mobile — all you need is a modern browser.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>Currently Available Tools</h2>
+      <ul class="tool-list">
+        <li><a href="/meta-tag-generator">Meta Tag Generator</a> — SEO & Open Graph meta tags</li>
+        <li><a href="/og-image-generator">Open Graph Image Generator</a> — Social preview images</li>
+        <li><a href="/robots-txt-generator">Robots.txt Generator</a> — Crawl directives for search engines</li>
+        <li><a href="/sitemap-generator">Sitemap Generator</a> — XML sitemaps for better indexing</li>
+        <li><a href="/word-counter">Word Counter</a> — Words, characters, sentences & paragraphs</li>
+        <li><a href="/json-formatter">JSON Formatter</a> — Format, validate & beautify JSON</li>
+        <li><a href="/base64-encoder-decoder">Base64 Encoder/Decoder</a> — Encode & decode Base64 strings</li>
+        <li><a href="/color-palette-generator">Color Palette Generator</a> — Beautiful color palettes for web projects</li>
+        <li><a href="/qr-code-generator">QR Code Generator</a> — Create QR codes instantly</li>
+        <li><a href="/password-generator">Password Generator</a> — Strong, secure passwords</li>
+        <li><a href="/lorem-ipsum-generator">Lorem Ipsum Generator</a> — Placeholder text for designs</li>
+        <li><a href="/url-encoder-decoder">URL Encoder/Decoder</a> — Encode & decode URLs</li>
+      </ul>
+    </div>
+
+    <div class="about-section">
+      <h2>Coming Soon</h2>
+      <p>We're always building new tools. Have an idea? We'd love to hear from you.</p>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .about-page {
+    padding: 40px 0 80px;
+  }
+  .about-page h1 {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .about-page .subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+  }
+  .about-section {
+    margin-bottom: 40px;
+  }
+  .about-section h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .about-section p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+  .about-section ul {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    padding-left: 24px;
+    margin-bottom: 12px;
+  }
+  .about-section ul li {
+    margin-bottom: 6px;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .principle-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+  }
+  .principle-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  .principle-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .principle-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .tool-list {
+    list-style: none;
+    padding: 0;
+  }
+  .tool-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .tool-list li:last-child {
+    border-bottom: none;
+  }
+  .tool-list li a {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+</style>

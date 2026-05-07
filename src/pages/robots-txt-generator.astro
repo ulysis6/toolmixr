@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Robots.txt Generator" 
+  description="Free online robots.txt generator. Easily create a robots.txt file to control how search engines crawl and index your website."
+>
+  <section class="tool-page">
+    <h1>🤖 Robots.txt Generator</h1>
+    <p class="subtitle">Create a robots.txt file to control search engine crawling</p>
+    
+    <div class="tool-box">
+      <h3 style="margin-bottom:16px;">User-agent Rules</h3>
+      <div id="rules">
+        <div class="rule-row" style="display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;align-items:end;">
+          <div class="form-group" style="flex:1;min-width:180px;margin-bottom:0;">
+            <label>User-agent</label>
+            <select class="ua-select">
+              <option value="*">All Robots (*)</option>
+              <option value="Googlebot">Googlebot</option>
+              <option value="Bingbot">Bingbot</option>
+              <option value="Slurp">Yahoo (Slurp)</option>
+              <option value="DuckDuckBot">DuckDuckBot</option>
+              <option value="Baiduspider">Baiduspider</option>
+              <option value="YandexBot">YandexBot</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:1;min-width:180px;margin-bottom:0;">
+            <label>Action</label>
+            <select class="action-select">
+              <option value="allow">Allow</option>
+              <option value="disallow">Disallow</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:2;min-width:200px;margin-bottom:0;">
+            <label>Path</label>
+            <input type="text" class="path-input" placeholder="/path/ or /" />
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-secondary" onclick="addRule()" style="margin-bottom:20px;">+ Add Rule</button>
+      
+      <div class="form-group">
+        <label>Sitemap URL (optional)</label>
+        <input type="url" id="sitemap" placeholder="https://example.com/sitemap.xml" />
+      </div>
+      
+      <div class="form-group">
+        <label>Crawl-delay (seconds, optional)</label>
+        <input type="number" id="crawlDelay" placeholder="e.g. 10" min="0" />
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button class="btn btn-primary" onclick="generateRobots()">Generate robots.txt</button>
+        <button class="btn btn-secondary" onclick="copyOutput()">📋 Copy</button>
+      </div>
+      
+      <div class="output-box" id="output" style="display:none;">
+        <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        <pre id="code"></pre>
+      </div>
+    </div>
+    
+    <section class="content-section">
+      <h2>How to Use the Robots.txt Generator</h2>
+      <p>Add rules to control which search engine bots can access which parts of your site. Select a user-agent, choose Allow or Disallow, and enter the path. When done, click Generate and copy the output to a file named <code>robots.txt</code> in your website root directory.</p>
+    </section>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is a robots.txt file?</h3>
+        <p>A robots.txt file tells search engine crawlers which pages or sections of your site they can or cannot access. It must be placed in the root directory of your website.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is robots.txt a security tool?</h3>
+        <p>No. Robots.txt is a directive, not a security measure. Malicious bots may ignore it. Never use robots.txt to hide sensitive pages — use proper authentication instead.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Where should I put my robots.txt file?</h3>
+        <p>Place it at the root of your domain: <code>https://example.com/robots.txt</code>. It will not work in subdirectories.</p>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function addRule() {
+      var container = document.getElementById('rules');
+      var row = document.createElement('div');
+      row.className = 'rule-row';
+      row.style.cssText = 'display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;align-items:end;';
+      row.innerHTML = '<div class="form-group" style="flex:1;min-width:180px;margin-bottom:0;"><label>User-agent</label><select class="ua-select"><option value="*">All Robots (*)</option><option value="Googlebot">Googlebot</option><option value="Bingbot">Bingbot</option><option value="Slurp">Yahoo (Slurp)</option><option value="DuckDuckBot">DuckDuckBot</option><option value="Baiduspider">Baiduspider</option><option value="YandexBot">YandexBot</option></select></div><div class="form-group" style="flex:1;min-width:180px;margin-bottom:0;"><label>Action</label><select class="action-select"><option value="allow">Allow</option><option value="disallow">Disallow</option></select></div><div class="form-group" style="flex:2;min-width:200px;margin-bottom:0;"><label>Path</label><input type="text" class="path-input" placeholder="/path/ or /"></div><button class="btn btn-secondary" onclick="this.parentElement.remove()" style="padding:8px 12px;">✕</button>';
+      container.appendChild(row);
+    }
+    
+    function generateRobots() {
+      var rules = document.querySelectorAll('.rule-row');
+      var sitemap = document.getElementById('sitemap').value.trim();
+      var crawlDelay = document.getElementById('crawlDelay').value.trim();
+      var lines = [];
+      var currentUA = '';
+      
+      rules.forEach(function(row) {
+        var ua = row.querySelector('.ua-select').value;
+        var action = row.querySelector('.action-select').value;
+        var path = row.querySelector('.path-input').value.trim() || '/';
+        
+        if (ua !== currentUA) {
+          if (currentUA) lines.push('');
+          lines.push('User-agent: ' + ua);
+          currentUA = ua;
+        }
+        lines.push(action.charAt(0).toUpperCase() + action.slice(1) + ': ' + path);
+        if (crawlDelay && ua === currentUA) {
+          lines.push('Crawl-delay: ' + crawlDelay);
+        }
+      });
+      
+      if (sitemap) {
+        lines.push('');
+        lines.push('Sitemap: ' + sitemap);
+      }
+      
+      document.getElementById('output').style.display = 'block';
+      document.getElementById('code').textContent = lines.join('\n');
+    }
+    
+    function copyOutput() {
+      var code = document.getElementById('code').textContent;
+      navigator.clipboard.writeText(code).then(function() {
+        document.querySelector('.copy-btn').textContent = 'Copied!';
+        setTimeout(function() { document.querySelector('.copy-btn').textContent = 'Copy'; }, 2000);
+      });
+    }
+  </script>
+</BaseLayout>

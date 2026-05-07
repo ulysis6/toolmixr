@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Base64 Encoder/Decoder" 
+  description="Free online Base64 encoder and decoder. Encode text to Base64 or decode Base64 strings instantly."
+>
+  <section class="tool-page">
+    <h1>🔐 Base64 Encoder / Decoder</h1>
+    <p class="subtitle">Encode text to Base64 or decode Base64 strings instantly</p>
+    
+    <div class="tool-box">
+      <div class="form-group">
+        <label for="input">Input</label>
+        <textarea id="input" rows="6" placeholder="Enter text to encode, or Base64 string to decode..."></textarea>
+      </div>
+      
+      <div style="display:flex;gap:12px;flex-wrap:wrap;" id="actionBtns">
+        <button class="btn btn-primary action-btn" onclick="encode(this)">Encode to Base64</button>
+        <button class="btn btn-secondary action-btn" onclick="decode(this)">Decode from Base64</button>
+        <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+      </div>
+      
+      <div class="output-box" id="output" style="display:none;margin-top:20px;">
+        <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        <pre id="code"></pre>
+      </div>
+    </div>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is Base64 encoding?</h3>
+        <p>Base64 is a binary-to-text encoding scheme that converts binary data into ASCII characters. It's commonly used to encode data for transmission over media designed to handle text, such as email or JSON.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is Base64 encryption?</h3>
+        <p>No! Base64 is encoding, not encryption. It provides no security. Anyone can decode Base64 — it's meant for data formatting, not protection.</p>
+      </div>
+      <div class="faq-item">
+        <h3>When should I use Base64?</h3>
+        <p>Common uses include: embedding images in HTML/CSS (data URLs), sending binary data in JSON APIs, encoding email attachments (MIME), and storing complex data in cookies.</p>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function setActive(btn) {
+      var btns = document.querySelectorAll('.action-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].className = 'btn btn-secondary action-btn';
+      }
+      btn.className = 'btn btn-primary action-btn';
+    }
+    function encode(btn) {
+      setActive(btn);
+      var input = document.getElementById('input').value;
+      try {
+        var encoded = btoa(unescape(encodeURIComponent(input)));
+        showOutput(encoded);
+      } catch (e) {
+        alert('Encoding failed: ' + e.message);
+      }
+    }
+    
+    function decode(btn) {
+      setActive(btn);
+      var input = document.getElementById('input').value.trim();
+      try {
+        var decoded = decodeURIComponent(escape(atob(input)));
+        showOutput(decoded);
+      } catch (e) {
+        alert('Decoding failed: Invalid Base64 string');
+      }
+    }
+    
+    function showOutput(text) {
+      document.getElementById('output').style.display = 'block';
+      document.getElementById('code').textContent = text;
+    }
+    
+    function clearAll() {
+      document.getElementById('input').value = '';
+      document.getElementById('output').style.display = 'none';
+    }
+    
+    function copyOutput() {
+      var code = document.getElementById('code').textContent;
+      navigator.clipboard.writeText(code).then(function() {
+        document.querySelector('.copy-btn').textContent = 'Copied!';
+        setTimeout(function() { document.querySelector('.copy-btn').textContent = 'Copy'; }, 2000);
+      });
+    }
+  </script>
+</BaseLayout>
