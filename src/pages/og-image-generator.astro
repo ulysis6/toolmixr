@@ -78,6 +78,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🖼️ Open Graph Image Generator</h1>
     <p class="subtitle">Preview and generate OG images for social media sharing</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
@@ -126,8 +134,29 @@ const structuredData = JSON.stringify([
           <pre id="code"></pre>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the OG Image Generator</h2>
+      <p>Create professional Open Graph images for social media sharing. These preview images appear when links are shared on Facebook, Twitter, LinkedIn, and other platforms. A compelling OG image dramatically increases engagement with your shared links.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter your title text</strong> — The main headline that appears on the image. Keep it short and impactful — 5-8 words work best.</li>
+        <li><strong>Add a description (optional)</strong> — A subtitle line for additional context. Works best with simpler designs.</li>
+        <li><strong>Enter your domain</strong> — Your website name appears at the bottom, establishing brand recognition.</li>
+        <li><strong>Choose dimensions</strong> — The default 1200x630 matches Facebook and LinkedIn recommendations. Twitter accepts the same ratio.</li>
+        <li><strong>Generate and download</strong> — Click Generate, preview your image, and download as PNG.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>1200x630 is the standard</strong> — This ratio displays well on all major platforms. Minimum recommended is 600x315.</li>
+        <li><strong>Keep text large and readable</strong> — Remember: on mobile, images appear even smaller. Bold, simple text works best.</li>
+        <li><strong>Use contrasting colors</strong> — Ensure your text stands out against the background. Test readability at small sizes.</li>
+        <li><strong>Test before publishing</strong> — Use Facebook's Sharing Debugger or Twitter's Card Validator to preview how your image will appear.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

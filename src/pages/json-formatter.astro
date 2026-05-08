@@ -78,6 +78,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>{`{}`} JSON Formatter & Validator</h1>
     <p class="subtitle">Format, validate, and beautify JSON data instantly</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -98,8 +106,28 @@ const structuredData = JSON.stringify([
         <button class="copy-btn" onclick="copyOutput()">Copy</button>
         <pre id="code"></pre>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the JSON Formatter</h2>
+      <p>Format, validate, and beautify JSON data instantly. Whether you're debugging an API response, cleaning up minified JSON, or preparing data for documentation, this tool makes JSON human-readable while catching syntax errors.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Paste your JSON</strong> — Copy and paste any JSON data into the input area. It can be minified (no spaces) or already formatted.</li>
+        <li><strong>Choose your action</strong> — Click "Format / Beautify" to add proper indentation, "Minify" to remove all whitespace, or "Validate Only" to check syntax.</li>
+        <li><strong>Review the output</strong> — See formatted JSON with syntax highlighting, or error messages if the JSON is invalid.</li>
+        <li><strong>Copy the result</strong> — Click the copy button to copy the formatted output to your clipboard.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Use 2 or 4 space indentation</strong> — 2 spaces is more common in JavaScript; 4 spaces in Python. Choose based on your project's conventions.</li>
+        <li><strong>Validate before sending</strong> — Always validate JSON before sending to an API. Catch errors early instead of debugging cryptic API error messages.</li>
+        <li><strong>Minify for production</strong> — Smaller files load faster. Minify JSON in production to reduce bandwidth and improve performance.</li>
+        <li><strong>Common JSON errors</strong> — Trailing commas, single quotes (use double quotes), unquoted keys (keys must be quoted), and missing brackets are the most common mistakes.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

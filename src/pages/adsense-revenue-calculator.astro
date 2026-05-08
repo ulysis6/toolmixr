@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>💵 AdSense Revenue Calculator</h1>
     <p class="subtitle">Estimate your Google AdSense earnings based on traffic and ad performance</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -155,8 +163,29 @@ const structuredData = JSON.stringify([
           <div id="formula" style="font-family:monospace;margin-top:8px;background:#fff;padding:8px;border-radius:4px;"></div>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the AdSense Revenue Calculator</h2>
+      <p>Estimate your potential Google AdSense earnings before you start monetizing your website. Understanding your revenue potential helps you set realistic goals and make informed decisions about content strategy, traffic growth, and optimization efforts.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter your daily pageviews</strong> — Start with realistic traffic numbers. Use Google Analytics data if available, or estimate based on your current or projected traffic.</li>
+        <li><strong>Set ads per page</strong> — Choose how many ad units you'll display per page. More ads can increase revenue but may hurt user experience and increase bounce rate.</li>
+        <li><strong>Enter your CTR (Click-Through Rate)</strong> — Industry average is 0.5-3% depending on niche. Finance and tech sites often see higher CTRs. A good CTR is 2-5%.</li>
+        <li><strong>Set your CPC (Cost Per Click)</strong> — This varies wildly by niche. Finance: $3-30+, Tech: $1-5, Health: $1-3, Entertainment: $0.2-1. Start with conservative estimates.</li>
+        <li><strong>Review projections</strong> — See daily, monthly, and yearly estimates. Remember: these are theoretical maximums assuming 100% ad fill rate.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Realistic CTR is 1-3%</strong> — If your CTR is over 10%, Google may flag your account for invalid traffic. Focus on quality traffic and natural ad placement.</li>
+        <li><strong>Niche matters for CPC</strong> — Finance and insurance keywords pay the most ($5-50+ per click). Tech and business also command high rates. Entertainment and gaming pay the least.</li>
+        <li><strong>Focus on quality content</strong> — Higher-quality traffic from search engines tends to click ads more naturally than social media traffic, resulting in better engagement and higher RPM.</li>
+        <li><strong>Test ad placement and formats</strong> — Use AdSense's A/B testing to find optimal placements. Above-content and in-article ads typically perform best.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

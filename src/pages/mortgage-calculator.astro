@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🏠 Mortgage Calculator</h1>
     <p class="subtitle">Calculate your monthly mortgage payment, total interest, and total cost</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -170,8 +178,30 @@ const structuredData = JSON.stringify([
           </div>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Mortgage Calculator</h2>
+      <p>Our free mortgage calculator helps you understand the true cost of buying a home. By entering your home price, down payment, interest rate, and loan term, you'll see exactly what your monthly payments will be — including how much goes toward principal versus interest over the life of the loan.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter the home price</strong> — Start with the total purchase price of the home you're considering. For a $400,000 home, enter 400000.</li>
+        <li><strong>Adjust your down payment</strong> — Use the slider to choose a percentage (typically 5-20% for conventional loans). The dollar amount will automatically calculate. Remember: putting down less than 20% usually requires Private Mortgage Insurance (PMI).</li>
+        <li><strong>Set the interest rate</strong> — Enter the annual interest rate you've been quoted by lenders. Even a 0.5% difference can mean tens of thousands over 30 years.</li>
+        <li><strong>Choose your loan term</strong> — Select 15 or 30 years (most common). Shorter terms mean higher monthly payments but significantly less total interest.</li>
+        <li><strong>Select repayment type</strong> — Fixed rate (equal principal and interest) keeps payments constant. Equal principal starts with higher payments but saves more on total interest.</li>
+        <li><strong>Click Calculate</strong> — Review your monthly payment, total interest, and total repayment amount. The visual breakdown shows what percentage goes to principal vs. interest.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Compare rates</strong> — Even small rate differences matter. Getting a 6% instead of 7% on a $400,000 loan saves over $94,000 over 30 years.</li>
+        <li><strong>Consider PMI costs</strong> — If your down payment is under 20%, add estimated PMI (typically 0.3-1.5% of the loan annually) to get a realistic payment picture.</li>
+        <li><strong>Don't forget additional costs</strong> — Property taxes, homeowner's insurance, HOA fees, and maintenance (1-2% of home value annually) add significantly to your true monthly housing cost.</li>
+        <li><strong>Extra payments add up</strong> — Making one extra payment per year can cut years off your mortgage and save thousands in interest.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

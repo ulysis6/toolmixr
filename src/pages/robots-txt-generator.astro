@@ -78,6 +78,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🤖 Robots.txt Generator</h1>
     <p class="subtitle">Create a robots.txt file to control search engine crawling</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <h3 style="margin-bottom:16px;">User-agent Rules</h3>
@@ -132,9 +140,26 @@ const structuredData = JSON.stringify([
       </div>
     </div>
     
-    <section class="content-section">
+    <section class="guide">
       <h2>How to Use the Robots.txt Generator</h2>
-      <p>Add rules to control which search engine bots can access which parts of your site. Select a user-agent, choose Allow or Disallow, and enter the path. When done, click Generate and copy the output to a file named <code>robots.txt</code> in your website root directory.</p>
+      <p>Create a robots.txt file to control how search engines crawl and index your website. This simple text file tells crawlers which pages they can access and which they should ignore. Essential for every website owner.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Add user-agent rules</strong> — Click "Add Rule" to create directives for specific crawlers (like Googlebot) or use * for all crawlers.</li>
+        <li><strong>Set Allow or Disallow</strong> — "Allow" tells crawlers they can access a path. "Disallow" tells them to stay away.</li>
+        <li><strong>Configure paths</strong> — Enter the URL paths. Use / for root, /admin/ for specific folders. Wildcards like * are supported.</li>
+        <li><strong>Add your sitemap URL</strong> — Include a reference to your XML sitemap to help crawlers find it.</li>
+        <li><strong>Generate and download</strong> — Copy the generated code and save it as robots.txt in your website's root directory.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Always allow CSS and JS</strong> — Googlebot needs to access your stylesheets and JavaScript to properly render pages. Never block these directories.</li>
+        <li><strong>Block private/admin areas</strong> — Use disallow for /admin/, /wp-admin/, /private/, or any backend areas. But remember: robots.txt is not security!</li>
+        <li><strong>Validate your file</strong> — Use Google's robots.txt tester in Search Console to verify your file works correctly.</li>
+        <li><strong>Robots.txt is not a security tool</strong> — Anyone can view your robots.txt. Use proper authentication for truly sensitive content.</li>
+      </ul>
     </section>
     
     <section class="faq">

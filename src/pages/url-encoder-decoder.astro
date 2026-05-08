@@ -78,6 +78,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🔗 URL Encoder / Decoder</h1>
     <p class="subtitle">Encode or decode URLs and query parameters instantly</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -97,8 +105,28 @@ const structuredData = JSON.stringify([
         <button class="copy-btn" onclick="copyOutput()">Copy</button>
         <pre id="code"></pre>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the URL Encoder/Decoder</h2>
+      <p>Encode or decode URLs and their query parameters. URLs can only contain certain characters, so special characters must be encoded. This tool handles both full URLs and individual URL components.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter your URL or encoded string</strong> — Paste a complete URL or just the part you need to encode/decode.</li>
+        <li><strong>Choose your operation</strong> — Select Encode URL, Decode URL, Encode Component, or Decode Component.</li>
+        <li><strong>Review the result</strong> — See the transformed URL in the output area.</li>
+        <li><strong>Copy the result</strong> — Copy the encoded or decoded URL for use in your code or browser.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Always encode query parameter values</strong> — Spaces become %20, ampersands are reserved characters. Encode values before adding to URLs.</li>
+        <li><strong>Use encodeURIComponent for values only</strong> — It encodes everything including reserved URL characters (/, ?, &). Use encodeURI for full URLs.</li>
+        <li><strong>Reserved characters to remember</strong> — ? (query), & (parameters), = (assignment), # (fragment), / (path). These have special meaning and should not be encoded in their context.</li>
+        <li><strong>Decode when debugging</strong> — If you see garbled text with %20 and %3D, that is URL encoding. Decode to read the original values.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>⚖️ BMI Calculator</h1>
     <p class="subtitle">Calculate your Body Mass Index and find your healthy weight range</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div style="display:flex;gap:8px;margin-bottom:20px;">
@@ -166,8 +174,28 @@ const structuredData = JSON.stringify([
           <strong>Note:</strong> BMI is a general indicator and does not account for muscle mass, bone density, age, or gender. Athletes and elderly individuals may have misleading BMI results. Consult a healthcare provider for personalized advice.
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the BMI Calculator</h2>
+      <p>Calculate your Body Mass Index (BMI) to get a general understanding of your weight category. BMI is a widely used screening tool that categorizes weight status based on height-to-weight ratio. This calculator supports both metric (kg/cm) and imperial (lb/ft) units.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Choose your unit system</strong> — Select Metric for kilograms and centimeters, or Imperial for pounds and feet/inches.</li>
+        <li><strong>Enter your height</strong> — Input your height in the selected units. For imperial, use feet and inches separately.</li>
+        <li><strong>Enter your weight</strong> — Input your current weight.</li>
+        <li><strong>Click Calculate</strong> — View your BMI number and your weight category.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>BMI has limitations</strong> — It doesn't distinguish between muscle and fat mass. An athlete with 10% body fat might show as "overweight" despite being very fit.</li>
+        <li><strong>Consider body composition</strong> — Waist circumference and waist-to-hip ratio are often better indicators of health risk than BMI alone.</li>
+        <li><strong>Age matters</strong> — BMI ranges may need adjustment for older adults, as muscle mass typically decreases with age.</li>
+        <li><strong>Use as a guide, not a diagnosis</strong> — BMI is just one indicator. For a complete health assessment, consult with a healthcare provider who can consider your full medical history.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

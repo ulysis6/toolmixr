@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🎂 Age Calculator</h1>
     <p class="subtitle">Find your exact age in years, months, days, and see when your next birthday is</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
@@ -151,8 +159,27 @@ const structuredData = JSON.stringify([
           <div id="funFacts" style="font-size:13px;color:var(--text-secondary);display:grid;gap:8px;"></div>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Age Calculator</h2>
+      <p>Find your exact age down to the day, or calculate ages for any date in the past or future. This calculator is perfect for verifying birth dates, planning birthday celebrations, calculating retirement dates, or satisfying your curiosity about your age in days.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Select your birth date</strong> — Choose your birth year, month, and day from the dropdowns. Make sure to select the correct date, including leap year birthdays.</li>
+        <li><strong>Click Calculate</strong> — See your exact age in years, months, and days, plus fun statistics.</li>
+        <li><strong>Review the results</strong> — See your total days lived, days until your next birthday, and interesting facts about your birth year.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Useful for planning</strong> — Knowing your exact age helps with retirement planning, insurance applications, and age verification for various services.</li>
+        <li><strong>Leap year birthdays</strong> — People born on February 29 technically only have an official birthday every 4 years, though age is typically calculated by years regardless.</li>
+        <li><strong>Fun milestones</strong> — 10,000 days old is about 27 years. 20,000 days is about 54 years. These make unique birthday celebrations!</li>
+        <li><strong>Legal age verification</strong> — Some legal documents and services require precise age calculation, such as retirement benefits or age-restricted accounts.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

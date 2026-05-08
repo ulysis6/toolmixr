@@ -70,6 +70,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🎨 Color Palette Generator</h1>
     <p class="subtitle">Generate beautiful color palettes for your projects</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
@@ -106,8 +114,29 @@ const structuredData = JSON.stringify([
           <pre id="code"></pre>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Color Palette Generator</h2>
+      <p>Generate beautiful, harmonious color palettes for your web projects. Choose from analogous, complementary, triadic, split complementary, or monochromatic color schemes. Export colors as hex codes, RGB values, or CSS variables.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Choose a base color</strong> — Click the color picker or enter a hex code for your primary brand color.</li>
+        <li><strong>Select a palette type</strong> — Choose how colors should relate: Analogous (harmonious), Complementary (high contrast), Triadic (vibrant), Split (balanced), or Monochromatic (variations).</li>
+        <li><strong>Click Generate</strong> — Instantly see a palette of 5-6 colors that work together harmoniously.</li>
+        <li><strong>Copy color codes</strong> — Click any color to copy its hex code, RGB, or CSS format.</li>
+        <li><strong>Try Random for inspiration</strong> — Hit the Random button to discover unexpected color combinations.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Stick to 3-5 colors</strong> — Most professional designs use a limited palette. One primary, one secondary, and accent colors for CTAs.</li>
+        <li><strong>Test accessibility</strong> — Use tools like WebAIM's contrast checker to ensure text is readable on colored backgrounds. Aim for WCAG AA compliance.</li>
+        <li><strong>Color psychology matters</strong> — Blue conveys trust (finance, tech), red creates urgency (sales), green suggests growth (health, eco), yellow energizes (food, children).</li>
+        <li><strong>Use Coolors for inspiration</strong> — Our tool generates palettes, but platforms like Coolors.co offer curated palettes and fine-tuning tools.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

@@ -78,6 +78,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>📝 Word Counter</h1>
     <p class="subtitle">Count words, characters, sentences, and paragraphs instantly</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -116,10 +124,25 @@ const structuredData = JSON.stringify([
       </div>
     </div>
     
-    <section class="content-section">
-      <h2>About Word Counter</h2>
-      <p>Our word counter tool provides instant, accurate text analysis. Whether you are writing a blog post, academic paper, or social media caption, knowing your word count helps you meet requirements and stay concise.</p>
-      <p>The average reading speed is approximately 200-250 words per minute. Our tool estimates reading time based on 225 words per minute.</p>
+    <section class="guide">
+      <h2>How to Use the Word Counter</h2>
+      <p>Count words, characters, sentences, and paragraphs instantly as you type or paste text. Perfect for writers, students, content creators, and anyone who needs to track text length. All counting happens in your browser — your text is never sent to any server.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Type or paste your text</strong> — Simply start typing or paste existing text into the text area. Counts update in real-time as you type.</li>
+        <li><strong>Review the statistics</strong> — Instantly see word count, character count (with and without spaces), sentence count, and paragraph count.</li>
+        <li><strong>Check reading time</strong> — See estimated reading time based on 225 words per minute (average reading speed).</li>
+        <li><strong>Track keyword density</strong> — See how many times specific words appear (if you search for them).</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>SEO blog posts</strong> — Most SEO experts recommend 1,500-2,500 words for competitive blog posts. Longer, comprehensive content often ranks better.</li>
+        <li><strong>Reading speed varies</strong> — 225 wpm is the average. Technical content may be read slower (about 200 wpm), while easy content faster (about 250 wpm).</li>
+        <li><strong>Headings do not count as paragraphs</strong> — Only text separated by blank lines counts as paragraphs. Use this to structure your content.</li>
+        <li><strong>Social media limits</strong> — Twitter: 280 characters, Instagram: 2,200 characters, Facebook: 63,206 characters. Use character counts to optimize posts.</li>
+      </ul>
     </section>
     
     <section class="faq">

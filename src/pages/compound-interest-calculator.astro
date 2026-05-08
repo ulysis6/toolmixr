@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🏦 Compound Interest Calculator</h1>
     <p class="subtitle">See the power of compound interest and watch your money grow exponentially</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -175,8 +183,30 @@ const structuredData = JSON.stringify([
           <div id="chartLabels" style="display:flex;gap:4px;font-size:11px;color:var(--text-secondary);margin-top:8px;"></div>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Compound Interest Calculator</h2>
+      <p>Compound interest is called the eighth wonder of the world by Albert Einstein — and for good reason. Unlike simple interest (which only earns on the principal), compound interest earns on both your principal AND previously accumulated interest. This creates exponential growth over time, which is why starting early is so powerful.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter your initial principal</strong> — This is the starting amount of your investment or savings. Even small starting amounts can grow significantly over time.</li>
+        <li><strong>Set the annual interest rate</strong> — Enter the expected annual return rate. Historical stock market average is about 7% after inflation; savings accounts might earn 3-5%.</li>
+        <li><strong>Choose compounding frequency</strong> — Options include annually, quarterly, monthly, or daily. More frequent compounding results in slightly higher returns.</li>
+        <li><strong>Enter the number of years</strong> — How long will you let your money grow? Longer time periods dramatically increase final amounts thanks to compounding.</li>
+        <li><strong>Add regular contributions (optional)</strong> — Enter monthly contributions to see how much more you can accumulate. Regular investing is more powerful than you might think.</li>
+        <li><strong>Review the results</strong> — See your total amount, total contributions, and interest earned. The growth chart shows how your money compounds over time.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Higher frequency equals more returns</strong> — Daily compounding earns slightly more than monthly, which earns more than annual. On $10,000 at 7% for 20 years: daily earns $41,215 vs. annual earns $38,697.</li>
+        <li><strong>Regular contributions dramatically increase results</strong> — Adding $500/month to $10,000 at 7% for 20 years yields about $298,000 — nearly double what $10,000 alone would grow to.</li>
+        <li><strong>Start early — time is your greatest asset</strong> — $5,000 invested at age 25 at 7% becomes about $52,000 by 65. The same $5,000 invested at 35 becomes only about $26,000.</li>
+        <li><strong>Use the Rule of 72</strong> — Divide 72 by your annual rate to estimate years to double. At 8%, your money doubles roughly every 9 years.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

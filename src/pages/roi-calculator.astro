@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>📈 ROI Calculator</h1>
     <p class="subtitle">Calculate return on investment and annualized ROI for your investments</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -136,8 +144,29 @@ const structuredData = JSON.stringify([
           </div>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the ROI Calculator</h2>
+      <p>The ROI (Return on Investment) calculator helps you measure the profitability of any investment. Whether you're evaluating stocks, real estate, business ventures, or cryptocurrency, understanding your actual return is crucial for making informed financial decisions.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter your initial investment</strong> — This is the total amount you put into the investment at the start. Include the purchase price or initial capital.</li>
+        <li><strong>Enter the final value</strong> — This is what the investment is worth today, or what you sold it for. For current investments, use the current market value.</li>
+        <li><strong>Add additional costs</strong> — Include transaction fees, broker commissions, taxes paid, maintenance costs, or any other expenses related to the investment.</li>
+        <li><strong>Set the holding period</strong> — Enter how long you held the investment in years. Use decimals for partial years (e.g., 1.5 for 18 months).</li>
+        <li><strong>Click Calculate ROI</strong> — The tool will show your ROI percentage, net profit, and annualized ROI for easy comparison across different investments.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Include all costs</strong> — For accurate ROI, always include transaction fees, taxes, holding costs, and any other expenses. This gives you the true picture of returns.</li>
+        <li><strong>Use annualized ROI for comparison</strong> — A 50% return over 2 years equals about 22.5% annualized. This lets you fairly compare investments held for different time periods.</li>
+        <li><strong>Past performance does not equal future results</strong> — Historical ROI doesn't guarantee future returns. Always consider market conditions and your risk tolerance.</li>
+        <li><strong>Compare similar investments</strong> — Annualized ROI allows you to fairly compare a 5-year real estate investment with a 2-year stock investment.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

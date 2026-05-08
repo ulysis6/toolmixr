@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🪙 Crypto Profit Calculator</h1>
     <p class="subtitle">Calculate your cryptocurrency trading profits and ROI instantly</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -175,8 +183,29 @@ const structuredData = JSON.stringify([
           </div>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Crypto Profit Calculator</h2>
+      <p>Calculate your cryptocurrency trading profits, losses, and ROI instantly. Whether you're buying Bitcoin, Ethereum, or any other cryptocurrency, this calculator helps you understand your actual returns after accounting for trading fees.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter the buy price</strong> — Enter the price per coin when you purchased. If you bought multiple times at different prices, use your average cost basis.</li>
+        <li><strong>Enter the sell price</strong> — Enter the current price or the price at which you plan to sell. For realized trades, use your actual selling price.</li>
+        <li><strong>Enter your investment amount</strong> — The dollar value of your initial investment, or the quantity of crypto multiplied by the buy price.</li>
+        <li><strong>Add trading fees (optional)</strong> — Enter the total fee percentage for both buy and sell transactions. Binance: about 0.1%, Coinbase: up to 0.6%, Kraken: about 0.26%.</li>
+        <li><strong>Calculate and review</strong> — See your profit/loss amount, ROI percentage, break-even price, and the impact of fees on your returns.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Always account for fees</strong> — A 10% price increase with 1% fees on buy and sell means only 8% profit. High-frequency traders need to be especially fee-conscious.</li>
+        <li><strong>Consider tax implications</strong> — In most countries, crypto gains are taxable events. Set aside money for taxes when you take profits. Consult a tax professional.</li>
+        <li><strong>Use break-even price as a floor</strong> — Knowing your break-even helps set stop-losses and prevents emotional decisions during volatility.</li>
+        <li><strong>Never invest more than you can afford to lose</strong> — Cryptocurrency is highly volatile. The 70-90% crashes that have happened multiple times in Bitcoin's history can happen again.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

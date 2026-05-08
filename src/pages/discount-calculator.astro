@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🏷️ Discount Calculator</h1>
     <p class="subtitle">Calculate sale prices, savings, and final cost including tax</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -152,8 +160,28 @@ const structuredData = JSON.stringify([
           </div>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Discount Calculator</h2>
+      <p>Calculate sale prices, savings, and final costs instantly. See exactly how much you're saving and what you'll pay after the discount — with optional sales tax calculation. Perfect for smart shopping and comparing deals.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter the original price</strong> — This is the full, regular price before any discounts.</li>
+        <li><strong>Set the discount percentage</strong> — Use the slider or enter the discount percentage directly. Common discounts range from 10% to 50%.</li>
+        <li><strong>Add sales tax (optional)</strong> — Enter your local sales tax rate to see the final amount you'll pay at checkout.</li>
+        <li><strong>Review the results</strong> — See the sale price, amount saved, and final price including tax.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Stacked discounts do not add</strong> — 50% off then another 50% off does NOT equal 100% off. It equals 75% off (0.50 times 0.50 = 0.25 remaining, so 75% savings).</li>
+        <li><strong>Compare final prices, not percentages</strong> — A 30% discount on a $20 item ($6 savings) is worse than 20% off a $100 item ($20 savings).</li>
+        <li><strong>Price per unit matters</strong> — When comparing bulk deals, always calculate the per-unit price to find the true best deal.</li>
+        <li><strong>Watch for fake discounts</strong> — Some retailers raise prices before a "sale." Tools like camelcamelcamel can help verify if a deal is actually good.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

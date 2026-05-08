@@ -34,7 +34,7 @@ const websiteSchema = JSON.stringify({
     <meta property="og:description" content={description} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:site_name" content="ToolMixr" />
-    <meta property="og:image" content={Astro.url.origin + '/og-image.png'} />
+    <meta property="og:image" content={Astro.url.origin + '/og-image.svg'} />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -67,6 +67,17 @@ const websiteSchema = JSON.stringify({
         --border: #E5E7EB;
         --success: #10B981;
         --radius: 8px;
+      }
+      
+      [data-theme="dark"] {
+        --primary: #818CF8;
+        --primary-hover: #6366F1;
+        --bg: #0F172A;
+        --surface: #1E293B;
+        --text: #F1F5F9;
+        --text-secondary: #94A3B8;
+        --border: #334155;
+        --success: #34D399;
       }
       
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -140,6 +151,37 @@ const websiteSchema = JSON.stringify({
         margin: 0 auto;
       }
       
+      /* Filter Bar */
+      .filter-bar {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 0 20px;
+      }
+      .filter-btn {
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text-secondary);
+        transition: all 0.2s;
+      }
+      .filter-btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      .filter-btn.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+      [data-theme="dark"] .filter-btn { background: var(--surface); color: var(--text-secondary); border-color: var(--border); }
+      [data-theme="dark"] .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+      
       /* Tool Grid */
       .tools-grid {
         display: grid;
@@ -162,6 +204,9 @@ const websiteSchema = JSON.stringify({
         box-shadow: 0 4px 12px rgba(79,70,229,0.1);
         transform: translateY(-2px);
       }
+      [data-theme="dark"] .tool-card { background: var(--surface); border-color: var(--border); }
+      [data-theme="dark"] .tool-card:hover { border-color: var(--primary); }
+      
       .tool-card .icon {
         width: 48px;
         height: 48px;
@@ -173,6 +218,8 @@ const websiteSchema = JSON.stringify({
         font-size: 24px;
         margin-bottom: 16px;
       }
+      [data-theme="dark"] .tool-card .icon { background: rgba(129,140,248,0.15); }
+      
       .tool-card h3 {
         font-size: 18px;
         font-weight: 700;
@@ -192,6 +239,7 @@ const websiteSchema = JSON.stringify({
         border-radius: 4px;
         margin-top: 12px;
       }
+      [data-theme="dark"] .tool-card .tag { background: rgba(129,140,248,0.15); }
       
       /* Tool Page */
       .tool-page { padding: 40px 0; }
@@ -213,6 +261,7 @@ const websiteSchema = JSON.stringify({
         padding: 32px;
         margin-bottom: 40px;
       }
+      [data-theme="dark"] .tool-box { background: var(--surface); border-color: var(--border); }
       
       /* Form elements */
       .form-group {
@@ -234,12 +283,21 @@ const websiteSchema = JSON.stringify({
         font-size: 14px;
         transition: border-color 0.2s;
         font-family: inherit;
+        background: var(--surface);
+        color: var(--text);
       }
       .form-group input:focus,
       .form-group textarea:focus {
         outline: none;
         border-color: var(--primary);
         box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+      }
+      [data-theme="dark"] .form-group input,
+      [data-theme="dark"] .form-group textarea,
+      [data-theme="dark"] .form-group select {
+        background: var(--bg);
+        color: var(--text);
+        border-color: var(--border);
       }
       
       .btn {
@@ -263,13 +321,14 @@ const websiteSchema = JSON.stringify({
         background: var(--primary-hover);
       }
       .btn-secondary {
-        background: var(--bg);
+        background: var(--surface);
         color: var(--text);
         border: 1px solid var(--border);
       }
       .btn-secondary:hover {
         background: var(--border);
       }
+      [data-theme="dark"] .btn-secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
       
       .output-box {
         background: #1E1E2E;
@@ -285,6 +344,7 @@ const websiteSchema = JSON.stringify({
         white-space: pre-wrap;
         word-break: break-all;
       }
+      [data-theme="dark"] .output-box { background: #020617; }
       .copy-btn {
         position: absolute;
         top: 10px;
@@ -299,6 +359,14 @@ const websiteSchema = JSON.stringify({
       }
       .copy-btn:hover { background: rgba(255,255,255,0.2); }
       
+      /* Guide Section */
+      .guide { margin-top: 40px; margin-bottom: 40px; }
+      .guide h2 { font-size: 24px; margin-bottom: 16px; }
+      .guide h3 { font-size: 18px; font-weight: 700; margin: 20px 0 10px; }
+      .guide p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px; font-size: 15px; }
+      .guide ol, .guide ul { color: var(--text-secondary); line-height: 1.8; padding-left: 24px; margin-bottom: 12px; }
+      .guide li { margin-bottom: 6px; }
+      
       /* FAQ */
       .faq { margin-top: 40px; }
       .faq h2 { font-size: 24px; margin-bottom: 20px; }
@@ -306,6 +374,7 @@ const websiteSchema = JSON.stringify({
         border-bottom: 1px solid var(--border);
         padding: 16px 0;
       }
+      [data-theme="dark"] .faq-item { border-bottom-color: var(--border); }
       .faq-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
       .faq-item p { font-size: 14px; color: var(--text-secondary); }
       
@@ -335,7 +404,51 @@ const websiteSchema = JSON.stringify({
         box-shadow: 0 2px 8px rgba(79,70,229,0.1);
         transform: translateY(-1px);
       }
+      [data-theme="dark"] .related-tool-card { background: var(--surface); border-color: var(--border); color: var(--text); }
+      [data-theme="dark"] .related-tool-card:hover { border-color: var(--primary); }
       .related-icon { font-size: 20px; }
+      
+      /* Share Bar */
+      .share-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+      .share-label {
+        font-size: 13px;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+      .share-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text-secondary);
+      }
+      .share-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      .share-twitter:hover { background: #000; color: #fff; border-color: #000; }
+      .share-facebook:hover { background: #1877F2; color: #fff; border-color: #1877F2; }
+      .share-linkedin:hover { background: #0A66C2; color: #fff; border-color: #0A66C2; }
+      .share-reddit:hover { background: #FF4500; color: #fff; border-color: #FF4500; }
+      .share-copy:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+      [data-theme="dark"] .share-btn { background: var(--surface); color: var(--text-secondary); border-color: var(--border); }
+      [data-theme="dark"] .share-twitter:hover { background: #fff; color: #000; border-color: #fff; }
+      [data-theme="dark"] .share-reddit:hover { background: #FF4500; color: #fff; border-color: #FF4500; }
       
       /* Content Section */
       .content-section {
@@ -345,6 +458,13 @@ const websiteSchema = JSON.stringify({
       }
       .content-section h2 { font-size: 24px; margin-bottom: 16px; }
       .content-section p { color: var(--text-secondary); margin-bottom: 12px; font-size: 15px; }
+      
+      /* About Page */
+      .about-page .principle-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+      }
+      [data-theme="dark"] .about-page .principle-card { background: var(--surface); border-color: var(--border); }
       
       /* Footer */
       .footer {
@@ -364,6 +484,8 @@ const websiteSchema = JSON.stringify({
         .hero p { font-size: 16px; }
         nav { gap: 16px; }
         .tool-page h1 { font-size: 24px; }
+        .filter-bar { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 12px; }
+        .filter-btn { white-space: nowrap; }
       }
     </style>
   </head>
@@ -377,6 +499,7 @@ const websiteSchema = JSON.stringify({
         <nav>
           <a href="/">Home</a>
           <a href="/about">About</a>
+          <button id="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:18px;padding:4px 8px;border-radius:4px;transition:background 0.2s;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background='none'">🌙</button>
         </nav>
       </div>
     </header>
@@ -394,5 +517,82 @@ const websiteSchema = JSON.stringify({
         </p>
       </div>
     </footer>
+    
+    <script is:inline>
+      // Theme initialization and toggle
+      (function() {
+        var saved = localStorage.getItem('theme');
+        if (saved) {
+          document.documentElement.setAttribute('data-theme', saved);
+          updateToggleIcon(saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          updateToggleIcon('dark');
+        }
+      })();
+
+      function toggleTheme() {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateToggleIcon(next);
+      }
+
+      function updateToggleIcon(theme) {
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
+      
+      // Filter tools by tag
+      function filterTools(tag) {
+        var cards = document.querySelectorAll('.tool-card');
+        for (var i = 0; i < cards.length; i++) {
+          if (tag === 'all' || cards[i].getAttribute('data-tag') === tag) {
+            cards[i].style.display = '';
+          } else {
+            cards[i].style.display = 'none';
+          }
+        }
+        var btns = document.querySelectorAll('.filter-btn');
+        for (var j = 0; j < btns.length; j++) {
+          btns[j].classList.remove('active');
+        }
+        event.target.classList.add('active');
+      }
+
+      // Share functions
+      function shareTwitter(e) {
+        e.preventDefault();
+        var url = encodeURIComponent(window.location.href);
+        var text = encodeURIComponent(document.title);
+        window.open('https://twitter.com/intent/tweet?url=' + url + '&text=' + text, '_blank', 'width=600,height=400');
+      }
+      function shareFacebook(e) {
+        e.preventDefault();
+        var url = encodeURIComponent(window.location.href);
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank', 'width=600,height=400');
+      }
+      function shareLinkedIn(e) {
+        e.preventDefault();
+        var url = encodeURIComponent(window.location.href);
+        window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url, '_blank', 'width=600,height=400');
+      }
+      function shareReddit(e) {
+        e.preventDefault();
+        var url = encodeURIComponent(window.location.href);
+        var title = encodeURIComponent(document.title);
+        window.open('https://www.reddit.com/submit?url=' + url + '&title=' + title, '_blank', 'width=800,height=600');
+      }
+      function copyPageLink(e) {
+        e.preventDefault();
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          var btn = e.target.closest('.share-copy') || e.target;
+          var original = btn.textContent;
+          btn.textContent = '✓';
+          setTimeout(function() { btn.textContent = original; }, 1500);
+        });
+      }
+    </script>
   </body>
 </html>

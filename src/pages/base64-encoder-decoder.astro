@@ -78,6 +78,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🔐 Base64 Encoder / Decoder</h1>
     <p class="subtitle">Encode text to Base64 or decode Base64 strings instantly</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -95,8 +103,27 @@ const structuredData = JSON.stringify([
         <button class="copy-btn" onclick="copyOutput()">Copy</button>
         <pre id="code"></pre>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Base64 Encoder/Decoder</h2>
+      <p>Encode text to Base64 or decode Base64 strings with this developer tool. Base64 is essential for embedding binary data in text formats, sending data in JSON APIs, creating data URLs, and working with email attachments.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter your text or Base64</strong> — Type or paste text to encode, or a Base64 string to decode.</li>
+        <li><strong>Click Encode or Decode</strong> — Choose Encode to convert text to Base64, or Decode to convert Base64 back to plain text.</li>
+        <li><strong>Copy the result</strong> — Use the copy button to copy the output to your clipboard.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Base64 is NOT encryption</strong> — It is just encoding, which anyone can reverse. Never use Base64 to hide sensitive data.</li>
+        <li><strong>Base64 increases size by about 33%</strong> — Three bytes become four characters. Account for this in bandwidth calculations.</li>
+        <li><strong>Common uses</strong> — Embedding small images in CSS/HTML (data URLs), encoding API credentials, storing binary data in JSON, email attachments in SMTP.</li>
+        <li><strong>URL-safe variant</strong> — Standard Base64 uses +, /, and =. URL-safe Base64 uses - and _ instead, suitable for URL query parameters.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

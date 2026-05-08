@@ -3,90 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const tools = [
   {
-    title: 'Meta Tag Generator',
-    description: 'Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards. Boost your search rankings and social shares.',
-    icon: '🏷️',
-    slug: 'meta-tag-generator',
-    tag: 'SEO',
-  },
-  {
-    title: 'Open Graph Image Generator',
-    description: 'Create stunning Open Graph preview images for social media sharing. Make your links stand out on Facebook, Twitter, and LinkedIn.',
-    icon: '🖼️',
-    slug: 'og-image-generator',
-    tag: 'Social',
-  },
-  {
-    title: 'Robots.txt Generator',
-    description: 'Easily generate a robots.txt file for your website. Control how search engines crawl and index your pages.',
-    icon: '🤖',
-    slug: 'robots-txt-generator',
-    tag: 'SEO',
-  },
-  {
-    title: 'Sitemap Generator',
-    description: 'Create XML sitemaps for your website to help search engines discover and index all your pages.',
-    icon: '🗺️',
-    slug: 'sitemap-generator',
-    tag: 'SEO',
-  },
-  {
-    title: 'Word Counter',
-    description: 'Count words, characters, sentences, and paragraphs instantly. Perfect for writers, students, and content creators.',
-    icon: '📝',
-    slug: 'word-counter',
-    tag: 'Writing',
-  },
-  {
-    title: 'JSON Formatter',
-    description: 'Format, validate, and beautify JSON data instantly. Spot errors and make your JSON readable.',
-    icon: '{}',
-    slug: 'json-formatter',
-    tag: 'Developer',
-  },
-  {
-    title: 'Base64 Encoder/Decoder',
-    description: 'Encode text to Base64 or decode Base64 strings. Essential tool for developers working with APIs and data.',
-    icon: '🔐',
-    slug: 'base64-encoder-decoder',
-    tag: 'Developer',
-  },
-  {
-    title: 'Color Palette Generator',
-    description: 'Generate beautiful color palettes for your web projects. Export as CSS, Tailwind, or hex codes.',
-    icon: '🎨',
-    slug: 'color-palette-generator',
-    tag: 'Design',
-  },
-  {
-    title: 'QR Code Generator',
-    description: 'Create QR codes for URLs, text, WiFi, email, and more. Download as PNG or SVG.',
-    icon: '📱',
-    slug: 'qr-code-generator',
-    tag: 'Utility',
-  },
-  {
-    title: 'Password Generator',
-    description: 'Generate strong, secure passwords with customizable length and character types.',
-    icon: '🔑',
-    slug: 'password-generator',
-    tag: 'Security',
-  },
-  {
-    title: 'Lorem Ipsum Generator',
-    description: 'Generate placeholder text for your designs and mockups. Choose paragraphs, words, or sentences.',
-    icon: '📄',
-    slug: 'lorem-ipsum-generator',
-    tag: 'Writing',
-  },
-  {
-    title: 'URL Encoder/Decoder',
-    description: 'Encode or decode URLs and query parameters. Handle special characters in URLs correctly.',
-    icon: '🔗',
-    slug: 'url-encoder-decoder',
-    tag: 'Developer',
-  },
-  {
     title: 'Mortgage Calculator',
     description: 'Calculate monthly mortgage payments, total interest, and total repayment for your home loan.',
     icon: '🏠',
@@ -129,6 +45,90 @@ const tools = [
     tag: 'Finance',
   },
   {
+    title: 'Meta Tag Generator',
+    description: 'Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards. Boost your search rankings and social shares.',
+    icon: '🏷️',
+    slug: 'meta-tag-generator',
+    tag: 'SEO',
+  },
+  {
+    title: 'Robots.txt Generator',
+    description: 'Easily generate a robots.txt file for your website. Control how search engines crawl and index your pages.',
+    icon: '🤖',
+    slug: 'robots-txt-generator',
+    tag: 'SEO',
+  },
+  {
+    title: 'Sitemap Generator',
+    description: 'Create XML sitemaps for your website to help search engines discover and index all your pages.',
+    icon: '🗺️',
+    slug: 'sitemap-generator',
+    tag: 'SEO',
+  },
+  {
+    title: 'OG Image Generator',
+    description: 'Create stunning Open Graph preview images for social media sharing. Make your links stand out on Facebook, Twitter, and LinkedIn.',
+    icon: '🖼️',
+    slug: 'og-image-generator',
+    tag: 'SEO',
+  },
+  {
+    title: 'JSON Formatter',
+    description: 'Format, validate, and beautify JSON data instantly. Spot errors and make your JSON readable.',
+    icon: '{}',
+    slug: 'json-formatter',
+    tag: 'Developer',
+  },
+  {
+    title: 'Base64 Encoder/Decoder',
+    description: 'Encode text to Base64 or decode Base64 strings. Essential tool for developers working with APIs and data.',
+    icon: '🔐',
+    slug: 'base64-encoder-decoder',
+    tag: 'Developer',
+  },
+  {
+    title: 'URL Encoder/Decoder',
+    description: 'Encode or decode URLs and query parameters. Handle special characters in URLs correctly.',
+    icon: '🔗',
+    slug: 'url-encoder-decoder',
+    tag: 'Developer',
+  },
+  {
+    title: 'Password Generator',
+    description: 'Generate strong, secure passwords with customizable length and character types.',
+    icon: '🔑',
+    slug: 'password-generator',
+    tag: 'Security',
+  },
+  {
+    title: 'Word Counter',
+    description: 'Count words, characters, sentences, and paragraphs instantly. Perfect for writers, students, and content creators.',
+    icon: '📝',
+    slug: 'word-counter',
+    tag: 'Writing',
+  },
+  {
+    title: 'Lorem Ipsum Generator',
+    description: 'Generate placeholder text for your designs and mockups. Choose paragraphs, words, or sentences.',
+    icon: '📄',
+    slug: 'lorem-ipsum-generator',
+    tag: 'Writing',
+  },
+  {
+    title: 'Color Palette Generator',
+    description: 'Generate beautiful color palettes for your web projects. Export as CSS, Tailwind, or hex codes.',
+    icon: '🎨',
+    slug: 'color-palette-generator',
+    tag: 'Design',
+  },
+  {
+    title: 'QR Code Generator',
+    description: 'Create QR codes for URLs, text, WiFi, email, and more. Download as PNG or SVG.',
+    icon: '📱',
+    slug: 'qr-code-generator',
+    tag: 'Utility',
+  },
+  {
     title: 'Percentage Calculator',
     description: 'Calculate percentages three ways: find X% of Y, what percent is X of Y, and % change.',
     icon: '🔣',
@@ -166,15 +166,29 @@ const tools = [
 ];
 ---
 
-<BaseLayout title="Home" description="Free online web tools for SEO, development, and content creation. Meta tag generator, robots.txt builder, word counter, and more.">
+<BaseLayout title="Home" description="Free online tools for SEO, finance, development, and more. Mortgage calculator, ROI calculator, JSON formatter, password generator, and 20+ other tools. No signup required.">
   <section class="hero">
     <h1>Free Online Web Tools</h1>
-    <p>Mix and match the tools you need. No signup, no limits, no hassle. Just pick a tool and get it done.</p>
+    <p>23 free tools for finance, SEO, development, and everyday calculations. No signup, no limits, no hassle.</p>
   </section>
+  
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterTools('all')">All</button>
+    <button class="filter-btn" onclick="filterTools('Finance')">💰 Finance</button>
+    <button class="filter-btn" onclick="filterTools('SEO')">🔍 SEO</button>
+    <button class="filter-btn" onclick="filterTools('Developer')">💻 Developer</button>
+    <button class="filter-btn" onclick="filterTools('Utility')">🛠️ Utility</button>
+    <button class="filter-btn" onclick="filterTools('Writing')">✍️ Writing</button>
+    <button class="filter-btn" onclick="filterTools('Design')">🎨 Design</button>
+    <button class="filter-btn" onclick="filterTools('Health')">💪 Health</button>
+    <button class="filter-btn" onclick="filterTools('Shopping')">🛒 Shopping</button>
+    <button class="filter-btn" onclick="filterTools('Security')">🔒 Security</button>
+    <button class="filter-btn" onclick="filterTools('Math')">🔢 Math</button>
+  </div>
   
   <div class="tools-grid">
     {tools.map((tool) => (
-      <a href={`/${tool.slug}`} class="tool-card">
+      <a href={`/${tool.slug}`} class="tool-card" data-tag={tool.tag}>
         <div class="icon">{tool.icon}</div>
         <h3>{tool.title}</h3>
         <p>{tool.description}</p>
@@ -188,5 +202,6 @@ const tools = [
     <p>All tools run entirely in your browser — nothing is sent to a server. Your data stays private, always.</p>
     <p>No accounts, no signups, no paywalls. Every tool is 100% free to use, with no hidden limits.</p>
     <p>Built for speed. Tools load instantly and work on any device — desktop, tablet, or phone.</p>
+    <p>Finance tools that help you plan. Mortgage, ROI, compound interest, and crypto calculators — all free, all private.</p>
   </section>
 </BaseLayout>

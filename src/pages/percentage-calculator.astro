@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🔣 Percentage Calculator</h1>
     <p class="subtitle">Calculate percentages three different ways - pick your calculation mode</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;" id="modeButtons">
@@ -146,8 +154,27 @@ const structuredData = JSON.stringify([
         <h3 style="font-size:14px;margin-bottom:8px;">Quick Examples</h3>
         <div id="examples" style="font-size:13px;color:var(--text-secondary);"></div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Percentage Calculator</h2>
+      <p>Calculate percentages three different ways with this versatile tool. Whether you need to find what percentage one number is of another, calculate percentage change, or find a percentage of a number, this calculator handles it all.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Choose your calculation mode</strong> — Select from three options: "X% of Y = ?" to find a percentage of a number, "X is what % of Y?" to find what percent one number is of another, or "% Change" to calculate percentage increase or decrease.</li>
+        <li><strong>Enter your values</strong> — Fill in the required numbers based on your chosen mode.</li>
+        <li><strong>Click Calculate</strong> — Get instant results with clear explanations.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Quick mental math</strong> — To find 10% of a number, simply move the decimal one place to the left. To find 5%, find 10% and halve it.</li>
+        <li><strong>Percentage change is relative</strong> — A change from 10 to 20 is a 100% increase. The same change (10) from 90 to 100 is only about 11% increase.</li>
+        <li><strong>Percentage points vs. percent</strong> — If interest rates go from 5% to 7%, that's a 2 percentage point increase, but a 40% relative increase (2/5).</li>
+        <li><strong>Real-world applications</strong> — Calculate discounts while shopping, determine tip amounts at restaurants, or compute grade percentages for school.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

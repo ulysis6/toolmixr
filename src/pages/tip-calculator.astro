@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🧾 Tip Calculator</h1>
     <p class="subtitle">Calculate tips and split bills easily - never struggle with math at a restaurant again</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -148,8 +156,28 @@ const structuredData = JSON.stringify([
           </div>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Tip Calculator</h2>
+      <p>Calculate tips quickly and accurately at restaurants, bars, salons, and for any service where gratuity is customary. This calculator handles custom tip percentages and can split bills among multiple people — no more mental math struggles at the table.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter the bill amount</strong> — Type in your total bill before tax. Some prefer tipping on pre-tax amounts (standard practice), but tipping on total is fine too.</li>
+        <li><strong>Adjust the tip percentage</strong> — Use the slider or preset buttons to choose your tip amount. 15% is standard, 18-20% is generous, 10% for poor service.</li>
+        <li><strong>Set the number of people</strong> — If splitting the bill, enter how many people are sharing the cost.</li>
+        <li><strong>Review results</strong> — See the tip amount, total with tip, and per-person cost when splitting.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Standard tip varies by country</strong> — In the US, 15-20% is standard at restaurants. In Europe, 5-10% is often sufficient as staff are usually paid better. In Japan, tipping can be offensive.</li>
+        <li><strong>Check for included gratuity</strong> — Many restaurants automatically add 18-20% service charge for large parties. Always check your bill before adding another tip.</li>
+        <li><strong>Quick mental math</strong> — For 20% tip, find 10% (move decimal left) and double it. For 15%, find 10%, halve it for 5%, then add both.</li>
+        <li><strong>Tip based on service quality</strong> — Exceptional service deserves exceptional tips. For poor service, consider speaking to a manager rather than leaving nothing.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

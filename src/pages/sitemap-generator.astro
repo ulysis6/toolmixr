@@ -78,6 +78,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>🗺️ Sitemap Generator</h1>
     <p class="subtitle">Create XML sitemaps for search engine indexing</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div id="urls">
@@ -125,9 +133,26 @@ const structuredData = JSON.stringify([
       </div>
     </div>
     
-    <section class="content-section">
+    <section class="guide">
       <h2>How to Use the Sitemap Generator</h2>
-      <p>Add all your website URLs above. Set the priority (1.0 = most important) and change frequency for each page. When done, click Generate and save the output as <code>sitemap.xml</code> in your website root directory. Then submit it to Google Search Console and Bing Webmaster Tools.</p>
+      <p>Create an XML sitemap for your website to help search engines discover and index all your pages. Sitemaps are especially important for larger sites, new sites with few backlinks, and sites with dynamic content.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Add your page URLs</strong> — Click "Add URL" to enter each page you want indexed. Include your homepage and all important pages.</li>
+        <li><strong>Set priority levels</strong> — Use 1.0 for your most important pages (homepage, main categories), 0.8 for subpages, 0.6 for individual articles.</li>
+        <li><strong>Choose change frequency</strong> — Set how often each page changes: always, hourly, daily, weekly, monthly, yearly, or never.</li>
+        <li><strong>Generate XML</strong> — Click Generate to create your XML sitemap with proper formatting.</li>
+        <li><strong>Download and upload</strong> — Save the file as sitemap.xml and upload it to your website's root directory.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Include all important pages</strong> — Don't include pages with noindex tags or duplicate content. Only submit pages you want indexed.</li>
+        <li><strong>Homepage gets highest priority</strong> — Always set your homepage to priority 1.0 and change frequency "daily" or "weekly."</li>
+        <li><strong>Update regularly</strong> — Re-generate your sitemap whenever you add new content. Many CMSs have plugins to auto-generate sitemaps.</li>
+        <li><strong>Submit to Google</strong> — Add your sitemap to Google Search Console for better indexing control and performance tracking.</li>
+      </ul>
     </section>
     
     <section class="faq">

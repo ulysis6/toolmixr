@@ -70,6 +70,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>📱 QR Code Generator</h1>
     <p class="subtitle">Create QR codes for URLs, text, WiFi, and more</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -145,8 +153,28 @@ const structuredData = JSON.stringify([
           <button class="btn btn-secondary" onclick="downloadQR()">💾 Download PNG</button>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the QR Code Generator</h2>
+      <p>Create QR codes for URLs, text, WiFi networks, and email addresses. QR codes bridge the gap between physical and digital — scan them with any smartphone camera to instantly access encoded information.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Choose content type</strong> — Select URL for web links, Text for plain text, WiFi for network credentials, or Email for mailto links.</li>
+        <li><strong>Enter your content</strong> — Fill in the relevant fields based on your type. For URLs, include the full https:// prefix.</li>
+        <li><strong>Generate the QR code</strong> — Click Generate to create your QR code instantly.</li>
+        <li><strong>Download as PNG</strong> — Right-click and save the image, or use the download button if available.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Minimum size for print</strong> — For print materials, use at least 200x200 pixels (printed about 1 inch). Larger is always better for scanning reliability.</li>
+        <li><strong>Test before printing</strong> — Always test your QR code with multiple phones before going to print. A failed print run is expensive!</li>
+        <li><strong>Keep URLs short</strong> — Long URLs create dense, hard-to-scan QR codes. Use URL shorteners like bit.ly for cleaner codes.</li>
+        <li><strong>Leave quiet zone</strong> — Keep white space around your QR code. The margin prevents accidental scans from adjacent elements.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

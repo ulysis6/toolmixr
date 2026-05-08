@@ -86,6 +86,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>💰 Loan Calculator</h1>
     <p class="subtitle">Calculate loan payments, total interest, and view your repayment schedule</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div class="form-group">
@@ -159,8 +167,29 @@ const structuredData = JSON.stringify([
           </div>
         </div>
       </div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Loan Calculator</h2>
+      <p>Whether you're considering a car loan, personal loan, student loan, or any other type of installment loan, our calculator helps you understand the true cost. You'll see your monthly payment, total interest paid, and can review a complete amortization schedule showing how each payment is split between principal and interest.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Enter the loan amount</strong> — This is the principal amount you're borrowing. For car loans, this is typically the purchase price minus any down payment or trade-in value.</li>
+        <li><strong>Set the annual interest rate</strong> — Enter the APR (Annual Percentage Rate), which includes interest plus fees. Compare APRs when shopping for loans, not just interest rates.</li>
+        <li><strong>Choose the loan term</strong> — Shorter terms mean higher payments but less total interest. A 3-year car loan has higher payments than a 5-year loan but costs thousands less in interest.</li>
+        <li><strong>Click Calculate</strong> — View your monthly payment, total interest, and total cost of the loan.</li>
+        <li><strong>Review the amortization schedule</strong> — See how each payment reduces your balance over time. Early payments are mostly interest; later payments are mostly principal.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Shorter terms save money</strong> — A $25,000 loan at 8.5% for 3 years costs $4,038 in interest. The same loan for 5 years costs $5,787. Choose the shortest term you can afford.</li>
+        <li><strong>Make extra payments when possible</strong> — Even small additional principal payments can save hundreds in interest and cut years off your loan.</li>
+        <li><strong>Compare offers from multiple lenders</strong> — Getting pre-approved from banks, credit unions, and online lenders helps you find the best rate.</li>
+        <li><strong>Consider refinancing</strong> — If rates have dropped or your credit has improved, refinancing can lower your payments — but calculate if the savings justify any fees.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">

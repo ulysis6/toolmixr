@@ -66,6 +66,14 @@ const structuredData = JSON.stringify([
   <section class="tool-page">
     <h1>📄 Lorem Ipsum Generator</h1>
     <p class="subtitle">Generate placeholder text for designs and mockups</p>
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
     
     <div class="tool-box">
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
@@ -91,8 +99,28 @@ const structuredData = JSON.stringify([
       </div>
       
       <div id="result" style="margin-top:20px;padding:20px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);font-size:14px;line-height:1.8;color:var(--text-secondary);max-height:400px;overflow-y:auto;"></div>
-    </div>
     
+
+    <section class="guide">
+      <h2>How to Use the Lorem Ipsum Generator</h2>
+      <p>Generate placeholder text for design mockups, wireframes, and prototypes. Lorem Ipsum has been the standard in design since the 1500s — its Latin-derived words do not distract from the design while showing how text will flow.</p>
+      
+      <h3>Step-by-Step Guide</h3>
+      <ol>
+        <li><strong>Choose what to generate</strong> — Select paragraphs, words, or sentences depending on your needs.</li>
+        <li><strong>Set the quantity</strong> — Choose how many paragraphs, words, or sentences you need.</li>
+        <li><strong>Click Generate</strong> — Instantly get realistic placeholder text that looks like real content.</li>
+        <li><strong>Copy to clipboard</strong> — Use the copy button to paste directly into your design tool.</li>
+      </ol>
+      
+      <h3>Tips & Best Practices</h3>
+      <ul>
+        <li><strong>Use for design mockups only</strong> — Never use Lorem Ipsum in production. Real content helps designers make better decisions about layout and hierarchy.</li>
+        <li><strong>Match expected content type</strong> — Generate longer text for blog layouts, shorter snippets for cards, appropriate amounts for each design context.</li>
+        <li><strong>Consider alternatives</strong> — Some projects benefit from real placeholder content like "Headline," "Lorem ipsum dolor sit amet..." to clearly indicate where real content will go.</li>
+        <li><strong>Do not let Lorem Ipsum delay design</strong> — Even with placeholder text, you can establish type hierarchy, spacing, and layout. The goal is to visualize the final design.</li>
+      </ul>
+    </section>
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
