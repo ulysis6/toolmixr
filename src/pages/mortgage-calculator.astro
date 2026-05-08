@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Mortgage Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🏠 Mortgage Calculator</h1>
-    <p class="subtitle">Calculate your monthly mortgage payment, total interest, and total cost</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Calculate your monthly mortgage payment, total interest, and total cost</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -205,20 +209,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is a mortgage?</h3>
-        <p>A mortgage is a loan used to purchase real estate, where the property serves as collateral. The borrower agrees to make regular payments over a set period (typically 15-30 years) until the loan is fully repaid with interest.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is a mortgage?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>A mortgage is a loan used to purchase real estate, where the property serves as collateral. The borrower agrees to make regular payments over a set period (typically 15-30 years) until the loan is fully repaid with interest.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How does the interest rate affect my monthly payment?</h3>
-        <p>Even a small change in interest rate significantly impacts your monthly payment. For example, on a $400,000 loan: at 6% APR, 30-year monthly payment is ~$2,398; at 7% APR, it rises to ~$2,661. That's $263 more per month or ~$94,680 more over 30 years.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How does the interest rate affect my monthly payment?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Even a small change in interest rate significantly impacts your monthly payment. For example, on a $400,000 loan: at 6% APR, 30-year monthly payment is ~$2,398; at 7% APR, it rises to ~$2,661. That's $263 more per month or ~$94,680 more over 30 years.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What is the difference between equal principal and equal payment?</h3>
-        <p>In equal payment (fixed-rate), your monthly amount stays the same, but early payments are mostly interest. In equal principal, your principal payment is fixed monthly, so total payment decreases over time. Equal principal saves more interest overall.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is the difference between equal principal and equal payment?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>In equal payment (fixed-rate), your monthly amount stays the same, but early payments are mostly interest. In equal principal, your principal payment is fixed monthly, so total payment decreases over time. Equal principal saves more interest overall.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Why is a larger down payment beneficial?</h3>
-        <p>A larger down payment reduces your loan amount, lowers monthly payments, and helps you avoid Private Mortgage Insurance (PMI), which is typically required when down payment is less than 20%.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Why is a larger down payment beneficial?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>A larger down payment reduces your loan amount, lowers monthly payments, and helps you avoid Private Mortgage Insurance (PMI), which is typically required when down payment is less than 20%.</p>
+        </div>
       </div>
     </section>
 

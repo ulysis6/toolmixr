@@ -76,16 +76,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>URL Encoder/Decoder</span>
+  </nav>
+  <div class="tool-header">
     <h1>🔗 URL Encoder / Decoder</h1>
-    <p class="subtitle">Encode or decode URLs and query parameters instantly</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Encode or decode URLs and query parameters instantly</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -130,16 +134,26 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is URL encoding?</h3>
-        <p>URL encoding converts special characters into percent-encoded format (e.g., space becomes %20). This ensures URLs remain valid when they contain characters that have special meaning in URL syntax.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is URL encoding?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>URL encoding converts special characters into percent-encoded format (e.g., space becomes %20). This ensures URLs remain valid when they contain characters that have special meaning in URL syntax.</p>
+        </div>
       </div>
       <div class="faq-item">
         <h3>What's the difference between encodeURI and encodeURIComponent?</h3>
         <p><code>encodeURI</code> encodes a full URL but preserves characters like :, /, ?, &, = that are part of URL structure. <code>encodeURIComponent</code> encodes everything, including those characters — use it for individual query parameter values.</p>
       </div>
       <div class="faq-item">
-        <h3>When should I URL-encode?</h3>
-        <p>Always encode values you're putting into query parameters. For example, if a search term contains spaces or special characters, encode it before appending to a URL.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>When should I URL-encode?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Always encode values you're putting into query parameters. For example, if a search term contains spaces or special characters, encode it before appending to a URL.</p>
+        </div>
       </div>
     </section>
 

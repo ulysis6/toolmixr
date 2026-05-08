@@ -64,16 +64,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Lorem Ipsum Generator</span>
+  </nav>
+  <div class="tool-header">
     <h1>📄 Lorem Ipsum Generator</h1>
-    <p class="subtitle">Generate placeholder text for designs and mockups</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Generate placeholder text for designs and mockups</p>
     
     <div class="tool-box">
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
@@ -124,12 +128,22 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is Lorem Ipsum?</h3>
-        <p>Lorem Ipsum is dummy text used in printing, typesetting, and web design since the 1500s. It's derived from a Latin text by Cicero but scrambled to be nonsensical, so readers focus on the visual layout rather than the content.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is Lorem Ipsum?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Lorem Ipsum is dummy text used in printing, typesetting, and web design since the 1500s. It's derived from a Latin text by Cicero but scrambled to be nonsensical, so readers focus on the visual layout rather than the content.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Why use Lorem Ipsum instead of real text?</h3>
-        <p>Using readable real text can distract reviewers from evaluating the design itself. Lorem Ipsum looks natural enough to show text flow but doesn't carry meaning, keeping the focus on layout and typography.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Why use Lorem Ipsum instead of real text?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Using readable real text can distract reviewers from evaluating the design itself. Lorem Ipsum looks natural enough to show text flow but doesn't carry meaning, keeping the focus on layout and typography.</p>
+        </div>
       </div>
     </section>
 

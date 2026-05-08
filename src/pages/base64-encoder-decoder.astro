@@ -76,16 +76,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Base64 Encoder/Decoder</span>
+  </nav>
+  <div class="tool-header">
     <h1>🔐 Base64 Encoder / Decoder</h1>
-    <p class="subtitle">Encode text to Base64 or decode Base64 strings instantly</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Encode text to Base64 or decode Base64 strings instantly</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -127,16 +131,31 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is Base64 encoding?</h3>
-        <p>Base64 is a binary-to-text encoding scheme that converts binary data into ASCII characters. It's commonly used to encode data for transmission over media designed to handle text, such as email or JSON.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is Base64 encoding?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Base64 is a binary-to-text encoding scheme that converts binary data into ASCII characters. It's commonly used to encode data for transmission over media designed to handle text, such as email or JSON.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Is Base64 encryption?</h3>
-        <p>No! Base64 is encoding, not encryption. It provides no security. Anyone can decode Base64 — it's meant for data formatting, not protection.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Is Base64 encryption?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>No! Base64 is encoding, not encryption. It provides no security. Anyone can decode Base64 — it's meant for data formatting, not protection.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>When should I use Base64?</h3>
-        <p>Common uses include: embedding images in HTML/CSS (data URLs), sending binary data in JSON APIs, encoding email attachments (MIME), and storing complex data in cookies.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>When should I use Base64?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Common uses include: embedding images in HTML/CSS (data URLs), sending binary data in JSON APIs, encoding email attachments (MIME), and storing complex data in cookies.</p>
+        </div>
       </div>
     </section>
 

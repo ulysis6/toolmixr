@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Tip Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🧾 Tip Calculator</h1>
-    <p class="subtitle">Calculate tips and split bills easily - never struggle with math at a restaurant again</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Calculate tips and split bills easily - never struggle with math at a restaurant again</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -181,20 +185,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>How much should I tip?</h3>
-        <p>Tipping customs vary by country and service type. In the US: restaurants 15-20%, bar 15-20%, hotel bellhop $1-2 per bag, taxi 15-20%, delivery 15-20% or $3-5. In Europe, tipping is often less expected (5-10%) as staff are typically paid better. Always check if a service charge is already included.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How much should I tip?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Tipping customs vary by country and service type. In the US: restaurants 15-20%, bar 15-20%, hotel bellhop $1-2 per bag, taxi 15-20%, delivery 15-20% or $3-5. In Europe, tipping is often less expected (5-10%) as staff are typically paid better. Always check if a service charge is already included.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How do I calculate tip quickly without a calculator?</h3>
-        <p>Quick mental math: For 20% tip, move decimal one place left (10%), then double it (20%). For 15%, find 10%, halve it (5%), add both together. For example, $50 bill: 10% = $5, half = $2.50, total = $7.50 tip.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How do I calculate tip quickly without a calculator?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Quick mental math: For 20% tip, move decimal one place left (10%), then double it (20%). For 15%, find 10%, halve it (5%), add both together. For example, $50 bill: 10% = $5, half = $2.50, total = $7.50 tip.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Should I tip on pre-tax or post-tax amount?</h3>
-        <p>Standard practice is to tip on the pre-tax total, as tax isn't part of the service provided. However, many people simply calculate on the total bill including tax for simplicity, which slightly over-tips but ensures good service.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Should I tip on pre-tax or post-tax amount?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Standard practice is to tip on the pre-tax total, as tax isn't part of the service provided. However, many people simply calculate on the total bill including tax for simplicity, which slightly over-tips but ensures good service.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Is tipping expected for bad service?</h3>
-        <p>Even for poor service, a small tip (10%) is often appropriate to acknowledge the effort. If service was truly terrible, you can speak to a manager rather than leaving no tip, which is rare. Exception: if there were serious issues (hygiene, rudeness), not tipping may be justified.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Is tipping expected for bad service?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Even for poor service, a small tip (10%) is often appropriate to acknowledge the effort. If service was truly terrible, you can speak to a manager rather than leaving no tip, which is rare. Exception: if there were serious issues (hygiene, rudeness), not tipping may be justified.</p>
+        </div>
       </div>
     </section>
 

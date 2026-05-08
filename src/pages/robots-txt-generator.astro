@@ -76,16 +76,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Robots.txt Generator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🤖 Robots.txt Generator</h1>
-    <p class="subtitle">Create a robots.txt file to control search engine crawling</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Create a robots.txt file to control search engine crawling</p>
     
     <div class="tool-box">
       <h3 style="margin-bottom:16px;">User-agent Rules</h3>
@@ -165,12 +169,22 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is a robots.txt file?</h3>
-        <p>A robots.txt file tells search engine crawlers which pages or sections of your site they can or cannot access. It must be placed in the root directory of your website.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is a robots.txt file?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>A robots.txt file tells search engine crawlers which pages or sections of your site they can or cannot access. It must be placed in the root directory of your website.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Is robots.txt a security tool?</h3>
-        <p>No. Robots.txt is a directive, not a security measure. Malicious bots may ignore it. Never use robots.txt to hide sensitive pages — use proper authentication instead.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Is robots.txt a security tool?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>No. Robots.txt is a directive, not a security measure. Malicious bots may ignore it. Never use robots.txt to hide sensitive pages — use proper authentication instead.</p>
+        </div>
       </div>
       <div class="faq-item">
         <h3>Where should I put my robots.txt file?</h3>

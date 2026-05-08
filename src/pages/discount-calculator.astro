@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Discount Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🏷️ Discount Calculator</h1>
-    <p class="subtitle">Calculate sale prices, savings, and final cost including tax</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Calculate sale prices, savings, and final cost including tax</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -185,20 +189,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>How do I calculate a discount?</h3>
-        <p>Discount calculation: Final Price = Original Price x (1 - Discount%). For example, 25% off $100: $100 x (1 - 0.25) = $100 x 0.75 = $75. The amount saved = Original Price x Discount%. So $100 x 0.25 = $25 saved.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How do I calculate a discount?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Discount calculation: Final Price = Original Price x (1 - Discount%). For example, 25% off $100: $100 x (1 - 0.25) = $100 x 0.75 = $75. The amount saved = Original Price x Discount%. So $100 x 0.25 = $25 saved.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How do I calculate sale price with tax?</h3>
-        <p>First calculate the discounted price, then add tax: Final = Discounted Price x (1 + Tax Rate). For example, $75 item with 8% tax: $75 x 1.08 = $81. Total paid = $81, total tax = $6.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How do I calculate sale price with tax?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>First calculate the discounted price, then add tax: Final = Discounted Price x (1 + Tax Rate). For example, $75 item with 8% tax: $75 x 1.08 = $81. Total paid = $81, total tax = $6.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What is the difference between markdown and discount?</h3>
-        <p>In practice, these terms are used interchangeably. Technically, a "markdown" usually refers to a price reduction from the original MSRP (suggested price), while a "discount" often implies a promotional reduction from the current selling price. Both result in paying less.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is the difference between markdown and discount?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>In practice, these terms are used interchangeably. Technically, a "markdown" usually refers to a price reduction from the original MSRP (suggested price), while a "discount" often implies a promotional reduction from the current selling price. Both result in paying less.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How do stores calculate "X% off plus an additional Y%"?</h3>
-        <p>This is a common marketing trick. "Extra 20% off sale items" means the discount applies sequentially. 30% off + extra 20%: Price = Original x 0.70 x 0.80 = 56% of original. This is NOT 50% off. Always calculate the final price, not just add percentages.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How do stores calculate "X% off plus an additional Y%"?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>This is a common marketing trick. "Extra 20% off sale items" means the discount applies sequentially. 30% off + extra 20%: Price = Original x 0.70 x 0.80 = 56% of original. This is NOT 50% off. Always calculate the final price, not just add percentages.</p>
+        </div>
       </div>
     </section>
 

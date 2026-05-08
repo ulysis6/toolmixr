@@ -70,7 +70,7 @@ const tools = [
     description: 'Create stunning Open Graph preview images for social media sharing. Make your links stand out on Facebook, Twitter, and LinkedIn.',
     icon: '🖼️',
     slug: 'og-image-generator',
-    tag: 'SEO',
+    tag: 'Design',
   },
   {
     title: 'JSON Formatter',
@@ -171,6 +171,10 @@ const tools = [
     <h1>Free Online Web Tools</h1>
     <p>23 free tools for finance, SEO, development, and everyday calculations. No signup, no limits, no hassle.</p>
   </section>
+  
+  <div class="search-bar">
+    <input type="text" id="toolSearch" placeholder="Search tools..." oninput="searchTools(this.value)" />
+  </div>
   
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterTools('all')">All</button>

@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>BMI Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>⚖️ BMI Calculator</h1>
-    <p class="subtitle">Calculate your Body Mass Index and find your healthy weight range</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Calculate your Body Mass Index and find your healthy weight range</p>
     
     <div class="tool-box">
       <div style="display:flex;gap:8px;margin-bottom:20px;">
@@ -199,20 +203,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is BMI?</h3>
-        <p>BMI (Body Mass Index) is a numerical value of your weight in relation to your height. It's calculated by dividing weight (kg) by height squared (m²). While it doesn't directly measure body fat, it's widely used as a screening tool to categorize weight status.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is BMI?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>BMI (Body Mass Index) is a numerical value of your weight in relation to your height. It's calculated by dividing weight (kg) by height squared (m²). While it doesn't directly measure body fat, it's widely used as a screening tool to categorize weight status.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What is a healthy BMI range?</h3>
-        <p>BMI categories: Underweight (&lt;18.5), Normal weight (18.5-24.9), Overweight (25-29.9), and Obese (30+). However, these ranges may vary for different ethnic groups, and BMI doesn't distinguish between muscle and fat mass.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is a healthy BMI range?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>BMI categories: Underweight (&lt;18.5), Normal weight (18.5-24.9), Overweight (25-29.9), and Obese (30+). However, these ranges may vary for different ethnic groups, and BMI doesn't distinguish between muscle and fat mass.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What are the limitations of BMI?</h3>
-        <p>BMI doesn't account for: muscle mass (athletes may be "overweight"), bone density, age, gender, or fat distribution. A muscular person with 15% body fat might have the same BMI as someone with 30% body fat. Waist circumference or body fat percentage are better indicators of health risk.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What are the limitations of BMI?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>BMI doesn't account for: muscle mass (athletes may be "overweight"), bone density, age, gender, or fat distribution. A muscular person with 15% body fat might have the same BMI as someone with 30% body fat. Waist circumference or body fat percentage are better indicators of health risk.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What should I do if my BMI is outside normal range?</h3>
-        <p>BMI is just one indicator. If yours is concerning, consult a healthcare provider who can assess overall health including diet, physical activity, family history, blood pressure, cholesterol, and other factors. Sustainable lifestyle changes are more important than crash diets.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What should I do if my BMI is outside normal range?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>BMI is just one indicator. If yours is concerning, consult a healthcare provider who can assess overall health including diet, physical activity, family history, blood pressure, cholesterol, and other factors. Sustainable lifestyle changes are more important than crash diets.</p>
+        </div>
       </div>
     </section>
 

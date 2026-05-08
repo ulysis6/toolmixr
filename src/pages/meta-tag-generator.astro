@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Meta Tag Generator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🏷️ Meta Tag Generator</h1>
-    <p class="subtitle">Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -186,20 +190,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What are meta tags?</h3>
-        <p>Meta tags are HTML elements that provide metadata about a web page. They sit in the head section of your HTML and tell search engines and social media platforms what your page is about, how to display it, and whether to index it.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What are meta tags?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Meta tags are HTML elements that provide metadata about a web page. They sit in the head section of your HTML and tell search engines and social media platforms what your page is about, how to display it, and whether to index it.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Why are Open Graph tags important?</h3>
-        <p>Open Graph tags control how your content appears when shared on Facebook, LinkedIn, and other social platforms. Without them, social platforms may choose random images or text, making your shares look unprofessional.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Why are Open Graph tags important?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Open Graph tags control how your content appears when shared on Facebook, LinkedIn, and other social platforms. Without them, social platforms may choose random images or text, making your shares look unprofessional.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How long should my meta description be?</h3>
-        <p>Google typically displays 120-160 characters of a meta description. Aim for 150-160 characters to ensure your full message appears in search results without being cut off.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How long should my meta description be?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Google typically displays 120-160 characters of a meta description. Aim for 150-160 characters to ensure your full message appears in search results without being cut off.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Do keywords meta tags still matter?</h3>
-        <p>Google has not used the keywords meta tag for ranking since 2009. However, some smaller search engines and tools may still reference it, so it doesn't hurt to include relevant keywords.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Do keywords meta tags still matter?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Google has not used the keywords meta tag for ranking since 2009. However, some smaller search engines and tools may still reference it, so it doesn't hurt to include relevant keywords.</p>
+        </div>
       </div>
     </section>
 

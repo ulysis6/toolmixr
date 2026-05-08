@@ -76,16 +76,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Sitemap Generator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🗺️ Sitemap Generator</h1>
-    <p class="subtitle">Create XML sitemaps for search engine indexing</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Create XML sitemaps for search engine indexing</p>
     
     <div class="tool-box">
       <div id="urls">
@@ -158,12 +162,22 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is an XML sitemap?</h3>
-        <p>An XML sitemap is a file that lists all the pages on your website, helping search engines like Google and Bing discover and crawl your content more efficiently.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is an XML sitemap?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>An XML sitemap is a file that lists all the pages on your website, helping search engines like Google and Bing discover and crawl your content more efficiently.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Do I need a sitemap?</h3>
-        <p>If your site is small (under 500 pages) with good internal linking, search engines can usually find all pages. Sitemaps become essential for large sites, new sites with few backlinks, or sites with isolated pages.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Do I need a sitemap?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>If your site is small (under 500 pages) with good internal linking, search engines can usually find all pages. Sitemaps become essential for large sites, new sites with few backlinks, or sites with isolated pages.</p>
+        </div>
       </div>
       <div class="faq-item">
         <h3>Where should I put my sitemap?</h3>

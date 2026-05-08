@@ -68,16 +68,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Color Palette Generator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🎨 Color Palette Generator</h1>
-    <p class="subtitle">Generate beautiful color palettes for your projects</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Generate beautiful color palettes for your projects</p>
     
     <div class="tool-box">
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
@@ -140,12 +144,22 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is an analogous color scheme?</h3>
-        <p>Analogous colors sit next to each other on the color wheel (e.g., blue, blue-green, green). They create harmonious, natural-looking palettes that are easy on the eyes.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is an analogous color scheme?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Analogous colors sit next to each other on the color wheel (e.g., blue, blue-green, green). They create harmonious, natural-looking palettes that are easy on the eyes.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What is a complementary color?</h3>
-        <p>Complementary colors are directly opposite on the color wheel (e.g., blue and orange). They create high contrast and visual energy — great for call-to-action elements.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is a complementary color?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Complementary colors are directly opposite on the color wheel (e.g., blue and orange). They create high contrast and visual energy — great for call-to-action elements.</p>
+        </div>
       </div>
     </section>
 

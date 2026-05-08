@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Compound Interest Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🏦 Compound Interest Calculator</h1>
-    <p class="subtitle">See the power of compound interest and watch your money grow exponentially</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">See the power of compound interest and watch your money grow exponentially</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -210,20 +214,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is compound interest?</h3>
-        <p>Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Often called "interest on interest," it causes your money to grow exponentially over time rather than linearly.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is compound interest?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Often called "interest on interest," it causes your money to grow exponentially over time rather than linearly.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How does compounding frequency affect returns?</h3>
-        <p>The more frequently interest compounds, the higher your returns. Daily compounding yields more than monthly, which yields more than annually. On a $10,000 investment at 7% for 20 years: annual = $38,697, monthly = $40,994, daily = $41,215. The difference seems small but grows with larger amounts.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How does compounding frequency affect returns?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>The more frequently interest compounds, the higher your returns. Daily compounding yields more than monthly, which yields more than annually. On a $10,000 investment at 7% for 20 years: annual = $38,697, monthly = $40,994, daily = $41,215. The difference seems small but grows with larger amounts.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What is the Rule of 72?</h3>
-        <p>A quick mental math shortcut: divide 72 by your annual interest rate to estimate years to double your money. At 6% interest, 72/6 = 12 years to double. At 9%, 72/9 = 8 years. This approximation works best for rates between 4% and 12%.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is the Rule of 72?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>A quick mental math shortcut: divide 72 by your annual interest rate to estimate years to double your money. At 6% interest, 72/6 = 12 years to double. At 9%, 72/9 = 8 years. This approximation works best for rates between 4% and 12%.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Why is starting early so important?</h3>
-        <p>Thanks to compounding, time is your greatest asset. $5,000 invested at age 25 at 7% annually becomes ~$52,000 by age 65. Waiting until 35 to invest the same amount yields only ~$26,000. That's 20 extra years making a 2x difference!</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Why is starting early so important?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Thanks to compounding, time is your greatest asset. $5,000 invested at age 25 at 7% annually becomes ~$52,000 by age 65. Waiting until 35 to invest the same amount yields only ~$26,000. That's 20 extra years making a 2x difference!</p>
+        </div>
       </div>
     </section>
 

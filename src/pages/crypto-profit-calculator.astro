@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Crypto Profit Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🪙 Crypto Profit Calculator</h1>
-    <p class="subtitle">Calculate your cryptocurrency trading profits and ROI instantly</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Calculate your cryptocurrency trading profits and ROI instantly</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -209,20 +213,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>How do I calculate crypto profit?</h3>
-        <p>Crypto profit = (Sell Price - Buy Price) x Quantity - Fees. For example: Buy 0.1 BTC at $45,000 ($4,500 + $45 fee), sell at $60,000 ($6,000 - $60 fee). Net profit = $6,000 - $4,500 - $45 - $60 = $1,395. Always account for trading fees on both buy and sell.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How do I calculate crypto profit?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Crypto profit = (Sell Price - Buy Price) x Quantity - Fees. For example: Buy 0.1 BTC at $45,000 ($4,500 + $45 fee), sell at $60,000 ($6,000 - $60 fee). Net profit = $6,000 - $4,500 - $45 - $60 = $1,395. Always account for trading fees on both buy and sell.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What fees should I consider?</h3>
-        <p>Most exchanges charge 0.1% - 0.5% per trade. Binance: 0.1%, Coinbase: up to 0.6%, Kraken: 0.26%. Also consider: withdrawal fees, deposit fees, and spread costs. For accurate calculations, use your total fee percentage (buy + sell combined).</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What fees should I consider?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Most exchanges charge 0.1% - 0.5% per trade. Binance: 0.1%, Coinbase: up to 0.6%, Kraken: 0.26%. Also consider: withdrawal fees, deposit fees, and spread costs. For accurate calculations, use your total fee percentage (buy + sell combined).</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What is break-even price?</h3>
-        <p>Break-even price is the sell price at which you neither profit nor lose (excluding fees already paid). It accounts for fees paid on the purchase. Formula: Break-even = Buy Price x (1 + Fee%). At $45,000 buy with 1% fee, break-even is $45,450.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is break-even price?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Break-even price is the sell price at which you neither profit nor lose (excluding fees already paid). It accounts for fees paid on the purchase. Formula: Break-even = Buy Price x (1 + Fee%). At $45,000 buy with 1% fee, break-even is $45,450.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How does crypto ROI differ from traditional investments?</h3>
-        <p>Crypto ROI is calculated the same way: (Current Value - Cost) / Cost x 100. However, crypto prices are highly volatile, so annualization is crucial for comparison. A 50% gain in 1 month is ~600% annualized, while a 50% gain in 2 years is ~25% annualized.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How does crypto ROI differ from traditional investments?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Crypto ROI is calculated the same way: (Current Value - Cost) / Cost x 100. However, crypto prices are highly volatile, so annualization is crucial for comparison. A 50% gain in 1 month is ~600% annualized, while a 50% gain in 2 years is ~25% annualized.</p>
+        </div>
       </div>
     </section>
 

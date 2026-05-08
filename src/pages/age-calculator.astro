@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Age Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🎂 Age Calculator</h1>
-    <p class="subtitle">Find your exact age in years, months, days, and see when your next birthday is</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Find your exact age in years, months, days, and see when your next birthday is</p>
     
     <div class="tool-box">
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
@@ -183,20 +187,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>How is exact age calculated?</h3>
-        <p>Exact age counts the precise time between birth date and current date. It calculates years, then months, then remaining days. For example, someone born March 15, 1990, on January 20, 2024, is 33 years, 10 months, and 5 days old.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How is exact age calculated?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Exact age counts the precise time between birth date and current date. It calculates years, then months, then remaining days. For example, someone born March 15, 1990, on January 20, 2024, is 33 years, 10 months, and 5 days old.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Why do I need my exact age in days?</h3>
-        <p>Knowing your exact age in days is useful for: health calculations (certain medications are dosed by age in days), legal purposes (proof of age documents), milestone celebrations (10,000 day birthday), and personal interest in how many Saturdays or sunsets you have experienced.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Why do I need my exact age in days?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Knowing your exact age in days is useful for: health calculations (certain medications are dosed by age in days), legal purposes (proof of age documents), milestone celebrations (10,000 day birthday), and personal interest in how many Saturdays or sunsets you have experienced.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How accurate is the birthday countdown?</h3>
-        <p>The countdown accurately calculates days until your next birthday, accounting for leap years and varying month lengths. It shows the precise date and time of your next birthday celebration.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How accurate is the birthday countdown?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>The countdown accurately calculates days until your next birthday, accounting for leap years and varying month lengths. It shows the precise date and time of your next birthday celebration.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What are some interesting age milestones?</h3>
-        <p>Common milestones: 1,000 days (toddler), 5,000 days (teenager), 10,000 days (young adult ~27), 15,000 days (middle age ~41), 20,000 days (54), 25,000 days (68), 30,000 days (82). Leap years slightly affect calculations - we gain one day every 4 years!</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What are some interesting age milestones?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Common milestones: 1,000 days (toddler), 5,000 days (teenager), 10,000 days (young adult ~27), 15,000 days (middle age ~41), 20,000 days (54), 25,000 days (68), 30,000 days (82). Leap years slightly affect calculations - we gain one day every 4 years!</p>
+        </div>
       </div>
     </section>
 

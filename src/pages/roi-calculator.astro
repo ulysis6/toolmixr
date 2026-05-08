@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>ROI Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>📈 ROI Calculator</h1>
-    <p class="subtitle">Calculate return on investment and annualized ROI for your investments</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Calculate return on investment and annualized ROI for your investments</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -170,20 +174,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is ROI (Return on Investment)?</h3>
-        <p>ROI is a performance metric used to evaluate the profitability of an investment. It measures the gain or loss generated relative to the amount invested. A positive ROI means the investment profited; a negative ROI indicates a loss.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is ROI (Return on Investment)?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>ROI is a performance metric used to evaluate the profitability of an investment. It measures the gain or loss generated relative to the amount invested. A positive ROI means the investment profited; a negative ROI indicates a loss.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How to calculate annualized ROI?</h3>
-        <p>Annualized ROI adjusts the return to a yearly rate, allowing comparison of investments held for different periods. Formula: Annualized ROI = ((1 + ROI%)^(1/years) - 1) x 100. For example, 50% return over 2 years = ((1.50)^(0.5) - 1) x 100 = 22.47% annually.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How to calculate annualized ROI?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Annualized ROI adjusts the return to a yearly rate, allowing comparison of investments held for different periods. Formula: Annualized ROI = ((1 + ROI%)^(1/years) - 1) x 100. For example, 50% return over 2 years = ((1.50)^(0.5) - 1) x 100 = 22.47% annually.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What is a good ROI?</h3>
-        <p>A "good" ROI depends on the investment type and risk tolerance. For stock market investments, 7-10% annually is considered solid. Real estate typically aims for 8-12%. Realistic expectations vary by asset class: stocks 6-10%, bonds 2-5%, real estate 8-12%.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is a good ROI?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>A "good" ROI depends on the investment type and risk tolerance. For stock market investments, 7-10% annually is considered solid. Real estate typically aims for 8-12%. Realistic expectations vary by asset class: stocks 6-10%, bonds 2-5%, real estate 8-12%.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Should I include additional costs in ROI calculation?</h3>
-        <p>Yes, including all costs (transaction fees, taxes, maintenance, holding costs) gives a more accurate picture of actual returns. Many investors overlook these, leading to overestimated profits.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Should I include additional costs in ROI calculation?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, including all costs (transaction fees, taxes, maintenance, holding costs) gives a more accurate picture of actual returns. Many investors overlook these, leading to overestimated profits.</p>
+        </div>
       </div>
     </section>
 

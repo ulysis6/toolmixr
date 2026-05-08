@@ -76,16 +76,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>OG Image Generator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🖼️ Open Graph Image Generator</h1>
-    <p class="subtitle">Preview and generate OG images for social media sharing</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Preview and generate OG images for social media sharing</p>
     
     <div class="tool-box">
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
@@ -160,16 +164,31 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is an Open Graph image?</h3>
-        <p>An Open Graph (OG) image is the preview image that appears when your link is shared on social media platforms like Facebook, Twitter, LinkedIn, and Slack. The recommended size is 1200x630 pixels.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is an Open Graph image?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>An Open Graph (OG) image is the preview image that appears when your link is shared on social media platforms like Facebook, Twitter, LinkedIn, and Slack. The recommended size is 1200x630 pixels.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Why is my OG image not showing?</h3>
-        <p>Social platforms cache OG data aggressively. After updating your tags, use Facebook's Sharing Debugger or Twitter's Card Validator to force a re-scrape. Also ensure your image URL is publicly accessible and uses HTTPS.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Why is my OG image not showing?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Social platforms cache OG data aggressively. After updating your tags, use Facebook's Sharing Debugger or Twitter's Card Validator to force a re-scrape. Also ensure your image URL is publicly accessible and uses HTTPS.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What are the ideal OG image dimensions?</h3>
-        <p>1200x630 pixels is the standard for Facebook and LinkedIn. Twitter's summary_large_image cards also use this ratio. Always use images at least 600x315 as a minimum.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What are the ideal OG image dimensions?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>1200x630 pixels is the standard for Facebook and LinkedIn. Twitter's summary_large_image cards also use this ratio. Always use images at least 600x315 as a minimum.</p>
+        </div>
       </div>
     </section>
 

@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Percentage Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>🔣 Percentage Calculator</h1>
-    <p class="subtitle">Calculate percentages three different ways - pick your calculation mode</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Calculate percentages three different ways - pick your calculation mode</p>
     
     <div class="tool-box">
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;" id="modeButtons">
@@ -178,20 +182,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>How to calculate X% of Y?</h3>
-        <p>Formula: X% of Y = (X / 100) x Y. For example, 25% of 200 = (25 / 100) x 200 = 0.25 x 200 = 50. In decimal form: multiply the percentage (as decimal) by the total.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How to calculate X% of Y?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Formula: X% of Y = (X / 100) x Y. For example, 25% of 200 = (25 / 100) x 200 = 0.25 x 200 = 50. In decimal form: multiply the percentage (as decimal) by the total.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How to find what percent X is of Y?</h3>
-        <p>Formula: (X / Y) x 100. For example, what percent is 30 of 150? (30 / 150) x 100 = 0.2 x 100 = 20%. So 30 is 20% of 150.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How to find what percent X is of Y?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Formula: (X / Y) x 100. For example, what percent is 30 of 150? (30 / 150) x 100 = 0.2 x 100 = 20%. So 30 is 20% of 150.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What is percentage change?</h3>
-        <p>Percentage change shows how much a value has increased or decreased relative to the original. Formula: ((New - Original) / Original) x 100. A positive result is an increase; negative is a decrease. Example: $50 to $75 = ((75 - 50) / 50) x 100 = 50% increase.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is percentage change?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Percentage change shows how much a value has increased or decreased relative to the original. Formula: ((New - Original) / Original) x 100. A positive result is an increase; negative is a decrease. Example: $50 to $75 = ((75 - 50) / 50) x 100 = 50% increase.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What's the difference between percentage points and percent?</h3>
-        <p>Percentage points measure absolute difference between two percentages. Percent measures relative change. If interest rates go from 5% to 7%, that's a 2 percentage point increase, but a 40% relative increase (2/5 x 100). Use percentage points for comparing rates, percent for measuring growth.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What's the difference between percentage points and percent?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Percentage points measure absolute difference between two percentages. Percent measures relative change. If interest rates go from 5% to 7%, that's a 2 percentage point increase, but a 40% relative increase (2/5 x 100). Use percentage points for comparing rates, percent for measuring growth.</p>
+        </div>
       </div>
     </section>
 

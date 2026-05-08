@@ -84,16 +84,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>AdSense Revenue Calculator</span>
+  </nav>
+  <div class="tool-header">
     <h1>💵 AdSense Revenue Calculator</h1>
-    <p class="subtitle">Estimate your Google AdSense earnings based on traffic and ad performance</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Estimate your Google AdSense earnings based on traffic and ad performance</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -189,20 +193,40 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is CTR and why does it matter?</h3>
-        <p>CTR (Click-Through Rate) = (Clicks / Ad Impressions) × 100. It measures how often people click on ads. Higher CTR means more engagement with ads. However, extremely high CTR (over 10%) may trigger invalid traffic flags. Industry average is 0.5% - 5% depending on niche.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is CTR and why does it matter?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>CTR (Click-Through Rate) = (Clicks / Ad Impressions) × 100. It measures how often people click on ads. Higher CTR means more engagement with ads. However, extremely high CTR (over 10%) may trigger invalid traffic flags. Industry average is 0.5% - 5% depending on niche.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>What is a good CPC for AdSense?</h3>
-        <p>CPC varies dramatically by niche: Finance and Insurance ($3-30+), Law ($2-15), Software/Tech ($1-5), Home Improvement ($1-3), Health ($1-3), Entertainment/Gaming ($0.2-1). Higher CPC niches pay more per click but may have lower traffic volume.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is a good CPC for AdSense?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>CPC varies dramatically by niche: Finance and Insurance ($3-30+), Law ($2-15), Software/Tech ($1-5), Home Improvement ($1-3), Health ($1-3), Entertainment/Gaming ($0.2-1). Higher CPC niches pay more per click but may have lower traffic volume.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How can I increase my AdSense revenue?</h3>
-        <p>1) Increase quality traffic - better SEO, content marketing. 2) Optimize ad placement - above fold, within content, natural positions. 3) Improve content quality for higher engagement. 4) Test different ad formats. 5) Consider high-CPC niches. 6) Use ad balancing. 7) Mobile optimization.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How can I increase my AdSense revenue?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>1) Increase quality traffic - better SEO, content marketing. 2) Optimize ad placement - above fold, within content, natural positions. 3) Improve content quality for higher engagement. 4) Test different ad formats. 5) Consider high-CPC niches. 6) Use ad balancing. 7) Mobile optimization.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Why do actual earnings differ from calculator estimates?</h3>
-        <p>Real revenue depends on: ad fill rate (not 100%), geographic distribution (US/UK pays more), traffic quality, seasonal fluctuations, invalid traffic filtering, AdSense policy compliance, and publisher performance reports. Treat estimates as theoretical maximums.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Why do actual earnings differ from calculator estimates?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Real revenue depends on: ad fill rate (not 100%), geographic distribution (US/UK pays more), traffic quality, seasonal fluctuations, invalid traffic filtering, AdSense policy compliance, and publisher performance reports. Treat estimates as theoretical maximums.</p>
+        </div>
       </div>
     </section>
 

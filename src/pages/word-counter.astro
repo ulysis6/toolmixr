@@ -76,16 +76,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Word Counter</span>
+  </nav>
+  <div class="tool-header">
     <h1>📝 Word Counter</h1>
-    <p class="subtitle">Count words, characters, sentences, and paragraphs instantly</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Count words, characters, sentences, and paragraphs instantly</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -148,16 +152,31 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>How does the word counter work?</h3>
-        <p>Simply type or paste your text into the box above. The tool instantly counts words, characters, sentences, and paragraphs in real-time as you type.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How does the word counter work?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Simply type or paste your text into the box above. The tool instantly counts words, characters, sentences, and paragraphs in real-time as you type.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Does the word counter store my text?</h3>
-        <p>No. All processing happens in your browser. Your text is never sent to any server. Your data stays completely private.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Does the word counter store my text?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>No. All processing happens in your browser. Your text is never sent to any server. Your data stays completely private.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>How is reading time calculated?</h3>
-        <p>Reading time is estimated based on an average reading speed of 225 words per minute, which is the typical speed for adult readers of English content.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How is reading time calculated?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Reading time is estimated based on an average reading speed of 225 words per minute, which is the typical speed for adult readers of English content.</p>
+        </div>
       </div>
     </section>
 

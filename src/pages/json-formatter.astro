@@ -76,16 +76,20 @@ const structuredData = JSON.stringify([
   structuredData={structuredData}
 >
   <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>JSON Formatter</span>
+  </nav>
+  <div class="tool-header">
     <h1>{`{}`} JSON Formatter & Validator</h1>
-    <p class="subtitle">Format, validate, and beautify JSON data instantly</p>
     <div class="share-bar">
-      <span class="share-label">Share:</span>
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
       <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
       <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
       <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
     </div>
+  </div>
+  <p class="subtitle">Format, validate, and beautify JSON data instantly</p>
     
     <div class="tool-box">
       <div class="form-group">
@@ -131,16 +135,31 @@ const structuredData = JSON.stringify([
     <section class="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is JSON?</h3>
-        <p>JSON (JavaScript Object Notation) is a lightweight data format used to exchange data between servers and web applications. It's human-readable and easy for machines to parse.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is JSON?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>JSON (JavaScript Object Notation) is a lightweight data format used to exchange data between servers and web applications. It's human-readable and easy for machines to parse.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Why format JSON?</h3>
-        <p>Minified JSON saves space but is hard to read. Formatting adds indentation and line breaks, making it much easier to debug and understand the structure of your data.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Why format JSON?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Minified JSON saves space but is hard to read. Formatting adds indentation and line breaks, making it much easier to debug and understand the structure of your data.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <h3>Is my JSON data safe?</h3>
-        <p>Yes. All formatting happens in your browser. Your JSON data is never sent to any server.</p>
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Is my JSON data safe?</span>
+          <span class="faq-arrow">▸</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. All formatting happens in your browser. Your JSON data is never sent to any server.</p>
+        </div>
       </div>
     </section>
 
