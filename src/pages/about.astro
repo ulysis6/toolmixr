@@ -52,26 +52,60 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <div class="about-section">
-      <h2>Currently Available Tools</h2>
-      <ul class="tool-list">
-        <li><a href="/meta-tag-generator">Meta Tag Generator</a> — SEO & Open Graph meta tags</li>
-        <li><a href="/og-image-generator">Open Graph Image Generator</a> — Social preview images</li>
-        <li><a href="/robots-txt-generator">Robots.txt Generator</a> — Crawl directives for search engines</li>
-        <li><a href="/sitemap-generator">Sitemap Generator</a> — XML sitemaps for better indexing</li>
-        <li><a href="/word-counter">Word Counter</a> — Words, characters, sentences & paragraphs</li>
-        <li><a href="/json-formatter">JSON Formatter</a> — Format, validate & beautify JSON</li>
-        <li><a href="/base64-encoder-decoder">Base64 Encoder/Decoder</a> — Encode & decode Base64 strings</li>
-        <li><a href="/color-palette-generator">Color Palette Generator</a> — Beautiful color palettes for web projects</li>
-        <li><a href="/qr-code-generator">QR Code Generator</a> — Create QR codes instantly</li>
-        <li><a href="/password-generator">Password Generator</a> — Strong, secure passwords</li>
-        <li><a href="/lorem-ipsum-generator">Lorem Ipsum Generator</a> — Placeholder text for designs</li>
-        <li><a href="/url-encoder-decoder">URL Encoder/Decoder</a> — Encode & decode URLs</li>
-      </ul>
-    </div>
-
-    <div class="about-section">
-      <h2>Coming Soon</h2>
-      <p>We're always building new tools. Have an idea? We'd love to hear from you.</p>
+      <h2>Available Tools</h2>
+      
+      <div class="tool-category">
+        <h3>🔍 SEO Tools</h3>
+        <ul class="tool-list">
+          <li><a href="/meta-tag-generator">Meta Tag Generator</a> — SEO & Open Graph meta tags</li>
+          <li><a href="/og-image-generator">Open Graph Image Generator</a> — Social preview images</li>
+          <li><a href="/robots-txt-generator">Robots.txt Generator</a> — Crawl directives for search engines</li>
+          <li><a href="/sitemap-generator">Sitemap Generator</a> — XML sitemaps for better indexing</li>
+        </ul>
+      </div>
+      
+      <div class="tool-category">
+        <h3>💻 Developer Tools</h3>
+        <ul class="tool-list">
+          <li><a href="/json-formatter">JSON Formatter</a> — Format, validate & beautify JSON</li>
+          <li><a href="/base64-encoder-decoder">Base64 Encoder/Decoder</a> — Encode & decode Base64 strings</li>
+          <li><a href="/url-encoder-decoder">URL Encoder/Decoder</a> — Encode & decode URLs</li>
+          <li><a href="/password-generator">Password Generator</a> — Strong, secure passwords</li>
+        </ul>
+      </div>
+      
+      <div class="tool-category">
+        <h3>💰 Finance Tools</h3>
+        <ul class="tool-list">
+          <li><a href="/mortgage-calculator">Mortgage Calculator</a> — Calculate mortgage payments</li>
+          <li><a href="/roi-calculator">ROI Calculator</a> — Calculate return on investment</li>
+          <li><a href="/compound-interest-calculator">Compound Interest Calculator</a> — Project investment growth</li>
+          <li><a href="/loan-calculator">Loan Calculator</a> — Calculate loan payments and schedules</li>
+          <li><a href="/adsense-revenue-calculator">AdSense Revenue Calculator</a> — Estimate ad earnings</li>
+          <li><a href="/crypto-profit-calculator">Crypto Profit Calculator</a> — Calculate crypto gains and losses</li>
+        </ul>
+      </div>
+      
+      <div class="tool-category">
+        <h3>🛠️ Utilities</h3>
+        <ul class="tool-list">
+          <li><a href="/word-counter">Word Counter</a> — Words, characters, sentences & paragraphs</li>
+          <li><a href="/percentage-calculator">Percentage Calculator</a> — Calculate percentages easily</li>
+          <li><a href="/age-calculator">Age Calculator</a> — Calculate exact age in years, months, days</li>
+          <li><a href="/bmi-calculator">BMI Calculator</a> — Calculate body mass index</li>
+          <li><a href="/tip-calculator">Tip Calculator</a> — Calculate tips and split bills</li>
+          <li><a href="/discount-calculator">Discount Calculator</a> — Calculate sale prices and discounts</li>
+        </ul>
+      </div>
+      
+      <div class="tool-category">
+        <h3>🎨 Design Tools</h3>
+        <ul class="tool-list">
+          <li><a href="/lorem-ipsum-generator">Lorem Ipsum Generator</a> — Placeholder text for designs</li>
+          <li><a href="/color-palette-generator">Color Palette Generator</a> — Beautiful color palettes for web projects</li>
+          <li><a href="/qr-code-generator">QR Code Generator</a> — Create QR codes instantly</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -143,6 +177,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--text-secondary);
   }
 
+  .tool-category {
+    margin-bottom: 28px;
+  }
+  .tool-category h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
   .tool-list {
     list-style: none;
     padding: 0;

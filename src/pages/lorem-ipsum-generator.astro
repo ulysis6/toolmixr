@@ -1,10 +1,67 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Lorem Ipsum Generator";
+const pageUrl = "https://toolmixr.com/lorem-ipsum-generator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online lorem ipsum generator. Generate placeholder text for your designs and mockups.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Lorem Ipsum?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lorem Ipsum is dummy text used in printing, typesetting, and web design since the 1500s. It's derived from a Latin text by Cicero but scrambled to be nonsensical, so readers focus on the visual layout rather than the content."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why use Lorem Ipsum instead of real text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Using readable real text can distract reviewers from evaluating the design itself. Lorem Ipsum looks natural enough to show text flow but doesn't carry meaning, keeping the focus on layout and typography."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
 ---
 
 <BaseLayout 
-  title="Lorem Ipsum Generator" 
+  title={pageTitle} 
   description="Free online lorem ipsum generator. Generate placeholder text for your designs and mockups."
+  structuredData={structuredData}
 >
   <section class="tool-page">
     <h1>📄 Lorem Ipsum Generator</h1>
@@ -45,6 +102,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="faq-item">
         <h3>Why use Lorem Ipsum instead of real text?</h3>
         <p>Using readable real text can distract reviewers from evaluating the design itself. Lorem Ipsum looks natural enough to show text flow but doesn't carry meaning, keeping the focus on layout and typography.</p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/word-counter" class="related-tool-card">
+          <span class="related-icon">📝</span>
+          <span class="related-name">Word Counter</span>
+        </a>
+        <a href="/color-palette-generator" class="related-tool-card">
+          <span class="related-icon">🎨</span>
+          <span class="related-name">Color Palette Generator</span>
+        </a>
+        <a href="/password-generator" class="related-tool-card">
+          <span class="related-icon">🔐</span>
+          <span class="related-name">Password Generator</span>
+        </a>
       </div>
     </section>
   </section>

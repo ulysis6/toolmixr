@@ -1,10 +1,79 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Robots.txt Generator";
+const pageUrl = "https://toolmixr.com/robots-txt-generator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online robots.txt generator. Easily create a robots.txt file to control how search engines crawl and index your website.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a robots.txt file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A robots.txt file tells search engine crawlers which pages or sections of your site they can or cannot access. It must be placed in the root directory of your website."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is robots.txt a security tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Robots.txt is a directive, not a security measure. Malicious bots may ignore it. Never use robots.txt to hide sensitive pages — use proper authentication instead."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where should I put my robots.txt file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Place it at the root of your domain: https://example.com/robots.txt. It will not work in subdirectories."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
 ---
 
 <BaseLayout 
-  title="Robots.txt Generator" 
+  title={pageTitle} 
   description="Free online robots.txt generator. Easily create a robots.txt file to control how search engines crawl and index your website."
+  structuredData={structuredData}
 >
   <section class="tool-page">
     <h1>🤖 Robots.txt Generator</h1>
@@ -83,6 +152,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>Place it at the root of your domain: <code>https://example.com/robots.txt</code>. It will not work in subdirectories.</p>
       </div>
     </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/sitemap-generator" class="related-tool-card">
+          <span class="related-icon">🗺️</span>
+          <span class="related-name">Sitemap Generator</span>
+        </a>
+        <a href="/meta-tag-generator" class="related-tool-card">
+          <span class="related-icon">🏷️</span>
+          <span class="related-name">Meta Tag Generator</span>
+        </a>
+        <a href="/og-image-generator" class="related-tool-card">
+          <span class="related-icon">🖼️</span>
+          <span class="related-name">OG Image Generator</span>
+        </a>
+        <a href="/url-encoder-decoder" class="related-tool-card">
+          <span class="related-icon">🔗</span>
+          <span class="related-name">URL Encoder/Decoder</span>
+        </a>
+      </div>
+    </section>
   </section>
 
   <script is:inline>
@@ -119,7 +210,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
       
       if (sitemap) {
-        lines.push('');
+        if (rules.length > 0) lines.push('');
         lines.push('Sitemap: ' + sitemap);
       }
       

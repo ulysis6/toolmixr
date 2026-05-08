@@ -1,10 +1,87 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Meta Tag Generator";
+const pageUrl = "https://toolmixr.com/meta-tag-generator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online meta tag generator. Create SEO-friendly HTML meta tags, Open Graph tags, and Twitter Card tags for your website.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are meta tags?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Meta tags are HTML elements that provide metadata about a web page. They sit in the head section of your HTML and tell search engines and social media platforms what your page is about, how to display it, and whether to index it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are Open Graph tags important?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open Graph tags control how your content appears when shared on Facebook, LinkedIn, and other social platforms. Without them, social platforms may choose random images or text, making your shares look unprofessional."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long should my meta description be?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google typically displays 120-160 characters of a meta description. Aim for 150-160 characters to ensure your full message appears in search results without being cut off."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do keywords meta tags still matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google has not used the keywords meta tag for ranking since 2009. However, some smaller search engines and tools may still reference it, so it does not hurt to include relevant keywords."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
 ---
 
 <BaseLayout 
-  title="Meta Tag Generator" 
+  title={pageTitle} 
   description="Free online meta tag generator. Create SEO-friendly HTML meta tags, Open Graph tags, and Twitter Card tags for your website."
+  structuredData={structuredData}
 >
   <section class="tool-page">
     <h1>🏷️ Meta Tag Generator</h1>
@@ -97,6 +174,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="faq-item">
         <h3>Do keywords meta tags still matter?</h3>
         <p>Google has not used the keywords meta tag for ranking since 2009. However, some smaller search engines and tools may still reference it, so it doesn't hurt to include relevant keywords.</p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/og-image-generator" class="related-tool-card">
+          <span class="related-icon">🖼️</span>
+          <span class="related-name">OG Image Generator</span>
+        </a>
+        <a href="/robots-txt-generator" class="related-tool-card">
+          <span class="related-icon">🤖</span>
+          <span class="related-name">Robots.txt Generator</span>
+        </a>
+        <a href="/sitemap-generator" class="related-tool-card">
+          <span class="related-icon">🗺️</span>
+          <span class="related-name">Sitemap Generator</span>
+        </a>
+        <a href="/json-formatter" class="related-tool-card">
+          <span class="related-icon">{}</span>
+          <span class="related-name">JSON Formatter</span>
+        </a>
       </div>
     </section>
   </section>

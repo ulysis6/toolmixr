@@ -1,0 +1,267 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Loan Calculator";
+const pageUrl = "https://toolmixr.com/loan-calculator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online loan calculator to calculate monthly payments, total interest, and amortization schedule for any type of loan.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is loan interest calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most loans use simple interest calculated on the remaining principal balance. Monthly interest = (Annual Rate / 12) x Remaining Principal. As you pay down the principal, the interest portion of each payment decreases while the principal portion increases."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I reduce total loan interest?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Key strategies: 1) Make extra payments toward principal, 2) Choose bi-weekly instead of monthly payments (26 payments = 13 monthly payments, saving a month of interest), 3) Refinance to a lower rate, 4) Pay off the loan early if possible without prepayment penalties."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What factors affect my loan payment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Three main factors: Principal amount (how much you borrow), Interest rate (determined by credit score, loan term, and market conditions), and Loan term (longer term = lower payments but more total interest). A $25,000 loan at 8.5% for 3 years costs $4,038 in interest; for 5 years, it's $5,787."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between APR and interest rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The interest rate is just the cost of borrowing the principal. APR (Annual Percentage Rate) includes the interest rate plus fees and other costs, giving you the true annual cost of the loan. Always compare APRs when shopping for loans, not just interest rates."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Free online loan calculator to calculate monthly payments, total interest, and amortization schedule for any type of loan."
+  structuredData={structuredData}
+>
+  <section class="tool-page">
+    <h1>💰 Loan Calculator</h1>
+    <p class="subtitle">Calculate loan payments, total interest, and view your repayment schedule</p>
+    
+    <div class="tool-box">
+      <div class="form-group">
+        <label for="loanAmount">Loan Amount ($)</label>
+        <input type="number" id="loanAmount" value="25000" min="0" step="1000" oninput="calculateLoan()" />
+      </div>
+      
+      <div class="form-group">
+        <label for="interestRate">Annual Interest Rate (%)</label>
+        <input type="number" id="interestRate" value="8.5" min="0" max="50" step="0.1" oninput="calculateLoan()" />
+      </div>
+      
+      <div class="form-group">
+        <label for="loanTerm">Loan Term</label>
+        <select id="loanTerm" onchange="calculateLoan()">
+          <option value="12">1 year</option>
+          <option value="24">2 years</option>
+          <option value="36" selected>3 years</option>
+          <option value="48">4 years</option>
+          <option value="60">5 years</option>
+          <option value="72">6 years</option>
+          <option value="84">7 years</option>
+          <option value="120">10 years</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="paymentFreq">Payment Frequency</label>
+        <select id="paymentFreq" onchange="calculateLoan()">
+          <option value="12" selected>Monthly</option>
+          <option value="52">Weekly</option>
+          <option value="26">Bi-weekly</option>
+        </select>
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:20px;">
+        <button class="btn btn-primary" onclick="calculateLoan()">Calculate</button>
+      </div>
+      
+      <div id="result" style="display:none;margin-top:24px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Payment per Period</div>
+            <div style="font-size:26px;font-weight:700;color:var(--primary);" id="paymentAmount">$0</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Total Interest</div>
+            <div style="font-size:26px;font-weight:700;color:#F59E0B;" id="totalInterest">$0</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Total Repayment</div>
+            <div style="font-size:26px;font-weight:700;color:#10B981;" id="totalRepayment">$0</div>
+          </div>
+        </div>
+        
+        <div id="scheduleSection" style="margin-top:24px;">
+          <h3 style="font-size:16px;margin-bottom:12px;">Amortization Schedule (First 12 Payments)</h3>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <thead>
+                <tr style="background:var(--bg);">
+                  <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border);">#</th>
+                  <th style="padding:10px;text-align:right;border-bottom:1px solid var(--border);">Payment</th>
+                  <th style="padding:10px;text-align:right;border-bottom:1px solid var(--border);">Principal</th>
+                  <th style="padding:10px;text-align:right;border-bottom:1px solid var(--border);">Interest</th>
+                  <th style="padding:10px;text-align:right;border-bottom:1px solid var(--border);">Balance</th>
+                </tr>
+              </thead>
+              <tbody id="scheduleBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>How is loan interest calculated?</h3>
+        <p>Most loans use simple interest calculated on the remaining principal balance. Monthly interest = (Annual Rate / 12) x Remaining Principal. As you pay down the principal, the interest portion of each payment decreases while the principal portion increases.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How can I reduce total loan interest?</h3>
+        <p>Key strategies: 1) Make extra payments toward principal, 2) Choose bi-weekly instead of monthly payments (26 payments = 13 monthly payments, saving a month of interest), 3) Refinance to a lower rate, 4) Pay off the loan early if possible without prepayment penalties.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What factors affect my loan payment?</h3>
+        <p>Three main factors: Principal amount (how much you borrow), Interest rate (determined by credit score, loan term, and market conditions), and Loan term (longer term = lower payments but more total interest). A $25,000 loan at 8.5% for 3 years costs $4,038 in interest; for 5 years, it's $5,787.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What's the difference between APR and interest rate?</h3>
+        <p>The interest rate is just the cost of borrowing the principal. APR (Annual Percentage Rate) includes the interest rate plus fees and other costs, giving you the true annual cost of the loan. Always compare APRs when shopping for loans, not just interest rates.</p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/mortgage-calculator" class="related-tool-card">
+          <span class="related-icon">🏠</span>
+          <span class="related-name">Mortgage Calculator</span>
+        </a>
+        <a href="/compound-interest-calculator" class="related-tool-card">
+          <span class="related-icon">🏦</span>
+          <span class="related-name">Compound Interest Calculator</span>
+        </a>
+        <a href="/roi-calculator" class="related-tool-card">
+          <span class="related-icon">📈</span>
+          <span class="related-name">ROI Calculator</span>
+        </a>
+        <a href="/tip-calculator" class="related-tool-card">
+          <span class="related-icon">🧾</span>
+          <span class="related-name">Tip Calculator</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function calculateLoan() {
+      var loanAmount = parseFloat(document.getElementById('loanAmount').value) || 0;
+      var annualRate = parseFloat(document.getElementById('interestRate').value) || 0;
+      var totalPeriods = parseInt(document.getElementById('loanTerm').value) || 12;
+      var periodsPerYear = parseInt(document.getElementById('paymentFreq').value) || 12;
+      
+      if (loanAmount <= 0) {
+        document.getElementById('result').style.display = 'none';
+        return;
+      }
+      
+      var periodicRate = annualRate / 100 / periodsPerYear;
+      var payment;
+      
+      if (periodicRate === 0) {
+        payment = loanAmount / totalPeriods;
+      } else {
+        payment = loanAmount * (periodicRate * Math.pow(1 + periodicRate, totalPeriods)) / (Math.pow(1 + periodicRate, totalPeriods) - 1);
+      }
+      
+      var totalRepayment = payment * totalPeriods;
+      var totalInterest = totalRepayment - loanAmount;
+      
+      document.getElementById('paymentAmount').textContent = '$' + formatNumber(Math.round(payment * 100) / 100);
+      document.getElementById('totalInterest').textContent = '$' + formatNumber(Math.round(totalInterest));
+      document.getElementById('totalRepayment').textContent = '$' + formatNumber(Math.round(totalRepayment));
+      
+      var scheduleBody = document.getElementById('scheduleBody');
+      scheduleBody.innerHTML = '';
+      
+      var balance = loanAmount;
+      var displayPeriods = Math.min(totalPeriods, 12);
+      
+      for (var i = 1; i <= displayPeriods; i++) {
+        var interestPayment = balance * periodicRate;
+        var principalPayment = payment - interestPayment;
+        balance = balance - principalPayment;
+        if (balance < 0) balance = 0;
+        
+        var row = document.createElement('tr');
+        row.style.background = i % 2 === 0 ? 'var(--bg)' : 'transparent';
+        row.innerHTML = 
+          '<td style="padding:10px;border-bottom:1px solid var(--border);">' + i + '</td>' +
+          '<td style="padding:10px;border-bottom:1px solid var(--border);text-align:right;">$' + formatNumber(Math.round(payment * 100) / 100) + '</td>' +
+          '<td style="padding:10px;border-bottom:1px solid var(--border);text-align:right;">$' + formatNumber(Math.round(principalPayment * 100) / 100) + '</td>' +
+          '<td style="padding:10px;border-bottom:1px solid var(--border);text-align:right;">$' + formatNumber(Math.round(interestPayment * 100) / 100) + '</td>' +
+          '<td style="padding:10px;border-bottom:1px solid var(--border);text-align:right;">$' + formatNumber(Math.round(balance * 100) / 100) + '</td>';
+        scheduleBody.appendChild(row);
+      }
+      
+      document.getElementById('result').style.display = 'block';
+    }
+    
+    function formatNumber(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    
+    calculateLoan();
+  </script>
+</BaseLayout>

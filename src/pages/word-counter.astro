@@ -1,10 +1,79 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Word Counter";
+const pageUrl = "https://toolmixr.com/word-counter";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online word counter. Count words, characters, sentences, and paragraphs instantly. Perfect for writers and content creators.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the word counter work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Simply type or paste your text into the box above. The tool instantly counts words, characters, sentences, and paragraphs in real-time as you type."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the word counter store my text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All processing happens in your browser. Your text is never sent to any server. Your data stays completely private."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is reading time calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Reading time is estimated based on an average reading speed of 225 words per minute, which is the typical speed for adult readers of English content."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
 ---
 
 <BaseLayout 
-  title="Word Counter" 
+  title={pageTitle} 
   description="Free online word counter. Count words, characters, sentences, and paragraphs instantly. Perfect for writers and content creators."
+  structuredData={structuredData}
 >
   <section class="tool-page">
     <h1>📝 Word Counter</h1>
@@ -49,7 +118,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     
     <section class="content-section">
       <h2>About Word Counter</h2>
-      <p>Our word counter tool provides instant, accurate text analysis. Whether you're writing a blog post, academic paper, or social media caption, knowing your word count helps you meet requirements and stay concise.</p>
+      <p>Our word counter tool provides instant, accurate text analysis. Whether you are writing a blog post, academic paper, or social media caption, knowing your word count helps you meet requirements and stay concise.</p>
       <p>The average reading speed is approximately 200-250 words per minute. Our tool estimates reading time based on 225 words per minute.</p>
     </section>
     
@@ -66,6 +135,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="faq-item">
         <h3>How is reading time calculated?</h3>
         <p>Reading time is estimated based on an average reading speed of 225 words per minute, which is the typical speed for adult readers of English content.</p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/lorem-ipsum-generator" class="related-tool-card">
+          <span class="related-icon">📄</span>
+          <span class="related-name">Lorem Ipsum Generator</span>
+        </a>
+        <a href="/json-formatter" class="related-tool-card">
+          <span class="related-icon">{}</span>
+          <span class="related-name">JSON Formatter</span>
+        </a>
+        <a href="/password-generator" class="related-tool-card">
+          <span class="related-icon">🔑</span>
+          <span class="related-name">Password Generator</span>
+        </a>
+        <a href="/base64-encoder-decoder" class="related-tool-card">
+          <span class="related-icon">🔐</span>
+          <span class="related-name">Base64 Encoder/Decoder</span>
+        </a>
       </div>
     </section>
   </section>

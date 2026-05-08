@@ -1,0 +1,286 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Age Calculator";
+const pageUrl = "https://toolmixr.com/age-calculator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online age calculator to find exact age in years, months, days, and total days lived. Also shows countdown to your next birthday.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is exact age calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Exact age counts the precise time between birth date and current date. It calculates years, then months, then remaining days. For example, someone born March 15, 1990, on January 20, 2024, is 33 years, 10 months, and 5 days old."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do I need my exact age in days?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Knowing your exact age in days is useful for: health calculations (certain medications are dosed by age in days), legal purposes (proof of age documents), milestone celebrations (10,000 day birthday), and personal interest in how many Saturdays or sunsets you have experienced."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is the birthday countdown?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The countdown accurately calculates days until your next birthday, accounting for leap years and varying month lengths. It shows the precise date and time of your next birthday celebration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are some interesting age milestones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common milestones: 1,000 days (toddler), 5,000 days (teenager), 10,000 days (young adult ~27), 15,000 days (middle age ~41), 20,000 days (54), 25,000 days (68), 30,000 days (82). Leap years slightly affect calculations - we gain one day every 4 years!"
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Free online age calculator to find exact age in years, months, days, and total days lived. Also shows countdown to your next birthday."
+  structuredData={structuredData}
+>
+  <section class="tool-page">
+    <h1>🎂 Age Calculator</h1>
+    <p class="subtitle">Find your exact age in years, months, days, and see when your next birthday is</p>
+    
+    <div class="tool-box">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
+        <div class="form-group" style="margin-bottom:0;">
+          <label for="birthYear">Year</label>
+          <input type="number" id="birthYear" value="1990" min="1900" max="2030" onchange="calculateAge()" style="width:100px;" />
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label for="birthMonth">Month</label>
+          <select id="birthMonth" onchange="calculateAge()">
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8" selected>September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label for="birthDay">Day</label>
+          <input type="number" id="birthDay" value="15" min="1" max="31" onchange="calculateAge()" style="width:80px;" />
+        </div>
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:20px;">
+        <button class="btn btn-primary" onclick="calculateAge()">Calculate Age</button>
+        <button class="btn btn-secondary" onclick="useToday()">Today</button>
+      </div>
+      
+      <div id="result" style="display:none;margin-top:24px;">
+        <div style="text-align:center;margin-bottom:24px;">
+          <div style="font-size:64px;font-weight:800;background:linear-gradient(135deg,#4F46E5,#7C3AED);-webkit-background-clip:text;-webkit-text-fill-color:transparent;" id="ageDisplay">0</div>
+          <div style="font-size:18px;color:var(--text-secondary);" id="ageLabel">years old</div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;">Exact Age</div>
+            <div style="font-size:18px;font-weight:700;" id="exactAge">0 years, 0 months, 0 days</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;">Total Days Lived</div>
+            <div style="font-size:24px;font-weight:700;color:var(--primary);" id="totalDays">0</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;">Next Birthday</div>
+            <div style="font-size:18px;font-weight:700;color:#10B981;" id="nextBirthday">0 days away</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;">Total Weekends</div>
+            <div style="font-size:24px;font-weight:700;color:#F59E0B;" id="totalWeekends">0</div>
+          </div>
+        </div>
+        
+        <div style="margin-top:24px;padding:16px;background:#F3F4F6;border-radius:var(--radius);">
+          <h3 style="font-size:14px;margin-bottom:12px;">Fun Facts</h3>
+          <div id="funFacts" style="font-size:13px;color:var(--text-secondary);display:grid;gap:8px;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>How is exact age calculated?</h3>
+        <p>Exact age counts the precise time between birth date and current date. It calculates years, then months, then remaining days. For example, someone born March 15, 1990, on January 20, 2024, is 33 years, 10 months, and 5 days old.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why do I need my exact age in days?</h3>
+        <p>Knowing your exact age in days is useful for: health calculations (certain medications are dosed by age in days), legal purposes (proof of age documents), milestone celebrations (10,000 day birthday), and personal interest in how many Saturdays or sunsets you have experienced.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How accurate is the birthday countdown?</h3>
+        <p>The countdown accurately calculates days until your next birthday, accounting for leap years and varying month lengths. It shows the precise date and time of your next birthday celebration.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What are some interesting age milestones?</h3>
+        <p>Common milestones: 1,000 days (toddler), 5,000 days (teenager), 10,000 days (young adult ~27), 15,000 days (middle age ~41), 20,000 days (54), 25,000 days (68), 30,000 days (82). Leap years slightly affect calculations - we gain one day every 4 years!</p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/bmi-calculator" class="related-tool-card">
+          <span class="related-icon">⚖️</span>
+          <span class="related-name">BMI Calculator</span>
+        </a>
+        <a href="/password-generator" class="related-tool-card">
+          <span class="related-icon">🔑</span>
+          <span class="related-name">Password Generator</span>
+        </a>
+        <a href="/qr-code-generator" class="related-tool-card">
+          <span class="related-icon">📱</span>
+          <span class="related-name">QR Code Generator</span>
+        </a>
+        <a href="/word-counter" class="related-tool-card">
+          <span class="related-icon">📝</span>
+          <span class="related-name">Word Counter</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function calculateAge() {
+      var year = parseInt(document.getElementById('birthYear').value);
+      var month = parseInt(document.getElementById('birthMonth').value);
+      var day = parseInt(document.getElementById('birthDay').value);
+      
+      if (!year || !day || isNaN(month)) {
+        document.getElementById('result').style.display = 'none';
+        return;
+      }
+      
+      var birthDate = new Date(year, month, day);
+      var today = new Date();
+      
+      if (birthDate > today) {
+        alert('Birth date cannot be in the future!');
+        document.getElementById('result').style.display = 'none';
+        return;
+      }
+      
+      var ageYears = today.getFullYear() - birthDate.getFullYear();
+      var ageMonths = today.getMonth() - birthDate.getMonth();
+      var ageDays = today.getDate() - birthDate.getDate();
+      
+      if (ageDays < 0) {
+        ageMonths--;
+        var lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        ageDays += lastMonth.getDate();
+      }
+      
+      if (ageMonths < 0) {
+        ageYears--;
+        ageMonths += 12;
+      }
+      
+      var totalDays = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
+      
+      var nextBirthdayYear = today.getFullYear();
+      var nextBirthday = new Date(nextBirthdayYear, month, day);
+      if (nextBirthday <= today) {
+        nextBirthdayYear++;
+        nextBirthday = new Date(nextBirthdayYear, month, day);
+      }
+      var daysUntilBirthday = Math.ceil((nextBirthday - today) / (1000 * 60 * 60 * 24));
+      
+      var totalWeekends = Math.floor(totalDays / 7) * 2;
+      var remainingDays = totalDays % 7;
+      var lastDayOfRange = new Date(birthDate.getTime() + (Math.floor(totalDays / 7) * 7) * 24 * 60 * 60 * 1000);
+      for (var i = 0; i < remainingDays; i++) {
+        if (lastDayOfRange.getDay() === 0 || lastDayOfRange.getDay() === 6) {
+          totalWeekends++;
+        }
+        lastDayOfRange.setDate(lastDayOfRange.getDate() + 1);
+      }
+      
+      document.getElementById('ageDisplay').textContent = ageYears;
+      document.getElementById('ageLabel').textContent = ageYears === 1 ? 'year old' : 'years old';
+      document.getElementById('exactAge').textContent = ageYears + ' years, ' + ageMonths + ' months, ' + ageDays + ' days';
+      document.getElementById('totalDays').textContent = formatNumber(totalDays);
+      document.getElementById('nextBirthday').textContent = daysUntilBirthday + ' days away';
+      document.getElementById('totalWeekends').textContent = formatNumber(totalWeekends);
+      
+      var funFacts = document.getElementById('funFacts');
+      var facts = [];
+      facts.push('You have lived for <strong>' + formatNumber(totalDays) + '</strong> days');
+      facts.push('Your heart has beaten approximately <strong>' + formatNumber(totalDays * 24 * 60 * 80) + '</strong> times');
+      facts.push('Sunrise has greeted you about <strong>' + formatNumber(totalDays) + '</strong> times');
+      facts.push('You have experienced <strong>' + Math.floor(totalDays / 365) + '</strong> leap years');
+      funFacts.innerHTML = facts.map(function(f) { return '<div>' + f + '</div>'; }).join('');
+      
+      document.getElementById('result').style.display = 'block';
+    }
+    
+    function useToday() {
+      var today = new Date();
+      document.getElementById('birthYear').value = today.getFullYear();
+      document.getElementById('birthMonth').value = today.getMonth();
+      document.getElementById('birthDay').value = today.getDate();
+      calculateAge();
+    }
+    
+    function formatNumber(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    
+    calculateAge();
+  </script>
+</BaseLayout>

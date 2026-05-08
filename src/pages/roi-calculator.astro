@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "ROI Calculator";
+const pageUrl = "https://toolmixr.com/roi-calculator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online ROI calculator to measure investment return on investment. Calculate ROI percentage, net profit, and annualized return rate instantly.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ROI (Return on Investment)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ROI is a performance metric used to evaluate the profitability of an investment. It measures the gain or loss generated relative to the amount invested. A positive ROI means the investment profited; a negative ROI indicates a loss."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How to calculate annualized ROI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Annualized ROI adjusts the return to a yearly rate, allowing comparison of investments held for different periods. Formula: Annualized ROI = ((1 + ROI%)^(1/years) - 1) x 100. For example, 50% return over 2 years = ((1.50)^(0.5) - 1) x 100 = 22.47% annually."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good ROI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A \"good\" ROI depends on the investment type and risk tolerance. For stock market investments, 7-10% annually is considered solid. Real estate typically aims for 8-12%. Realistic expectations vary by asset class: stocks 6-10%, bonds 2-5%, real estate 8-12%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I include additional costs in ROI calculation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, including all costs (transaction fees, taxes, maintenance, holding costs) gives a more accurate picture of actual returns. Many investors overlook these, leading to overestimated profits."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Free online ROI calculator to measure investment return on investment. Calculate ROI percentage, net profit, and annualized return rate instantly."
+  structuredData={structuredData}
+>
+  <section class="tool-page">
+    <h1>📈 ROI Calculator</h1>
+    <p class="subtitle">Calculate return on investment and annualized ROI for your investments</p>
+    
+    <div class="tool-box">
+      <div class="form-group">
+        <label for="investmentAmount">Investment Amount ($)</label>
+        <input type="number" id="investmentAmount" value="10000" min="0" step="100" oninput="calculateROI()" />
+      </div>
+      
+      <div class="form-group">
+        <label for="finalValue">Final Value / Selling Price ($)</label>
+        <input type="number" id="finalValue" value="15000" min="0" step="100" oninput="calculateROI()" />
+      </div>
+      
+      <div class="form-group">
+        <label for="additionalCosts">Additional Costs ($) <span style="font-weight:400;color:var(--text-secondary);font-size:12px;">(e.g., fees, taxes, repairs)</span></label>
+        <input type="number" id="additionalCosts" value="0" min="0" step="50" oninput="calculateROI()" />
+      </div>
+      
+      <div class="form-group">
+        <label for="holdingPeriod">Holding Period (Years)</label>
+        <input type="number" id="holdingPeriod" value="2" min="0.1" max="100" step="0.1" oninput="calculateROI()" />
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:20px;">
+        <button class="btn btn-primary" onclick="calculateROI()">Calculate ROI</button>
+      </div>
+      
+      <div id="result" style="display:none;margin-top:24px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">ROI</div>
+            <div style="font-size:32px;font-weight:700;color:var(--primary);" id="roiPercent">0%</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Net Profit</div>
+            <div style="font-size:32px;font-weight:700;color:#10B981;" id="netProfit">$0</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Annualized ROI</div>
+            <div style="font-size:32px;font-weight:700;color:#F59E0B;" id="annualizedROI">0%</div>
+          </div>
+        </div>
+        
+        <div style="margin-top:24px;padding:16px;background:#F3F4F6;border-radius:var(--radius);font-size:13px;">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+            <div><strong>Total Investment:</strong> <span id="totalInvestment">$0</span></div>
+            <div><strong>Total Return:</strong> <span id="totalReturn">$0</span></div>
+            <div><strong>ROI Formula:</strong> ((Final - Cost) / Cost) x 100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is ROI (Return on Investment)?</h3>
+        <p>ROI is a performance metric used to evaluate the profitability of an investment. It measures the gain or loss generated relative to the amount invested. A positive ROI means the investment profited; a negative ROI indicates a loss.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How to calculate annualized ROI?</h3>
+        <p>Annualized ROI adjusts the return to a yearly rate, allowing comparison of investments held for different periods. Formula: Annualized ROI = ((1 + ROI%)^(1/years) - 1) x 100. For example, 50% return over 2 years = ((1.50)^(0.5) - 1) x 100 = 22.47% annually.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is a good ROI?</h3>
+        <p>A "good" ROI depends on the investment type and risk tolerance. For stock market investments, 7-10% annually is considered solid. Real estate typically aims for 8-12%. Realistic expectations vary by asset class: stocks 6-10%, bonds 2-5%, real estate 8-12%.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Should I include additional costs in ROI calculation?</h3>
+        <p>Yes, including all costs (transaction fees, taxes, maintenance, holding costs) gives a more accurate picture of actual returns. Many investors overlook these, leading to overestimated profits.</p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/compound-interest-calculator" class="related-tool-card">
+          <span class="related-icon">🏦</span>
+          <span class="related-name">Compound Interest Calculator</span>
+        </a>
+        <a href="/mortgage-calculator" class="related-tool-card">
+          <span class="related-icon">🏠</span>
+          <span class="related-name">Mortgage Calculator</span>
+        </a>
+        <a href="/crypto-profit-calculator" class="related-tool-card">
+          <span class="related-icon">🪙</span>
+          <span class="related-name">Crypto Profit Calculator</span>
+        </a>
+        <a href="/loan-calculator" class="related-tool-card">
+          <span class="related-icon">💰</span>
+          <span class="related-name">Loan Calculator</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function calculateROI() {
+      var investment = parseFloat(document.getElementById('investmentAmount').value) || 0;
+      var finalValue = parseFloat(document.getElementById('finalValue').value) || 0;
+      var additionalCosts = parseFloat(document.getElementById('additionalCosts').value) || 0;
+      var years = parseFloat(document.getElementById('holdingPeriod').value) || 1;
+      
+      var totalInvestment = investment + additionalCosts;
+      var netProfit = finalValue - totalInvestment;
+      var roi = investment > 0 ? (netProfit / investment) * 100 : 0;
+      
+      var annualizedROI = 0;
+      if (years > 0 && roi > -100) {
+        annualizedROI = (Math.pow((finalValue / totalInvestment), (1 / years)) - 1) * 100;
+      }
+      
+      document.getElementById('roiPercent').textContent = roi.toFixed(2) + '%';
+      document.getElementById('roiPercent').style.color = roi >= 0 ? '#10B981' : '#EF4444';
+      
+      document.getElementById('netProfit').textContent = (netProfit >= 0 ? '$' : '-$') + formatNumber(Math.abs(Math.round(netProfit)));
+      document.getElementById('netProfit').style.color = netProfit >= 0 ? '#10B981' : '#EF4444';
+      
+      document.getElementById('annualizedROI').textContent = annualizedROI.toFixed(2) + '%';
+      document.getElementById('annualizedROI').style.color = annualizedROI >= 0 ? '#F59E0B' : '#EF4444';
+      
+      document.getElementById('totalInvestment').textContent = '$' + formatNumber(Math.round(totalInvestment));
+      document.getElementById('totalReturn').textContent = '$' + formatNumber(Math.round(finalValue));
+      
+      document.getElementById('result').style.display = 'block';
+    }
+    
+    function formatNumber(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    
+    calculateROI();
+  </script>
+</BaseLayout>

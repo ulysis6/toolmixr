@@ -1,10 +1,71 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "QR Code Generator";
+const pageUrl = "https://toolmixr.com/qr-code-generator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online QR code generator. Create QR codes for URLs, text, WiFi, email, and more. Download as PNG.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a QR code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A QR (Quick Response) code is a two-dimensional barcode that can store URLs, text, contact info, and other data. Scan it with a smartphone camera to instantly access the encoded information."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a limit to QR code content?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "QR codes can store up to ~4,000 characters, but shorter content creates smaller, more scannable codes. For best results, keep URLs short and use URL shorteners if needed."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
 ---
 
 <BaseLayout 
-  title="QR Code Generator" 
+  title={pageTitle} 
   description="Free online QR code generator. Create QR codes for URLs, text, WiFi, email, and more. Download as PNG."
+  structuredData={structuredData}
 >
   <section class="tool-page">
     <h1>📱 QR Code Generator</h1>
@@ -97,6 +158,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>QR codes can store up to ~4,000 characters, but shorter content creates smaller, more scannable codes. For best results, keep URLs short and use URL shorteners if needed.</p>
       </div>
     </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/color-palette-generator" class="related-tool-card">
+          <span class="related-icon">🎨</span>
+          <span class="related-name">Color Palette Generator</span>
+        </a>
+        <a href="/url-encoder-decoder" class="related-tool-card">
+          <span class="related-icon">🔗</span>
+          <span class="related-name">URL Encoder/Decoder</span>
+        </a>
+        <a href="/password-generator" class="related-tool-card">
+          <span class="related-icon">🔑</span>
+          <span class="related-name">Password Generator</span>
+        </a>
+        <a href="/base64-encoder-decoder" class="related-tool-card">
+          <span class="related-icon">🔐</span>
+          <span class="related-name">Base64 Encoder/Decoder</span>
+        </a>
+      </div>
+    </section>
   </section>
 
   <script is:inline>
@@ -128,22 +211,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         data = subject ? 'mailto:' + addr + '?subject=' + encodeURIComponent(subject) : 'mailto:' + addr;
       }
       
-      if (!data) { alert('Please enter some content'); return; }
+      if (!data) {
+        alert('Please enter content to generate QR code');
+        return;
+      }
       
-      var img = document.getElementById('qrImage');
-      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' + size + '&data=' + encodeURIComponent(data) + '&format=png';
-      img.width = parseInt(size);
-      img.height = parseInt(size);
-      document.getElementById('qrResult').style.display = '';
+      var qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' + size + '&data=' + encodeURIComponent(data);
+      document.getElementById('qrImage').src = qrUrl;
+      document.getElementById('qrResult').style.display = 'block';
     }
     
     function downloadQR() {
       var img = document.getElementById('qrImage');
-      var a = document.createElement('a');
-      a.href = img.src;
-      a.download = 'qrcode.png';
-      a.target = '_blank';
-      a.click();
+      var link = document.createElement('a');
+      link.download = 'qrcode.png';
+      link.href = img.src;
+      link.click();
     }
   </script>
 </BaseLayout>

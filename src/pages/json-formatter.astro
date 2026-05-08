@@ -1,10 +1,79 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "JSON Formatter";
+const pageUrl = "https://toolmixr.com/json-formatter";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online JSON formatter, validator, and beautifier. Format messy JSON into readable code instantly.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is JSON?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JSON (JavaScript Object Notation) is a lightweight data format used to exchange data between servers and web applications. It is human-readable and easy for machines to parse."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why format JSON?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Minified JSON saves space but is hard to read. Formatting adds indentation and line breaks, making it much easier to debug and understand the structure of your data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my JSON data safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All formatting happens in your browser. Your JSON data is never sent to any server."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
 ---
 
 <BaseLayout 
-  title="JSON Formatter" 
+  title={pageTitle} 
   description="Free online JSON formatter, validator, and beautifier. Format messy JSON into readable code instantly."
+  structuredData={structuredData}
 >
   <section class="tool-page">
     <h1>{`{}`} JSON Formatter & Validator</h1>
@@ -44,6 +113,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="faq-item">
         <h3>Is my JSON data safe?</h3>
         <p>Yes. All formatting happens in your browser. Your JSON data is never sent to any server.</p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/base64-encoder-decoder" class="related-tool-card">
+          <span class="related-icon">🔐</span>
+          <span class="related-name">Base64 Encoder/Decoder</span>
+        </a>
+        <a href="/url-encoder-decoder" class="related-tool-card">
+          <span class="related-icon">🔗</span>
+          <span class="related-name">URL Encoder/Decoder</span>
+        </a>
+        <a href="/word-counter" class="related-tool-card">
+          <span class="related-icon">📝</span>
+          <span class="related-name">Word Counter</span>
+        </a>
+        <a href="/sitemap-generator" class="related-tool-card">
+          <span class="related-icon">🗺️</span>
+          <span class="related-name">Sitemap Generator</span>
+        </a>
       </div>
     </section>
   </section>
@@ -100,6 +191,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     
     function copyOutput() {
       var code = document.getElementById('code').textContent;
+      if (!code) return;
       navigator.clipboard.writeText(code).then(function() {
         document.querySelector('.copy-btn').textContent = 'Copied!';
         setTimeout(function() { document.querySelector('.copy-btn').textContent = 'Copy'; }, 2000);

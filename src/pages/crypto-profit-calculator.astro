@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Crypto Profit Calculator";
+const pageUrl = "https://toolmixr.com/crypto-profit-calculator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free crypto profit calculator to calculate your cryptocurrency trading profits. Enter buy/sell prices and investment amount to see ROI, profit/loss, and break-even price.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate crypto profit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crypto profit = (Sell Price - Buy Price) x Quantity - Fees. For example: Buy 0.1 BTC at $45,000 ($4,500 + $45 fee), sell at $60,000 ($6,000 - $60 fee). Net profit = $6,000 - $4,500 - $45 - $60 = $1,395. Always account for trading fees on both buy and sell."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What fees should I consider?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most exchanges charge 0.1% - 0.5% per trade. Binance: 0.1%, Coinbase: up to 0.6%, Kraken: 0.26%. Also consider: withdrawal fees, deposit fees, and spread costs. For accurate calculations, use your total fee percentage (buy + sell combined)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is break-even price?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Break-even price is the sell price at which you neither profit nor lose (excluding fees already paid). It accounts for fees paid on the purchase. Formula: Break-even = Buy Price x (1 + Fee%). At $45,000 buy with 1% fee, break-even is $45,450."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does crypto ROI differ from traditional investments?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crypto ROI is calculated the same way: (Current Value - Cost) / Cost x 100. However, crypto prices are highly volatile, so annualization is crucial for comparison. A 50% gain in 1 month is ~600% annualized, while a 50% gain in 2 years is ~25% annualized."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Free crypto profit calculator to calculate your cryptocurrency trading profits. Enter buy/sell prices and investment amount to see ROI, profit/loss, and break-even price."
+  structuredData={structuredData}
+>
+  <section class="tool-page">
+    <h1>🪙 Crypto Profit Calculator</h1>
+    <p class="subtitle">Calculate your cryptocurrency trading profits and ROI instantly</p>
+    
+    <div class="tool-box">
+      <div class="form-group">
+        <label for="buyPrice">Buy Price ($)</label>
+        <input type="number" id="buyPrice" value="45000" min="0" step="100" oninput="calculateCrypto()" />
+      </div>
+      
+      <div class="form-group">
+        <label for="sellPrice">Sell Price ($)</label>
+        <input type="number" id="sellPrice" value="60000" min="0" step="100" oninput="calculateCrypto()" />
+      </div>
+      
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;">
+        <div class="form-group" style="flex:1;min-width:200px;margin-bottom:0;">
+          <label for="investment">Investment Amount ($)</label>
+          <input type="number" id="investment" value="5000" min="0" step="100" oninput="calculateCrypto()" />
+        </div>
+        <div class="form-group" style="flex:1;min-width:200px;margin-bottom:0;">
+          <label for="quantity">Quantity (coins) <span style="font-weight:400;color:var(--text-secondary);font-size:12px;">OR</span></label>
+          <input type="number" id="quantity" value="" min="0" step="0.0001" placeholder="Auto-calculate" oninput="calculateCrypto()" />
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="feePercent">Trading Fee (%) <span style="font-weight:400;color:var(--text-secondary);font-size:12px;">(buy + sell combined)</span></label>
+        <input type="number" id="feePercent" value="1" min="0" max="10" step="0.1" oninput="calculateCrypto()" />
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:20px;">
+        <button class="btn btn-primary" onclick="calculateCrypto()">Calculate Profit</button>
+        <button class="btn btn-secondary" onclick="resetCalc()">Reset</button>
+      </div>
+      
+      <div id="result" style="display:none;margin-top:24px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Profit / Loss</div>
+            <div style="font-size:28px;font-weight:700;" id="profitLoss">$0</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">ROI</div>
+            <div style="font-size:28px;font-weight:700;" id="roi">0%</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Break-Even Price</div>
+            <div style="font-size:28px;font-weight:700;color:var(--primary);" id="breakEven">$0</div>
+          </div>
+        </div>
+        
+        <div style="margin-top:20px;padding:16px;background:#F3F4F6;border-radius:var(--radius);font-size:13px;">
+          <h4 style="font-size:14px;margin-bottom:12px;">Calculation Breakdown</h4>
+          <div style="display:grid;gap:8px;">
+            <div style="display:flex;justify-content:space-between;">
+              <span>Quantity purchased:</span>
+              <span id="qtyBought">0 BTC</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span>Buy cost (incl. fees):</span>
+              <span id="buyCost">$0</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span>Sale revenue (excl. fees):</span>
+              <span id="sellRevenue">$0</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span>Trading fees paid:</span>
+              <span id="feesPaid">$0</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:8px;margin-top:4px;font-weight:600;">
+              <span>Net profit:</span>
+              <span id="netProfit">$0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin-top:20px;padding:16px;background:var(--bg);border-radius:var(--radius);font-size:13px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <strong>Price change:</strong>
+            <span id="priceChange">0%</span>
+          </div>
+          <div style="height:8px;background:#E5E7EB;border-radius:4px;overflow:hidden;">
+            <div id="changeBar" style="height:100%;width:50%;background:var(--primary);transition:width 0.3s;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:11px;color:var(--text-secondary);">
+            <span>$<span id="minPrice">0</span></span>
+            <span>$<span id="maxPrice">0</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>How do I calculate crypto profit?</h3>
+        <p>Crypto profit = (Sell Price - Buy Price) x Quantity - Fees. For example: Buy 0.1 BTC at $45,000 ($4,500 + $45 fee), sell at $60,000 ($6,000 - $60 fee). Net profit = $6,000 - $4,500 - $45 - $60 = $1,395. Always account for trading fees on both buy and sell.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What fees should I consider?</h3>
+        <p>Most exchanges charge 0.1% - 0.5% per trade. Binance: 0.1%, Coinbase: up to 0.6%, Kraken: 0.26%. Also consider: withdrawal fees, deposit fees, and spread costs. For accurate calculations, use your total fee percentage (buy + sell combined).</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is break-even price?</h3>
+        <p>Break-even price is the sell price at which you neither profit nor lose (excluding fees already paid). It accounts for fees paid on the purchase. Formula: Break-even = Buy Price x (1 + Fee%). At $45,000 buy with 1% fee, break-even is $45,450.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How does crypto ROI differ from traditional investments?</h3>
+        <p>Crypto ROI is calculated the same way: (Current Value - Cost) / Cost x 100. However, crypto prices are highly volatile, so annualization is crucial for comparison. A 50% gain in 1 month is ~600% annualized, while a 50% gain in 2 years is ~25% annualized.</p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/roi-calculator" class="related-tool-card">
+          <span class="related-icon">📈</span>
+          <span class="related-name">ROI Calculator</span>
+        </a>
+        <a href="/percentage-calculator" class="related-tool-card">
+          <span class="related-icon">🔣</span>
+          <span class="related-name">Percentage Calculator</span>
+        </a>
+        <a href="/adsense-revenue-calculator" class="related-tool-card">
+          <span class="related-icon">💵</span>
+          <span class="related-name">AdSense Revenue Calculator</span>
+        </a>
+        <a href="/compound-interest-calculator" class="related-tool-card">
+          <span class="related-icon">🏦</span>
+          <span class="related-name">Compound Interest Calculator</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function calculateCrypto() {
+      var buyPrice = parseFloat(document.getElementById('buyPrice').value) || 0;
+      var sellPrice = parseFloat(document.getElementById('sellPrice').value) || 0;
+      var investment = parseFloat(document.getElementById('investment').value) || 0;
+      var quantityInput = document.getElementById('quantity').value;
+      var feePercent = parseFloat(document.getElementById('feePercent').value) || 0;
+      
+      if (buyPrice <= 0 || sellPrice <= 0) {
+        document.getElementById('result').style.display = 'none';
+        return;
+      }
+      
+      var quantity;
+      if (quantityInput && parseFloat(quantityInput) > 0) {
+        quantity = parseFloat(quantityInput);
+        investment = buyPrice * quantity;
+      } else {
+        quantity = investment / buyPrice;
+      }
+      
+      var buyFee = investment * (feePercent / 100);
+      var totalBuyCost = investment + buyFee;
+      
+      var sellRevenue = sellPrice * quantity;
+      var sellFee = sellRevenue * (feePercent / 100);
+      var netSellRevenue = sellRevenue - sellFee;
+      
+      var netProfit = netSellRevenue - totalBuyCost;
+      var roi = totalBuyCost > 0 ? (netProfit / totalBuyCost) * 100 : 0;
+      var breakEven = buyPrice * (1 + feePercent / 100);
+      
+      document.getElementById('profitLoss').textContent = (netProfit >= 0 ? '+$' : '-$') + formatNumber(Math.abs(netProfit).toFixed(2));
+      document.getElementById('profitLoss').style.color = netProfit >= 0 ? '#10B981' : '#EF4444';
+      
+      document.getElementById('roi').textContent = (roi >= 0 ? '+' : '') + roi.toFixed(2) + '%';
+      document.getElementById('roi').style.color = roi >= 0 ? '#10B981' : '#EF4444';
+      
+      document.getElementById('breakEven').textContent = '$' + formatNumber(breakEven.toFixed(2));
+      
+      document.getElementById('qtyBought').textContent = quantity.toFixed(6) + ' BTC';
+      document.getElementById('buyCost').textContent = '$' + formatNumber(totalBuyCost.toFixed(2));
+      document.getElementById('sellRevenue').textContent = '$' + formatNumber(netSellRevenue.toFixed(2));
+      document.getElementById('feesPaid').textContent = '$' + formatNumber((buyFee + sellFee).toFixed(2));
+      document.getElementById('netProfit').textContent = '$' + formatNumber(netProfit.toFixed(2));
+      
+      var priceChange = ((sellPrice - buyPrice) / buyPrice) * 100;
+      document.getElementById('priceChange').textContent = (priceChange >= 0 ? '+' : '') + priceChange.toFixed(2) + '%';
+      document.getElementById('priceChange').style.color = priceChange >= 0 ? '#10B981' : '#EF4444';
+      
+      document.getElementById('changeBar').style.width = Math.min(Math.max((sellPrice / buyPrice) * 50, 5), 95) + '%';
+      document.getElementById('changeBar').style.background = priceChange >= 0 ? '#10B981' : '#EF4444';
+      
+      document.getElementById('minPrice').textContent = formatNumber(Math.min(buyPrice, sellPrice).toFixed(0));
+      document.getElementById('maxPrice').textContent = formatNumber(Math.max(buyPrice, sellPrice).toFixed(0));
+      
+      document.getElementById('result').style.display = 'block';
+    }
+    
+    function resetCalc() {
+      document.getElementById('buyPrice').value = 45000;
+      document.getElementById('sellPrice').value = 60000;
+      document.getElementById('investment').value = 5000;
+      document.getElementById('quantity').value = '';
+      document.getElementById('feePercent').value = 1;
+      document.getElementById('result').style.display = 'none';
+    }
+    
+    function formatNumber(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    
+    calculateCrypto();
+  </script>
+</BaseLayout>

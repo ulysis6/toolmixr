@@ -1,0 +1,302 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Mortgage Calculator";
+const pageUrl = "https://toolmixr.com/mortgage-calculator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online mortgage calculator to calculate monthly payments, total interest, and total repayment for your home loan. Plan your home purchase with accurate payment estimates.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a mortgage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A mortgage is a loan used to purchase real estate, where the property serves as collateral. The borrower agrees to make regular payments over a set period (typically 15-30 years) until the loan is fully repaid with interest."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the interest rate affect my monthly payment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Even a small change in interest rate significantly impacts your monthly payment. For example, on a $400,000 loan: at 6% APR, 30-year monthly payment is ~$2,398; at 7% APR, it rises to ~$2,661. That's $263 more per month or ~$94,680 more over 30 years."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between equal principal and equal payment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In equal payment (fixed-rate), your monthly amount stays the same, but early payments are mostly interest. In equal principal, your principal payment is fixed monthly, so total payment decreases over time. Equal principal saves more interest overall."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is a larger down payment beneficial?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A larger down payment reduces your loan amount, lowers monthly payments, and helps you avoid Private Mortgage Insurance (PMI), which is typically required when down payment is less than 20%."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Free online mortgage calculator to calculate monthly payments, total interest, and total repayment for your home loan. Plan your home purchase with accurate payment estimates."
+  structuredData={structuredData}
+>
+  <section class="tool-page">
+    <h1>🏠 Mortgage Calculator</h1>
+    <p class="subtitle">Calculate your monthly mortgage payment, total interest, and total cost</p>
+    
+    <div class="tool-box">
+      <div class="form-group">
+        <label for="homePrice">Home Price ($)</label>
+        <input type="number" id="homePrice" value="400000" min="0" step="1000" oninput="calculateMortgage()" />
+      </div>
+      
+      <div class="form-group">
+        <label for="downPaymentPercent">Down Payment: <span id="downPaymentPercentVal">20</span>%</label>
+        <input type="range" id="downPaymentPercent" min="0" max="50" value="20" oninput="document.getElementById('downPaymentPercentVal').textContent=this.value;calculateMortgage()" style="width:100%;" />
+      </div>
+      
+      <div class="form-group">
+        <label for="downPaymentAmount">Down Payment Amount ($)</label>
+        <input type="number" id="downPaymentAmount" value="80000" min="0" step="1000" oninput="syncDownPaymentPercent();calculateMortgage()" />
+      </div>
+      
+      <div class="form-group">
+        <label for="interestRate">Annual Interest Rate (%)</label>
+        <input type="number" id="interestRate" value="6.5" min="0" max="30" step="0.1" oninput="calculateMortgage()" />
+      </div>
+      
+      <div class="form-group">
+        <label for="loanTerm">Loan Term</label>
+        <select id="loanTerm" onchange="calculateMortgage()">
+          <option value="30" selected>30 years</option>
+          <option value="25">25 years</option>
+          <option value="20">20 years</option>
+          <option value="15">15 years</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="repaymentType">Repayment Type</label>
+        <select id="repaymentType" onchange="calculateMortgage()">
+          <option value="equal" selected>Equal Principal & Interest (Fixed Rate)</option>
+          <option value="principal">Equal Principal</option>
+        </select>
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:20px;">
+        <button class="btn btn-primary" onclick="calculateMortgage()">Calculate</button>
+      </div>
+      
+      <div id="result" style="display:none;margin-top:24px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Monthly Payment</div>
+            <div style="font-size:28px;font-weight:700;color:var(--primary);" id="monthlyPayment">$0</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Total Interest</div>
+            <div style="font-size:28px;font-weight:700;color:#F59E0B;" id="totalInterest">$0</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Total Repayment</div>
+            <div style="font-size:28px;font-weight:700;color:#10B981;" id="totalRepayment">$0</div>
+          </div>
+        </div>
+        
+        <div style="margin-top:24px;">
+          <h3 style="font-size:16px;margin-bottom:12px;">Payment Breakdown</h3>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:13px;">
+                <span>Principal: <span id="principalPercent">0</span>%</span>
+                <span id="principalAmount">$0</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:13px;">
+                <span>Interest: <span id="interestPercent">0</span>%</span>
+                <span id="interestAmount">$0</span>
+              </div>
+              <div style="height:24px;border-radius:12px;overflow:hidden;display:flex;background:#E5E7EB;">
+                <div id="principalBar" style="background:#10B981;height:100%;transition:width 0.3s;"></div>
+                <div id="interestBar" style="background:#F59E0B;height:100%;transition:width 0.3s;"></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;margin-top:8px;font-size:12px;color:var(--text-secondary);">
+            <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;background:#10B981;border-radius:2px;"></span> Principal</span>
+            <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;background:#F59E0B;border-radius:2px;"></span> Interest</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is a mortgage?</h3>
+        <p>A mortgage is a loan used to purchase real estate, where the property serves as collateral. The borrower agrees to make regular payments over a set period (typically 15-30 years) until the loan is fully repaid with interest.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How does the interest rate affect my monthly payment?</h3>
+        <p>Even a small change in interest rate significantly impacts your monthly payment. For example, on a $400,000 loan: at 6% APR, 30-year monthly payment is ~$2,398; at 7% APR, it rises to ~$2,661. That's $263 more per month or ~$94,680 more over 30 years.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is the difference between equal principal and equal payment?</h3>
+        <p>In equal payment (fixed-rate), your monthly amount stays the same, but early payments are mostly interest. In equal principal, your principal payment is fixed monthly, so total payment decreases over time. Equal principal saves more interest overall.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why is a larger down payment beneficial?</h3>
+        <p>A larger down payment reduces your loan amount, lowers monthly payments, and helps you avoid Private Mortgage Insurance (PMI), which is typically required when down payment is less than 20%.</p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/loan-calculator" class="related-tool-card">
+          <span class="related-icon">💰</span>
+          <span class="related-name">Loan Calculator</span>
+        </a>
+        <a href="/compound-interest-calculator" class="related-tool-card">
+          <span class="related-icon">🏦</span>
+          <span class="related-name">Compound Interest Calculator</span>
+        </a>
+        <a href="/roi-calculator" class="related-tool-card">
+          <span class="related-icon">📈</span>
+          <span class="related-name">ROI Calculator</span>
+        </a>
+        <a href="/adsense-revenue-calculator" class="related-tool-card">
+          <span class="related-icon">💵</span>
+          <span class="related-name">AdSense Revenue Calculator</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function syncDownPaymentPercent() {
+      var homePrice = parseFloat(document.getElementById('homePrice').value) || 0;
+      var downPayment = parseFloat(document.getElementById('downPaymentAmount').value) || 0;
+      if (homePrice > 0) {
+        var percent = Math.round((downPayment / homePrice) * 100);
+        document.getElementById('downPaymentPercent').value = Math.min(percent, 50);
+        document.getElementById('downPaymentPercentVal').textContent = Math.min(percent, 50);
+      }
+    }
+    
+    function calculateMortgage() {
+      var homePrice = parseFloat(document.getElementById('homePrice').value) || 0;
+      var downPaymentPercent = parseFloat(document.getElementById('downPaymentPercent').value) || 0;
+      var downPayment = parseFloat(document.getElementById('downPaymentAmount').value) || 0;
+      var annualRate = parseFloat(document.getElementById('interestRate').value) || 0;
+      var loanTermYears = parseInt(document.getElementById('loanTerm').value) || 30;
+      var repaymentType = document.getElementById('repaymentType').value;
+      
+      if (homePrice <= 0) return;
+      
+      downPayment = homePrice * (downPaymentPercent / 100);
+      document.getElementById('downPaymentAmount').value = downPayment;
+      
+      var loanAmount = homePrice - downPayment;
+      if (loanAmount <= 0) {
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('monthlyPayment').textContent = '$0';
+        document.getElementById('totalInterest').textContent = '$0';
+        document.getElementById('totalRepayment').textContent = '$' + formatNumber(downPayment);
+        return;
+      }
+      
+      var monthlyRate = annualRate / 100 / 12;
+      var totalPayments = loanTermYears * 12;
+      var monthlyPayment;
+      var totalInterest;
+      var totalRepayment;
+      
+      if (monthlyRate === 0) {
+        monthlyPayment = loanAmount / totalPayments;
+        totalInterest = 0;
+        totalRepayment = loanAmount;
+      } else if (repaymentType === 'equal') {
+        monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+        totalRepayment = monthlyPayment * totalPayments;
+        totalInterest = totalRepayment - loanAmount;
+      } else {
+        var equalPrincipal = loanAmount / totalPayments;
+        totalInterest = 0;
+        var tempPrincipal = loanAmount;
+        for (var i = 0; i < totalPayments; i++) {
+          var interest = tempPrincipal * monthlyRate;
+          totalInterest += interest;
+          tempPrincipal -= equalPrincipal;
+        }
+        totalRepayment = loanAmount + totalInterest;
+        monthlyPayment = equalPrincipal + loanAmount * monthlyRate;
+      }
+      
+      document.getElementById('monthlyPayment').textContent = '$' + formatNumber(Math.round(monthlyPayment));
+      document.getElementById('totalInterest').textContent = '$' + formatNumber(Math.round(totalInterest));
+      document.getElementById('totalRepayment').textContent = '$' + formatNumber(Math.round(totalRepayment));
+      
+      var principalPercent = Math.round((loanAmount / totalRepayment) * 100);
+      var interestPercent = 100 - principalPercent;
+      
+      document.getElementById('principalPercent').textContent = principalPercent;
+      document.getElementById('interestPercent').textContent = interestPercent;
+      document.getElementById('principalAmount').textContent = '$' + formatNumber(Math.round(loanAmount));
+      document.getElementById('interestAmount').textContent = '$' + formatNumber(Math.round(totalInterest));
+      
+      document.getElementById('principalBar').style.width = principalPercent + '%';
+      document.getElementById('interestBar').style.width = interestPercent + '%';
+      
+      document.getElementById('result').style.display = 'block';
+    }
+    
+    function formatNumber(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    
+    calculateMortgage();
+  </script>
+</BaseLayout>

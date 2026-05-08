@@ -1,10 +1,79 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Sitemap Generator";
+const pageUrl = "https://toolmixr.com/sitemap-generator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online XML sitemap generator. Create sitemaps for your website to help search engines discover and index your pages.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an XML sitemap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An XML sitemap is a file that lists all the pages on your website, helping search engines like Google and Bing discover and crawl your content more efficiently."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a sitemap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If your site is small (under 500 pages) with good internal linking, search engines can usually find all pages. Sitemaps become essential for large sites, new sites with few backlinks, or sites with isolated pages."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where should I put my sitemap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Place it at the root of your domain: https://example.com/sitemap.xml. Also reference it in your robots.txt file with: Sitemap: https://example.com/sitemap.xml"
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
 ---
 
 <BaseLayout 
-  title="Sitemap Generator" 
+  title={pageTitle} 
   description="Free online XML sitemap generator. Create sitemaps for your website to help search engines discover and index your pages."
+  structuredData={structuredData}
 >
   <section class="tool-page">
     <h1>🗺️ Sitemap Generator</h1>
@@ -74,6 +143,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="faq-item">
         <h3>Where should I put my sitemap?</h3>
         <p>Place it at the root of your domain: <code>https://example.com/sitemap.xml</code>. Also reference it in your robots.txt file with: <code>Sitemap: https://example.com/sitemap.xml</code></p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/robots-txt-generator" class="related-tool-card">
+          <span class="related-icon">🤖</span>
+          <span class="related-name">Robots.txt Generator</span>
+        </a>
+        <a href="/meta-tag-generator" class="related-tool-card">
+          <span class="related-icon">🏷️</span>
+          <span class="related-name">Meta Tag Generator</span>
+        </a>
+        <a href="/url-encoder-decoder" class="related-tool-card">
+          <span class="related-icon">🔗</span>
+          <span class="related-name">URL Encoder/Decoder</span>
+        </a>
+        <a href="/json-formatter" class="related-tool-card">
+          <span class="related-icon">{}</span>
+          <span class="related-name">JSON Formatter</span>
+        </a>
       </div>
     </section>
   </section>
