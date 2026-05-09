@@ -80,7 +80,7 @@ const structuredData = JSON.stringify([
     <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>JSON Formatter</span>
   </nav>
   <div class="tool-header">
-    <h1>{`{}`} JSON Formatter & Validator</h1>
+    <h1>&#123;&#125; JSON Formatter & Validator</h1>
     <div class="share-bar">
       <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
       <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
@@ -94,7 +94,7 @@ const structuredData = JSON.stringify([
     <div class="tool-box">
       <div class="form-group">
         <label for="jsonInput">Paste your JSON here</label>
-        <textarea id="jsonInput" rows="10" placeholder='{"key": "value", "array": [1, 2, 3]}'></textarea>
+        <textarea id="jsonInput" rows="10" placeholder="Paste JSON: key-value pairs, arrays, objects..."></textarea>
       </div>
       
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
@@ -119,9 +119,9 @@ const structuredData = JSON.stringify([
       <h3>The JSON Syntax Rules</h3>
       <p>JSON has strict rules that catch many beginners:</p>
       <ul>
-        <li><strong>Keys must be strings</strong>: Always in double quotes. {"name": "John"} not {name: "John"}</li>
+        <li><strong>Keys must be strings</strong>: Always in double quotes. &#123;"name": "John"&#125; not &#123;name: "John"&#125;</li>
         <li><strong>Values can be</strong>: strings, numbers, booleans, arrays, objects, null</li>
-        <li><strong>No trailing commas</strong>: {"name": "John",} is invalid. Remove the comma.</li>
+        <li><strong>No trailing commas</strong>: &#123;"name": "John",&#125; is invalid. Remove the comma.</li>
         <li><strong>No comments</strong>: JSON doesn't support comments. Use a separate schema or documentation file.</li>
         <li><strong>No single quotes</strong>: Always use double quotes for strings</li>
       </ul>
@@ -129,19 +129,19 @@ const structuredData = JSON.stringify([
       <h3>Common JSON Mistakes</h3>
       <p>The most common errors I see:</p>
       <pre><code>// Wrong: trailing comma
-{"name": "John",}
+&#123;"name": "John",&#125;
 
 // Wrong: single quotes
-{'name': 'John'}
+&#123;'name': 'John'&#125;
 
 // Wrong: unquoted key
-{name: "John"}
+&#123;name: "John"&#125;
 
 // Wrong: comment (invalid in JSON)
-{
+&#123;
   "name": "John",  // this is invalid
   "age": 30
-}</code></pre>
+&#125;</code></pre>
 
       <h3>JSON vs. XML: When to Use Which</h3>
       <p>Both are data formats, but with different strengths:</p>
@@ -161,15 +161,15 @@ const structuredData = JSON.stringify([
 
       <h3>JSON Schema: Validating Structure</h3>
       <p>For APIs and data pipelines, validate JSON structure with JSON Schema:</p>
-      <pre><code>{
+      <pre><code>&#123;
   "type": "object",
   "required": ["id", "email"],
-  "properties": {
-    "id": { "type": "integer" },
-    "email": { "type": "string", "format": "email" },
-    "name": { "type": "string" }
-  }
-}</code></pre>
+  "properties": &#123;
+    "id": &#123; "type": "integer" &#125;,
+    "email": &#123; "type": "string", "format": "email" &#125;,
+    "name": &#123; "type": "string" &#125;
+  &#125;
+&#125;</code></pre>
       <p>Tools like Ajv (for JavaScript) or jsonschema (for Python) integrate schema validation into your build pipeline or API validation layer.</p>
 
       <h3>Step-by-Step Guide</h3>
