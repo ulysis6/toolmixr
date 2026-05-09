@@ -767,5 +767,14 @@ const websiteSchema = JSON.stringify({
         });
       }
     </script>
+    <script is:inline>
+      // Auto-focus first input on tool pages
+      if (document.querySelector('.tool-page')) {
+        var firstInput = document.querySelector('.tool-page textarea, .tool-page input[type="text"], .tool-page input[type="number"], .tool-page input[type="url"]');
+        if (firstInput && !firstInput.readOnly && !firstInput.disabled) {
+          setTimeout(function() { firstInput.focus(); }, 300);
+        }
+      }
+    </script>
   </body>
 </html>
