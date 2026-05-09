@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Color Palette Generator";
+const pageTitle = "Color Palette Generator - Create Color Schemes Free";
 const pageUrl = "https://toolmixr.com/color-palette-generator";
 
 const structuredData = JSON.stringify([
@@ -121,9 +121,62 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the Color Palette Generator</h2>
-      <p>Generate beautiful, harmonious color palettes for your web projects. Choose from analogous, complementary, triadic, split complementary, or monochromatic color schemes. Export colors as hex codes, RGB values, or CSS variables.</p>
+      <h2>Color Theory for Developers and Designers</h2>
+      <p>Color is one of the most powerful tools in design — it affects emotions, usability, and accessibility. But choosing colors randomly leads to jarring, inconsistent interfaces. Understanding color relationships and accessibility requirements helps you create professional, usable designs.</p>
       
+      <h3>The Color Wheel and Harmony</h3>
+      <p>Color schemes are based on relationships on the color wheel:</p>
+      <ul>
+        <li><strong>Complementary</strong>: Opposite colors (blue/orange). High contrast, vibrant, but can be jarring if overused.</li>
+        <li><strong>Analogous</strong>: Adjacent colors (blue/blue-green). Harmonious, natural, but low contrast.</li>
+        <li><strong>Triadic</strong>: Three colors equally spaced (RGB). Vibrant, balanced.</li>
+        <li><strong>Split-Complementary</strong>: A color plus two adjacent to its complement. High contrast with less tension.</li>
+        <li><strong>Monochromatic</strong>: Single hue with variations in saturation/lightness. Cohesive, easy on eyes.</li>
+      </ul>
+
+      <h3>WCAG Contrast Requirements</h3>
+      <p>Accessibility isn't optional. WCAG 2.1 requires:</p>
+      <ul>
+        <li><strong>AA standard</strong>: 4.5:1 contrast for normal text, 3:1 for large text</li>
+        <li><strong>AAA standard</strong>: 7:1 contrast for normal text, 4.5:1 for large text</li>
+      </ul>
+      <p>Use tools like WebAIM's Contrast Checker to verify your palette. Dark text on light backgrounds typically achieves better contrast than light text on dark backgrounds at the same saturation.</p>
+
+      <h3>Color Psychology in UI Design</h3>
+      <p>Colors trigger associations, consciously and unconsciously:</p>
+      <ul>
+        <li><strong>Blue</strong>: Trust, stability, technology (used by banks, tech companies)</li>
+        <li><strong>Red</strong>: Urgency, danger, energy (used for alerts, sales)</li>
+        <li><strong>Green</strong>: Growth, health, success (used for positive actions, nature)</li>
+        <li><strong>Yellow/Orange</strong>: Optimism, creativity (used for food, children's products)</li>
+        <li><strong>Purple</strong>: Premium, creativity (used for beauty, luxury brands)</li>
+        <li><strong>Black</strong>: Sophistication, elegance (used for luxury, photography)</li>
+      </ul>
+
+      <h3>Building a Design System Palette</h3>
+      <p>Professional interfaces use systematic color systems:</p>
+      <ul>
+        <li><strong>Primary</strong>: Your brand color, used for main actions and identity</li>
+        <li><strong>Secondary</strong>: Supporting color for secondary elements</li>
+        <li><strong>Neutral</strong>: Grays for text, backgrounds, borders</li>
+        <li><strong>Semantic</strong>: Success (green), Warning (yellow), Error (red), Info (blue)</li>
+      </ul>
+
+      <h3>Tailwind and CSS Variables</h3>
+      <p>Modern CSS often uses custom properties for theming:</p>
+      <pre><code>:root {
+  --primary: #4F46E5;
+  --primary-hover: #4338CA;
+  --background: #F9FAFB;
+  --text: #111827;
+}
+
+[data-theme="dark"] {
+  --primary: #818CF8;
+  --background: #0F172A;
+  --text: #F1F5F9;
+}</code></pre>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Choose a base color</strong> — Click the color picker or enter a hex code for your primary brand color.</li>

@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact ToolMixr",
+  "url": "https://toolmixr.com/contact",
+  "description": "Get in touch with the ToolMixr team."
+});
+---
+
+<BaseLayout title="Contact Us" description="Contact ToolMixr — report bugs, suggest new tools, or ask questions about our free online tools." structuredData={structuredData}>
+  <section class="tool-page">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Contact Us</span>
+    </nav>
+    <h1>📬 Contact Us</h1>
+    <p class="subtitle">Have a question, suggestion, or found a bug? We'd love to hear from you.</p>
+    
+    <div class="tool-box">
+      <div class="contact-methods">
+        <div class="contact-card">
+          <div class="contact-icon">📧</div>
+          <h3>Email Us</h3>
+          <p>For general inquiries, feature requests, or bug reports:</p>
+          <a href="mailto:contact@toolmixr.com" class="btn btn-primary" style="margin-top:12px;">contact@toolmixr.com</a>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">🐛</div>
+          <h3>Report a Bug</h3>
+          <p>Found something broken? Let us know. Please include the tool name, what you expected, what happened, and your browser.</p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">💡</div>
+          <h3>Suggest a Tool</h3>
+          <p>Have an idea for a new tool? We're always building new ones. Tell us what you need.</p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">💼</div>
+          <h3>Business Inquiries</h3>
+          <p>For partnerships, sponsorships, or advertising opportunities:</p>
+          <a href="mailto:contact@toolmixr.com" class="btn btn-secondary" style="margin-top:12px;">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+    
+    <section class="guide">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)"><span>How quickly do you respond?</span><span class="faq-arrow">▸</span></button>
+        <div class="faq-answer"><p>We aim to respond within 24-48 hours. Bug reports are prioritized.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)"><span>Can I request a custom tool?</span><span class="faq-arrow">▸</span></button>
+        <div class="faq-answer"><p>Yes! We welcome suggestions. Email us your idea and we'll evaluate it.</p></div>
+      </div>
+    </section>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-methods { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+  .contact-card { padding: 24px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); }
+  [data-theme="dark"] .contact-card { background: var(--bg); border-color: var(--border); }
+  .contact-icon { font-size: 32px; margin-bottom: 12px; }
+  .contact-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .contact-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+</style>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Base64 Encoder/Decoder";
+const pageTitle = "Base64 Encoder/Decoder - Encode Decode Base64 Online";
 const pageUrl = "https://toolmixr.com/base64-encoder-decoder";
 
 const structuredData = JSON.stringify([
@@ -110,9 +110,33 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the Base64 Encoder/Decoder</h2>
-      <p>Encode text to Base64 or decode Base64 strings with this developer tool. Base64 is essential for embedding binary data in text formats, sending data in JSON APIs, creating data URLs, and working with email attachments.</p>
+      <h2>Base64: Encoding vs. Encryption</h2>
+      <p>Base64 is one of the most misunderstood tools in a developer's arsenal. It's not encryption — it's encoding, which means anyone can reverse it. Understanding when to use Base64 (and when not to) is essential for building secure, correct systems.</p>
       
+      <h3>How Base64 Works</h3>
+      <p>Base64 converts binary data into ASCII text using 64 characters: A-Z, a-z, 0-9, +, and /. It does this by grouping 3 bytes (24 bits) and splitting them into 4 groups of 6 bits, each representing a value 0-63.</p>
+      <p>This explains why Base64 output is about 33% longer than the original data: 3 bytes become 4 characters. The = padding at the end indicates how many bytes were in the final group.</p>
+
+      <h3>Real-World Uses of Base64</h3>
+      <p><strong>Data URLs</strong>: Embed small images directly in HTML/CSS:</p>
+      <pre><code>&lt;img src="data:image/png;base64,iVBORw0KGgo..."&gt;</code></pre>
+      <p><strong>Email attachments</strong>: SMTP was designed for text, so binary attachments (images, documents) are Base64-encoded.</p>
+      <p><strong>JSON APIs</strong>: When you need to include binary data in JSON, Base64 is the standard approach.</p>
+      <p><strong>API authentication</strong>: Basic Auth uses Base64 encoding of "username:password", but it's not encryption.</p>
+
+      <h3>Why Base64 Is NOT Encryption</h3>
+      <p>This cannot be stressed enough: Base64 is not security. The "encoding" part of "encoding/decoding" is a hint. Base64 is trivially reversible. Anyone can decode it in seconds.</p>
+      <p>If you need to protect data, use proper encryption (AES, etc.) — not Base64. Base64 just makes binary data printable; it doesn't hide anything.</p>
+
+      <h3>URL-Safe Base64 Variant</h3>
+      <p>Standard Base64 uses +, /, and = characters. These cause problems in URLs and filenames:</p>
+      <ul>
+        <li>/ conflicts with path separators</li>
+        <li>+ gets interpreted as a space in some contexts</li>
+        <li>= is special in query parameters</li>
+      </ul>
+      <p>URL-safe Base64 replaces + with - and / with _, dropping the padding. Many APIs (JWTs, for example) use this variant.</p>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Enter your text or Base64</strong> — Type or paste text to encode, or a Base64 string to decode.</li>

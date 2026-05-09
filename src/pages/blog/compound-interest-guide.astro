@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Understanding Compound Interest: The Eighth Wonder of the World" description="Compound interest can make you rich — or keep you in debt. This guide explains how it works, how to calculate it, and strategies to make it work in your favor.">
+  <article class="blog-post">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>Compound Interest</span>
+    </nav>
+    <h1>Understanding Compound Interest: The Eighth Wonder of the World</h1>
+    <div class="blog-meta">
+      <span>📅 May 4, 2026</span>
+      <span>⏱️ 8 min read</span>
+    </div>
+    <img src="/images/blog/compound-interest-guide-hero.webp" alt="Compound interest illustration showing growth curve with stacked coins and money symbols" class="blog-hero-img" loading="lazy" />
+
+    <p>Einstein probably never said this, but someone wise did: compound interest is the eighth wonder of the world. Whoever understands it, earns it. Whoever doesn't, pays it.</p>
+
+    <p>I've seen this play out in real life. My friend started investing $300/month at 25. By 45, she had roughly $380,000. I started at 35 with $500/month. By 45, I had about $115,000. Same 10-year investment window, but the compound growth in her twenties had an extra decade to multiply.</p>
+
+    <p>Time is the secret ingredient. Let me show you why.</p>
+
+    <h2>Simple Interest vs. Compound Interest</h2>
+
+    <p>Simple interest: you earn returns only on your original principal. $10,000 at 7% simple interest = $700/year, every year. After 10 years: $17,000 total.</p>
+
+    <p>Compound interest: you earn returns on your returns. $10,000 at 7% compound = $700 the first year, then $749 the second year (7% of $10,700), then $801 the third year, and so on. After 10 years: $19,672.</p>
+
+    <p>That extra $2,672 might not sound dramatic, but scale it up over 30 years: $10,000 becomes $76,123 with compound interest versus $31,000 with simple interest. The gap widens the longer you wait.</p>
+    
+    <img src="/images/blog/compound-chart.png" alt="Line chart comparing simple interest vs compound interest growth on $10,000 at 7% over 30 years" class="blog-chart-img" loading="lazy" />
+
+    <h2>The 72 Rule: Quick Mental Math for Doubling</h2>
+
+    <p>Here's a trick finance people use constantly: divide 72 by your interest rate to estimate how many years it takes to double your money.</p>
+
+    <ul>
+      <li>At 6%: 72 ÷ 6 = 12 years to double</li>
+      <li>At 8%: 72 ÷ 8 = 9 years to double</li>
+      <li>At 12%: 72 ÷ 12 = 6 years to double</li>
+    </ul>
+
+    <p>This isn't exact — the "Rule of 69.3" is more accurate for continuous compounding — but the 72 rule is close enough for quick estimates and helps you viscerally understand the impact of rate differences.</p>
+
+    <p>Starting with $10,000 at 8%, you have $20,000 in 9 years, $40,000 in 18 years, $80,000 in 27 years. Three doublings from one investment. That's compound interest doing its thing.</p>
+
+    <h2>The Frequency Question: Monthly vs. Daily vs. Continuous</h2>
+
+    <p>Banks advertise different compounding frequencies. Does it matter? Honestly, less than most people think.</p>
+
+    <p>Let's compare $10,000 at 6% annual rate with different compounding:</p>
+    <ul>
+      <li>Annual: $10,000 × (1 + 0.06)^10 = $17,908</li>
+      <li>Monthly: $10,000 × (1 + 0.06/12)^(12×10) = $18,194</li>
+      <li>Daily: $10,000 × (1 + 0.06/365)^(365×10) = $18,221</li>
+      <li>Continuous: $10,000 × e^(0.06×10) = $18,221</li>
+    </ul>
+
+    <p>The difference between annual and continuous compounding on $10,000 over 10 years is about $313. That's nice to have, but it's not going to make or break your retirement.</p>
+
+    <p>Here's the takeaway: don't chase a bank because they compound daily instead of monthly. The rate matters more than the frequency. A 6.5% annual rate beats a 6% monthly rate every time.</p>
+
+    <h2>The Dark Side: Compound Interest on Debt</h2>
+
+    <p>Compound interest works against you just as effectively when you're borrowing. Credit card debt at 24% APR — yes, that's a real APR — means your balance grows by 24% per year if you don't pay it off.</p>
+
+    <p>$5,000 credit card debt at 24% APR with minimum payments of $150/month: you'll pay $9,871 total over 11 years, with $4,871 going to interest. You borrowed $5,000 and paid back nearly $10,000.</p>
+
+    <p>This is why the "avalanche method" (paying off highest-interest debt first) mathematically saves more money than the "snowball method" (paying smallest balances first). You're attacking the debt that's compounding against you fastest.</p>
+
+    <h2>The Early Start Advantage</h2>
+
+    <p>Let's talk about the age numbers I mentioned at the start. Here's the math:</p>
+
+    <p>Friend starts at 25, invests $300/month at 8% average return until 65 (40 years): $1,216,785</p>
+
+    <p>Same friend starts at 35, invests $300/month at 8% until 65 (30 years): $489,383</p>
+
+    <p>One decade of delay, and you end up with less than half the money — despite investing the same amount each month for the same number of years. That's the power of compound interest multiplied by time.</p>
+
+    <p>What if you wait until 45 to start? $300/month until 65: $190,187. Still useful, but you've lost over a million dollars in potential growth because you waited 20 years.</p>
+
+    <h2>The Inflation Factor</h2>
+
+    <p>Here's the number nobody wants to think about: inflation erodes your purchasing power. If inflation averages 3% per year, something that costs $100 today will cost $180 in 20 years.</p>
+
+    <p>That 8% return I used in the examples? After 3% inflation, your real return is closer to 5%. $1.2 million in nominal dollars might only be worth $700,000 in today's purchasing power over 40 years.</p>
+
+    <p>This isn't meant to depress you. It's meant to calibrate expectations. The goal isn't just to have a big number in your brokerage account — it's to have enough purchasing power to fund your retirement. Compounding helps you get there, but understanding real vs. nominal returns keeps you realistic.</p>
+
+    <h2>Dollar-Cost Averaging: The Steady Approach</h2>
+
+    <p>Trying to time the market is a loser's game. Even professional investors get it wrong more often than not. The better approach for most people is dollar-cost averaging (DCA): investing a fixed amount at regular intervals regardless of market conditions.</p>
+
+    <p>With DCA, you buy more shares when prices are low and fewer when prices are high. Over time, your average cost per share tends toward the mean. And because you're investing regularly, you can't "miss" the market — you always have skin in the game.</p>
+
+    <p>If you have $10,000 to invest, don't dump it in all at once (despite what Dave Ramsay says — that's market timing). Spread it over 6-12 months, or better yet, automate monthly contributions and never think about it again.</p>
+
+    <h2>Calculating Your Numbers</h2>
+
+    <p>Want to see compound interest working for your specific numbers? The <a href="/compound-interest-calculator">Compound Interest Calculator on ToolMixr</a> lets you model different scenarios — initial investment, monthly contributions, interest rate, and time horizon.</p>
+
+    <p>Play with it. See what $200/month becomes in 30 years at 8%. Then see what happens if you increase the rate to 9% or the contribution to $300/month. Understanding these numbers viscerally — not just abstractly — changes how you think about saving and investing.</p>
+
+    <p>Compound interest isn't magic. It's math. But it's math that, over time, can transform modest savings into serious wealth. Or, if you're on the wrong side of it, turn manageable debt into financial quicksand.</p>
+
+    <p>Learn it. Use it. Get on the right side.</p>
+
+  </article>
+</BaseLayout>

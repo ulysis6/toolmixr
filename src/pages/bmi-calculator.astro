@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "BMI Calculator";
+const pageTitle = "BMI Calculator - Check Your Body Mass Index Free Online";
 const pageUrl = "https://toolmixr.com/bmi-calculator";
 
 const structuredData = JSON.stringify([
@@ -181,9 +181,30 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the BMI Calculator</h2>
-      <p>Calculate your Body Mass Index (BMI) to get a general understanding of your weight category. BMI is a widely used screening tool that categorizes weight status based on height-to-weight ratio. This calculator supports both metric (kg/cm) and imperial (lb/ft) units.</p>
+      <h2>BMI: The Most Misused Health Metric</h2>
+      <p>BMI was invented in 1832 by a Belgian mathematician — not a doctor — to study population-level trends, not individual health. Yet here we are, 200 years later, using it to determine individual health status, insurance rates, and even military fitness standards. Let's understand what it actually measures and what it doesn't.</p>
       
+      <h3>The Formula and Its Origins</h3>
+      <p>BMI = weight (kg) / height (m)². Simple, cheap, requires only a scale and measuring tape. That's why it became so popular — it's effortless to calculate at scale. But simplicity comes with trade-offs.</p>
+      <p>The formula was developed from data on European populations. Applying it uniformly across different ethnicities, body types, and ages introduces significant error. Athletes get misclassified, elderly patients get flagged despite normal health markers, and children require entirely different reference curves.</p>
+
+      <h3>What BMI Actually Measures Well</h3>
+      <p>At the population level, BMI correlates reasonably well with body fat percentage and health outcomes. For epidemiologists studying large groups, it's a useful screening tool. If a population has a high average BMI, they're statistically more likely to have weight-related health conditions.</p>
+      <p>For individuals, BMI is most accurate when you're average — not particularly muscular, not elderly, not from non-European backgrounds. The further you deviate from that average profile, the less accurate BMI becomes.</p>
+
+      <h3>Athletes and the Muscle vs. Fat Problem</h3>
+      <p>This is where BMI completely breaks down. Muscle is denser than fat — about 18% denser by volume. A professional athlete with 10% body fat and significant muscle mass will weigh more than a sedentary person at the same height with 30% body fat.</p>
+      <p>LeBron James is listed at 6'9" and 250 lbs — that's a BMI of 27.7, technically "overweight." The average person at that height might weigh 200 lbs with a BMI of 24.2. LeBron is arguably in better cardiovascular health than most people with a "normal" BMI.</p>
+
+      <h3>Better Alternatives for Individual Assessment</h3>
+      <p>If you want a more accurate health picture, consider:</p>
+      <ul>
+        <li><strong>Waist-to-height ratio</strong>: Divide waist circumference by height. A ratio above 0.5 suggests increased health risk. This accounts for dangerous visceral fat.</li>
+        <li><strong>Body fat percentage</strong>: Measured via bioelectrical impedance (scales), DEXA scans, or skinfold calipers. Men's essential fat: 2-5%, athletes: 6-13%. Women's essential fat: 10-13%, athletes: 14-20%.</li>
+        <li><strong>Waist circumference</strong>: Above 40 inches for men or 35 inches for women correlates with higher metabolic risk.</li>
+        <li><strong>DEXA scan</strong>: Gold standard for body composition. Shows fat mass, lean mass, and bone density.</li>
+      </ul>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Choose your unit system</strong> — Select Metric for kilograms and centimeters, or Imperial for pounds and feet/inches.</li>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Percentage Calculator";
+const pageTitle = "Percentage Calculator - 3 Ways to Calculate Percentages";
 const pageUrl = "https://toolmixr.com/percentage-calculator";
 
 const structuredData = JSON.stringify([
@@ -161,9 +161,34 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the Percentage Calculator</h2>
-      <p>Calculate percentages three different ways with this versatile tool. Whether you need to find what percentage one number is of another, calculate percentage change, or find a percentage of a number, this calculator handles it all.</p>
+      <h2>Percentages: The Math Behind Everyday Decisions</h2>
+      <p>Percentages are everywhere — discounts, interest rates, test scores, tax rates, tips. Yet they remain a source of confusion for many people. The problem is that percentages aren't intuitive when they're not in context. A "20% increase followed by a 20% decrease" doesn't get you back to where you started. It gets you to 96%.</p>
       
+      <h3>The Three Types of Percentage Calculations</h3>
+      <p>Most percentage problems fall into three categories:</p>
+      <ul>
+        <li><strong>Finding X% of Y</strong>: "What is 20% of $150?" — Used for discounts, tips, taxes. Formula: (X/100) × Y.</li>
+        <li><strong>Finding what percent X is of Y</strong>: "30 is what percent of 200?" — Used for test scores, market share. Formula: (X/Y) × 100.</li>
+        <li><strong>Percentage change</strong>: "What is the % change from 50 to 75?" — Used for growth rates, price changes. Formula: ((New - Old)/Old) × 100.</li>
+      </ul>
+
+      <h3>Percentage vs. Percentage Points: A Critical Distinction</h3>
+      <p>This is where people get tripped up. If interest rates go from 5% to 7%, the rate increased by 2 percentage points, but it increased by 40% relative to the original rate.</p>
+      <p>In financial contexts, use percentage points when comparing rates: "Mortgage rates rose 0.5 percentage points." In growth contexts, use percent: "Our revenue grew 25% this year." Mixing these up leads to serious miscommunication.</p>
+
+      <h3>Discount Stacking: The Real Deal</h3>
+      <p>What does "30% off, then an additional 20% off" actually mean? It's not 50% off. The second discount applies to the already-reduced price. If an item is $100: after 30% off, it's $70. Then 20% off $70 is $14 savings, making it $56. Total savings: 44%, not 50%.</p>
+      <p>For叠叠折扣 (stacked discounts), multiply the remaining percentages: Final price = Original × (1 - d1) × (1 - d2) × ...</p>
+
+      <h3>Real-World Applications</h3>
+      <p>Beyond obvious uses (calculating sale prices, tips), percentages show up in less obvious places:</p>
+      <ul>
+        <li><strong>Profit margins</strong>: (Revenue - Cost) / Revenue × 100 = profit margin percentage</li>
+        <li><strong>Conversion rates</strong>: (Conversions / Visitors) × 100 = conversion rate</li>
+        <li><strong>Tax effective rates</strong>: Tax paid / Gross income × 100</li>
+        <li><strong>Yields</strong>: Annual income / Investment cost × 100</li>
+      </ul>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Choose your calculation mode</strong> — Select from three options: "X% of Y = ?" to find a percentage of a number, "X is what % of Y?" to find what percent one number is of another, or "% Change" to calculate percentage increase or decrease.</li>

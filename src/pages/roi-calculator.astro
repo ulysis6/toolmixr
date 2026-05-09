@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "ROI Calculator";
+const pageTitle = "ROI Calculator - Calculate Return on Investment Online Free";
 const pageUrl = "https://toolmixr.com/roi-calculator";
 
 const structuredData = JSON.stringify([
@@ -151,9 +151,38 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the ROI Calculator</h2>
-      <p>The ROI (Return on Investment) calculator helps you measure the profitability of any investment. Whether you're evaluating stocks, real estate, business ventures, or cryptocurrency, understanding your actual return is crucial for making informed financial decisions.</p>
+      <h2>Understanding Return on Investment</h2>
+      <p>ROI is one of the most fundamental metrics in finance, yet it's surprisingly easy to misuse. The basic formula — (Gain - Cost) / Cost — seems simple, but the details matter enormously. A fund that returned 50% over 10 years might sound impressive until you realize that's less than 5% annualized. Meanwhile, a business that doubled your money in 2 years delivers a 100% total return but a stellar ~41% annualized. Context is everything.</p>
       
+      <h3>Simple ROI vs. Annualized ROI: Why the Difference Matters</h3>
+      <p>Simple ROI tells you the total percentage gain over the entire investment period. Annualized ROI — also called CAGR (Compound Annual Growth Rate) — converts that to a yearly rate so you can compare investments of different lengths fairly.</p>
+      <p>The formula for annualized ROI: ((1 + Total ROI%)^(1/years) - 1) × 100. A 50% return over 2 years becomes ((1.50)^(0.5) - 1) × 100 = 22.47% annually. The same 50% over 5 years becomes only 8.45% annually.</p>
+      <p>When comparing investments, always annualize unless they're the same length. A cryptocurrency that 10x'd in 6 months (1200% total return) might seem better than real estate that returned 40% over 4 years — until you calculate: crypto = ~3,500% annualized vs. real estate = ~8.7% annualized. The comparison flips.</p>
+
+      <h3>Including All Costs: Fees, Taxes, and Hidden Expenses</h3>
+      <p>One of the biggest mistakes investors make is calculating ROI based only on the purchase and sale prices, ignoring ongoing costs. This leads to inflated numbers that don't reflect reality.</p>
+      <p>For stocks and ETFs: include trading commissions, expense ratios (mutual funds typically charge 0.5-1.5% annually), and taxes paid on dividends or capital gains. For real estate: include property taxes, maintenance (typically 1-2% of value annually), insurance, HOA fees, and vacancy periods. For businesses: include all operating expenses, debt service, and your time investment if applicable.</p>
+      <p>The calculator's "Additional Costs" field is there for a reason. Use it.</p>
+
+      <h3>What Constitutes a "Good" ROI?</h3>
+      <p>Context determines what's "good":</p>
+      <ul>
+        <li><strong>S&P 500 index funds</strong>: Historical average is about 10% annually before inflation, or roughly 7% after inflation</li>
+        <li><strong>Bonds</strong>: Investment-grade corporate bonds have historically returned 4-6%</li>
+        <li><strong>Real estate</strong>: 8-12% total return (including appreciation and rental income) is reasonable for residential properties</li>
+        <li><strong>Small business</strong>: 15-25% is often cited as a target, but risk varies widely</li>
+      </ul>
+      <p>The key is comparing against appropriate benchmarks. An 8% return on bonds is excellent. The same 8% on stocks might underperform the market significantly.</p>
+
+      <h3>The Limitations of ROI: What It Doesn't Measure</h3>
+      <p>ROI is useful but incomplete. It doesn't account for:</p>
+      <ul>
+        <li><strong>Risk</strong>: A 20% return that required betting your entire savings is very different from a 20% return in a diversified index fund</li>
+        <li><strong>Liquidity</strong>: ROI doesn't tell you how easily you can convert the investment back to cash</li>
+        <li><strong>Tax implications</strong>: A pre-tax return of 15% might be worth less than a tax-advantaged 10% return depending on your situation</li>
+        <li><strong>Time investment</strong>: Active trading strategies that return 20% might require 40 hours per week; index investing returning 10% requires minutes per month</li>
+      </ul>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Enter your initial investment</strong> — This is the total amount you put into the investment at the start. Include the purchase price or initial capital.</li>

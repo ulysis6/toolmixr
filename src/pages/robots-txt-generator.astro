@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Robots.txt Generator";
+const pageTitle = "Robots.txt Generator - Create Crawl Rules for Search Engines";
 const pageUrl = "https://toolmixr.com/robots-txt-generator";
 
 const structuredData = JSON.stringify([
@@ -145,9 +145,45 @@ const structuredData = JSON.stringify([
     </div>
     
     <section class="guide">
-      <h2>How to Use the Robots.txt Generator</h2>
-      <p>Create a robots.txt file to control how search engines crawl and index your website. This simple text file tells crawlers which pages they can access and which they should ignore. Essential for every website owner.</p>
+      <h2>Robots.txt: Your Site's Traffic Cop</h2>
+      <p>The robots.txt file tells search engine crawlers where they can and cannot go on your site. It's not security — it's a polite request. Well-behaved crawlers follow it; malicious bots ignore it completely. Understanding its syntax and limitations is essential for every website owner.</p>
       
+      <h3>Basic Syntax and Rules</h3>
+      <p>Robots.txt uses a simple format:</p>
+      <pre><code>User-agent: [crawler name]
+Disallow: [path to block]
+Allow: [path to permit]</code></pre>
+      <p>Wildcards are supported: * matches any characters, $ matches end of URL. Comments start with #.</p>
+      <p>A common misconception: paths are case-sensitive. /Private/ and /private/ are different paths.</p>
+
+      <h3>The Security Myth</h3>
+      <p>Robots.txt is NOT a security mechanism. Anyone can view your robots.txt file directly by visiting yourdomain.com/robots.txt. It's visible to everyone, including malicious actors.</p>
+      <p>If you have truly sensitive pages (admin panels, private user data, internal documents), don't rely on robots.txt. Use authentication, password protection, or noindex meta tags. Treat robots.txt as a crawl efficiency tool, not a security tool.</p>
+
+      <h3>Common Mistakes That Break SEO</h3>
+      <ul>
+        <li><strong>Blocking CSS and JavaScript</strong>: Googlebot needs to render pages like a browser. Blocking /css/ or /js/ directories causes rendering problems and can tank your rankings.</li>
+        <li><strong>Incorrect wildcard usage</strong>: Disallow: /private* blocks /private, /private-page, /private-area. But Disallow: /private blocks only /private, not subdirectories.</li>
+        <li><strong>Forgetting the sitemap</strong>: Add your sitemap location: Sitemap: https://yoursite.com/sitemap.xml</li>
+        <li><strong>Case sensitivity</strong>: User-agent: Googlebot (not GOOGLEBOT)</li>
+      </ul>
+
+      <h3>Special Directives for Googlebot</h3>
+      <p>Google supports additional directives beyond the standard robots.txt:</p>
+      <ul>
+        <li><strong>Crawl-delay</strong>: How many seconds between requests (but Google often ignores this)</li>
+        <li><strong>Googlebot-Image</strong>: Target image crawlers specifically</li>
+        <li><strong>Googlebot-News</strong>: For news-specific crawling</li>
+      </ul>
+
+      <h3>Testing Your Robots.txt</h3>
+      <p>Always test your robots.txt before deploying:</p>
+      <ul>
+        <li><strong>Google Search Console</strong>: robots.txt tester shows errors and warnings</li>
+        <li><strong>Fetch as Google</strong>: Test specific URLs to see if Googlebot can access them</li>
+        <li><strong>Browser preview</strong>: View your robots.txt in a browser to see what's visible</li>
+      </ul>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Add user-agent rules</strong> — Click "Add Rule" to create directives for specific crawlers (like Googlebot) or use * for all crawlers.</li>

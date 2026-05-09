@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = [
+  { title: 'How to Calculate Your Mortgage Payment: A Complete Guide', slug: 'how-to-calculate-mortgage-payment', date: 'May 8, 2026', excerpt: 'Understanding your mortgage payment is the first step to smart homeownership. This guide breaks down every component of a mortgage payment and shows you how to calculate it accurately.' },
+  { title: 'JSON Formatting Best Practices for Developers', slug: 'json-formatting-best-practices', date: 'May 7, 2026', excerpt: 'Properly formatted JSON is essential for debugging, API development, and team collaboration. Learn the best practices that will save you hours of frustration.' },
+  { title: 'The Ultimate Guide to Meta Tags for SEO in 2026', slug: 'meta-tags-seo-guide', date: 'May 6, 2026', excerpt: 'Meta tags remain one of the most important on-page SEO factors. This comprehensive guide covers every meta tag you need, from basic SEO to Open Graph and Twitter Cards.' },
+  { title: 'Password Security: How to Create and Manage Strong Passwords', slug: 'password-security-guide', date: 'May 5, 2026', excerpt: 'Password breaches are still the #1 security threat. Learn how to generate unbreakable passwords, why password managers are essential, and what passkeys mean for the future.' },
+  { title: 'Understanding Compound Interest: The Eighth Wonder of the World', slug: 'compound-interest-guide', date: 'May 4, 2026', excerpt: 'Compound interest can make you rich — or keep you in debt. This guide explains how it works, how to calculate it, and strategies to make it work in your favor.' },
+  { title: 'QR Code Technology Explained: How It Works and Best Practices', slug: 'qr-code-technology-guide', date: 'May 3, 2026', excerpt: 'QR codes are everywhere, but most people don\'t know how they actually work. Discover the technology behind QR codes, error correction levels, and design best practices.' },
+  { title: 'ROI Calculation Methods: Simple vs Annualized Returns', slug: 'roi-calculation-methods', date: 'May 2, 2026', excerpt: 'Not all ROI calculations are equal. Learn the difference between simple ROI and annualized returns, when to use each, and the common pitfalls that lead to misleading numbers.' },
+  { title: 'BMI Calculator: What Your Number Really Means', slug: 'bmi-calculator-guide', date: 'May 1, 2026', excerpt: 'BMI is widely used but often misunderstood. This guide explains what BMI measures, its limitations, when it\'s useful, and what better alternatives exist for assessing health.' },
+];
+---
+
+<BaseLayout title="Blog" description="Articles and guides about web tools, finance calculators, SEO, and developer productivity.">
+  <section class="blog-list">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Blog</span>
+    </nav>
+    <h1>📖 Blog</h1>
+    <p class="subtitle">Guides, tutorials, and insights about our tools and the problems they solve.</p>
+    
+    {posts.map((post) => (
+      <a href={`/blog/${post.slug}`} class="blog-card">
+        <h2>{post.title}</h2>
+        <p>{post.excerpt}</p>
+        <div class="blog-card-meta">{post.date}</div>
+      </a>
+    ))}
+  </section>
+</BaseLayout>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Sitemap Generator";
+const pageTitle = "Sitemap Generator - Create XML Sitemaps for Google";
 const pageUrl = "https://toolmixr.com/sitemap-generator";
 
 const structuredData = JSON.stringify([
@@ -138,9 +138,58 @@ const structuredData = JSON.stringify([
     </div>
     
     <section class="guide">
-      <h2>How to Use the Sitemap Generator</h2>
-      <p>Create an XML sitemap for your website to help search engines discover and index all your pages. Sitemaps are especially important for larger sites, new sites with few backlinks, and sites with dynamic content.</p>
+      <h2>XML Sitemaps: Your Site's Table of Contents</h2>
+      <p>Think of an XML sitemap as a table of contents for search engines. It tells Google and other search engines what pages exist on your site, how important they are, and how often they change. For small, well-linked sites, sitemaps are optional. For larger or newer sites, they're essential.</p>
       
+      <h3>XML Sitemap Protocol</h3>
+      <p>The basic sitemap structure:</p>
+      <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://yoursite.com/page/&lt;/loc&gt;
+    &lt;lastmod&gt;2024-01-15&lt;/lastmod&gt;
+    &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+    &lt;priority&gt;0.8&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</code></pre>
+      <p>The priority and changefreq values are hints, not commands. Google uses them as signals among many factors.</p>
+
+      <h3>Priority: What Actually Matters</h3>
+      <p>The priority value (0.0 to 1.0) tells search engines which pages are most important. Guidelines:</p>
+      <ul>
+        <li><strong>1.0</strong>: Homepage and main category pages</li>
+        <li><strong>0.8</strong>: Important subpages and popular articles</li>
+        <li><strong>0.6</strong>: Regular content pages and blog posts</li>
+        <li><strong>0.4-0.5</strong>: Individual product pages, dated archive pages</li>
+        <li><strong>0.1-0.3</strong>: Pages you want crawled but don't expect high rankings</li>
+      </ul>
+      <p>Don't set everything to 1.0 — that tells search engines nothing is more important than anything else.</p>
+
+      <h3>Change Frequency: A Hint, Not a Command</h3>
+      <p>The changefreq field accepts: always, hourly, daily, weekly, monthly, yearly, never. Google uses this as one signal among many, and often ignores it if your actual update frequency differs.</p>
+      <p>Setting everything to "daily" when your site updates weekly will not make Google crawl more frequently. Set it honestly based on your actual update patterns.</p>
+
+      <h3>Multiple Sitemaps for Large Sites</h3>
+      <p>Sitemaps have a practical limit of 50,000 URLs or 50MB. For larger sites, use a sitemap index file:</p>
+      <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;sitemap&gt;
+    &lt;loc&gt;https://yoursite.com/sitemap-blog.xml&lt;/loc&gt;
+  &lt;/sitemap&gt;
+  &lt;sitemap&gt;
+    &lt;loc&gt;https://yoursite.com/sitemap-products.xml&lt;/loc&gt;
+  &lt;/sitemap&gt;
+&lt;/sitemapindex&gt;</code></pre>
+      <p>Separate sitemaps for different content types makes management easier and allows different update frequencies.</p>
+
+      <h3>Submitting to Search Engines</h3>
+      <p>Creating a sitemap is only half the battle. You need to submit it:</p>
+      <ul>
+        <li><strong>Google Search Console</strong>: Sitemaps section under Index</li>
+        <li><strong>Bing Webmaster Tools</strong>: Submit sitemap in Configure My Site</li>
+        <li><strong>robots.txt</strong>: Add "Sitemap: https://yoursite.com/sitemap.xml" to your robots.txt</li>
+      </ul>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Add your page URLs</strong> — Click "Add URL" to enter each page you want indexed. Include your homepage and all important pages.</li>

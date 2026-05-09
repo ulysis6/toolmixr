@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="ROI Calculation Methods: Simple vs Annualized Returns" description="Not all ROI calculations are equal. Learn the difference between simple ROI and annualized returns, when to use each, and the common pitfalls that lead to misleading numbers.">
+  <article class="blog-post">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>ROI Calculation</span>
+    </nav>
+    <h1>ROI Calculation Methods: Simple vs Annualized Returns</h1>
+    <div class="blog-meta">
+      <span>📅 May 2, 2026</span>
+      <span>⏱️ 6 min read</span>
+    </div>
+    <img src="/images/blog/roi-calculation-methods-hero.webp" alt="ROI calculation illustration showing upward trend arrow with calculator and percentage symbols" class="blog-hero-img" loading="lazy" />
+
+    <p>Here's a investment pitch I actually received: "We generated 50% returns last year." Sounds amazing, right? Until I asked how long they'd held the position. Four months. The annualized return was closer to 150% — but the headline number was 50%.</p>
+
+    <p>This is why understanding ROI calculation methods matters. The same investment can look great or mediocre depending on how you crunch the numbers. Let me show you the difference.</p>
+
+    <h2>The Simple ROI Formula</h2>
+
+    <p>Simple ROI is straightforward:</p>
+
+    <pre><code>ROI = (Gain from Investment - Cost of Investment) / Cost of Investment × 100%</code></pre>
+
+    <p>Example: You invest $10,000, it's worth $12,000 after a year. Simple ROI = ($12,000 - $10,000) / $10,000 = 20%.</p>
+
+    <p>The problem: this formula ignores time. That same 20% gain over one year is great. Over five years, it's mediocre. Over ten years, it's barely keeping up with inflation.</p>
+
+    <p>Always ask: "Over what time period?" when you see any ROI figure.</p>
+
+    <h2>Annualized Returns (CAGR)</h2>
+
+    <p>CAGR — Compound Annual Growth Rate — accounts for time. It tells you what the equivalent annual return would be over the entire period:</p>
+
+    <pre><code>CAGR = (Ending Value / Beginning Value)^(1/n) - 1
+
+Where n = number of years</code></pre>
+
+    <p>Same example: $10,000 to $12,000 over 1 year = 20% CAGR. But $10,000 to $12,000 over 3 years = ($12,000/$10,000)^(1/3) - 1 = 6.27% CAGR.</p>
+
+    <p>Same simple gain, wildly different annualized return. This is why comparing investments with different holding periods requires CAGR, not simple ROI.</p>
+    
+    <img src="/images/blog/roi-chart.png" alt="Bar chart comparing simple ROI vs annualized ROI across different investment holding periods" class="blog-chart-img" loading="lazy" />
+
+    <h2>Including Dividends and Fees</h2>
+
+    <p>Real-world returns aren't just price appreciation. They include:</p>
+
+    <ul>
+      <li><strong>Dividends</strong>: Cash payments from stocks. A stock that goes up 10% and pays 3% in dividends has a total return of 13%.</li>
+      <li><strong>Interest</strong>: For bonds or savings accounts</li>
+      <li><strong>Distributions</strong>: From mutual funds or ETFs</li>
+    </ul>
+
+    <p>And they subtract:</p>
+
+    <ul>
+      <li><strong>Trading fees</strong>: Commissions, spreads, bid-ask costs</li>
+      <li><strong>Management fees</strong>: Mutual funds average 0.5-1.5% annually; this directly reduces your returns</li>
+      <li><strong>Taxes</strong>: Depends on your jurisdiction and account type (tax-advantaged vs. taxable)</li>
+    </ul>
+
+    <p>Always calculate your actual net return after all costs, not just the headline gain. A fund that returned 8% with 1.5% fees is worse than one that returned 7% with 0.1% fees.</p>
+
+    <h2>What "Good" ROI Looks Like</h2>
+
+    <p>Context matters enormously for interpreting ROI figures. Here are rough benchmarks:</p>
+
+    <ul>
+      <li><strong>S&P 500 index fund</strong>: Historical average ~10% per year (before inflation)</li>
+      <li><strong>Bonds</strong>: Investment-grade corporate bonds: 4-6% historically</li>
+      <li><strong>Savings account</strong>: Whatever the current Fed rate is — currently 4-5%</li>
+      <li><strong>Real estate (rentals)</strong>: 8-12% total return including appreciation is reasonable</li>
+      <li><strong>Business investment</strong>: Highly variable; 15-25% is often cited as good for small businesses</li>
+    </ul>
+
+    <p>A "50% return" that took 7 years to achieve might be respectable for venture capital, but it's terrible for a savings account. Always compare apples to apples.</p>
+
+    <h2>The Limitations of ROI</h2>
+
+    <p>ROI is a useful metric, but it has blind spots:</p>
+
+    <p><strong>1. Risk isn't measured</strong>: A investment that returns 20% with 50% chance of total loss looks great on ROI alone. Risk-adjusted returns (Sharpe ratio, Sortino ratio) are more meaningful.</p>
+
+    <p><strong>2. Cash flow timing</strong>: $1,000 gained in year one is worth more than $1,000 gained in year ten due to present value. IRR (Internal Rate of Return) accounts for cash flow timing; ROI doesn't.</p>
+
+    <p><strong>3. Capital requirements</strong>: A 100% return on $100 is fun, but it doesn't pay your bills. Absolute dollar gains matter for personal finance.</p>
+
+    <p><strong>4. It's rearview-mirror focused</strong>: Past returns don't guarantee future results. A fund with 15% returns over the last 3 years might be due for a correction.</p>
+
+    <h2>Practical Example: Rental Property</h2>
+
+    <p>Let me show how different calculations give different pictures:</p>
+
+    <p>You buy a rental property for $200,000. You put $40,000 down (20%). First year:</p>
+    <ul>
+      <li>Rent collected: $18,000</li>
+      <li>Operating expenses: $6,000</li>
+      <li>Mortgage interest: $8,000</li>
+      <li>Net operating income: $12,000</li>
+    </ul>
+
+    <p>Simple cash-on-cash return: $12,000 / $40,000 = 30%. Sounds amazing.</p>
+
+    <p>But include equity buildup (~$3,000), appreciation (let's say 3% = $6,000), and subtract property management (if you hire it at 10% = $1,800), and your total return changes. Factor in vacancy, repairs, and capital expenditures, and reality sets in.</p>
+
+    <p>The point isn't that rental properties are bad — they're often good investments. The point is that a single ROI number without context is nearly useless.</p>
+
+    <h2>How to Calculate Your Own ROI</h2>
+
+    <p>For your personal investments, track:</p>
+
+    <ol>
+      <li>All money in: initial investment + any additional contributions</li>
+      <li>All money out: dividends, interest, distributions received</li>
+      <li>Current value: what it's worth today</li>
+      <li>All fees paid: management, trading, taxes if tracked</li>
+    </ol>
+
+    <p>The <a href="/roi-calculator">ROI Calculator on ToolMixr</a> handles the basic math for you. For more complex scenarios — multiple cash flows, irregular timing — a spreadsheet with XIRR or a financial calculator is better.</p>
+
+    <p>Bottom line: never take an ROI figure at face value. Ask about the time period, what costs are included, and what risks were taken to achieve that return. The headline number is just the beginning of the story.</p>
+
+  </article>
+</BaseLayout>

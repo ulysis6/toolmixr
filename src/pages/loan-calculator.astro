@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Loan Calculator";
+const pageTitle = "Loan Calculator - Payment Schedule & Amortization Free";
 const pageUrl = "https://toolmixr.com/loan-calculator";
 
 const structuredData = JSON.stringify([
@@ -174,9 +174,30 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the Loan Calculator</h2>
-      <p>Whether you're considering a car loan, personal loan, student loan, or any other type of installment loan, our calculator helps you understand the true cost. You'll see your monthly payment, total interest paid, and can review a complete amortization schedule showing how each payment is split between principal and interest.</p>
+      <h2>Understanding Loan Payments and Amortization</h2>
+      <p>Loans are everywhere — mortgages, car loans, student loans, personal loans. They all work the same way: you borrow money and pay it back with interest over time. But the details matter enormously. A $25,000 car loan at 8.5% for 3 years costs $4,038 in total interest. Extend it to 5 years, and you pay $5,787 in interest — that's 43% more interest for the "convenience" of lower payments.</p>
       
+      <h3>Fixed vs. Variable Rate: What You Need to Know</h3>
+      <p>Most consumer loans are fixed-rate, meaning your interest rate stays the same for the entire loan term. This predictability makes budgeting easier and protects you if market rates rise.</p>
+      <p>Variable rate loans start with a lower rate that can change over time. These can make sense for short-term loans, lines of credit, or when you plan to pay off early. But they carry the risk of rates rising significantly, increasing your payment unexpectedly.</p>
+
+      <h3>The Amortization Schedule: Why Early Payments Are Mostly Interest</h3>
+      <p>Here's something that surprises many borrowers: in the early months of a loan, most of your payment goes to interest, not principal. This is called amortization — the gradual payoff of the loan balance over time.</p>
+      <p>For a $25,000 loan at 8.5% over 3 years, your first payment might be $787, with $177 going to principal and $610 going to interest. By the last payment, you're paying $785 in principal and only $3 in interest.</p>
+      <p>This is why making extra principal payments early in the loan saves so much more interest than making them later — you're directly attacking the balance that would otherwise generate interest charges for years.</p>
+
+      <h3>Debt Snowball vs. Debt Avalanche: The Best Payoff Strategy</h3>
+      <p>When you have multiple loans, which should you pay off first? Two popular approaches:</p>
+      <ul>
+        <li><strong>Debt Avalanche</strong>: Pay off highest-interest debt first. This mathematically saves the most money.</li>
+        <li><strong>Debt Snowball</strong>: Pay off smallest balance first. This provides psychological wins that keep you motivated.</li>
+      </ul>
+      <p>The avalanche method is objectively better for pure math, but the snowball method often works better in practice because quick wins keep people engaged. Choose based on your personality — the best strategy is the one you'll actually stick with.</p>
+
+      <h3>Prepayment Penalties: Read the Fine Print</h3>
+      <p>Some loans — especially older mortgages and some auto loans — have prepayment penalties. These fees (often 2-3 months' interest or 1-2% of the loan balance) are charged if you pay off the loan early. Always check for prepayment penalties before making extra payments or refinancing.</p>
+      <p>Modern mortgages (originated since 2014) generally don't have prepayment penalties. If you have an older loan, check your paperwork.</p>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Enter the loan amount</strong> — This is the principal amount you're borrowing. For car loans, this is typically the purchase price minus any down payment or trade-in value.</li>

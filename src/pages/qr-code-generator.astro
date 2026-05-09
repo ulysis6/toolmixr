@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "QR Code Generator";
+const pageTitle = "QR Code Generator - Create QR Codes for URLs & Text Free";
 const pageUrl = "https://toolmixr.com/qr-code-generator";
 
 const structuredData = JSON.stringify([
@@ -160,9 +160,44 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the QR Code Generator</h2>
-      <p>Create QR codes for URLs, text, WiFi networks, and email addresses. QR codes bridge the gap between physical and digital — scan them with any smartphone camera to instantly access encoded information.</p>
+      <h2>QR Codes: The Technology Behind the Black-and-White Squares</h2>
+      <p>QR codes were invented in 1994 for tracking Toyota vehicles and sat in relative obscurity for 25 years. Then 2020 happened, and suddenly everyone needed contactless solutions. Understanding how QR codes actually work helps you create ones that scan reliably and understand why some fail.</p>
       
+      <h3>How QR Codes Store Data</h3>
+      <p>QR codes are two-dimensional barcodes made of black and white modules arranged in a grid. The three large squares in the corners (position markers) help scanners orient and locate the code. The smaller alignment pattern helps correct for perspective distortion.</p>
+      <p>Data is encoded in the remaining modules, with error correction built in using Reed-Solomon codes — the same technology used in CDs, DVDs, and satellite transmissions.</p>
+
+      <h3>Error Correction: Why QR Codes Can Be Partially Damaged</h3>
+      <p>This is the clever part. QR codes can recover from damage thanks to error correction levels:</p>
+      <ul>
+        <li><strong>L (Low)</strong>: ~7% recovery — Maximum data capacity, minimal redundancy</li>
+        <li><strong>M (Medium)</strong>: ~15% recovery — Good balance for most uses</li>
+        <li><strong>Q (Quartile)</strong>: ~25% recovery — Good for industrial or outdoor use</li>
+        <li><strong>H (High)</strong>: ~30% recovery — Use when adding logos or custom designs</li>
+      </ul>
+      <p>Higher error correction means more of the code can be damaged or covered while still scanning, but it requires more modules for the same data.</p>
+
+      <h3>Data Capacity by Version</h3>
+      <p>QR codes come in 40 versions (sizes), from 21x21 modules to 177x177 modules. Capacity depends on what you're encoding:</p>
+      <ul>
+        <li><strong>Numeric only</strong>: Up to 7,089 characters (Version 40)</li>
+        <li><strong>Alphanumeric</strong>: Up to 4,296 characters</li>
+        <li><strong>Binary/Byte</strong>: Up to 2,953 bytes</li>
+      </ul>
+      <p>For most uses — URLs, short text, contact info — even Version 1 or 2 is more than enough.</p>
+
+      <h3>Why QR Codes Fail to Scan</h3>
+      <p>The most common reasons QR codes don't work:</p>
+      <ul>
+        <li><strong>Insufficient contrast</strong>: Use pure black (#000000) on pure white (#FFFFFF). Gray from low-resolution scaling kills scans.</li>
+        <li><strong>Quiet zone violation</strong>: The white border around the code isn't decorative. Minimum: 4 modules wide on all sides.</li>
+        <li><strong>Too small</strong>: A QR code printed at 1cm square might not scan reliably, especially from a distance.</li>
+        <li><strong>Curved surfaces</strong>: Printing on bottles or curved packaging distorts the modules.</li>
+      </ul>
+
+      <h3>Security: Malicious QR Codes</h3>
+      <p>QR codes can encode malicious URLs. Someone could replace a legitimate QR code with one that sends you to a phishing site or initiates a payment. Always preview the URL before following it, especially for QR codes in public places where they could have been swapped.</p>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Choose content type</strong> — Select URL for web links, Text for plain text, WiFi for network credentials, or Email for mailto links.</li>

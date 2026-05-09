@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="BMI Calculator: What Your Number Really Means" description="BMI is widely used but often misunderstood. This guide explains what BMI measures, its limitations, when it's useful, and what better alternatives exist for assessing health.">
+  <article class="blog-post">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>BMI Calculator</span>
+    </nav>
+    <h1>BMI Calculator: What Your Number Really Means</h1>
+    <div class="blog-meta">
+      <span>📅 May 1, 2026</span>
+      <span>⏱️ 6 min read</span>
+    </div>
+    <img src="/images/blog/bmi-calculator-guide-hero.webp" alt="BMI calculator illustration showing human body silhouette with measuring ruler" class="blog-hero-img" loading="lazy" />
+
+    <p>Let me start with a confession: according to BMI, LeBron James is obese. So is Michael Phelps. Arnold Schwarzenegger in his prime would have been in the overweight category.</p>
+
+    <p>The Body Mass Index was invented in 1832 by a Belgian mathematician named Adolphe Quetelet — not a doctor. It was designed to study populations, not individuals. And yet, 200 years later, it's the most commonly used metric for individual health assessment.</p>
+
+    <p>This isn't an attack on BMI being useless. It has value as a screening tool. But understanding its limitations prevents you from either panicking over a number that doesn't reflect reality or being falsely reassured by one that misses real risk.</p>
+
+    <h2>How BMI Is Calculated</h2>
+
+    <p>The formula is simple:</p>
+
+    <pre><code>BMI = weight (kg) / height (m)²</code></pre>
+
+    <p>Or in imperial units: (weight in pounds × 703) / height in inches²</p>
+
+    <p>A 5'10" person at 180 lbs: (180 × 703) / (70)² = 25.8 BMI</p>
+
+    <p>The WHO categories:</p>
+    <ul>
+      <li><strong>Underweight</strong>: Below 18.5</li>
+      <li><strong>Normal</strong>: 18.5 - 24.9</li>
+      <li><strong>Overweight</strong>: 25 - 29.9</li>
+      <li><strong>Obese</strong>: 30 and above</li>
+    </ul>
+
+    <p>Obese is further subdivided: Class 1 (30-34.9), Class 2 (35-39.9), Class 3 (40+).</p>
+    
+    <img src="/images/blog/bmi-chart.png" alt="Bar chart showing BMI categories and their value ranges: Underweight, Normal, Overweight, Obese" class="blog-chart-img" loading="lazy" />
+
+    <h2>The Fundamental Problem: It Doesn't Measure Body Composition</h2>
+
+    <p>BMI only uses height and weight. It has no idea whether your weight is muscle, fat, bone, water, or anything else.</p>
+
+    <p>This matters because:</p>
+
+    <ul>
+      <li><strong>Muscle is denser than fat</strong>: Two people at 6'0", 200 lbs can have vastly different body compositions. One might be 10% body fat; the other might be 25%.</li>
+      <li><strong>Athletes systematically get misclassified</strong>: NFL players, powerlifters, rugby players — the "obese" category is full of elite athletes with exceptional cardiovascular health.</li>
+      <li><strong>It ignores fat distribution</strong>: Belly fat (visceral fat) is more dangerous than fat in other areas. A "normal" BMI person with significant abdominal fat might be at higher health risk than an "overweight" person with fat primarily in their hips and thighs.</li>
+    </ul>
+
+    <h2>The Ethnicity Problem</h2>
+
+    <p>Here's something that rarely gets discussed: BMI thresholds were developed based on white European populations. Research shows different ethnic groups have different health risks at the same BMI.</p>
+
+    <p>For example, people of South Asian, Southeast Asian, and East Asian descent have higher health risks at lower BMI values. The threshold for overweight might be more like 23 for these populations, and obesity at 27.5. Some health organizations have already adjusted their guidelines accordingly.</p>
+
+    <p>At the other end, Pacific Islanders and some African populations have been shown to maintain health at higher BMIs than the standard categories suggest.</p>
+
+    <h2>When BMI Is Actually Useful</h2>
+
+    <p>Despite its limitations, BMI remains in widespread use because it's:</p>
+
+    <ul>
+      <li><strong>Free and easy</strong>: No equipment needed, just a scale and measuring tape</li>
+      <li><strong>Standardized</strong>: Same formula worldwide, allowing population comparisons</li>
+      <li><strong>Correlated with population health</strong>: At the population level, higher BMI does correlate with higher disease risk, even if it's imperfect for individuals</li>
+    </ul>
+
+    <p>For large-scale studies and epidemiological research, BMI is perfectly adequate. It's screening individuals where it gets shaky.</p>
+
+    <h2>Better Alternatives for Individual Assessment</h2>
+
+    <p>If you want a more accurate picture of your health, consider:</p>
+
+    <p><strong>1. Waist-to-height ratio</strong>: Measure your waist at navel level and divide by your height. A ratio above 0.5 suggests increased health risk. This accounts for dangerous visceral fat better than BMI.</p>
+
+    <p><strong>2. Body fat percentage</strong>: Measured via bioelectrical impedance (scales), skinfold calipers, or DEXA scans. Ranges differ by age and sex, but generally:</p>
+    <ul>
+      <li>Essential fat (women): 10-13%</li>
+      <li>Athletes (women): 14-20%</li>
+      <li>Essential fat (men): 2-5%</li>
+      <li>Athletes (men): 6-13%</li>
+    </ul>
+
+    <p><strong>3. Waist circumference</strong>: Simply measuring waist size is surprisingly predictive. Above 40 inches for men or 35 inches for women (non-pregnant women) correlates with higher metabolic risk.</p>
+
+    <p><strong>4. DEXA scan</strong>: The gold standard for body composition. Expensive and not widely available, but gives you muscle mass, fat mass, and bone density.</p>
+
+    <h2>For Children: Percentiles Matter</h2>
+
+    <p>BMI for children and teenagers works differently. Because kids are still growing and developing at different rates, we use BMI-for-age percentiles.</p>
+
+    <p>A child in the 60th percentile for BMI-for-age is heavier than 60% of children of the same age and sex. This is compared to growth charts from a reference population.</p>
+
+    <p>Percentiles under 5th suggest underweight; over 85th suggests overweight; over 95th suggests obesity. But even this approach has limitations — early-maturing kids can have temporarily elevated BMI.</p>
+
+    <h2>The Bigger Picture</h2>
+
+    <p>Health is more than a number on a chart. It includes:</p>
+
+    <ul>
+      <li>Blood pressure, cholesterol, and blood sugar levels</li>
+      <li>Cardiovascular fitness</li>
+      <li>Mental health</li>
+      <li>Sleep quality</li>
+      <li>Physical activity levels</li>
+      <li>Social connections</li>
+    </ul>
+
+    <p>If your BMI says you're in the "overweight" category but you run 5 miles three times a week, have normal blood pressure, and feel energetic — the number is probably not telling you anything meaningful about your health.</p>
+
+    <p>On the flip side, a "normal" BMI doesn't guarantee health. Thin people can have type 2 diabetes, high cholesterol, and metabolic syndrome. The number alone misses this.</p>
+
+    <h2>Using the Calculator Wisely</h2>
+
+    <p>The <a href="/bmi-calculator">BMI Calculator on ToolMixr</a> gives you the number quickly. But consider it a starting point, not a verdict.</p>
+
+    <p>What to do with the result:</p>
+    <ul>
+      <li>If it's in the "normal" range and you have no other risk factors, that's reassuring</li>
+      <li>If it's outside the normal range, use it as a prompt to look at other metrics: waist size, blood pressure, family history</li>
+      <li>Whatever your BMI, lifestyle factors matter more than the number itself</li>
+    </ul>
+
+    <p>BMI is a useful population screening tool that's often misused as an individual diagnosis. Understand what it measures (basically: how heavy you are relative to your height) and what it doesn't (anything about your actual body composition or health). Then use it accordingly.</p>
+
+  </article>
+</BaseLayout>

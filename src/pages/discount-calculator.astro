@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Discount Calculator";
+const pageTitle = "Discount Calculator - Sale Price & Savings Calculator";
 const pageUrl = "https://toolmixr.com/discount-calculator";
 
 const structuredData = JSON.stringify([
@@ -167,9 +167,35 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the Discount Calculator</h2>
-      <p>Calculate sale prices, savings, and final costs instantly. See exactly how much you're saving and what you'll pay after the discount — with optional sales tax calculation. Perfect for smart shopping and comparing deals.</p>
+      <h2>The Mathematics of Shopping Deals</h2>
+      <p>Sale prices seem straightforward — take the original price, subtract the discount percentage, pay less. But the reality of discounts is more nuanced. "50% off" doesn't mean you're paying half. And "buy one get one free" isn't actually free if you didn't need two.</p>
       
+      <h3>How Discounts Really Stack</h3>
+      <p>Stacked discounts don't add — they multiply. When a store advertises "50% off, then an additional 30% off," the final price isn't 80% off. It's 65% off.</p>
+      <p>Here's the math: start with $100. After 50% off: $50. After additional 30% off: $50 × 0.70 = $35. You've saved $65 total (65%), not $80.</p>
+      <p>The formula: Final Price = Original × (1 - d₁) × (1 - d₂) × ... where d is each discount as a decimal.</p>
+
+      <h3>Buy X Get Y: The True Cost</h3>
+      <p>"Buy two, get one free" sounds like you're getting 33% off your total purchase. But only if you needed three items. If you only needed one, you've just spent money on things you didn't need — that's not savings.</p>
+      <p>The effective discount when you needed exactly 3 items: you're paying for 2 and getting 1 free, so 33% off. When you needed only 2: you're paying full price for 2 (no discount). The perceived savings don't exist unless you had a real need.</p>
+
+      <h3>Holiday Shopping Strategies</h3>
+      <p>Black Friday, Cyber Monday, Prime Day — these shopping events have become cultural institutions. But are the deals actually good?</p>
+      <ul>
+        <li><strong>Price history tools</strong>: Websites like camelcamelcamel show price history for Amazon items. If a "deal" is only 5% below the 30-day average, it's not a deal.</li>
+        <li><strong>Counterfeit risk</strong>: Third-party sellers on marketplaces may use fake "discounted" prices before the sale</li>
+        <li><strong>Door busters</strong>: Limited quantities at huge discounts get you in the store, where you'll probably buy other items at regular prices</li>
+      </ul>
+
+      <h3>The Psychology of Discounts</h3>
+      <p>Stores are experts at making you feel like you're getting a deal even when you're spending more. Techniques include:</p>
+      <ul>
+        <li><strong>Anchor pricing</strong>: Show the original high price next to the sale price, making the discount feel bigger</li>
+        <li><strong>Percentage thresholds</strong>: "Spend $50 to get 20% off" — you might buy things you don't need to hit the threshold</li>
+        <li><strong>Urgency tactics</strong>: Countdown timers, "limited time," and "only 3 left" create fear of missing out</li>
+        <li><strong>Bundle deals</strong>: Packages that seem cheaper per item but include things you don't want</li>
+      </ul>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Enter the original price</strong> — This is the full, regular price before any discounts.</li>

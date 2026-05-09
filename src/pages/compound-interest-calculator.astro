@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Compound Interest Calculator";
+const pageTitle = "Compound Interest Calculator - See Your Money Grow Over Time";
 const pageUrl = "https://toolmixr.com/compound-interest-calculator";
 
 const structuredData = JSON.stringify([
@@ -190,9 +190,37 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the Compound Interest Calculator</h2>
-      <p>Compound interest is called the eighth wonder of the world by Albert Einstein — and for good reason. Unlike simple interest (which only earns on the principal), compound interest earns on both your principal AND previously accumulated interest. This creates exponential growth over time, which is why starting early is so powerful.</p>
+      <h2>The Power of Compound Interest</h2>
+      <p>Compound interest is called the eighth wonder of the world — and once you understand how it works, you'll see why. It's the difference between your money growing linearly (adding the same amount each year) and exponentially (adding increasingly larger amounts each year). The secret sauce: you earn interest on your interest.</p>
       
+      <h3>The 72 Rule: Quick Mental Math for Doubling</h3>
+      <p>Here's a trick that has served investors for generations: divide 72 by your annual interest rate to estimate how many years it takes to double your money. At 6% interest: 72 ÷ 6 = 12 years to double. At 8%: 72 ÷ 8 = 9 years. At 12%: 72 ÷ 12 = 6 years.</p>
+      <p>The Rule of 72 is an approximation (the Rule of 69.3 is more precise for continuous compounding), but it's close enough for quick estimates and helps you understand the dramatic impact of rate differences over time.</p>
+      <p>Starting with $10,000 at 8%, you have $20,000 in 9 years, $40,000 in 18 years, and $80,000 in 27 years. Three doublings from a single investment. That's compound interest doing its thing.</p>
+
+      <h3>Compound Frequency: Does It Really Matter?</h3>
+      <p>Banks advertise different compounding frequencies. Does it matter? Less than most people think. On $10,000 at 7% for 20 years:</p>
+      <ul>
+        <li>Annual compounding: $10,000 × (1.07)^20 = $38,697</li>
+        <li>Monthly compounding: $10,000 × (1 + 0.07/12)^(12×20) = $40,994</li>
+        <li>Daily compounding: $10,000 × (1 + 0.07/365)^(365×20) = $41,221</li>
+      </ul>
+      <p>The difference between annual and daily compounding on $10,000 over 20 years is about $2,500. That's nice to have, but the rate matters more than the frequency. A 7% annual rate beats a 6% monthly rate every time.</p>
+
+      <h3>The Early Start Advantage: Why Time Is Everything</h3>
+      <p>Let's talk about why "start early" is the most repeated investing advice. Say you invest $300/month starting at age 25 at 8% average return until age 65 (40 years): you contribute $144,000 and end up with approximately $1,216,785.</p>
+      <p>Start at age 35 with the same $300/month for 30 years: you contribute the same $108,000 but end up with only about $489,383. Waiting 10 years cost you over $700,000 despite investing $36,000 less.</p>
+      <p>The takeaway: even small amounts invested early dramatically outperform larger amounts invested later. Time is the secret ingredient that transforms modest savings into serious wealth.</p>
+
+      <h3>Dollar-Cost Averaging: The Steady Approach</h3>
+      <p>Trying to time the market is a loser's game. Even professional investors get it wrong more often than not. Dollar-cost averaging (DCA) — investing a fixed amount at regular intervals — solves this elegantly.</p>
+      <p>With DCA, you automatically buy more shares when prices are low and fewer when prices are high. Over time, your average cost per share trends toward the mean. You're never trying to be clever; you're just consistently participating in whatever the market does.</p>
+      <p>If you have a chunk of money to invest, spreading it over 6-12 months rather than dumping it in all at once reduces the risk of investing just before a downturn.</p>
+
+      <h3>Inflation: The Silent Wealth Eroder</h3>
+      <p>A 7% return sounds great until you remember inflation. At 3% average inflation, your real return is closer to 4%. That $1.2 million after 40 years might only be worth $600,000 in today's purchasing power.</p>
+      <p>This isn't meant to depress you — compounding still works, and inflation is partly offset by wage growth and asset appreciation. But understanding real vs. nominal returns keeps your expectations calibrated.</p>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Enter your initial principal</strong> — This is the starting amount of your investment or savings. Even small starting amounts can grow significantly over time.</li>

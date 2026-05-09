@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="The Ultimate Guide to Meta Tags for SEO in 2026" description="Meta tags remain one of the most important on-page SEO factors. This comprehensive guide covers every meta tag you need, from basic SEO to Open Graph and Twitter Cards.">
+  <article class="blog-post">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>Meta Tags SEO</span>
+    </nav>
+    <h1>The Ultimate Guide to Meta Tags for SEO in 2026</h1>
+    <div class="blog-meta">
+      <span>📅 May 6, 2026</span>
+      <span>⏱️ 9 min read</span>
+    </div>
+    <img src="/images/blog/meta-tags-seo-guide-hero.webp" alt="Webpage head section wireframe showing meta tags structure for SEO" class="blog-hero-img" loading="lazy" />
+
+    <p>Meta tags look simple. Everyone's seen them. But here's the thing — I still see major websites getting these wrong, and it costs them clicks, shares, and rankings.</p>
+
+    <p>After auditing hundreds of sites, I've compiled the meta tags you actually need in 2026. No fluff, no outdated advice.</p>
+
+    <h2>The Title Tag: Still the Most Important</h2>
+
+    <p>Your title tag is the clickable headline in search results. It directly affects both your ranking and your click-through rate.</p>
+
+    <p>Rules for title tags:</p>
+
+    <ul>
+      <li><strong>Length</strong>: 50-60 characters max. Beyond that, Google cuts it off with "..."</li>
+      <li><strong>Keyword placement</strong>: Put your primary keyword as close to the beginning as possible</li>
+      <li><strong>Brand inclusion</strong>: Add your brand name at the end with a separator: | or -</li>
+      <li><strong>Uniqueness</strong>: Every page should have a unique title</li>
+    </ul>
+
+    <p>Bad example: <code>Home | Company Name</code> (too generic, wastes precious character limit)</p>
+
+    <p>Good example: <code>Best Running Shoes 2026: Expert Reviews & Buying Guide | RunnerPro</code></p>
+
+    <h2>The Meta Description: Not for Rankings, But Critical for Clicks</h2>
+
+    <p>Meta descriptions don't directly affect rankings — Google has said this repeatedly. But they massively affect click-through rates, which indirectly helps SEO.</p>
+
+    <p>Write descriptions that:</p>
+
+    <ul>
+      <li>Are 150-160 characters</li>
+      <li>Include a call to action</li>
+      <li>Contain your target keyword (it gets bolded in results)</li>
+      <li>Accurately summarize the page content</li>
+    </ul>
+
+    <p>Also: don't leave it empty. Google will auto-generate one from page content, and you lose control over what shows in search results.</p>
+
+    <h2>Open Graph Tags: Why Your Links Look Empty on Social</h2>
+
+    <p>You've probably seen it — someone posts a link on LinkedIn or Facebook and it shows a sad blank box instead of a nice preview with an image and description. That's missing Open Graph tags.</p>
+
+    <p>The four essential OG tags:</p>
+
+    <pre><code>&lt;meta property="og:title" content="Your Page Title"&gt;
+&lt;meta property="og:description" content="Description shown on social"&gt;
+&lt;meta property="og:image" content="https://yoursite.com/image.jpg"&gt;
+&lt;meta property="og:url" content="https://yoursite.com/page"&gt;</code></pre>
+
+    <p>Quick note: your og:title can be different from your HTML title. For social sharing, you might want something more engaging or action-oriented than your SEO title.</p>
+
+    <h2>Twitter Cards: Different from OG, Requires Separate Tags</h2>
+
+    <p>Here's something many developers miss: Twitter Cards don't automatically inherit from Open Graph tags. You need to add Twitter-specific meta tags:</p>
+
+    <pre><code>&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:title" content="Your Page Title"&gt;
+&lt;meta name="twitter:description" content="Description for Twitter"&gt;
+&lt;meta name="twitter:image" content="https://yoursite.com/image.jpg"&gt;</code></pre>
+
+    <p>The <code>twitter:card</code> type matters: use <code>summary</code> for small images or <code>summary_large_image</code> for the full-width card that gets more visibility.</p>
+
+    <h2>The Canonical Tag: Preventing Duplicate Content Issues</h2>
+
+    <p>If you have multiple URLs pointing to the same content (with/without www, http/https, URL parameters), you need a canonical tag:</p>
+
+    <pre><code>&lt;link rel="canonical" href="https://yoursite.com/canonical-page"&gt;</code></pre>
+
+    <p>This tells search engines which version is the "real" one. Without it, you might get penalized for duplicate content, or worse, your preferred version doesn't get indexed.</p>
+
+    <h2>Viewport and Robots: Often Overlooked</h2>
+
+    <p>Two more tags that belong in every page's head:</p>
+
+    <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;meta name="robots" content="index, follow"&gt;</code></pre>
+
+    <p>The viewport tag is non-negotiable for mobile-friendly sites. The robots tag controls whether search engines index and follow links on your page. You can customize it per page (e.g., <code>noindex</code> for thank-you pages).</p>
+
+    <h2>Common Mistakes I've Seen</h2>
+
+    <p><strong>Mistake 1</strong>: Descriptions over 160 characters. Google truncates, and the cut-off text looks unprofessional.</p>
+
+    <p><strong>Mistake 2</strong>: Same description for every page. It's better to have no description than a generic one.</p>
+
+    <p><strong>Mistake 3</strong>: OG image that's too small. Facebook recommends 1200x630 minimum. A blurry small image looks terrible.</p>
+
+    <p><strong>Mistake 4</strong>: Forgetting to set og:type. Defaults to "website," which is fine for most pages, but "article" unlocks additional metadata options.</p>
+
+    <h2>Tools to Generate and Validate Meta Tags</h2>
+
+    <p>Generating these manually is tedious and error-prone. I use the <a href="/meta-tag-generator">Meta Tag Generator on ToolMixr</a> to quickly create all the essential tags, then validate them with <a href="/og-image-generator">the OG Image Generator</a> to make sure the preview looks right.</p>
+
+    <p>Also: use the Facebook Sharing Debugger and Twitter Card Validator before launching any major page. They'll show you exactly what social platforms see and flag issues before you share.</p>
+
+    <p>Meta tags aren't glamorous, but they're the foundation of how your site appears across the web. Get them right, and you're setting yourself up for better rankings and more clicks.</p>
+
+  </article>
+</BaseLayout>

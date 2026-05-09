@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Open Graph Image Generator";
+const pageTitle = "OG Image Generator - Social Media Preview Image Maker";
 const pageUrl = "https://toolmixr.com/og-image-generator";
 
 const structuredData = JSON.stringify([
@@ -141,9 +141,44 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the OG Image Generator</h2>
-      <p>Create professional Open Graph images for social media sharing. These preview images appear when links are shared on Facebook, Twitter, LinkedIn, and other platforms. A compelling OG image dramatically increases engagement with your shared links.</p>
+      <h2>Open Graph Images: The Gatekeepers of Social Sharing</h2>
+      <p>When someone shares your link on LinkedIn, Facebook, or Twitter, the platform decides what to show based on available data. Without proper OG images, you get an ugly URL with no context. With them, you get a polished preview that makes people actually want to click.</p>
       
+      <h3>Platform-Specific Dimensions</h3>
+      <p>Different platforms have different requirements:</p>
+      <ul>
+        <li><strong>Facebook</strong>: Recommended 1200x630, displays at 1.91:1 ratio. Minimum 600x315.</li>
+        <li><strong>LinkedIn</strong>: Similar to Facebook, supports up to 1200x627. Also accepts 1200x1200 for square shares.</li>
+        <li><strong>Twitter/X</strong>: Summary cards: 120x120 minimum. Summary large image: 300x157 minimum, 4096x4096 maximum.</li>
+        <li><strong>Slack</strong>: Uses Open Graph, so Facebook/LinkedIn sizes work. Displays at 1200x630 typically.</li>
+      </ul>
+      <p>The 1200x630 size works across virtually all major platforms. Use it as your default.</p>
+
+      <h3>Design Best Practices</h3>
+      <p>OG images need to work at small sizes (thumbnail) and large sizes (full width). Best practices:</p>
+      <ul>
+        <li><strong>Keep text minimal</strong>: On mobile, text can become unreadable. Use bold, short phrases.</li>
+        <li><strong>High contrast</strong>: Dark text on light background, or vice versa. Avoid gradients that reduce text readability.</li>
+        <li><strong>Brand consistency</strong>: Use your brand colors, fonts, and logo positioning consistently.</li>
+        <li><strong>Safe zones</strong>: Keep critical content in the center; edges may be cropped on some platforms.</li>
+      </ul>
+
+      <h3>Testing Your OG Images</h3>
+      <p>Before publishing, always test how your images look:</p>
+      <ul>
+        <li><strong>Facebook Sharing Debugger</strong>: debug.facebook.com/tools/sharing-debugger — Shows exactly what Facebook sees and lets you refresh cached data.</li>
+        <li><strong>Twitter Card Validator</strong>: cards-dev.twitter.com/validator — Previews your Twitter card and identifies issues.</li>
+        <li><strong>LinkedIn Post Inspector</strong>: linkedin.com/post-inspector — Similar tool for LinkedIn.</li>
+      </ul>
+
+      <h3>The Caching Problem</h3>
+      <p>Social platforms cache shared links aggressively. If you update your OG image, old shares will still show the old image. You need to "rescrape" the URL:</p>
+      <ul>
+        <li>Facebook: Use the Sharing Debugger and click "Scrape Again"</li>
+        <li>LinkedIn: Use Post Inspector and click "Inspect"</li>
+        <li>Twitter: Use Card Validator to refresh</li>
+      </ul>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Enter your title text</strong> — The main headline that appears on the image. Keep it short and impactful — 5-8 words work best.</li>

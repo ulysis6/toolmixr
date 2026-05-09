@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Tip Calculator";
+const pageTitle = "Tip Calculator - Split Bills & Calculate Tips Instantly";
 const pageUrl = "https://toolmixr.com/tip-calculator";
 
 const structuredData = JSON.stringify([
@@ -163,8 +163,34 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the Tip Calculator</h2>
-      <p>Calculate tips quickly and accurately at restaurants, bars, salons, and for any service where gratuity is customary. This calculator handles custom tip percentages and can split bills among multiple people — no more mental math struggles at the table.</p>
+      <h2>The Global Culture of Tipping</h2>
+      <p>Tipping is one of those things that seems simple until you're in a foreign country wondering if you're insulting your server or leaving them hungry. The rules vary enormously around the world, and understanding them prevents awkward situations on both ends.</p>
+      
+      <h3>Tipping by Region</h3>
+      <p>The US tipping culture is an outlier. Because servers can be paid as little as $2.13/hour (the federal minimum for tipped employees), tips aren't optional — they're the primary income. 20% is now the baseline at most restaurants, up from 15% a decade ago.</p>
+      <p>In Europe, tipping is more modest: 5-10% for good service, often just rounding up. In Japan, tipping is considered rude — excellent service is the baseline expectation. In Australia, service is typically included, but small tips for exceptional service are appreciated.</p>
+
+      <h3>The Math Behind Tip Percentages</h3>
+      <p>Why percentages instead of fixed amounts? Because tipping evolved to ensure fair compensation regardless of the bill size. A 20% tip on a $50 meal ($10) fairly compensates the server for their work, just as 20% on a $200 meal ($40). The server worked harder at the $200 table, so they get more.</p>
+      <p>The mental math trick: to calculate 20%, take 10% (move decimal one place left) and double it. For 15%, calculate 10%, then add half of that (5%). For 18%, calculate 20% and subtract 10% of that number.</p>
+
+      <h3>Splitting Bills: The Social Negotiation</h3>
+      <p>Splitting bills is where things get socially complex. Common approaches:</p>
+      <ul>
+        <li><strong>Even split</strong>: Divide total (with tip) by number of people. Easiest but can feel unfair if someone only had water while others had expensive wine.</li>
+        <li><strong>Itemized split</strong>: Each person pays for exactly what they ordered plus their share of shared items. Most fair but requires detailed tracking.</li>
+        <li><strong>Zebra split</strong>: One person pays the whole bill, others Venmo them. Works well for groups who've done this before.</li>
+      </ul>
+      <p>Pro tip: decide how to split before ordering, not after seeing the bill. It prevents awkward conversations about who had the expensive appetizers.</p>
+
+      <h3>When Not to Tip</h3>
+      <p>Some situations don't warrant tips:</p>
+      <ul>
+        <li><strong>Service charge already included</strong>: Check your bill. Many restaurants (especially for large parties) add automatic gratuity.</li>
+        <li><strong>Counter service</strong>:cafes, fast food, buffets — tipping is not expected in most cases</li>
+        <li><strong>Self-checkout</strong>: No service provided by a person</li>
+        <li><strong>Takeout</strong>: Tipping for just packaging is not typical, though 10% for large orders is appreciated</li>
+      </ul>
       
       <h3>Step-by-Step Guide</h3>
       <ol>

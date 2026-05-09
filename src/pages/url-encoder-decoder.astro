@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "URL Encoder/Decoder";
+const pageTitle = "URL Encoder/Decoder - Encode Decode URLs Online Free";
 const pageUrl = "https://toolmixr.com/url-encoder-decoder";
 
 const structuredData = JSON.stringify([
@@ -112,9 +112,52 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the URL Encoder/Decoder</h2>
-      <p>Encode or decode URLs and their query parameters. URLs can only contain certain characters, so special characters must be encoded. This tool handles both full URLs and individual URL components.</p>
+      <h2>URL Encoding: The Percent Sign's Secret Life</h2>
+      <p>URLs have rules. The original specification (RFC 3986) says URLs can only contain a limited set of characters: A-Z, a-z, 0-9, hyphen, underscore, period, and tilde. Everything else must be percent-encoded. Understanding why and how prevents debugging headaches.</p>
       
+      <h3>Percent-Encoding: The Basics</h3>
+      <p>Percent-encoding replaces special characters with %XX, where XX is the character's ASCII value in hexadecimal. For example:</p>
+      <ul>
+        <li>Space becomes %20</li>
+        <li>! becomes %21</li>
+        <li># becomes %23</li>
+        <li>& becomes %26</li>
+        <li>= becomes %3D</li>
+      </ul>
+      <p>The rule: if a character isn't in the allowed set, encode it. Simple.</p>
+
+      <h3>The encodeURI vs. encodeURIComponent Trap</h3>
+      <p>This is where developers get burned:</p>
+      <ul>
+        <li><strong>encodeURI</strong>: Encodes a complete URL but leaves alone: A-Z, a-z, 0-9, ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #</li>
+        <li><strong>encodeURIComponent</strong>: Encodes everything including those "safe" characters</li>
+      </ul>
+      <p>Example: If you have a URL parameter that contains "path/segment", using encodeURI gives you "path/segment". Using encodeURIComponent gives "path%2Fsegment". Use the wrong one and your URL breaks.</p>
+
+      <h3>Reserved vs. Unreserved Characters</h3>
+      <p>The URL spec divides characters:</p>
+      <ul>
+        <li><strong>Unreserved</strong> (don't encode): A-Z, a-z, 0-9, -, _, ., ~</li>
+        <li><strong>Reserved</strong> (have meaning, encode in context): :/?#[]@!$&'()*+,;=%</li>
+      </ul>
+      <p>The tricky part: reserved characters sometimes need encoding and sometimes don't. In a query parameter value, & should be encoded. In the path, / should not be. In a fragment, # should not be. Context matters.</p>
+
+      <h3>Common Encoding Mistakes</h3>
+      <ul>
+        <li><strong>Double-encoding</strong>: Encoding an already-encoded string. %25 is the encoded %, so "%20" becomes "%2520". Decode before encoding.</li>
+        <li><strong>Encoding too much</strong>: Using encodeURIComponent on a full URL breaks the URL structure. Encode individual parameter values, not entire URLs.</li>
+        <li><strong>Encoding too little</strong>: Not encoding user input that contains special characters leads to URL parsing errors.</li>
+      </ul>
+
+      <h3>Unicode in URLs</h3>
+      <p>URLs were designed for ASCII. Unicode characters (like emoji or non-Latin scripts) require percent-encoding too:</p>
+      <ul>
+        <li>"你好" becomes %E4%BD%A0%E5%A5%BD</li>
+        <li>"café" becomes caf%C3%A9</li>
+        <li>"😀" becomes %F0%9F%98%80</li>
+      </ul>
+      <p>Some browsers auto-encode Unicode in URLs; others don't. Always encode explicitly for consistency.</p>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Enter your URL or encoded string</strong> — Paste a complete URL or just the part you need to encode/decode.</li>

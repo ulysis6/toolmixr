@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Crypto Profit Calculator";
+const pageTitle = "Crypto Profit Calculator - Calculate Trading Gains & Losses";
 const pageUrl = "https://toolmixr.com/crypto-profit-calculator";
 
 const structuredData = JSON.stringify([
@@ -190,9 +190,30 @@ const structuredData = JSON.stringify([
     
 
     <section class="guide">
-      <h2>How to Use the Crypto Profit Calculator</h2>
-      <p>Calculate your cryptocurrency trading profits, losses, and ROI instantly. Whether you're buying Bitcoin, Ethereum, or any other cryptocurrency, this calculator helps you understand your actual returns after accounting for trading fees.</p>
+      <h2>Crypto Profit Calculation: The Basics</h2>
+      <p>Crypto trading profits aren't just about buy price vs. sell price. If you're not accounting for fees, taxes, and the timing of your trades, you're not seeing the full picture. A trade that looks like a 20% profit might actually be a 12% profit after fees — or worse, a loss after taxes if you're in a high tax bracket.</p>
       
+      <h3>The Break-Even Price: Your True Cost Basis</h3>
+      <p>The break-even price is the minimum sell price that recovers your investment. It accounts for fees paid when you bought, not when you sell. Here's why this matters: if you buy $10,000 of Bitcoin with a 1% fee ($100), you've spent $10,100 total. Your break-even isn't $10,000 — it's $10,100 (or slightly more, accounting for sell fees).</p>
+      <p>Many traders get caught by this: they see Bitcoin rise to their purchase price and sell, only to realize they've actually lost money because of fees. The calculator shows your break-even price — use it.</p>
+
+      <h3>DCA: The Best Strategy for Most People</h3>
+      <p>Dollar-cost averaging — investing a fixed amount at regular intervals regardless of price — is the most practical strategy for most crypto investors. It removes emotion from the equation and smooths out volatility.</p>
+      <p>With DCA, you automatically buy more when prices are low and less when prices are high. Over time, your average cost per unit trends toward the market average. Yes, you might miss the absolute bottom and top, but you also avoid the psychological torture of trying to time the market — and the regret that comes with it.</p>
+
+      <h3>Exchange Fees: The Silent Profit Killer</h3>
+      <p>Fees compound quickly in crypto trading. Consider a round-trip trade (buy then sell) on different platforms:</p>
+      <ul>
+        <li><strong>Binance</strong>: 0.1% per trade (0.2% round-trip)</li>
+        <li><strong>Coinbase</strong>: Up to 0.6% per trade (1.2% round-trip)</li>
+        <li><strong>Kraken</strong>: 0.26% per trade (0.52% round-trip)</li>
+      </ul>
+      <p>A 10% price gain on Coinbase with fees could be only 8.8% actual profit. Make 10 trades like that, and you've lost significant gains to fees alone. High-frequency traders need to be especially fee-conscious.</p>
+
+      <h3>Tax Implications: Plan Ahead</h3>
+      <p>In most countries, selling crypto for a profit is a taxable event. In the US, short-term capital gains (assets held less than a year) are taxed as ordinary income. Long-term gains get preferential treatment.</p>
+      <p>The painful scenario: you invest $10,000, it grows to $50,000, you sell, and now owe taxes on $40,000 of gains. If you're in the 32% bracket for short-term gains, that's ~$12,800 in taxes — leaving you with about $37,200. Plan for this before you celebrate your gains.</p>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Enter the buy price</strong> — Enter the price per coin when you purchased. If you bought multiple times at different prices, use your average cost basis.</li>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Meta Tag Generator";
+const pageTitle = "Meta Tag Generator - SEO & Open Graph Tags Creator";
 const pageUrl = "https://toolmixr.com/meta-tag-generator";
 
 const structuredData = JSON.stringify([
@@ -164,9 +164,45 @@ const structuredData = JSON.stringify([
     </div>
     
     <section class="guide">
-      <h2>How to Use the Meta Tag Generator</h2>
-      <p>Create complete HTML meta tags for your web pages including SEO title and description, Open Graph tags for social media, and Twitter Card tags. Well-crafted meta tags significantly improve how your pages appear in search results and social shares.</p>
+      <h2>Meta Tags: Your Page's First Impression</h2>
+      <p>Meta tags don't appear on your page visually, but they control how your page looks everywhere else — in search results, on social media, in browser tabs. Get them wrong, and your link looks like every other result. Get them right, and you stand out in ways that directly impact clicks and traffic.</p>
       
+      <h3>The Title Tag: The Most Important On-Page SEO Factor</h3>
+      <p>Your title tag is the clickable headline in search results. It's also a major ranking factor. Guidelines:</p>
+      <ul>
+        <li><strong>Length</strong>: 50-60 characters max. Beyond that, Google truncates with "..."</li>
+        <li><strong>Keyword placement</strong>: Put your primary keyword near the beginning</li>
+        <li><strong>Brand inclusion</strong>: Add "| Brand Name" at the end for brand recognition</li>
+        <li><strong>Uniqueness</strong>: Every page needs a unique title</li>
+      </ul>
+
+      <h3>Meta Description: The Ad Copy for Your Page</h3>
+      <p>The meta description doesn't directly affect rankings — Google has said this explicitly. But it massively affects click-through rate, which indirectly helps rankings. Treat it like ad copy: compelling, relevant, with a call to action.</p>
+      <p>Common mistake: leaving descriptions empty. Google will auto-generate one from page content, and you lose control over what shows in results.</p>
+
+      <h3>Open Graph Tags: Why Social Shares Look Empty</h3>
+      <p>You've seen it: someone posts a link and it shows just a URL with no image, no description. That's missing Open Graph (OG) tags.</p>
+      <p>The four essential OG tags:</p>
+      <pre><code>&lt;meta property="og:title" content="Your Title"&gt;
+&lt;meta property="og:description" content="Description shown on social"&gt;
+&lt;meta property="og:image" content="https://yoursite.com/image.jpg"&gt;
+&lt;meta property="og:url" content="https://yoursite.com/page"&gt;</code></pre>
+
+      <h3>Twitter Cards vs. Open Graph</h3>
+      <p>Twitter doesn't automatically read OG tags. You need Twitter-specific meta:</p>
+      <pre><code>&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:title" content="Your Title"&gt;
+&lt;meta name="twitter:description" content="Description"&gt;
+&lt;meta name="twitter:image" content="https://yoursite.com/image.jpg"&gt;</code></pre>
+
+      <h3>Common Mistakes That Kill CTR</h3>
+      <ul>
+        <li>Descriptions over 160 characters (truncated awkwardly)</li>
+        <li>Same description on every page (better than empty, but still generic)</li>
+        <li>OG images that are too small or missing</li>
+        <li>Forgetting the canonical tag (duplicate content issues)</li>
+      </ul>
+
       <h3>Step-by-Step Guide</h3>
       <ol>
         <li><strong>Enter your page title</strong> — This appears in browser tabs and search results. Keep it under 60 characters for full display. Include your brand name when appropriate.</li>
