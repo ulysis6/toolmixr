@@ -1,0 +1,519 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Game Requirements Checker - Can Your PC Run AAA Games?";
+const pageUrl = "https://toolmixr.com/game-requirements-checker";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Check if your PC can run AAA games like GTA VI, Monster Hunter Wilds, Black Myth: Wukong, and more. Compare your GPU, CPU, and RAM against minimum and recommended system requirements.",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What happens if I only meet minimum requirements?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Meeting minimum requirements means the game will run, but you'll likely need to play on low settings at 30 FPS or below. You may experience stuttering, long loading times, and reduced visual quality. For a comfortable experience, aim for recommended specs or better."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I run a game if my GPU is below minimum but I have more RAM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unfortunately, no. RAM cannot compensate for an insufficient GPU. The GPU handles rendering the game's graphics, and if it doesn't meet minimum requirements, the game may not launch or will be unplayably slow regardless of how much RAM you have. Each component (GPU, CPU, RAM) must independently meet the game's requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate are these system requirements?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "System requirements are based on official publisher specifications and community testing. They typically target 30 FPS at minimum specs and 60 FPS at recommended specs, usually at 1080p resolution. Actual performance may vary based on drivers, background processes, and specific game scenes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this checker account for upscaling technologies like DLSS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This checker uses official system requirements without DLSS/FSR adjustments. In practice, upscaling technologies like DLSS, FSR, or XeSS can significantly improve performance, potentially allowing you to run games smoothly on hardware below the recommended tier. If your GPU supports DLSS or FSR, you may get better results than shown here."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Check if your PC can run AAA games like GTA VI, Monster Hunter Wilds, Black Myth: Wukong, and more. Compare your GPU, CPU, and RAM against system requirements."
+  structuredData={structuredData}
+>
+  
+<section class="tool-page">
+
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Game Requirements Checker</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>🎮 Game Requirements Checker</h1>
+    <div class="share-bar">
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
+  </div>
+
+  <p class="subtitle">Check if your PC can run the latest AAA games — compare your specs against official requirements</p>
+
+  <div class="tool-box">
+    <div class="form-group">
+      <label for="gameGpuSelect">Your GPU / Graphics Card</label>
+              <select id="gameGpuSelect">
+        <optgroup label="NVIDIA RTX 50 Series">
+          <option value="32">RTX 5090 (32GB)</option>
+          <option value="16">RTX 5080 (16GB)</option>
+          <option value="16">RTX 5070 Ti (16GB)</option>
+          <option value="12">RTX 5070 (12GB)</option>
+          <option value="16">RTX 5060 Ti (16GB)</option>
+          <option value="8">RTX 5060 Ti (8GB)</option>
+          <option value="8">RTX 5060 (8GB)</option>
+          <option value="8">RTX 5050 (8GB)</option>
+        </optgroup>
+        <optgroup label="NVIDIA RTX 40 Series">
+          <option value="24">RTX 4090 (24GB)</option>
+          <option value="16">RTX 4080 Super (16GB)</option>
+          <option value="16">RTX 4080 (16GB)</option>
+          <option value="16">RTX 4070 Ti Super (16GB)</option>
+          <option value="12">RTX 4070 Ti (12GB)</option>
+          <option value="12">RTX 4070 Super (12GB)</option>
+          <option value="12">RTX 4070 (12GB)</option>
+          <option value="16">RTX 4060 Ti (16GB)</option>
+          <option value="8">RTX 4060 Ti (8GB)</option>
+          <option value="8">RTX 4060 (8GB)</option>
+        </optgroup>
+        <optgroup label="NVIDIA RTX 30 Series">
+          <option value="24">RTX 3090 Ti (24GB)</option>
+          <option value="24">RTX 3090 (24GB)</option>
+          <option value="12">RTX 3080 Ti (12GB)</option>
+          <option value="10">RTX 3080 (10GB)</option>
+          <option value="8">RTX 3070 Ti (8GB)</option>
+          <option value="8">RTX 3070 (8GB)</option>
+          <option value="8">RTX 3060 Ti (8GB)</option>
+          <option value="12" selected>RTX 3060 (12GB)</option>
+          <option value="8">RTX 3050 (8GB)</option>
+        </optgroup>
+        <optgroup label="NVIDIA RTX 20 Series">
+          <option value="11">RTX 2080 Ti (11GB)</option>
+          <option value="8">RTX 2080 Super (8GB)</option>
+          <option value="8">RTX 2080 (8GB)</option>
+          <option value="8">RTX 2070 Super (8GB)</option>
+          <option value="8">RTX 2070 (8GB)</option>
+          <option value="8">RTX 2060 Super (8GB)</option>
+          <option value="6">RTX 2060 (6GB)</option>
+        </optgroup>
+        <optgroup label="NVIDIA GTX 10 Series">
+          <option value="11">GTX 1080 Ti (11GB)</option>
+          <option value="8">GTX 1080 (8GB)</option>
+          <option value="8">GTX 1070 (8GB)</option>
+          <option value="6">GTX 1060 (6GB)</option>
+          <option value="6">GTX 1660 (6GB)</option>
+          <option value="4">GTX 1650 (4GB)</option>
+        </optgroup>
+        <optgroup label="Apple Silicon (Unified Memory)">
+          <option value="128">M5 Max (128GB unified)</option>
+          <option value="64">M5 Pro (64GB unified)</option>
+          <option value="16">M5 (16GB unified)</option>
+          <option value="48">M4 Max (48GB unified)</option>
+          <option value="24">M4 Pro (24GB unified)</option>
+          <option value="16">M4 (16GB unified)</option>
+          <option value="36">M3 Max (36GB unified)</option>
+          <option value="18">M3 Pro (18GB unified)</option>
+          <option value="8">M3 (8GB unified)</option>
+          <option value="32">M2 Max (32GB unified)</option>
+          <option value="16">M2 Pro (16GB unified)</option>
+          <option value="8">M2 (8GB unified)</option>
+          <option value="32">M1 Max (32GB unified)</option>
+          <option value="16">M1 Pro (16GB unified)</option>
+          <option value="8">M1 (8GB unified)</option>
+        </optgroup>
+        <optgroup label="AMD RX 9000 Series">
+          <option value="16">RX 9070 XT (16GB)</option>
+          <option value="16">RX 9070 (16GB)</option>
+          <option value="12">RX 9070 GRE (12GB)</option>
+          <option value="16">RX 9060 XT (16GB)</option>
+          <option value="8">RX 9060 XT (8GB)</option>
+          <option value="8">RX 9060 (8GB)</option>
+        </optgroup>
+        <optgroup label="AMD RX 7000 Series">
+          <option value="24">RX 7900 XTX (24GB)</option>
+          <option value="20">RX 7900 XT (20GB)</option>
+          <option value="16">RX 7800 XT (16GB)</option>
+          <option value="12">RX 7700 XT (12GB)</option>
+          <option value="8">RX 7600 (8GB)</option>
+        </optgroup>
+        <optgroup label="AMD RX 6000 Series">
+          <option value="16">RX 6800 XT (16GB)</option>
+          <option value="16">RX 6800 (16GB)</option>
+          <option value="12">RX 6700 XT (12GB)</option>
+          <option value="8">RX 6600 XT (8GB)</option>
+        </optgroup>
+        <optgroup label="Intel Arc">
+          <option value="12">Arc B580 (12GB)</option>
+          <option value="16">Arc A770 (16GB)</option>
+          <option value="8">Arc A750 (8GB)</option>
+        </optgroup>
+        <optgroup label="Other">
+          <option value="0">I don't know my GPU</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="cpuSelect">Your CPU / Processor</label>
+              <select id="cpuSelect">
+        <optgroup label="Intel Core Ultra (15th Gen)">
+          <option value="2000">Core Ultra 9 285K</option>
+          <option value="1600">Core Ultra 7 265K</option>
+          <option value="1300">Core Ultra 5 245K</option>
+        </optgroup>
+        <optgroup label="Intel 14th Gen">
+          <option value="1800">i9-14900K</option>
+          <option value="1600">i7-14700K</option>
+          <option value="1300">i5-14600K</option>
+        </optgroup>
+        <optgroup label="Intel 13th Gen">
+          <option value="1600">i9-13900K</option>
+          <option value="1400">i7-13700K</option>
+          <option value="1300">i5-13600K</option>
+        </optgroup>
+        <optgroup label="Intel 12th Gen">
+          <option value="1400">i9-12900K</option>
+          <option value="1200">i7-12700K</option>
+          <option value="1100">i5-12400</option>
+        </optgroup>
+        <optgroup label="Intel 11th Gen & Older">
+          <option value="1200">i9-11900K</option>
+          <option value="1100">i7-11700</option>
+          <option value="1000">i7-9700K</option>
+          <option value="900">i5-10600K</option>
+          <option value="850">i7-8700</option>
+          <option value="700">i5-8400</option>
+          <option value="600">i7-4790K</option>
+          <option value="500">i5-4690</option>
+          <option value="400">i5-3570K</option>
+        </optgroup>
+        <optgroup label="AMD Ryzen X3D">
+          <option value="2200">Ryzen 7 9800X3D</option>
+          <option value="1800">Ryzen 7 7800X3D</option>
+          <option value="1600">Ryzen 9 7950X3D</option>
+        </optgroup>
+        <optgroup label="AMD Ryzen 9000">
+          <option value="2000">Ryzen 9 9950X</option>
+          <option value="1700">Ryzen 7 9700X</option>
+          <option value="1400">Ryzen 5 9600X</option>
+        </optgroup>
+        <optgroup label="AMD Ryzen 7000">
+          <option value="1800">Ryzen 9 7950X</option>
+          <option value="1500">Ryzen 7 7700X</option>
+          <option value="1300">Ryzen 5 7600X</option>
+        </optgroup>
+        <optgroup label="AMD Ryzen 5000">
+          <option value="1400">Ryzen 9 5950X</option>
+          <option value="1200">Ryzen 7 5800X</option>
+          <option value="900">Ryzen 5 5600X</option>
+        </optgroup>
+        <optgroup label="AMD Older">
+          <option value="1100">Ryzen 7 3800X</option>
+          <option value="800">Ryzen 5 3600</option>
+          <option value="700">Ryzen 7 2700X</option>
+          <option value="500">Ryzen 5 1600</option>
+        </optgroup>
+        <optgroup label="Other">
+          <option value="0">I don't know my CPU</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="gameRamSelect">System RAM</label>
+      <select id="gameRamSelect">
+        <option value="4">4 GB</option>
+        <option value="8">8 GB</option>
+        <option value="12">12 GB</option>
+        <option value="16" selected>16 GB</option>
+        <option value="24">24 GB</option>
+        <option value="32">32 GB</option>
+        <option value="48">48 GB</option>
+        <option value="64">64 GB</option>
+        <option value="96">96 GB</option>
+        <option value="128">128 GB</option>
+      </select>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:20px;">
+      <button class="btn btn-primary" onclick="checkGames()" style="border: 1px solid var(--primary);">Check My PC</button>
+    </div>
+
+    <div id="gameResult" style="display:none;margin-top:24px;">
+      <h3 style="font-size:18px;margin-bottom:16px;">📋 Game Compatibility Results</h3>
+      <div style="overflow-x:auto;">
+        <table id="gameResultTable" style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="background:var(--bg);border-bottom:2px solid var(--border);">
+              <th style="padding:10px 12px;text-align:left;">Game</th>
+              <th style="padding:10px 12px;text-align:center;">GPU</th>
+              <th style="padding:10px 12px;text-align:center;">CPU</th>
+              <th style="padding:10px 12px;text-align:center;">RAM</th>
+              <th style="padding:10px 12px;text-align:center;">Status</th>
+            </tr>
+          </thead>
+          <tbody id="gameResultBody"></tbody>
+        </table>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:16px;font-size:13px;color:var(--text-secondary);">
+        <span>✅ Can Run (meets recommended specs)</span>
+        <span>⚠️ May Run (meets minimum specs)</span>
+        <span>❌ Cannot Run (below minimum specs)</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="content-section">
+    <h2>How to Use the Game Requirements Checker</h2>
+
+    <p>Before buying a new AAA game, it's crucial to know whether your PC can actually run it. Nothing is more frustrating than purchasing a $60 game only to discover it stutters on your hardware. The Game Requirements Checker compares your GPU, CPU, and RAM against the official system requirements of popular AAA titles, giving you a clear answer before you spend your money.</p>
+
+    <h3>Understanding Minimum vs. Recommended Requirements</h3>
+    <p>Game publishers list two tiers of system requirements. Minimum requirements indicate the absolute lowest hardware needed to launch and play the game — typically at low settings, 720p-1080p resolution, and 30 FPS or below. Recommended requirements target a smooth 60 FPS experience at 1080p with medium-to-high settings. If your hardware falls between these tiers, the game will run but may require settings adjustments for acceptable performance.</p>
+
+    <h3>Why GPU, CPU, and RAM All Matter</h3>
+    <p>Games require all three components to work together. The GPU handles rendering — textures, shadows, lighting, and frame rates. The CPU manages game logic, AI, physics, and draw calls. RAM provides the working memory for both. A weak link in any of these creates a bottleneck. You can't compensate for an underpowered GPU by having more RAM — each component must independently meet the game's demands.</p>
+
+    <h3>The Impact of Upscaling Technology</h3>
+    <p>Modern games increasingly support upscaling technologies like NVIDIA DLSS, AMD FSR, and Intel XeSS. These render the game at a lower resolution and then upscale it, significantly improving frame rates. If your GPU supports DLSS or FSR, you may be able to run games smoothly even if your hardware is below the recommended tier. This is especially useful for ray tracing, which can cut frame rates by 40-60% without upscaling.</p>
+
+    <h3>Step-by-Step Guide</h3>
+    <ol>
+      <li><strong>Select your GPU</strong> — Choose your graphics card from the dropdown. This is the most important factor for game performance. If you're not sure, check your graphics card in Windows Settings → Display → Graphics.</li>
+      <li><strong>Select your CPU</strong> — Choose your processor. The CPU is especially important for open-world games and titles with complex AI or physics.</li>
+      <li><strong>Select your RAM</strong> — Choose your total system memory. Modern AAA games increasingly require 16GB minimum, with some demanding 32GB.</li>
+      <li><strong>Click "Check My PC"</strong> — The tool compares your specs against the requirements of 15 popular AAA games and shows which ones you can run.</li>
+      <li><strong>Review results</strong> — Green (✅) means you meet or exceed recommended specs. Yellow (⚠️) means you meet minimum specs. Red (❌) means you're below minimum requirements.</li>
+    </ol>
+
+    <h3>Tips for Better Gaming Performance</h3>
+    <ul>
+      <li><strong>Update your drivers</strong> — NVIDIA and AMD regularly release game-ready drivers that can improve performance by 5-15% for newly released titles.</li>
+      <li><strong>Close background apps</strong> — Browsers, streaming software, and other applications consume RAM and CPU cycles that your game needs.</li>
+      <li><strong>Use DLSS or FSR</strong> — If your GPU supports it, enable upscaling. The quality hit is minimal and the performance gain is substantial.</li>
+      <li><strong>Upgrade RAM first</strong> — If you have 8GB, upgrading to 16GB is the cheapest and most impactful improvement for modern gaming.</li>
+      <li><strong>Check VRAM usage</strong> — If your GPU has limited VRAM (4-6GB), lower texture quality first to avoid stuttering from VRAM swapping.</li>
+    </ul>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What happens if I only meet minimum requirements?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Meeting minimum requirements means the game will run, but you'll likely need to play on low settings at 30 FPS or below. You may experience stuttering, long loading times, and reduced visual quality. For a comfortable experience at 60 FPS with decent settings, aim for recommended specs or better.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Can I run a game if my GPU is below minimum but I have more RAM?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Unfortunately, no. RAM cannot compensate for an insufficient GPU. The GPU handles rendering the game's graphics, and if it doesn't meet minimum requirements, the game may not launch or will be unplayably slow regardless of how much RAM you have. Each component (GPU, CPU, RAM) must independently meet the game's requirements.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>How accurate are these system requirements?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>System requirements are based on official publisher specifications and community testing. They typically target 30 FPS at minimum specs and 60 FPS at recommended specs, usually at 1080p resolution. Actual performance may vary based on drivers, background processes, and specific game scenes. Always check recent benchmarks for your specific hardware combination.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Does this checker account for upscaling technologies like DLSS?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>This checker uses official system requirements without DLSS/FSR adjustments. In practice, upscaling technologies like DLSS, FSR, or XeSS can significantly improve performance — often by 40-60% — potentially allowing you to run games smoothly on hardware below the recommended tier. If your GPU supports DLSS or FSR, you may get better results than shown here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-tools">
+    <h2>Related Tools</h2>
+    <div class="related-tools-grid">
+      <a href="/ai-model-checker" class="related-tool-card">
+        <span class="related-icon">🧠</span>
+        <span class="related-name">AI Model Checker</span>
+      </a>
+      <a href="/roi-calculator" class="related-tool-card">
+        <span class="related-icon">📈</span>
+        <span class="related-name">ROI Calculator</span>
+      </a>
+      <a href="/percentage-calculator" class="related-tool-card">
+        <span class="related-icon">🔣</span>
+        <span class="related-name">Percentage Calculator</span>
+      </a>
+      <a href="/age-calculator" class="related-tool-card">
+        <span class="related-icon">🎂</span>
+        <span class="related-name">Age Calculator</span>
+      </a>
+    </div>
+  </section>
+
+</section>
+
+<script is:inline>
+  // GPU tier scoring: higher = more powerful
+  var gpuTiers = {
+    "4": 1, "6": 2, "8": 3, "10": 4, "11": 5,
+    "12": 6, "16": 7, "18": 8, "20": 9, "24": 10, "32": 11,
+    "36": 12, "48": 13, "64": 14, "128": 15
+  };
+
+  // Game database: minGpu/recGpu are GPU tier levels, minCpu/recCpu are CPU scores, minRam/recRam in GB
+  var games = [
+    { name: "GTA VI", minGpu: 7, recGpu: 11, minRam: 16, recRam: 32, minCpu: 1100, recCpu: 1600 },
+    { name: "Monster Hunter Wilds", minGpu: 7, recGpu: 10, minRam: 16, recRam: 32, minCpu: 900, recCpu: 1400 },
+    { name: "Black Myth: Wukong", minGpu: 6, recGpu: 9, minRam: 16, recRam: 32, minCpu: 700, recCpu: 1400 },
+    { name: "Alan Wake 2", minGpu: 7, recGpu: 10, minRam: 16, recRam: 32, minCpu: 700, recCpu: 1400 },
+    { name: "Indiana Jones: Great Circle", minGpu: 7, recGpu: 10, minRam: 16, recRam: 32, minCpu: 900, recCpu: 1600 },
+    { name: "Stalker 2", minGpu: 6, recGpu: 9, minRam: 16, recRam: 32, minCpu: 700, recCpu: 1100 },
+    { name: "Dragon Age: The Veilguard", minGpu: 6, recGpu: 9, minRam: 16, recRam: 32, minCpu: 500, recCpu: 1100 },
+    { name: "Helldivers 2", minGpu: 3, recGpu: 7, minRam: 8, recRam: 16, minCpu: 700, recCpu: 900 },
+    { name: "Cyberpunk 2077", minGpu: 3, recGpu: 7, minRam: 8, recRam: 16, minCpu: 400, recCpu: 850 },
+    { name: "Starfield", minGpu: 7, recGpu: 10, minRam: 16, recRam: 32, minCpu: 900, recCpu: 1400 },
+    { name: "Hogwarts Legacy", minGpu: 3, recGpu: 7, minRam: 16, recRam: 32, minCpu: 600, recCpu: 850 },
+    { name: "Elden Ring", minGpu: 4, recGpu: 7, minRam: 12, recRam: 16, minCpu: 700, recCpu: 850 },
+    { name: "Baldur's Gate 3", minGpu: 3, recGpu: 7, minRam: 8, recRam: 16, minCpu: 500, recCpu: 850 },
+    { name: "Red Dead Redemption 2", minGpu: 2, recGpu: 7, minRam: 8, recRam: 12, minCpu: 400, recCpu: 500 },
+    { name: "The Witcher 3 Next-Gen", minGpu: 3, recGpu: 6, minRam: 8, recRam: 16, minCpu: 400, recCpu: 550 }
+  ];
+
+  function checkGames() {
+    var gpuSelect = document.getElementById('gameGpuSelect');
+    var gpuVram = parseInt(gpuSelect.options[gpuSelect.selectedIndex].value);
+    var gpuTier = gpuTiers[gpuVram] || 0;
+    var gpuName = gpuSelect.options[gpuSelect.selectedIndex].text;
+
+    var cpuSelect = document.getElementById('cpuSelect');
+    var cpuScore = parseInt(cpuSelect.options[cpuSelect.selectedIndex].value);
+    var cpuName = cpuSelect.options[cpuSelect.selectedIndex].text;
+
+    var ram = parseInt(document.getElementById('gameRamSelect').value);
+
+    var tbody = document.getElementById('gameResultBody');
+    tbody.innerHTML = '';
+
+    for (var i = 0; i < games.length; i++) {
+      var g = games[i];
+
+      // Check each component
+      var gpuMeetsMin = (gpuVram === 0) || (gpuTier >= g.minGpu);
+      var gpuMeetsRec = (gpuVram === 0) || (gpuTier >= g.recGpu);
+      var cpuMeetsMin = (cpuScore === 0) || (cpuScore >= g.minCpu);
+      var cpuMeetsRec = (cpuScore === 0) || (cpuScore >= g.recCpu);
+      var ramMeetsMin = ram >= g.minRam;
+      var ramMeetsRec = ram >= g.recRam;
+
+      var status, statusClass, statusIcon;
+      var gpuStatus, cpuStatus, ramStatus;
+
+      // Component-level status
+      if (gpuMeetsRec) { gpuStatus = '<span style="color:#10B981;">✅</span>'; }
+      else if (gpuMeetsMin) { gpuStatus = '<span style="color:#F59E0B;">⚠️</span>'; }
+      else { gpuStatus = '<span style="color:#EF4444;">❌</span>'; }
+
+      if (cpuMeetsRec) { cpuStatus = '<span style="color:#10B981;">✅</span>'; }
+      else if (cpuMeetsMin) { cpuStatus = '<span style="color:#F59E0B;">⚠️</span>'; }
+      else { cpuStatus = '<span style="color:#EF4444;">❌</span>'; }
+
+      if (ramMeetsRec) { ramStatus = '<span style="color:#10B981;">✅</span>'; }
+      else if (ramMeetsMin) { ramStatus = '<span style="color:#F59E0B;">⚠️</span>'; }
+      else { ramStatus = '<span style="color:#EF4444;">❌</span>'; }
+
+      // Overall status
+      if (gpuMeetsMin && cpuMeetsMin && ramMeetsMin) {
+        if (gpuMeetsRec && cpuMeetsRec && ramMeetsRec) {
+          status = "Can Run";
+          statusClass = "color:#10B981;font-weight:600;";
+          statusIcon = "✅";
+        } else {
+          status = "May Run";
+          statusClass = "color:#F59E0B;font-weight:600;";
+          statusIcon = "⚠️";
+        }
+      } else {
+        status = "Cannot Run";
+        statusClass = "color:#EF4444;font-weight:600;";
+        statusIcon = "❌";
+      }
+
+      var tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid var(--border)';
+      tr.innerHTML = '<td style="padding:10px 12px;font-weight:500;">' + g.name + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;">' + gpuStatus + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;">' + cpuStatus + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;">' + ramStatus + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;' + statusClass + '">' + statusIcon + ' ' + status + '</td>';
+      tbody.appendChild(tr);
+    }
+
+    document.getElementById('gameResult').style.display = 'block';
+  }
+</script>
+</BaseLayout>

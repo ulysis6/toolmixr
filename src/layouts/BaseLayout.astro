@@ -75,6 +75,7 @@ const websiteSchema = JSON.stringify({
       }
       
       [data-theme="dark"] {
+        color-scheme: dark;
         --primary: #818CF8;
         --primary-hover: #6366F1;
         --bg: #0F172A;
@@ -178,6 +179,7 @@ const websiteSchema = JSON.stringify({
         box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
       }
       [data-theme="dark"] .search-bar input { background: var(--surface); color: var(--text); border-color: var(--border); }
+      [data-theme="dark"] .search-bar input::placeholder { color: var(--text-secondary); }
       
       /* Filter Bar */
       .filter-bar {
@@ -345,9 +347,17 @@ const websiteSchema = JSON.stringify({
       [data-theme="dark"] .form-group input,
       [data-theme="dark"] .form-group textarea,
       [data-theme="dark"] .form-group select {
-        background: var(--bg);
+        background: var(--surface);
         color: var(--text);
         border-color: var(--border);
+      }
+      [data-theme="dark"] .form-group select option {
+        background: var(--surface);
+        color: var(--text);
+      }
+      [data-theme="dark"] .form-group input::placeholder,
+      [data-theme="dark"] .form-group textarea::placeholder {
+        color: var(--text-secondary);
       }
       
       .btn {
@@ -394,7 +404,22 @@ const websiteSchema = JSON.stringify({
         white-space: pre-wrap;
         word-break: break-all;
       }
-      [data-theme="dark"] .output-box { background: #020617; }
+      [data-theme="dark"] .output-box { background: #020617; color: #CDD6F4; }
+      [data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+      [data-theme="dark"] textarea,
+      [data-theme="dark"] select {
+        background: var(--surface);
+        color: var(--text);
+        border-color: var(--border);
+      }
+      [data-theme="dark"] select option {
+        background: var(--surface);
+        color: var(--text);
+      }
+      [data-theme="dark"] input::placeholder,
+      [data-theme="dark"] textarea::placeholder {
+        color: var(--text-secondary);
+      }
       .copy-btn {
         position: absolute;
         top: 10px;
@@ -551,6 +576,9 @@ const websiteSchema = JSON.stringify({
       }
       .footer a { color: var(--text-secondary); }
       .footer a:hover { color: var(--primary); }
+      .footer-grid { display: flex; justify-content: center; gap: 48px; margin-bottom: 24px; flex-wrap: wrap; }
+      .footer-col h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+      .footer-col a { display: block; margin-bottom: 4px; font-size: 13px; }
       
       /* Responsive */
       @media (max-width: 768px) {
@@ -644,11 +672,21 @@ const websiteSchema = JSON.stringify({
     
     <footer class="footer">
       <div class="container">
-        <p>&copy; 2026 ToolMixr. Free online tools for everyone.</p>
-        <p style="margin-top:8px;">
-          <a href="/privacy">Privacy Policy</a> · 
-          <a href="/terms">Terms of Service</a>
-        </p>
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+          </div>
+          <div class="footer-col">
+            <h4>AI Tool Reviews</h4>
+            <a href="https://genaipick.com/" target="_blank" rel="noopener">GenAIPick</a>
+            <a href="https://genaipick.com/ai-writing-tools/" target="_blank" rel="noopener">AI Writing Tools</a>
+            <a href="https://genaipick.com/ai-image-tools/" target="_blank" rel="noopener">AI Image Tools</a>
+            <a href="https://genaipick.com/ai-chat-assistants/" target="_blank" rel="noopener">AI Chat Assistants</a>
+          </div>
+        </div>
+        <p>© 2026 ToolMixr. Free online tools for everyone.</p>
       </div>
     </footer>
     

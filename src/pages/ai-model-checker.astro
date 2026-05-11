@@ -1,0 +1,434 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "AI Model Checker - Can Your PC Run Local LLMs?";
+const pageUrl = "https://toolmixr.com/ai-model-checker";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Check if your GPU and RAM can run local AI models like Qwen 3.6, Gemma 4, Llama 4, DeepSeek V4, and more. Compare your hardware against VRAM and RAM requirements for popular LLMs and image generation models.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I run LLMs on a Mac with Apple Silicon?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Apple Silicon Macs (M1/M2/M3/M4/M5) use unified memory, which means the GPU can access all available RAM as VRAM. This makes them surprisingly capable for running local LLMs. An M5 Pro with 64GB unified memory can comfortably run Qwen 3.6-27B or Gemma 4 27B MoE at Q4 quantization. Even the base M5 with 16GB unified memory handles smaller models well."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does quantization (Q4, FP16) mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quantization reduces model precision to save memory. Q4 (4-bit) uses about 25% of the original model size, making it the most popular format for local inference. FP16 (16-bit) uses about 50% and provides better quality but requires much more VRAM. For most users, Q4 quantized models offer the best balance of quality and performance — quality retention is typically 95-98%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my GPU matter more than RAM for LLMs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LLM inference is heavily dependent on VRAM (GPU memory) because the entire model must be loaded into GPU memory for fast inference. While you can offload layers to system RAM, this dramatically slows down generation speed — often to 1-2 tokens per second versus 20-100+ with full GPU loading. Having enough VRAM to load the entire model ensures smooth, fast text generation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is MoE and why does it matter for VRAM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mixture of Experts (MoE) models like Qwen 3.6-35B-A3B have many total parameters but only activate a fraction per token (e.g., 3B out of 35B). This means faster inference speed, but all parameters still need to be loaded into VRAM. MoE models give you the knowledge of a larger model at the speed of a smaller one — but you still need VRAM for the full parameter set."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Check if your GPU and RAM can run local AI models like Qwen 3.6, Gemma 4, Llama 4, DeepSeek V4, and more. Compare your hardware against VRAM and RAM requirements."
+  structuredData={structuredData}
+>
+  
+<section class="tool-page">
+
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>AI Model Checker</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>🧠 AI Model Checker</h1>
+    <div class="share-bar">
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
+  </div>
+
+  <p class="subtitle">Check if your hardware can run local AI models — LLMs, image generators, and more</p>
+    
+  <div class="tool-box">
+    <div class="form-group">
+      <label for="gpuSelect">Your GPU / Graphics Card</label>
+              <select id="gpuSelect" onchange="updateGpuInfo()">
+        <optgroup label="NVIDIA RTX 50 Series">
+          <option value="32">RTX 5090 (32GB)</option>
+          <option value="16">RTX 5080 (16GB)</option>
+          <option value="16">RTX 5070 Ti (16GB)</option>
+          <option value="12">RTX 5070 (12GB)</option>
+          <option value="16">RTX 5060 Ti (16GB)</option>
+          <option value="8">RTX 5060 Ti (8GB)</option>
+          <option value="8">RTX 5060 (8GB)</option>
+          <option value="8">RTX 5050 (8GB)</option>
+        </optgroup>
+        <optgroup label="NVIDIA RTX 40 Series">
+          <option value="24">RTX 4090 (24GB)</option>
+          <option value="16">RTX 4080 Super (16GB)</option>
+          <option value="16">RTX 4080 (16GB)</option>
+          <option value="16">RTX 4070 Ti Super (16GB)</option>
+          <option value="12">RTX 4070 Ti (12GB)</option>
+          <option value="12">RTX 4070 Super (12GB)</option>
+          <option value="12">RTX 4070 (12GB)</option>
+          <option value="16">RTX 4060 Ti (16GB)</option>
+          <option value="8">RTX 4060 Ti (8GB)</option>
+          <option value="8">RTX 4060 (8GB)</option>
+        </optgroup>
+        <optgroup label="NVIDIA RTX 30 Series">
+          <option value="24">RTX 3090 Ti (24GB)</option>
+          <option value="24">RTX 3090 (24GB)</option>
+          <option value="12">RTX 3080 Ti (12GB)</option>
+          <option value="10">RTX 3080 (10GB)</option>
+          <option value="8">RTX 3070 Ti (8GB)</option>
+          <option value="8">RTX 3070 (8GB)</option>
+          <option value="8">RTX 3060 Ti (8GB)</option>
+          <option value="12">RTX 3060 (12GB)</option>
+          <option value="8">RTX 3050 (8GB)</option>
+        </optgroup>
+        <optgroup label="NVIDIA RTX 20 Series">
+          <option value="11">RTX 2080 Ti (11GB)</option>
+          <option value="8">RTX 2080 Super (8GB)</option>
+          <option value="8">RTX 2080 (8GB)</option>
+          <option value="8">RTX 2070 Super (8GB)</option>
+          <option value="8">RTX 2070 (8GB)</option>
+          <option value="8">RTX 2060 Super (8GB)</option>
+          <option value="6">RTX 2060 (6GB)</option>
+        </optgroup>
+        <optgroup label="NVIDIA GTX 10 Series">
+          <option value="11">GTX 1080 Ti (11GB)</option>
+          <option value="8">GTX 1080 (8GB)</option>
+          <option value="8">GTX 1070 (8GB)</option>
+          <option value="6">GTX 1060 (6GB)</option>
+          <option value="6">GTX 1660 (6GB)</option>
+          <option value="4">GTX 1650 (4GB)</option>
+        </optgroup>
+        <optgroup label="Apple Silicon (Unified Memory)">
+          <option value="128">M5 Max (128GB unified)</option>
+          <option value="64">M5 Pro (64GB unified)</option>
+          <option value="16">M5 (16GB unified)</option>
+          <option value="48">M4 Max (48GB unified)</option>
+          <option value="24">M4 Pro (24GB unified)</option>
+          <option value="16">M4 (16GB unified)</option>
+          <option value="36">M3 Max (36GB unified)</option>
+          <option value="18">M3 Pro (18GB unified)</option>
+          <option value="8">M3 (8GB unified)</option>
+          <option value="32">M2 Max (32GB unified)</option>
+          <option value="16">M2 Pro (16GB unified)</option>
+          <option value="8">M2 (8GB unified)</option>
+          <option value="32">M1 Max (32GB unified)</option>
+          <option value="16">M1 Pro (16GB unified)</option>
+          <option value="8">M1 (8GB unified)</option>
+        </optgroup>
+        <optgroup label="AMD RX 9000 Series">
+          <option value="16">RX 9070 XT (16GB)</option>
+          <option value="16">RX 9070 (16GB)</option>
+          <option value="12">RX 9070 GRE (12GB)</option>
+          <option value="16">RX 9060 XT (16GB)</option>
+          <option value="8">RX 9060 XT (8GB)</option>
+          <option value="8">RX 9060 (8GB)</option>
+        </optgroup>
+        <optgroup label="AMD RX 7000 Series">
+          <option value="24">RX 7900 XTX (24GB)</option>
+          <option value="20">RX 7900 XT (20GB)</option>
+          <option value="16">RX 7800 XT (16GB)</option>
+          <option value="12">RX 7700 XT (12GB)</option>
+          <option value="8">RX 7600 (8GB)</option>
+        </optgroup>
+        <optgroup label="AMD RX 6000 Series">
+          <option value="16">RX 6800 XT (16GB)</option>
+          <option value="16">RX 6800 (16GB)</option>
+          <option value="12">RX 6700 XT (12GB)</option>
+          <option value="8">RX 6600 XT (8GB)</option>
+        </optgroup>
+        <optgroup label="Intel Arc">
+          <option value="12">Arc B580 (12GB)</option>
+          <option value="16">Arc A770 (16GB)</option>
+          <option value="8">Arc A750 (8GB)</option>
+        </optgroup>
+        <optgroup label="Other">
+          <option value="0">I don't know my GPU</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="ramSelect">System RAM</label>
+      <select id="ramSelect">
+        <option value="4">4 GB</option>
+        <option value="8">8 GB</option>
+        <option value="12">12 GB</option>
+        <option value="16" selected>16 GB</option>
+        <option value="24">24 GB</option>
+        <option value="32">32 GB</option>
+        <option value="48">48 GB</option>
+        <option value="64">64 GB</option>
+        <option value="96">96 GB</option>
+        <option value="128">128 GB</option>
+      </select>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:20px;">
+      <button class="btn btn-primary" onclick="checkModels()" style="border: 1px solid var(--primary);">Check My Hardware</button>
+    </div>
+
+    <div id="result" style="display:none;margin-top:24px;">
+      <h3 style="font-size:18px;margin-bottom:16px;">📋 Results for <span id="resultGpu"></span> + <span id="resultRam"></span> RAM</h3>
+      <div style="overflow-x:auto;">
+        <table id="resultTable" style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="background:var(--bg);border-bottom:2px solid var(--border);">
+              <th style="padding:10px 12px;text-align:left;">Model</th>
+              <th style="padding:10px 12px;text-align:center;">Quant</th>
+              <th style="padding:10px 12px;text-align:center;">Min VRAM</th>
+              <th style="padding:10px 12px;text-align:center;">Rec VRAM</th>
+              <th style="padding:10px 12px;text-align:center;">Min RAM</th>
+              <th style="padding:10px 12px;text-align:left;">Notes</th>
+              <th style="padding:10px 12px;text-align:center;">Status</th>
+            </tr>
+          </thead>
+          <tbody id="resultBody"></tbody>
+        </table>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:16px;font-size:13px;color:var(--text-secondary);">
+        <span>✅ Can Run (meets recommended specs)</span>
+        <span>⚠️ May Run (meets minimum but not recommended)</span>
+        <span>❌ Cannot Run (below minimum specs)</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="content-section">
+    <h2>How to Use the AI Model Checker</h2>
+
+    <p>Running local AI models on your own hardware gives you complete privacy, no API costs, and unlimited usage. But not every computer can handle every model — the AI Model Checker helps you find out which LLMs and image generation models are compatible with your GPU and system RAM before you spend time downloading multi-gigabyte model files.</p>
+
+    <h3>Understanding VRAM and RAM Requirements</h3>
+    <p>Every AI model has two key memory requirements: VRAM (video memory on your GPU) and system RAM. VRAM is the most critical factor because the model weights must be loaded into GPU memory for fast inference. If your GPU doesn't have enough VRAM, the model will either fail to load or run extremely slowly by offloading to system RAM. System RAM serves as a secondary requirement — even with enough VRAM, you need sufficient system memory for the OS, model context, and other processes.</p>
+
+    <h3>Quantization Explained: Q4 vs FP16</h3>
+    <p>Quantization is a technique that reduces model precision to save memory. A Q4 (4-bit) quantized model uses roughly 25% of the original model's memory footprint, making it the most popular choice for local inference. FP16 (16-bit) models use about 50% of the original size and provide higher quality output but require significantly more VRAM. For most users, Q4 quantized models offer the best balance of quality and performance — the quality loss is minimal (95-98% retention) while the memory savings are substantial.</p>
+
+    <h3>MoE Models: More Knowledge, Less Compute</h3>
+    <p>Mixture of Experts (MoE) models like Qwen 3.6-35B-A3B and Gemma 4 27B MoE carry many total parameters but only activate a fraction per token. This means you get the knowledge depth of a larger model at the inference speed of a smaller one. However, all parameters still need to be loaded into VRAM — so MoE models need more memory than their "active" parameter count suggests, but less compute during generation.</p>
+
+    <h3>Apple Silicon Advantage</h3>
+    <p>Apple's M-series chips use unified memory architecture, where the GPU shares the same memory pool as the CPU. The M5 Max supports up to 128GB of unified memory with 614GB/s bandwidth, effectively giving you 128GB of VRAM for AI models — far more than any consumer GPU. Even the base M5 with 16GB unified memory is capable for smaller models. This makes Apple Silicon Macs exceptionally powerful machines for local AI inference, especially when paired with optimized frameworks like Ollama or llama.cpp with Metal acceleration.</p>
+
+    <h3>Step-by-Step Guide</h3>
+    <ol>
+      <li><strong>Select your GPU</strong> — Choose your graphics card from the dropdown. If you're using an Apple Silicon Mac, select the appropriate M-series chip. If you don't know your GPU, choose "I don't know" and the checker will only use RAM requirements.</li>
+      <li><strong>Select your system RAM</strong> — Choose your total system memory. This is the RAM installed in your computer, not GPU memory.</li>
+      <li><strong>Click "Check My Hardware"</strong> — The tool compares your specs against a database of popular AI models and shows which ones you can run.</li>
+      <li><strong>Review results</strong> — Green (✅) means your hardware meets or exceeds recommended specs. Yellow (⚠️) means you meet minimum requirements but may experience slow performance. Red (❌) means your hardware is below minimum requirements.</li>
+    </ol>
+
+    <h3>Tips for Running Local AI Models</h3>
+    <ul>
+      <li><strong>Start with small models</strong> — If you're new to local AI, start with Qwen 3.5-4B or Phi-4-Mini. They run on modest hardware and still deliver impressive results.</li>
+      <li><strong>Use Q4 quantization</strong> — Unless you have abundant VRAM, always opt for Q4 quantized models. The quality difference is negligible for most use cases.</li>
+      <li><strong>Close other apps</strong> — Free up as much VRAM and RAM as possible before launching a model. Browsers with many tabs can consume several GB of RAM.</li>
+      <li><strong>Try Ollama first</strong> — Ollama is the easiest way to get started with local LLMs. One install command, one run command, and you're chatting with a model.</li>
+      <li><strong>Consider MoE for speed</strong> — If you have 16-24GB VRAM, MoE models like Gemma 4 27B MoE or Qwen 3.6-35B-A3B offer an excellent speed-to-quality ratio.</li>
+    </ul>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Can I run LLMs on a Mac with Apple Silicon?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Yes! Apple Silicon Macs (M1/M2/M3/M4/M5) use unified memory, which means the GPU can access all available RAM as VRAM. This makes them surprisingly capable for running local LLMs. An M5 Pro with 64GB unified memory can comfortably run Qwen 3.6-27B or Gemma 4 27B MoE at Q4 quantization. Even the base M5 with 16GB unified memory handles smaller models well. For the best experience, use Ollama or MLX-optimized models.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What does quantization (Q4, FP16) mean?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Quantization reduces model precision to save memory. Q4 (4-bit) uses about 25% of the original model size, making it the most popular format for local inference. FP16 (16-bit) uses about 50% and provides better quality but requires much more VRAM. For most users, Q4 quantized models offer the best balance of quality and performance — quality retention is typically 95-98% with minimal perceptible difference.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What is MoE and why does it matter for VRAM?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Mixture of Experts (MoE) models like Qwen 3.6-35B-A3B have many total parameters but only activate a fraction per token (e.g., 3B out of 35B). This means faster inference — sometimes 100+ tokens/second on consumer GPUs — but all parameters still need to be loaded into VRAM. MoE models give you the knowledge of a larger model at the speed of a smaller one, but you still need enough VRAM for the full parameter set.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What software do I need to run local AI models?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Popular options include Ollama (easiest, one-command install), llama.cpp (lightweight, cross-platform), LM Studio (GUI-based), and MLX (optimized for Apple Silicon). For NVIDIA GPUs, all options support CUDA acceleration. For image generation, ComfyUI and Automatic1111 are the leading tools. Most tools are free and open source.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-tools">
+    <h2>Related Tools</h2>
+    <div class="related-tools-grid">
+      <a href="/game-requirements-checker" class="related-tool-card">
+        <span class="related-icon">🎮</span>
+        <span class="related-name">Game Requirements Checker</span>
+      </a>
+      <a href="/bmi-calculator" class="related-tool-card">
+        <span class="related-icon">⚖️</span>
+        <span class="related-name">BMI Calculator</span>
+      </a>
+      <a href="/age-calculator" class="related-tool-card">
+        <span class="related-icon">🎂</span>
+        <span class="related-name">Age Calculator</span>
+      </a>
+      <a href="/password-generator" class="related-tool-card">
+        <span class="related-icon">🔑</span>
+        <span class="related-name">Password Generator</span>
+      </a>
+    </div>
+  </section>
+
+</section>
+
+<script is:inline>
+  var models = [
+    { name: "Phi-4-Mini 3.8B", minVram: 3, recVram: 4, minRam: 8, quant: "Q4", notes: "Reasoning on any hardware" },
+    { name: "Qwen 3.5-4B", minVram: 3, recVram: 5, minRam: 8, quant: "Q4", notes: "Lightweight coding" },
+    { name: "Gemma 4 4B", minVram: 4, recVram: 6, minRam: 8, quant: "Q4", notes: "Google's entry model" },
+    { name: "Llama 3.1 8B", minVram: 5, recVram: 8, minRam: 16, quant: "Q4", notes: "Good starter model" },
+    { name: "Qwen 3.5-9B", minVram: 6, recVram: 8, minRam: 16, quant: "Q4", notes: "Best value, multilingual" },
+    { name: "Gemma 4 9B", minVram: 6, recVram: 10, minRam: 16, quant: "Q4", notes: "Recommended starter" },
+    { name: "Codestral 22B", minVram: 12, recVram: 16, minRam: 16, quant: "Q4", notes: "Code specialist" },
+    { name: "Mistral Small 24B", minVram: 13, recVram: 16, minRam: 16, quant: "Q4", notes: "General assistant" },
+    { name: "Gemma 4 27B (MoE)", minVram: 14, recVram: 18, minRam: 16, quant: "Q4", notes: "MoE, 4B active" },
+    { name: "Qwen 3.6-27B", minVram: 17, recVram: 24, minRam: 32, quant: "Q4", notes: "Coding specialist (2026)" },
+    { name: "Gemma 4 31B", minVram: 20, recVram: 24, minRam: 32, quant: "Q4", notes: "Max Gemma quality" },
+    { name: "Qwen 3.6-35B-A3B (MoE)", minVram: 21, recVram: 24, minRam: 32, quant: "Q4", notes: "MoE, 3B active (2026)" },
+    { name: "Llama 4 Scout", minVram: 61, recVram: 80, minRam: 64, quant: "Q4", notes: "Needs multi-GPU" },
+    { name: "DeepSeek V4 Flash", minVram: 80, recVram: 160, minRam: 128, quant: "Q4", notes: "Expert / datacenter" },
+    { name: "FLUX.2 Klein 4B", minVram: 8, recVram: 13, minRam: 16, quant: "N/A", notes: "Fast image gen (2026)" },
+    { name: "FLUX.1 Dev", minVram: 8, recVram: 17, minRam: 16, quant: "N/A", notes: "Quality image gen" },
+    { name: "SDXL", minVram: 6, recVram: 12, minRam: 16, quant: "N/A", notes: "Mainstream image gen" },
+    { name: "Whisper Large V3 Turbo", minVram: 4, recVram: 6, minRam: 16, quant: "N/A", notes: "Speech to text" }
+  ];
+
+  function updateGpuInfo() {
+    // no-op for now
+  }
+
+  function checkModels() {
+    var gpuSelect = document.getElementById('gpuSelect');
+    var vram = parseInt(gpuSelect.options[gpuSelect.selectedIndex].value);
+    var gpuName = gpuSelect.options[gpuSelect.selectedIndex].text;
+    var ram = parseInt(document.getElementById('ramSelect').value);
+    var ramName = ram + ' GB';
+
+    document.getElementById('resultGpu').textContent = gpuName;
+    document.getElementById('resultRam').textContent = ramName;
+
+    var tbody = document.getElementById('resultBody');
+    tbody.innerHTML = '';
+
+    for (var i = 0; i < models.length; i++) {
+      var m = models[i];
+      var status, statusClass, statusIcon;
+
+      var vramMeetsMin = (vram === 0) || (vram >= m.minVram);
+      var vramMeetsRec = (vram === 0) || (vram >= m.recVram);
+      var ramMeetsMin = ram >= m.minRam;
+
+      if (vramMeetsMin && vramMeetsRec && ramMeetsMin) {
+        status = "Can Run";
+        statusClass = "color:#10B981;font-weight:600;";
+        statusIcon = "✅";
+      } else if (vramMeetsMin && ramMeetsMin) {
+        status = "May Run (Slow)";
+        statusClass = "color:#F59E0B;font-weight:600;";
+        statusIcon = "⚠️";
+      } else {
+        status = "Cannot Run";
+        statusClass = "color:#EF4444;font-weight:600;";
+        statusIcon = "❌";
+      }
+
+      var tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid var(--border)';
+      tr.innerHTML = '<td style="padding:10px 12px;">' + m.name + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;">' + m.quant + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;">' + m.minVram + 'GB</td>' +
+        '<td style="padding:10px 12px;text-align:center;">' + m.recVram + 'GB</td>' +
+        '<td style="padding:10px 12px;text-align:center;">' + m.minRam + 'GB</td>' +
+        '<td style="padding:10px 12px;">' + m.notes + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;' + statusClass + '">' + statusIcon + ' ' + status + '</td>';
+      tbody.appendChild(tr);
+    }
+
+    document.getElementById('result').style.display = 'block';
+  }
+</script>
+</BaseLayout>

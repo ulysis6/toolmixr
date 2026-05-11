@@ -163,13 +163,27 @@ const tools = [
     slug: 'discount-calculator',
     tag: 'Shopping',
   },
+  {
+    title: 'AI Model Checker',
+    description: 'Check if your GPU and RAM can run local AI models like Qwen 3.6, Gemma 4, Llama 4, and DeepSeek V4.',
+    icon: '🧠',
+    slug: 'ai-model-checker',
+    tag: 'AI',
+  },
+  {
+    title: 'Game Requirements Checker',
+    description: 'Check if your PC can run AAA games like Cyberpunk 2077, Elden Ring, and Black Myth: Wukong.',
+    icon: '🎮',
+    slug: 'game-requirements-checker',
+    tag: 'AI',
+  },
 ];
 ---
 
-<BaseLayout title="Home" description="Free online tools for SEO, finance, development, and more. Mortgage calculator, ROI calculator, JSON formatter, password generator, and 20+ other tools. No signup required.">
+<BaseLayout title="Home" description="Free online tools for SEO, finance, development, and more. Mortgage calculator, ROI calculator, JSON formatter, password generator, and 22+ other tools. No signup required.">
   <section class="hero">
     <h1>Free Online Web Tools</h1>
-    <p>23 free tools for finance, SEO, development, and everyday calculations. No signup, no limits, no hassle.</p>
+    <p>25 free tools for finance, SEO, development, and everyday calculations. No signup, no limits, no hassle.</p>
   </section>
   
   <div class="search-bar">
@@ -188,6 +202,7 @@ const tools = [
     <button class="filter-btn" onclick="filterTools('Shopping')">🛒 Shopping</button>
     <button class="filter-btn" onclick="filterTools('Security')">🔒 Security</button>
     <button class="filter-btn" onclick="filterTools('Math')">🔢 Math</button>
+    <button class="filter-btn" onclick="filterTools('AI')">🤖 AI</button>
   </div>
   
   <div class="tools-grid">
