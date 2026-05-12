@@ -1,0 +1,599 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Image Resizer - Resize Images Free Online";
+const pageUrl = "https://toolmixr.com/image-resizer";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online image resizer. Resize images by pixels, percentage, or social media presets. 100% browser-based — your images never leave your device.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Will resizing reduce image quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Downscaling (making smaller) generally preserves quality well — the browser uses interpolation to smooth pixels. Upscaling (making larger) will make the image appear blurry or pixelated since you can't create detail that wasn't in the original."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between resize and crop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Resizing scales the entire image proportionally (or to specified dimensions), keeping all content. Cropping removes parts of the image to change the aspect ratio or focus on a specific area. This tool resizes; it doesn't crop."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are social media cover image sizes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common social media cover sizes: Twitter/X header 1500×500, Facebook cover 1200×630, LinkedIn banner 1200×627, YouTube channel art 2560×1440. Using the exact recommended size avoids unwanted cropping by the platform."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I resize multiple images at once?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This tool processes one image at a time to give you precise control over dimensions and preview. For batch resizing of multiple images with the same settings, you can process them one after another with your preferred settings."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Free online image resizer. Resize images by pixels, percentage, or social media presets. 100% browser-based — your images never leave your device."
+  structuredData={structuredData}
+>
+  <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Image Resizer</span>
+  </nav>
+  <div class="tool-header">
+    <h1>📐 Image Resizer</h1>
+    <div class="share-bar">
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
+  </div>
+  <p class="subtitle">Resize images by pixels, percentage, or social media presets — your files never leave your browser</p>
+
+  <div class="privacy-badge">🔒 Your images never leave your browser. 100% Client-Side.</div>
+
+  <div class="tool-box">
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-zone-content">
+        <span class="drop-icon">📁</span>
+        <p>Drag &amp; drop an image here</p>
+        <p class="drop-hint">or click to browse — JPG, PNG, WebP</p>
+      </div>
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display:none;" />
+    </div>
+
+    <div id="resizeControls" style="display:none;">
+      <div class="original-info" id="originalInfo"></div>
+
+      <div class="resize-section">
+        <h3 class="section-label">Resize by Dimensions</h3>
+        <div style="display:flex;gap:12px;align-items:end;flex-wrap:wrap;">
+          <div class="form-group" style="flex:1;min-width:120px;margin-bottom:0;">
+            <label for="targetWidth">Width (px)</label>
+            <input type="number" id="targetWidth" min="1" max="10000" oninput="onDimensionChange('width')" />
+          </div>
+          <button class="lock-btn" id="lockBtn" onclick="toggleLock()" title="Lock aspect ratio">🔗</button>
+          <div class="form-group" style="flex:1;min-width:120px;margin-bottom:0;">
+            <label for="targetHeight">Height (px)</label>
+            <input type="number" id="targetHeight" min="1" max="10000" oninput="onDimensionChange('height')" />
+          </div>
+          <div style="margin-bottom:0;">
+            <button class="btn btn-primary" onclick="applyResize()">Apply</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="resize-section">
+        <h3 class="section-label">Percentage Scale</h3>
+        <div class="percent-btns">
+          <button class="btn btn-secondary" onclick="applyPercent(25)">25%</button>
+          <button class="btn btn-secondary" onclick="applyPercent(50)">50%</button>
+          <button class="btn btn-secondary" onclick="applyPercent(75)">75%</button>
+          <button class="btn btn-secondary" onclick="applyPercent(150)">150%</button>
+          <button class="btn btn-secondary" onclick="applyPercent(200)">200%</button>
+        </div>
+      </div>
+
+      <div class="resize-section">
+        <h3 class="section-label">Social Media Presets</h3>
+        <div class="preset-btns">
+          <button class="btn btn-secondary preset-btn" onclick="applyPreset(1500, 500)">
+            <span class="preset-icon">𝕏</span> Twitter Header<br/><span class="preset-size">1500 × 500</span>
+          </button>
+          <button class="btn btn-secondary preset-btn" onclick="applyPreset(1200, 630)">
+            <span class="preset-icon">f</span> Facebook Cover<br/><span class="preset-size">1200 × 630</span>
+          </button>
+          <button class="btn btn-secondary preset-btn" onclick="applyPreset(1200, 627)">
+            <span class="preset-icon">in</span> LinkedIn Banner<br/><span class="preset-size">1200 × 627</span>
+          </button>
+          <button class="btn btn-secondary preset-btn" onclick="applyPreset(2560, 1440)">
+            <span class="preset-icon">▶</span> YouTube Channel<br/><span class="preset-size">2560 × 1440</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="previewArea" style="display:none;margin-top:24px;">
+        <h3 class="section-label">Preview</h3>
+        <div class="preview-compare">
+          <div class="preview-item">
+            <div class="preview-label">Original</div>
+            <div class="preview-box" id="originalPreview"></div>
+            <div class="preview-dims" id="originalDims"></div>
+          </div>
+          <div class="preview-arrow">→</div>
+          <div class="preview-item">
+            <div class="preview-label">Resized</div>
+            <div class="preview-box" id="resizedPreview"></div>
+            <div class="preview-dims" id="resizedDims"></div>
+          </div>
+        </div>
+        <div style="margin-top:16px;text-align:center;">
+          <button class="btn btn-primary" onclick="downloadResized()">💾 Download Resized Image</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="guide">
+    <h2>How Image Resizing Works</h2>
+    <p>Resizing changes the number of pixels in an image. When you make an image smaller (downscaling), multiple pixels are combined into fewer pixels. When you make it larger (upscaling), the computer must invent new pixels based on the existing ones.</p>
+    
+    <h3>Interpolation Methods</h3>
+    <p>When resizing, the browser uses interpolation to determine the color of new pixels. The Canvas API uses bilinear interpolation by default:</p>
+    <div class="formula-box">New Pixel = weighted average of surrounding pixels based on distance</div>
+    <ul>
+      <li><strong>Nearest-neighbor</strong>: Fastest, but creates jagged edges (pixelation). Good for pixel art.</li>
+      <li><strong>Bilinear</strong>: Smooth, good for photos. Default for most browsers.</li>
+      <li><strong>Bicubic</strong>: Even smoother, better for upscaling. Used by Photoshop's "Bicubic" option.</li>
+    </ul>
+    <p>The Canvas API's <code>drawImage()</code> method uses the browser's built-in interpolation, which is typically bilinear — excellent for most use cases.</p>
+
+    <h3>Downscaling vs Upscaling</h3>
+    <ul>
+      <li><strong>Downscaling</strong> (e.g., 4000px → 1000px): Generally produces excellent results. Detail is lost, but the image appears sharp and clean. A 75% size reduction typically looks nearly identical to the original.</li>
+      <li><strong>Upscaling</strong> (e.g., 500px → 2000px): Always produces some blur or pixelation since you're asking the computer to create detail that doesn't exist. For best results with upscaling, consider AI upscaling tools.</li>
+    </ul>
+
+    <h3>Social Media Image Requirements</h3>
+    <p>Each social media platform has specific image size recommendations. Using incorrect sizes leads to unwanted cropping, blurry covers, or slow loading:</p>
+    <ul>
+      <li><strong>Twitter/X Header</strong>: 1500 × 500 px — The narrow aspect ratio (3:1) means most photos need significant cropping.</li>
+      <li><strong>Facebook Cover</strong>: 1200 × 630 px — Displays at 820 × 312 on desktop but 640 × 360 on mobile. Keep important content centered.</li>
+      <li><strong>LinkedIn Banner</strong>: 1200 × 627 px — Similar to Facebook. Text-safe area is the center 800px.</li>
+      <li><strong>YouTube Channel Art</strong>: 2560 × 1440 px — This is the full TV size; the "safe area" for all devices is just 1546 × 423 px in the center.</li>
+    </ul>
+
+    <h3>Step-by-Step Guide</h3>
+    <ol>
+      <li><strong>Upload an image</strong> — Drag and drop or click to select a JPG, PNG, or WebP file.</li>
+      <li><strong>Choose a resize method</strong>: Enter exact dimensions, pick a percentage, or select a social media preset.</li>
+      <li><strong>Lock aspect ratio</strong> (optional) — Click the 🔗 button to maintain proportions when changing width or height.</li>
+      <li><strong>Preview the result</strong> — See original and resized versions side by side.</li>
+      <li><strong>Download</strong> — Save the resized image to your device.</li>
+    </ol>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Will resizing reduce image quality?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Downscaling (making smaller) generally preserves quality well — the browser uses interpolation to smooth pixels. Upscaling (making larger) will make the image appear blurry or pixelated since you can't create detail that wasn't in the original.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What's the difference between resize and crop?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Resizing scales the entire image proportionally (or to specified dimensions), keeping all content. Cropping removes parts of the image to change the aspect ratio or focus on a specific area. This tool resizes; it doesn't crop.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What are social media cover image sizes?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Common social media cover sizes: Twitter/X header 1500×500, Facebook cover 1200×630, LinkedIn banner 1200×627, YouTube channel art 2560×1440. Using the exact recommended size avoids unwanted cropping by the platform.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Can I resize multiple images at once?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>This tool processes one image at a time to give you precise control over dimensions and preview. For batch resizing of multiple images with the same settings, you can process them one after another with your preferred settings.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-tools">
+    <h2>Related Tools</h2>
+    <div class="related-tools-grid">
+      <a href="/image-compressor" class="related-tool-card">
+        <span class="related-icon">🗜️</span>
+        <span class="related-name">Image Compressor</span>
+      </a>
+      <a href="/image-format-converter" class="related-tool-card">
+        <span class="related-icon">🔄</span>
+        <span class="related-name">Image Format Converter</span>
+      </a>
+      <a href="/og-image-generator" class="related-tool-card">
+        <span class="related-icon">🖼️</span>
+        <span class="related-name">OG Image Generator</span>
+      </a>
+      <a href="/color-palette-generator" class="related-tool-card">
+        <span class="related-icon">🎨</span>
+        <span class="related-name">Color Palette Generator</span>
+      </a>
+    </div>
+  </section>
+  </section>
+
+  <style is:global>
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ECFDF5;
+      color: #065F46;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      border: 1px solid #A7F3D0;
+    }
+    [data-theme="dark"] .privacy-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    .drop-zone {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 24px;
+      background: var(--bg);
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--primary);
+      background: rgba(79, 70, 229, 0.05);
+    }
+    [data-theme="dark"] .drop-zone:hover, [data-theme="dark"] .drop-zone.drag-over {
+      background: rgba(129, 140, 248, 0.08);
+    }
+    .drop-icon { font-size: 48px; display: block; margin-bottom: 12px; }
+    .drop-zone p { color: var(--text); font-weight: 600; margin-bottom: 4px; }
+    .drop-hint { color: var(--text-secondary); font-size: 13px; font-weight: 400; }
+    .original-info {
+      background: var(--bg);
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .original-info strong { color: var(--text); }
+    .resize-section {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .resize-section:last-of-type { border-bottom: none; margin-bottom: 0; }
+    .section-label {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .lock-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lock-btn.locked { background: var(--primary); color: white; border-color: var(--primary); }
+    .lock-btn:hover { border-color: var(--primary); }
+    .percent-btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .preset-btns {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .preset-btn {
+      text-align: left;
+      padding: 12px 16px;
+      line-height: 1.4;
+    }
+    .preset-icon {
+      font-weight: 800;
+      font-size: 16px;
+      margin-right: 4px;
+    }
+    .preset-size {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .preview-compare {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .preview-item {
+      text-align: center;
+    }
+    .preview-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .preview-box {
+      width: 240px;
+      height: 180px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+    }
+    .preview-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .preview-dims {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+    .preview-arrow {
+      font-size: 24px;
+      color: var(--text-secondary);
+      font-weight: 700;
+    }
+    .formula-box {
+      background: #1E1E2E;
+      color: #CDD6F4;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      text-align: center;
+      margin: 16px 0;
+    }
+    [data-theme="dark"] .formula-box { background: #020617; }
+  </style>
+
+  <script is:inline>
+    var originalImage = null;
+    var originalWidth = 0;
+    var originalHeight = 0;
+    var aspectLocked = true;
+    var resizedBlob = null;
+    var resizedUrl = null;
+
+    function setupDropZone() {
+      var dropZone = document.getElementById('dropZone');
+      var fileInput = document.getElementById('fileInput');
+
+      dropZone.addEventListener('click', function() {
+        fileInput.click();
+      });
+
+      dropZone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+      });
+
+      dropZone.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+      });
+
+      dropZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) {
+          loadImage(e.dataTransfer.files[0]);
+        }
+      });
+
+      fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+          loadImage(this.files[0]);
+        }
+        this.value = '';
+      });
+    }
+
+    function loadImage(file) {
+      if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/webp') return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var img = new Image();
+        img.onload = function() {
+          originalImage = img;
+          originalWidth = img.naturalWidth;
+          originalHeight = img.naturalHeight;
+          document.getElementById('originalInfo').innerHTML =
+            '<strong>' + file.name + '</strong> — ' +
+            originalWidth + ' × ' + originalHeight + ' px — ' +
+            formatSize(file.size);
+          document.getElementById('targetWidth').value = originalWidth;
+          document.getElementById('targetHeight').value = originalHeight;
+          document.getElementById('resizeControls').style.display = 'block';
+          document.getElementById('previewArea').style.display = 'none';
+
+          var previewBox = document.getElementById('originalPreview');
+          previewBox.innerHTML = '<img src="' + e.target.result + '" alt="Original" />';
+          document.getElementById('originalDims').textContent = originalWidth + ' × ' + originalHeight + ' px';
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(2) + ' MB';
+    }
+
+    function toggleLock() {
+      aspectLocked = !aspectLocked;
+      var btn = document.getElementById('lockBtn');
+      btn.textContent = aspectLocked ? '🔗' : '🔓';
+      if (aspectLocked) {
+        btn.classList.add('locked');
+      } else {
+        btn.classList.remove('locked');
+      }
+    }
+
+    function onDimensionChange(changed) {
+      if (!aspectLocked || !originalWidth || !originalHeight) return;
+      var ratio = originalWidth / originalHeight;
+      if (changed === 'width') {
+        var w = parseInt(document.getElementById('targetWidth').value) || 0;
+        document.getElementById('targetHeight').value = Math.round(w / ratio);
+      } else {
+        var h = parseInt(document.getElementById('targetHeight').value) || 0;
+        document.getElementById('targetWidth').value = Math.round(h * ratio);
+      }
+    }
+
+    function applyPercent(percent) {
+      if (!originalImage) return;
+      var w = Math.round(originalWidth * percent / 100);
+      var h = Math.round(originalHeight * percent / 100);
+      document.getElementById('targetWidth').value = w;
+      document.getElementById('targetHeight').value = h;
+      applyResize();
+    }
+
+    function applyPreset(w, h) {
+      document.getElementById('targetWidth').value = w;
+      document.getElementById('targetHeight').value = h;
+      applyResize();
+    }
+
+    function applyResize() {
+      if (!originalImage) return;
+      var w = parseInt(document.getElementById('targetWidth').value);
+      var h = parseInt(document.getElementById('targetHeight').value);
+      if (!w || !h || w < 1 || h < 1) {
+        alert('Please enter valid dimensions.');
+        return;
+      }
+
+      var canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(originalImage, 0, 0, w, h);
+
+      var mimeType = 'image/png';
+      var quality = 0.92;
+      canvas.toBlob(function(blob) {
+        resizedBlob = blob;
+        if (resizedUrl) URL.revokeObjectURL(resizedUrl);
+        resizedUrl = URL.createObjectURL(blob);
+
+        var previewBox = document.getElementById('resizedPreview');
+        previewBox.innerHTML = '<img src="' + resizedUrl + '" alt="Resized" />';
+        document.getElementById('resizedDims').textContent = w + ' × ' + h + ' px — ' + formatSize(blob.size);
+        document.getElementById('previewArea').style.display = 'block';
+      }, mimeType, quality);
+    }
+
+    function downloadResized() {
+      if (!resizedBlob) return;
+      var a = document.createElement('a');
+      a.href = resizedUrl;
+      a.download = 'resized-image.png';
+      a.click();
+    }
+
+    document.getElementById('lockBtn').classList.add('locked');
+    setupDropZone();
+  </script>
+</BaseLayout>

@@ -1,0 +1,64 @@
+# ToolMixr
+
+> 28 free online tools that run entirely in your browser. No data sent to servers, ever. 100% client-side, privacy-first.
+
+## AI
+
+- AI Model Checker — /ai-model-checker — Check if your GPU and RAM can run local AI models like Qwen 3.6, Gemma 4, Llama 4, and DeepSeek V4.
+- Game Requirements Checker — /game-requirements-checker — Check if your PC can run AAA games like Cyberpunk 2077, Elden Ring, and Black Myth: Wukong.
+
+## Design
+
+- OG Image Generator — /og-image-generator — Create stunning Open Graph preview images for social media sharing.
+- Color Palette Generator — /color-palette-generator — Generate beautiful color palettes for your web projects. Export as CSS, Tailwind, or hex codes.
+- Image Compressor — /image-compressor — Batch compress JPG, PNG, and WebP images in your browser. Adjustable quality with size comparison and ZIP download.
+- Image Format Converter — /image-format-converter — Convert between PNG, JPG, and WebP formats instantly. Handles transparency and batch conversion.
+- Image Resizer — /image-resizer — Resize images by pixels, percentage, or social media presets. Lock aspect ratio for perfect proportions.
+
+## Developer
+
+- JSON Formatter — /json-formatter — Format, validate, and beautify JSON data instantly. Spot errors and make your JSON readable.
+- Base64 Encoder/Decoder — /base64-encoder-decoder — Encode text to Base64 or decode Base64 strings. Essential tool for developers working with APIs and data.
+- URL Encoder/Decoder — /url-encoder-decoder — Encode or decode URLs and query parameters. Handle special characters in URLs correctly.
+
+## SEO
+
+- Meta Tag Generator — /meta-tag-generator — Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards.
+- Robots.txt Generator — /robots-txt-generator — Easily generate a robots.txt file for your website. Control how search engines crawl and index your pages.
+- Sitemap Generator — /sitemap-generator — Create XML sitemaps for your website to help search engines discover and index all your pages.
+
+## Security
+
+- Password Generator — /password-generator — Generate strong, secure passwords with customizable length and character types.
+
+## Finance
+
+- Mortgage Calculator — /mortgage-calculator — Calculate monthly mortgage payments, total interest, and total repayment for your home loan.
+- ROI Calculator — /roi-calculator — Calculate return on investment, net profit, and annualized ROI for any investment.
+- Compound Interest Calculator — /compound-interest-calculator — See how compound interest grows your money over time with adjustable frequency and contributions.
+- Loan Calculator — /loan-calculator — Calculate loan payments, total interest, and view complete amortization schedules.
+- AdSense Revenue Calculator — /adsense-revenue-calculator — Estimate your Google AdSense earnings based on pageviews, CTR, and CPC metrics.
+- Crypto Profit Calculator — /crypto-profit-calculator — Calculate cryptocurrency trading profits, ROI, and break-even prices instantly.
+- Tip Calculator — /tip-calculator — Calculate tip amounts, total bill, and split by person. Never struggle with restaurant math.
+
+## Writing
+
+- Word Counter — /word-counter — Count words, characters, sentences, and paragraphs instantly. Perfect for writers, students, and content creators.
+- Lorem Ipsum Generator — /lorem-ipsum-generator — Generate placeholder text for your designs and mockups. Choose paragraphs, words, or sentences.
+
+## Utility
+
+- QR Code Generator — /qr-code-generator — Create QR codes for URLs, text, WiFi, email, and more. Download as PNG or SVG.
+- Age Calculator — /age-calculator — Find your exact age in years, months, and days. See next birthday countdown and fun facts.
+
+## Math
+
+- Percentage Calculator — /percentage-calculator — Calculate percentages three ways: find X% of Y, what percent is X of Y, and % change.
+
+## Health
+
+- BMI Calculator — /bmi-calculator — Calculate your Body Mass Index in metric or imperial units. Find your healthy weight range.
+
+## Shopping
+
+- Discount Calculator — /discount-calculator — Calculate sale prices, savings, and final price including tax. See how much you really save.

@@ -1,0 +1,775 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Image Format Converter - Convert PNG, JPG, WebP Free Online";
+const pageUrl = "https://toolmixr.com/image-format-converter";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online image format converter. Convert between PNG, JPG, and WebP formats instantly in your browser. No upload needed.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What happens to transparency when converting PNG to JPG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JPG does not support transparency. When converting a PNG with transparent areas to JPG, this tool automatically fills transparent regions with a white background. If you need to preserve transparency, use WebP or PNG as the output format."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which format gives the smallest file size?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WebP typically produces the smallest files — 25-35% smaller than JPG at the same quality, and much smaller than PNG for photos. PNG is best for graphics with sharp edges, text, or few colors where lossless compression excels."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will converting JPG to PNG make my image higher quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Converting JPG to PNG preserves the existing quality but does not improve it. The JPG artifacts remain. However, PNG prevents further quality loss if you edit and save the image again, since PNG is lossless."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a file size or number limit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There's no server-side limit since everything runs in your browser. However, very large images may be limited by your device's available memory. For best performance, keep individual images under 20MB."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Free online image format converter. Convert between PNG, JPG, and WebP formats instantly in your browser. No upload needed."
+  structuredData={structuredData}
+>
+  <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Image Format Converter</span>
+  </nav>
+  <div class="tool-header">
+    <h1>🔄 Image Format Converter</h1>
+    <div class="share-bar">
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
+  </div>
+  <p class="subtitle">Convert between PNG, JPG, and WebP — your files never leave your browser</p>
+
+  <div class="privacy-badge">🔒 Your images never leave your browser. 100% Client-Side.</div>
+
+  <div class="tool-box">
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-zone-content">
+        <span class="drop-icon">📁</span>
+        <p>Drag &amp; drop images here</p>
+        <p class="drop-hint">or click to browse — JPG, PNG, WebP</p>
+      </div>
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple style="display:none;" />
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
+      <div class="form-group" style="flex:1;min-width:180px;margin-bottom:0;">
+        <label for="targetFormat">Target Format</label>
+        <select id="targetFormat" onchange="updateJpgQualityVisibility()">
+          <option value="image/jpeg">JPG</option>
+          <option value="image/png">PNG</option>
+          <option value="image/webp">WebP</option>
+        </select>
+      </div>
+      <div class="form-group" id="jpgQualityGroup" style="flex:2;min-width:240px;margin-bottom:0;">
+        <label for="jpgQuality">Quality: <span id="jpgQualityVal">85</span>%</label>
+        <input type="range" id="jpgQuality" min="10" max="100" value="85" oninput="document.getElementById('jpgQualityVal').textContent=this.value" style="width:100%;" />
+      </div>
+      <div style="margin-bottom:0;">
+        <button class="btn btn-primary" onclick="convertAll()">🔄 Convert All</button>
+      </div>
+    </div>
+
+    <div id="fileList" style="margin-top:24px;"></div>
+
+    <div id="resultArea" style="display:none;">
+      <div class="summary-bar" id="summaryBar"></div>
+      <div id="convertedList"></div>
+      <div class="batch-actions">
+        <button class="btn btn-primary" onclick="downloadAll()">💾 Download All</button>
+        <button class="btn btn-secondary" onclick="downloadAsZip()">📦 Download as ZIP</button>
+        <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear All</button>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="guide">
+    <h2>Understanding Image Formats</h2>
+    <p>Choosing the right image format affects file size, quality, and compatibility. Here's what you need to know about the three most common web image formats.</p>
+    
+    <h3>JPG (JPEG) — The Photo Standard</h3>
+    <p>JPG uses lossy compression based on Discrete Cosine Transform (DCT). It's designed for photographs and complex images with many colors and gradients. JPG does not support transparency.</p>
+    <ul>
+      <li><strong>Best for</strong>: Photographs, gradients, complex images</li>
+      <li><strong>Compression</strong>: Lossy — some data is discarded every save</li>
+      <li><strong>Transparency</strong>: Not supported</li>
+      <li><strong>Typical size</strong>: Small (lossy compression)</li>
+    </ul>
+
+    <h3>PNG — Lossless Quality</h3>
+    <p>PNG uses lossless DEFLATE compression. It preserves every pixel perfectly and supports alpha transparency. The trade-off is larger file sizes for photographic content.</p>
+    <ul>
+      <li><strong>Best for</strong>: Screenshots, logos, graphics with text, images with transparency</li>
+      <li><strong>Compression</strong>: Lossless — no quality loss</li>
+      <li><strong>Transparency</strong>: Full alpha channel support</li>
+      <li><strong>Typical size</strong>: Large for photos, small for simple graphics</li>
+    </ul>
+
+    <h3>WebP — The Modern Format</h3>
+    <p>WebP, developed by Google, supports both lossy and lossless compression, plus transparency. It typically produces 25-35% smaller files than JPG at equivalent quality, and smaller than PNG for the same content.</p>
+    <ul>
+      <li><strong>Best for</strong>: Web images where size matters</li>
+      <li><strong>Compression</strong>: Both lossy and lossless</li>
+      <li><strong>Transparency</strong>: Supported</li>
+      <li><strong>Typical size</strong>: Smallest of all three formats</li>
+    </ul>
+
+    <h3>How Canvas API Conversion Works</h3>
+    <p>This tool uses the browser's Canvas API to convert between formats. The process is:</p>
+    <div class="formula-box">Image File → Draw on Canvas → toBlob(mimeType, quality) → New Format</div>
+    <p>The <code>toBlob()</code> method encodes the canvas pixel data into the specified MIME type with the given quality parameter. When converting PNG → JPG, transparent pixels are composited onto a white background since JPG doesn't support alpha channels.</p>
+
+    <h3>Step-by-Step Guide</h3>
+    <ol>
+      <li><strong>Upload images</strong> — Drag and drop or click to select files in JPG, PNG, or WebP format.</li>
+      <li><strong>Choose target format</strong> — Select PNG, JPG, or WebP as the output format.</li>
+      <li><strong>Adjust quality</strong> — For JPG and WebP, adjust the quality slider (not applicable for PNG, which is always lossless).</li>
+      <li><strong>Click Convert All</strong> — All uploaded images are converted to the target format.</li>
+      <li><strong>Download</strong> — Download individual files, all files, or as a ZIP archive.</li>
+    </ol>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What happens to transparency when converting PNG to JPG?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>JPG does not support transparency. When converting a PNG with transparent areas to JPG, this tool automatically fills transparent regions with a white background. If you need to preserve transparency, use WebP or PNG as the output format.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Which format gives the smallest file size?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>WebP typically produces the smallest files — 25-35% smaller than JPG at the same quality, and much smaller than PNG for photos. PNG is best for graphics with sharp edges, text, or few colors where lossless compression excels.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Will converting JPG to PNG make my image higher quality?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>No. Converting JPG to PNG preserves the existing quality but does not improve it. The JPG artifacts remain. However, PNG prevents further quality loss if you edit and save the image again, since PNG is lossless.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Is there a file size or number limit?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>There's no server-side limit since everything runs in your browser. However, very large images may be limited by your device's available memory. For best performance, keep individual images under 20MB.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-tools">
+    <h2>Related Tools</h2>
+    <div class="related-tools-grid">
+      <a href="/image-compressor" class="related-tool-card">
+        <span class="related-icon">🗜️</span>
+        <span class="related-name">Image Compressor</span>
+      </a>
+      <a href="/image-resizer" class="related-tool-card">
+        <span class="related-icon">📐</span>
+        <span class="related-name">Image Resizer</span>
+      </a>
+      <a href="/og-image-generator" class="related-tool-card">
+        <span class="related-icon">🖼️</span>
+        <span class="related-name">OG Image Generator</span>
+      </a>
+      <a href="/color-palette-generator" class="related-tool-card">
+        <span class="related-icon">🎨</span>
+        <span class="related-name">Color Palette Generator</span>
+      </a>
+    </div>
+  </section>
+  </section>
+
+  <style is:global>
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ECFDF5;
+      color: #065F46;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      border: 1px solid #A7F3D0;
+    }
+    [data-theme="dark"] .privacy-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    .drop-zone {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 24px;
+      background: var(--bg);
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--primary);
+      background: rgba(79, 70, 229, 0.05);
+    }
+    [data-theme="dark"] .drop-zone:hover, [data-theme="dark"] .drop-zone.drag-over {
+      background: rgba(129, 140, 248, 0.08);
+    }
+    .drop-icon { font-size: 48px; display: block; margin-bottom: 12px; }
+    .drop-zone p { color: var(--text); font-weight: 600; margin-bottom: 4px; }
+    .drop-hint { color: var(--text-secondary); font-size: 13px; font-weight: 400; }
+    .summary-bar {
+      background: #EEF2FF;
+      color: #3730A3;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    [data-theme="dark"] .summary-bar {
+      background: rgba(129, 140, 248, 0.15);
+      color: #818CF8;
+    }
+    .image-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      background: var(--surface);
+    }
+    [data-theme="dark"] .image-item { background: var(--surface); border-color: var(--border); }
+    .image-item-preview {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .image-item-info { flex: 1; min-width: 0; }
+    .image-item-name {
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .image-item-detail {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .format-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .format-jpg { background: #FEF3C7; color: #92400E; }
+    .format-png { background: #DBEAFE; color: #1E40AF; }
+    .format-webp { background: #E0E7FF; color: #3730A3; }
+    [data-theme="dark"] .format-jpg { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+    [data-theme="dark"] .format-png { background: rgba(96, 165, 250, 0.15); color: #60A5FA; }
+    [data-theme="dark"] .format-webp { background: rgba(129, 140, 248, 0.15); color: #818CF8; }
+    .image-item-action { flex-shrink: 0; }
+    .batch-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .formula-box {
+      background: #1E1E2E;
+      color: #CDD6F4;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      text-align: center;
+      margin: 16px 0;
+    }
+    [data-theme="dark"] .formula-box { background: #020617; }
+    .file-pending {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .file-pending-name {
+      flex: 1;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .file-pending-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--text-secondary);
+      padding: 4px;
+    }
+    .file-pending-remove:hover { color: #EF4444; }
+    .arrow-icon { color: var(--text-secondary); }
+  </style>
+
+  <script is:inline>
+    var uploadedFiles = [];
+    var convertedFiles = [];
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(2) + ' MB';
+    }
+
+    function getFormatExt(mimeType) {
+      if (mimeType === 'image/png') return '.png';
+      if (mimeType === 'image/webp') return '.webp';
+      return '.jpg';
+    }
+
+    function getFormatClass(mimeType) {
+      if (mimeType === 'image/png') return 'format-png';
+      if (mimeType === 'image/webp') return 'format-webp';
+      return 'format-jpg';
+    }
+
+    function getFormatLabel(mimeType) {
+      if (mimeType === 'image/png') return 'PNG';
+      if (mimeType === 'image/webp') return 'WebP';
+      return 'JPG';
+    }
+
+    function updateJpgQualityVisibility() {
+      var format = document.getElementById('targetFormat').value;
+      var group = document.getElementById('jpgQualityGroup');
+      group.style.display = (format === 'image/png') ? 'none' : '';
+    }
+
+    function setupDropZone() {
+      var dropZone = document.getElementById('dropZone');
+      var fileInput = document.getElementById('fileInput');
+
+      dropZone.addEventListener('click', function() {
+        fileInput.click();
+      });
+
+      dropZone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+      });
+
+      dropZone.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+      });
+
+      dropZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        addFiles(e.dataTransfer.files);
+      });
+
+      fileInput.addEventListener('change', function() {
+        addFiles(this.files);
+        this.value = '';
+      });
+    }
+
+    function addFiles(files) {
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/webp') {
+          uploadedFiles.push(file);
+        }
+      }
+      renderFileList();
+    }
+
+    function renderFileList() {
+      var list = document.getElementById('fileList');
+      if (uploadedFiles.length === 0) {
+        list.innerHTML = '';
+        return;
+      }
+      var html = '';
+      for (var i = 0; i < uploadedFiles.length; i++) {
+        var f = uploadedFiles[i];
+        var srcFormat = getFormatLabel(f.type);
+        var srcClass = getFormatClass(f.type);
+        html += '<div class="file-pending">' +
+          '<span class="format-badge ' + srcClass + '">' + srcFormat + '</span>' +
+          '<span class="file-pending-name">' + f.name + '</span>' +
+          '<span style="font-size:13px;color:var(--text-secondary);">' + formatSize(f.size) + '</span>' +
+          '<button class="file-pending-remove" onclick="removeFile(' + i + ')" title="Remove">✕</button>' +
+        '</div>';
+      }
+      list.innerHTML = html;
+    }
+
+    function removeFile(index) {
+      uploadedFiles.splice(index, 1);
+      renderFileList();
+    }
+
+    function convertAll() {
+      if (uploadedFiles.length === 0) {
+        alert('Please upload at least one image first.');
+        return;
+      }
+      convertedFiles = [];
+      var targetFormat = document.getElementById('targetFormat').value;
+      var quality = parseInt(document.getElementById('jpgQuality').value) / 100;
+      var pending = uploadedFiles.length;
+
+      for (var i = 0; i < uploadedFiles.length; i++) {
+        (function(index) {
+          var file = uploadedFiles[index];
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            var img = new Image();
+            img.onload = function() {
+              var canvas = document.createElement('canvas');
+              canvas.width = img.naturalWidth;
+              canvas.height = img.naturalHeight;
+              var ctx = canvas.getContext('2d');
+
+              if (targetFormat === 'image/jpeg') {
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+              }
+
+              ctx.drawImage(img, 0, 0);
+
+              var outputQuality = targetFormat === 'image/png' ? undefined : quality;
+              canvas.toBlob(function(blob) {
+                var newName = file.name.replace(/\.[^.]+$/, '') + getFormatExt(targetFormat);
+                convertedFiles.push({
+                  name: newName,
+                  originalName: file.name,
+                  originalSize: file.size,
+                  convertedSize: blob ? blob.size : 0,
+                  originalType: file.type,
+                  targetType: targetFormat,
+                  blob: blob,
+                  previewUrl: e.target.result
+                });
+                pending--;
+                if (pending === 0) renderResults();
+              }, targetFormat, outputQuality);
+            };
+            img.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        })(i);
+      }
+    }
+
+    function renderResults() {
+      var area = document.getElementById('resultArea');
+      area.style.display = 'block';
+
+      var totalOriginal = 0;
+      var totalConverted = 0;
+      for (var i = 0; i < convertedFiles.length; i++) {
+        totalOriginal += convertedFiles[i].originalSize;
+        totalConverted += convertedFiles[i].convertedSize;
+      }
+      var diff = totalConverted - totalOriginal;
+      var diffLabel = diff > 0 ? '+' + formatSize(diff) : '-' + formatSize(Math.abs(diff));
+      document.getElementById('summaryBar').textContent =
+        convertedFiles.length + ' image' + (convertedFiles.length !== 1 ? 's' : '') +
+        ' converted | Original: ' + formatSize(totalOriginal) +
+        ' → Converted: ' + formatSize(totalConverted) +
+        ' (' + diffLabel + ')';
+
+      var listHtml = '';
+      for (var i = 0; i < convertedFiles.length; i++) {
+        var entry = convertedFiles[i];
+        var srcClass = getFormatClass(entry.originalType);
+        var dstClass = getFormatClass(entry.targetType);
+        listHtml += '<div class="image-item">' +
+          '<img class="image-item-preview" src="' + entry.previewUrl + '" alt="' + entry.name + '" />' +
+          '<div class="image-item-info">' +
+            '<div class="image-item-name">' + entry.name + '</div>' +
+            '<div class="image-item-detail">' +
+              '<span class="format-badge ' + srcClass + '">' + getFormatLabel(entry.originalType) + '</span>' +
+              ' <span class="arrow-icon">→</span> ' +
+              '<span class="format-badge ' + dstClass + '">' + getFormatLabel(entry.targetType) + '</span>' +
+              ' &nbsp; ' + formatSize(entry.originalSize) + ' → ' + formatSize(entry.convertedSize) +
+            '</div>' +
+          '</div>' +
+          '<div class="image-item-action">' +
+            '<button class="btn btn-secondary" onclick="downloadOne(' + i + ')" style="font-size:13px;padding:6px 14px;">💾 Save</button>' +
+          '</div>' +
+        '</div>';
+      }
+      document.getElementById('convertedList').innerHTML = listHtml;
+    }
+
+    function downloadOne(index) {
+      var entry = convertedFiles[index];
+      if (!entry.blob) return;
+      var url = URL.createObjectURL(entry.blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = entry.name;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadAll() {
+      for (var i = 0; i < convertedFiles.length; i++) {
+        (function(index) {
+          setTimeout(function() { downloadOne(index); }, index * 300);
+        })(i);
+      }
+    }
+
+    function downloadAsZip() {
+      if (convertedFiles.length === 0) return;
+      var pairs = [];
+      for (var i = 0; i < convertedFiles.length; i++) {
+        pairs.push({ name: convertedFiles[i].name, blob: convertedFiles[i].blob });
+      }
+      createZip(pairs);
+    }
+
+    function createZip(files) {
+      var LOCAL_FILE_HEADER = '\x50\x4b\x03\x04';
+      var CENTRAL_DIR_HEADER = '\x50\x4b\x01\x02';
+      var END_RECORD = '\x50\x4b\x05\x06';
+      var textEncoder = new TextEncoder();
+      var centralDir = [];
+      var offset = 0;
+      var fileEntries = [];
+
+      for (var i = 0; i < files.length; i++) {
+        var fileName = textEncoder.encode(files[i].name);
+        var blob = files[i].blob;
+        fileEntries.push({ name: fileName, blob: blob });
+      }
+
+      var processed = 0;
+      var localHeaders = [];
+
+      function processNext() {
+        if (processed >= fileEntries.length) {
+          buildZip();
+          return;
+        }
+        var entry = fileEntries[processed];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var data = new Uint8Array(e.target.result);
+          var crc = crc32(data);
+          var nameBytes = entry.name;
+          var localHeader = new Uint8Array(30 + nameBytes.length + data.length);
+
+          localHeader.set(textEncoder.encode(LOCAL_FILE_HEADER), 0);
+          var view = new DataView(localHeader.buffer);
+          view.setUint16(4, 20, true);
+          view.setUint16(8, 0, true);
+          view.setUint16(10, 0, true);
+          view.setUint16(12, 0, true);
+          view.setUint32(14, crc, true);
+          view.setUint32(18, data.length, true);
+          view.setUint32(22, data.length, true);
+          view.setUint16(26, nameBytes.length, true);
+          view.setUint16(28, 0, true);
+          localHeader.set(nameBytes, 30);
+          localHeader.set(data, 30 + nameBytes.length);
+
+          centralDir.push({
+            name: nameBytes,
+            crc: crc,
+            size: data.length,
+            offset: offset
+          });
+
+          localHeaders.push(localHeader);
+          offset += localHeader.length;
+          processed++;
+          processNext();
+        };
+        reader.readAsArrayBuffer(entry.blob);
+      }
+
+      function buildZip() {
+        var parts = [];
+        for (var i = 0; i < localHeaders.length; i++) {
+          parts.push(localHeaders[i]);
+        }
+        var centralOffset = offset;
+        var centralSize = 0;
+        for (var i = 0; i < centralDir.length; i++) {
+          var cd = centralDir[i];
+          var cdEntry = new Uint8Array(46 + cd.name.length);
+          var view = new DataView(cdEntry.buffer);
+          cdEntry.set(textEncoder.encode(CENTRAL_DIR_HEADER), 0);
+          view.setUint16(4, 20, true);
+          view.setUint16(6, 20, true);
+          view.setUint16(10, 0, true);
+          view.setUint16(12, 0, true);
+          view.setUint16(14, 0, true);
+          view.setUint32(16, cd.crc, true);
+          view.setUint32(20, cd.size, true);
+          view.setUint32(24, cd.size, true);
+          view.setUint16(28, cd.name.length, true);
+          view.setUint16(30, 0, true);
+          view.setUint16(32, 0, true);
+          view.setUint16(34, 0, true);
+          view.setUint16(36, 0, true);
+          view.setUint32(38, 0, true);
+          view.setUint32(42, cd.offset, true);
+          cdEntry.set(cd.name, 46);
+          parts.push(cdEntry);
+          centralSize += cdEntry.length;
+        }
+
+        var endRecord = new Uint8Array(22);
+        var ev = new DataView(endRecord.buffer);
+        endRecord.set(textEncoder.encode(END_RECORD), 0);
+        ev.setUint16(4, 0, true);
+        ev.setUint16(6, 0, true);
+        ev.setUint16(8, centralDir.length, true);
+        ev.setUint16(10, centralDir.length, true);
+        ev.setUint32(12, centralSize, true);
+        ev.setUint32(16, centralOffset, true);
+        ev.setUint16(20, 0, true);
+        parts.push(endRecord);
+
+        var totalLen = 0;
+        for (var i = 0; i < parts.length; i++) totalLen += parts[i].length;
+        var result = new Uint8Array(totalLen);
+        var pos = 0;
+        for (var i = 0; i < parts.length; i++) {
+          result.set(parts[i], pos);
+          pos += parts[i].length;
+        }
+
+        var zipBlob = new Blob([result], { type: 'application/zip' });
+        var url = URL.createObjectURL(zipBlob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'converted-images.zip';
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      processNext();
+    }
+
+    function crc32(data) {
+      var crc = 0xFFFFFFFF;
+      for (var i = 0; i < data.length; i++) {
+        crc = crc ^ data[i];
+        for (var j = 0; j < 8; j++) {
+          if (crc & 1) {
+            crc = (crc >>> 1) ^ 0xEDB88320;
+          } else {
+            crc = crc >>> 1;
+          }
+        }
+      }
+      return (crc ^ 0xFFFFFFFF) >>> 0;
+    }
+
+    function clearAll() {
+      uploadedFiles = [];
+      convertedFiles = [];
+      document.getElementById('fileList').innerHTML = '';
+      document.getElementById('resultArea').style.display = 'none';
+      document.getElementById('convertedList').innerHTML = '';
+      document.getElementById('summaryBar').textContent = '';
+    }
+
+    updateJpgQualityVisibility();
+    setupDropZone();
+  </script>
+</BaseLayout>

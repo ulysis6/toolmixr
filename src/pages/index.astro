@@ -3,6 +3,104 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const tools = [
   {
+    title: 'AI Model Checker',
+    description: 'Check if your GPU and RAM can run local AI models like Qwen 3.6, Gemma 4, Llama 4, and DeepSeek V4.',
+    icon: '🧠',
+    slug: 'ai-model-checker',
+    tag: 'AI',
+  },
+  {
+    title: 'Game Requirements Checker',
+    description: 'Check if your PC can run AAA games like Cyberpunk 2077, Elden Ring, and Black Myth: Wukong.',
+    icon: '🎮',
+    slug: 'game-requirements-checker',
+    tag: 'AI',
+  },
+  {
+    title: 'OG Image Generator',
+    description: 'Create stunning Open Graph preview images for social media sharing. Make your links stand out on Facebook, Twitter, and LinkedIn.',
+    icon: '🖼️',
+    slug: 'og-image-generator',
+    tag: 'Design',
+  },
+  {
+    title: 'Color Palette Generator',
+    description: 'Generate beautiful color palettes for your web projects. Export as CSS, Tailwind, or hex codes.',
+    icon: '🎨',
+    slug: 'color-palette-generator',
+    tag: 'Design',
+  },
+  {
+    title: 'Image Compressor',
+    description: 'Compress JPG, PNG, and WebP images in your browser. Reduce file sizes by up to 70% without visible quality loss.',
+    icon: '🗜️',
+    slug: 'image-compressor',
+    tag: 'Design',
+  },
+  {
+    title: 'Image Format Converter',
+    description: 'Convert images between PNG, JPG, and WebP formats instantly. Handles transparency and batch conversion.',
+    icon: '🔄',
+    slug: 'image-format-converter',
+    tag: 'Design',
+  },
+  {
+    title: 'Image Resizer',
+    description: 'Resize images to custom dimensions or social media presets. Maintain aspect ratio and quality.',
+    icon: '📐',
+    slug: 'image-resizer',
+    tag: 'Design',
+  },
+  {
+    title: 'JSON Formatter',
+    description: 'Format, validate, and beautify JSON data instantly. Spot errors and make your JSON readable.',
+    icon: '{}',
+    slug: 'json-formatter',
+    tag: 'Developer',
+  },
+  {
+    title: 'Base64 Encoder/Decoder',
+    description: 'Encode text to Base64 or decode Base64 strings. Essential tool for developers working with APIs and data.',
+    icon: '🔐',
+    slug: 'base64-encoder-decoder',
+    tag: 'Developer',
+  },
+  {
+    title: 'URL Encoder/Decoder',
+    description: 'Encode or decode URLs and query parameters. Handle special characters in URLs correctly.',
+    icon: '🔗',
+    slug: 'url-encoder-decoder',
+    tag: 'Developer',
+  },
+  {
+    title: 'Meta Tag Generator',
+    description: 'Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards. Boost your search rankings and social shares.',
+    icon: '🏷️',
+    slug: 'meta-tag-generator',
+    tag: 'SEO',
+  },
+  {
+    title: 'Robots.txt Generator',
+    description: 'Easily generate a robots.txt file for your website. Control how search engines crawl and index your pages.',
+    icon: '🤖',
+    slug: 'robots-txt-generator',
+    tag: 'SEO',
+  },
+  {
+    title: 'Sitemap Generator',
+    description: 'Create XML sitemaps for your website to help search engines discover and index all your pages.',
+    icon: '🗺️',
+    slug: 'sitemap-generator',
+    tag: 'SEO',
+  },
+  {
+    title: 'Password Generator',
+    description: 'Generate strong, secure passwords with customizable length and character types.',
+    icon: '🔑',
+    slug: 'password-generator',
+    tag: 'Security',
+  },
+  {
     title: 'Mortgage Calculator',
     description: 'Calculate monthly mortgage payments, total interest, and total repayment for your home loan.',
     icon: '🏠',
@@ -45,60 +143,11 @@ const tools = [
     tag: 'Finance',
   },
   {
-    title: 'Meta Tag Generator',
-    description: 'Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards. Boost your search rankings and social shares.',
-    icon: '🏷️',
-    slug: 'meta-tag-generator',
-    tag: 'SEO',
-  },
-  {
-    title: 'Robots.txt Generator',
-    description: 'Easily generate a robots.txt file for your website. Control how search engines crawl and index your pages.',
-    icon: '🤖',
-    slug: 'robots-txt-generator',
-    tag: 'SEO',
-  },
-  {
-    title: 'Sitemap Generator',
-    description: 'Create XML sitemaps for your website to help search engines discover and index all your pages.',
-    icon: '🗺️',
-    slug: 'sitemap-generator',
-    tag: 'SEO',
-  },
-  {
-    title: 'OG Image Generator',
-    description: 'Create stunning Open Graph preview images for social media sharing. Make your links stand out on Facebook, Twitter, and LinkedIn.',
-    icon: '🖼️',
-    slug: 'og-image-generator',
-    tag: 'Design',
-  },
-  {
-    title: 'JSON Formatter',
-    description: 'Format, validate, and beautify JSON data instantly. Spot errors and make your JSON readable.',
-    icon: '{}',
-    slug: 'json-formatter',
-    tag: 'Developer',
-  },
-  {
-    title: 'Base64 Encoder/Decoder',
-    description: 'Encode text to Base64 or decode Base64 strings. Essential tool for developers working with APIs and data.',
-    icon: '🔐',
-    slug: 'base64-encoder-decoder',
-    tag: 'Developer',
-  },
-  {
-    title: 'URL Encoder/Decoder',
-    description: 'Encode or decode URLs and query parameters. Handle special characters in URLs correctly.',
-    icon: '🔗',
-    slug: 'url-encoder-decoder',
-    tag: 'Developer',
-  },
-  {
-    title: 'Password Generator',
-    description: 'Generate strong, secure passwords with customizable length and character types.',
-    icon: '🔑',
-    slug: 'password-generator',
-    tag: 'Security',
+    title: 'Tip Calculator',
+    description: 'Calculate tip amounts, total bill, and split by person. Never struggle with restaurant math.',
+    icon: '🧾',
+    slug: 'tip-calculator',
+    tag: 'Finance',
   },
   {
     title: 'Word Counter',
@@ -115,17 +164,17 @@ const tools = [
     tag: 'Writing',
   },
   {
-    title: 'Color Palette Generator',
-    description: 'Generate beautiful color palettes for your web projects. Export as CSS, Tailwind, or hex codes.',
-    icon: '🎨',
-    slug: 'color-palette-generator',
-    tag: 'Design',
-  },
-  {
     title: 'QR Code Generator',
     description: 'Create QR codes for URLs, text, WiFi, email, and more. Download as PNG or SVG.',
     icon: '📱',
     slug: 'qr-code-generator',
+    tag: 'Utility',
+  },
+  {
+    title: 'Age Calculator',
+    description: 'Find your exact age in years, months, and days. See next birthday countdown and fun facts.',
+    icon: '🎂',
+    slug: 'age-calculator',
     tag: 'Utility',
   },
   {
@@ -136,25 +185,11 @@ const tools = [
     tag: 'Math',
   },
   {
-    title: 'Age Calculator',
-    description: 'Find your exact age in years, months, and days. See next birthday countdown and fun facts.',
-    icon: '🎂',
-    slug: 'age-calculator',
-    tag: 'Utility',
-  },
-  {
     title: 'BMI Calculator',
     description: 'Calculate your Body Mass Index in metric or imperial units. Find your healthy weight range.',
     icon: '⚖️',
     slug: 'bmi-calculator',
     tag: 'Health',
-  },
-  {
-    title: 'Tip Calculator',
-    description: 'Calculate tip amounts, total bill, and split by person. Never struggle with restaurant math.',
-    icon: '🧾',
-    slug: 'tip-calculator',
-    tag: 'Finance',
   },
   {
     title: 'Discount Calculator',
@@ -163,27 +198,14 @@ const tools = [
     slug: 'discount-calculator',
     tag: 'Shopping',
   },
-  {
-    title: 'AI Model Checker',
-    description: 'Check if your GPU and RAM can run local AI models like Qwen 3.6, Gemma 4, Llama 4, and DeepSeek V4.',
-    icon: '🧠',
-    slug: 'ai-model-checker',
-    tag: 'AI',
-  },
-  {
-    title: 'Game Requirements Checker',
-    description: 'Check if your PC can run AAA games like Cyberpunk 2077, Elden Ring, and Black Myth: Wukong.',
-    icon: '🎮',
-    slug: 'game-requirements-checker',
-    tag: 'AI',
-  },
 ];
 ---
 
-<BaseLayout title="Home" description="Free online tools for SEO, finance, development, and more. Mortgage calculator, ROI calculator, JSON formatter, password generator, and 22+ other tools. No signup required.">
+<BaseLayout title="Home" description="Free online tools for SEO, finance, development, and more. Mortgage calculator, ROI calculator, JSON formatter, password generator, and 25+ other tools. No signup required.">
+  
   <section class="hero">
     <h1>Free Online Web Tools</h1>
-    <p>25 free tools for finance, SEO, development, and everyday calculations. No signup, no limits, no hassle.</p>
+    <p>28 free tools for AI, design, SEO, finance, development, and everyday calculations. No signup, no limits, no hassle.</p>
   </section>
   
   <div class="search-bar">
@@ -192,17 +214,17 @@ const tools = [
   
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterTools('all')">All</button>
-    <button class="filter-btn" onclick="filterTools('Finance')">💰 Finance</button>
-    <button class="filter-btn" onclick="filterTools('SEO')">🔍 SEO</button>
-    <button class="filter-btn" onclick="filterTools('Developer')">💻 Developer</button>
-    <button class="filter-btn" onclick="filterTools('Utility')">🛠️ Utility</button>
-    <button class="filter-btn" onclick="filterTools('Writing')">✍️ Writing</button>
+    <button class="filter-btn" onclick="filterTools('AI')">🤖 AI</button>
     <button class="filter-btn" onclick="filterTools('Design')">🎨 Design</button>
+    <button class="filter-btn" onclick="filterTools('Developer')">💻 Developer</button>
+    <button class="filter-btn" onclick="filterTools('SEO')">🔍 SEO</button>
+    <button class="filter-btn" onclick="filterTools('Security')">🔒 Security</button>
+    <button class="filter-btn" onclick="filterTools('Finance')">💰 Finance</button>
+    <button class="filter-btn" onclick="filterTools('Writing')">✍️ Writing</button>
+    <button class="filter-btn" onclick="filterTools('Utility')">🛠️ Utility</button>
+    <button class="filter-btn" onclick="filterTools('Math')">🔢 Math</button>
     <button class="filter-btn" onclick="filterTools('Health')">💪 Health</button>
     <button class="filter-btn" onclick="filterTools('Shopping')">🛒 Shopping</button>
-    <button class="filter-btn" onclick="filterTools('Security')">🔒 Security</button>
-    <button class="filter-btn" onclick="filterTools('Math')">🔢 Math</button>
-    <button class="filter-btn" onclick="filterTools('AI')">🤖 AI</button>
   </div>
   
   <div class="tools-grid">
