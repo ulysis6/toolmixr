@@ -51,6 +51,15 @@ const websiteSchema = JSON.stringify({
     
     <title>{fullTitle}</title>
     
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NS67ETXVJ0"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NS67ETXVJ0');
+    </script>
+
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2784023346294382" crossorigin="anonymous"></script>
     
