@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "URL Encoding: Why Special Characters Break Your Links",
+  "description": "Special characters in URLs don't just look wrong — they break things. This guide explains how URL encoding works, when you need it, and the difference between encodeURI and encodeURIComponent.",
+  "url": "https://toolmixr.com/blog/url-encoding-guide",
+  "datePublished": "2026-05-13",
+  "dateModified": "2026-05-13",
+  "author": {
+    "@type": "Person",
+    "name": "Lu Shen"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolMixr",
+    "url": "https://toolmixr.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://toolmixr.com/blog/url-encoding-guide"
+  },
+  "image": "https://toolmixr.com/images/blog/url-encoding-guide-hero.webp"
+});
+---
+
+<BaseLayout title="URL Encoding: Why Special Characters Break Your Links" description="Special characters in URLs don't just look wrong — they break things. Learn how percent-encoding works, when you need it, and the difference between encodeURI and encodeURIComponent." structuredData={structuredData}>
+
+  <article class="blog-post">
+
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>URL Encoding</span>
+    </nav>
+
+    <h1>URL Encoding: Why Special Characters Break Your Links</h1>
+
+    <div class="blog-meta">
+      <span>📅 May 13, 2026</span>
+      <span>⏱️ 7 min read</span>
+    </div>
+
+    <img src="/images/blog/url-encoding-guide-hero.webp" alt="URL encoding illustration showing broken URL with special characters being fixed through percent-encoding" class="blog-hero-img" loading="lazy" />
+
+    <p>Ever shared a link that looked fine on your end but arrived broken for the other person? Maybe the URL had a space in it, or a question mark where it shouldn't be, or an ampersand that ate half your query string.</p>
+
+    <p>This isn't random. URLs have strict rules about which characters they can contain. When you put characters that violate those rules into a URL without encoding them, things break in predictable — but frustrating — ways.</p>
+
+    <p>Here's the short version: if a character isn't a letter, digit, hyphen, underscore, period, or tilde, it needs to be percent-encoded. This guide explains why, how, and when.</p>
+
+    <h2>What URL Encoding Actually Does</h2>
+
+    <p>URL encoding (also called percent-encoding) replaces unsafe characters with a <code>%</code> followed by two hexadecimal digits representing that character's ASCII value.</p>
+
+    <p>A few common examples:</p>
+
+    <ul>
+      <li><strong>Space</strong> → <code>%20</code></li>
+      <li><strong>Question mark</strong> → <code>%3F</code></li>
+      <li><strong>Ampersand</strong> → <code>%26</code></li>
+      <li><strong>Equals sign</strong> → <code>%3D</code></li>
+      <li><strong>Forward slash</strong> → <code>%2F</code></li>
+      <li><strong>Hash / pound</strong> → <code>%23</code></li>
+    </ul>
+
+    <p>So a URL like <code>https://example.com/search?q=hello world&lang=en</code> should actually be <code>https://example.com/search?q=hello%20world&lang=en</code> when properly encoded.</p>
+
+    <h2>Why This Matters: The Reserved Characters Problem</h2>
+
+    <p>URLs have a structure. Characters like <code>:</code>, <code>/</code>, <code>?</code>, <code>&</code>, <code>=</code>, and <code>#</code> aren't just characters — they're <em>delimiters</em> with specific jobs.</p>
+
+    <ul>
+      <li><code>:</code> separates the scheme (<code>https:</code>)</li>
+      <li><code>/</code> separates path segments</li>
+      <li><code>?</code> marks the start of the query string</li>
+      <li><code>&</code> separates query parameters</li>
+      <li><code>=</code> separates parameter names from values</li>
+      <li><code>#</code> marks the fragment identifier</li>
+    </ul>
+
+    <p>When these characters appear in your data — say, a product name like "Tom & Jerry" or a URL you're passing as a parameter — they confuse the parser. The server reads the <code>&</code> as a parameter separator, not as part of the value. The result: truncated data, missing parameters, or 404 errors.</p>
+
+    <p>This is why encoding exists. It tells the parser: "This character is data, not structure."</p>
+
+    <h2>encodeURI vs. encodeURIComponent: The Difference That Trips Everyone Up</h2>
+
+    <p>JavaScript provides two encoding functions, and picking the wrong one is the source of most URL encoding bugs I see.</p>
+
+    <p><strong>encodeURI()</strong> encodes a complete URL. It leaves structural characters alone:</p>
+
+    <pre><code>encodeURI("https://example.com/path?name=Tom & Jerry")
+// "https://example.com/path?name=Tom%20&%20Jerry"</code></pre>
+
+    <p>Notice the <code>&</code> is still there. That's because <code>encodeURI</code> assumes the <code>&</code> is a legitimate parameter separator. If it's actually part of your data, this output is wrong.</p>
+
+    <p><strong>encodeURIComponent()</strong> encodes everything. It's meant for individual values that go <em>into</em> a URL:</p>
+
+    <pre><code>encodeURIComponent("Tom & Jerry")
+// "Tom%20%26%20Jerry"</code></pre>
+
+    <p>Now the <code>&</code> is encoded as <code>%26</code>, which means it won't be interpreted as a delimiter.</p>
+
+    <p>The rule of thumb: use <code>encodeURIComponent</code> for query parameter values, and <code>encodeURI</code> only if you're encoding an entire URL that you know is structurally correct.</p>
+
+    <h2>Common Scenarios Where Encoding Breaks</h2>
+
+    <h3>1. Passing URLs as Query Parameters</h3>
+
+    <p>Redirect URLs are a classic case. You want to send someone to <code>https://example.com/redirect?url=https://other.com/page?a=1&b=2</code></p>
+
+    <p>Without encoding, the parser reads <code>&b=2</code> as a separate parameter of the outer URL. The redirect target becomes just <code>https://other.com/page?a=1</code> — half the data is gone.</p>
+
+    <p>Fix: <code>encodeURIComponent("https://other.com/page?a=1&b=2")</code> before inserting it as a parameter value.</p>
+
+    <h3>2. User-Generated Content in URLs</h3>
+
+    <p>Search queries, usernames, file names — these often contain spaces, special characters, or non-ASCII text. If your app constructs URLs from user input without encoding, you're one "O'Brien" away from a broken link.</p>
+
+    <h3>3. Non-ASCII Characters</h3>
+
+    <p>Characters outside the ASCII range (accented letters, CJK characters, emoji) need multi-byte percent-encoding. For example, <code>café</code> becomes <code>caf%C3%A9</code>. Modern browsers handle this automatically in the address bar, but if you're constructing URLs programmatically, you need to encode these yourself.</p>
+
+    <h2>Decoding: The Other Direction</h2>
+
+    <p>When a server receives an encoded URL, it decodes it back to the original characters before processing. This happens automatically in most frameworks — you don't need to manually call <code>decodeURIComponent</code> on incoming request parameters.</p>
+
+    <p>But there are cases where you'll need to decode manually:</p>
+
+    <ul>
+      <li>Reading encoded values from log files</li>
+      <li>Debugging API requests where parameters look garbled</li>
+      <li>Processing URLs stored in databases or configuration files</li>
+    </ul>
+
+    <p>Just remember: <strong>decode what was encoded, and don't double-decode</strong>. Double-decoding is a security vulnerability — it's how attackers bypass input validation through a technique called "double encoding attacks."</p>
+
+    <h2>The <code>+</code> vs <code>%20</code> Confusion</h2>
+
+    <p>One more thing that catches people off guard. In HTML form submissions (with <code>application/x-www-form-urlencoded</code>), spaces are encoded as <code>+</code> instead of <code>%20</code>. But in proper URL encoding per RFC 3986, spaces should be <code>%20</code>.</p>
+
+    <p>This means <code>decodeURIComponent</code> won't convert <code>+</code> back to a space — it only handles percent-encoded sequences. If you're decoding form data, you need to replace <code>+</code> with spaces first, or use the appropriate form decoding function in your framework.</p>
+
+    <p>It's a small inconsistency, but it's caused more debugging sessions than I can count.</p>
+
+    <h2>Quick Reference: Characters You Should Always Encode</h2>
+
+    <ul>
+      <li><strong>Space</strong> — never leave a literal space in a URL</li>
+      <li><strong>&</strong> — conflicts with parameter separators</li>
+      <li><strong>=</strong> — conflicts with parameter assignment</li>
+      <li><strong>?</strong> — conflicts with query string start</li>
+      <li><strong>#</strong> — conflicts with fragment identifier</li>
+      <li><strong>%</strong> — the encoding prefix itself; an unencoded <code>%</code> breaks any subsequent percent-encoded sequence</li>
+      <li><strong>Non-ASCII characters</strong> — any character outside the printable ASCII range</li>
+    </ul>
+
+    <h2>The Tool for the Job</h2>
+
+    <p>If you need to quickly encode or decode a URL, the <a href="/url-encoder-decoder">URL Encoder/Decoder on ToolMixr</a> handles both <code>encodeURI</code> and <code>encodeURIComponent</code> modes, plus decoding. It's what I use when debugging URL issues instead of opening a browser console every time.</p>
+
+    <h2>Related Articles</h2>
+
+    <ul>
+      <li><a href="/blog/meta-tags-seo-guide">The Ultimate Guide to Meta Tags for SEO in 2026</a></li>
+      <li><a href="/blog/json-formatting-best-practices">JSON Formatting Best Practices for Developers</a></li>
+    </ul>
+
+    <p>URL encoding isn't exciting, but it's one of those fundamentals that saves you from a category of bugs that are genuinely hard to track down. The next time you see a query parameter that's silently empty or a link that works for some users but not others, check for unencoded special characters first. It's almost always the answer.</p>
+
+  </article>
+</BaseLayout>
