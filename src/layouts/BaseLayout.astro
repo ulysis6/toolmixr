@@ -50,11 +50,16 @@ const websiteSchema = JSON.stringify({
     <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
     
     <title>{fullTitle}</title>
-
-    <!-- Google Analytics (GA4) fix -->
+    
+    <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NS67ETXVJ0"></script>
-    <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-NS67ETXVJ0')`} />
-
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NS67ETXVJ0');
+    </script>
+    
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2784023346294382" crossorigin="anonymous"></script>
     
@@ -79,7 +84,6 @@ const websiteSchema = JSON.stringify({
       }
       
       [data-theme="dark"] {
-        color-scheme: dark;
         --primary: #818CF8;
         --primary-hover: #6366F1;
         --bg: #0F172A;
@@ -183,7 +187,6 @@ const websiteSchema = JSON.stringify({
         box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
       }
       [data-theme="dark"] .search-bar input { background: var(--surface); color: var(--text); border-color: var(--border); }
-      [data-theme="dark"] .search-bar input::placeholder { color: var(--text-secondary); }
       
       /* Filter Bar */
       .filter-bar {
@@ -351,17 +354,9 @@ const websiteSchema = JSON.stringify({
       [data-theme="dark"] .form-group input,
       [data-theme="dark"] .form-group textarea,
       [data-theme="dark"] .form-group select {
-        background: var(--surface);
+        background: var(--bg);
         color: var(--text);
         border-color: var(--border);
-      }
-      [data-theme="dark"] .form-group select option {
-        background: var(--surface);
-        color: var(--text);
-      }
-      [data-theme="dark"] .form-group input::placeholder,
-      [data-theme="dark"] .form-group textarea::placeholder {
-        color: var(--text-secondary);
       }
       
       .btn {
@@ -408,22 +403,7 @@ const websiteSchema = JSON.stringify({
         white-space: pre-wrap;
         word-break: break-all;
       }
-      [data-theme="dark"] .output-box { background: #020617; color: #CDD6F4; }
-      [data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
-      [data-theme="dark"] textarea,
-      [data-theme="dark"] select {
-        background: var(--surface);
-        color: var(--text);
-        border-color: var(--border);
-      }
-      [data-theme="dark"] select option {
-        background: var(--surface);
-        color: var(--text);
-      }
-      [data-theme="dark"] input::placeholder,
-      [data-theme="dark"] textarea::placeholder {
-        color: var(--text-secondary);
-      }
+      [data-theme="dark"] .output-box { background: #020617; }
       .copy-btn {
         position: absolute;
         top: 10px;
@@ -580,9 +560,6 @@ const websiteSchema = JSON.stringify({
       }
       .footer a { color: var(--text-secondary); }
       .footer a:hover { color: var(--primary); }
-      .footer-grid { display: flex; justify-content: center; gap: 48px; margin-bottom: 24px; flex-wrap: wrap; }
-      .footer-col h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
-      .footer-col a { display: block; margin-bottom: 4px; font-size: 13px; }
       
       /* Responsive */
       @media (max-width: 768px) {
@@ -676,21 +653,12 @@ const websiteSchema = JSON.stringify({
     
     <footer class="footer">
       <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <h4>Legal</h4>
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
-          </div>
-          <div class="footer-col">
-            <h4>AI Tool Reviews</h4>
-            <a href="https://genaipick.com/" target="_blank" rel="noopener">GenAIPick</a>
-            <a href="https://genaipick.com/ai-writing-tools/" target="_blank" rel="noopener">AI Writing Tools</a>
-            <a href="https://genaipick.com/ai-image-tools/" target="_blank" rel="noopener">AI Image Tools</a>
-            <a href="https://genaipick.com/ai-chat-assistants/" target="_blank" rel="noopener">AI Chat Assistants</a>
-          </div>
-        </div>
-        <p>© 2026 ToolMixr. Free online tools for everyone.</p>
+        <p>&copy; 2026 ToolMixr. Free online tools for everyone.</p>
+        <p style="margin-top:8px;">
+          <a href="/privacy">Privacy Policy</a> · 
+          <a href="/terms">Terms of Service</a> · 
+          <a href="/disclaimer">Disclaimer</a>
+        </p>
       </div>
     </footer>
     
