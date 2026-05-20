@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Crypto Tax Guide: What You Owe When You Sell" description="A practical guide to cryptocurrency taxes — what counts as a taxable event, how to calculate your gains, and the mistakes that cost people thousands.">
+  <article class="blog-post">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>Crypto Tax Guide</span>
+    </nav>
+    
+    <h1>Crypto Tax Guide: What You Owe When You Sell</h1>
+    
+    <div class="blog-meta">
+      <span>📅 May 19, 2026</span>
+      <span>⏱️ 9 min read</span>
+      <span>✍️ By Lu Shen</span>
+    </div>
+    
+    <img src="/images/blog/crypto-tax-guide-hero.jpg" alt="Cryptocurrency tax illustration with coins, calculator and tax documents" class="blog-hero-img" loading="lazy" />
+
+    <p>I'll be honest — the first year I sold crypto, I didn't report it. Not because I was trying to dodge taxes, but because I genuinely didn't know I had to. I thought crypto was like some wild west thing that existed outside the tax system. Turns out the IRS disagreed, and so did the letter they sent me two years later.</p>
+
+    <p>That letter cost me an extra $1,200 in penalties. I've been meticulous about crypto taxes ever since, and I want to save you from making the same mistake.</p>
+
+    <h2>The Short Version: Yes, You Owe Taxes</h2>
+
+    <p>In the US, the IRS treats cryptocurrency as property. That means every time you sell, trade, or spend crypto, it's a taxable event. If you bought Bitcoin at $20,000 and sold it at $60,000, you owe taxes on that $40,000 gain. It doesn't matter if you sold it for dollars, traded it for Ethereum, or bought a pizza with it.</p>
+
+    <p>The only time you don't owe taxes is when you simply buy crypto and hold it. Buying is not a taxable event. But the moment you dispose of it — sell, trade, spend — that's when the tax man cometh.</p>
+
+    <h2>Taxable Events You Might Not Know About</h2>
+
+    <p>Here's where it gets tricky. Most people know that selling crypto for cash is taxable. But there are several other events that trigger tax obligations:</p>
+
+    <ul>
+      <li><strong>Trading one crypto for another</strong> — Swapping BTC for ETH? That's a taxable event. You're effectively selling BTC and buying ETH.</li>
+      <li><strong>Spending crypto on goods or services</strong> — That Tesla you bought with Dogecoin? Taxable.</li>
+      <li><strong>Earning staking rewards</strong> — Staking income is taxed as ordinary income when you receive it, not when you sell.</li>
+      <li><strong>Mining crypto</strong> — Same as staking: taxed as income at fair market value when you mine it.</li>
+      <li><strong>Getting paid in crypto</strong> — Your employer reports it on your W-2, and it's taxed as regular income.</li>
+      <li><strong>DeFi yield farming</strong> — Those juicy APY rewards? Yep, taxable as income when received.</li>
+    </ul>
+
+    <p>Notice what's NOT on this list: transferring crypto between your own wallets, buying crypto with fiat, or holding crypto. Those are fine.</p>
+
+    <h2>Short-Term vs Long-Term Capital Gains</h2>
+
+    <p>How long you hold your crypto before selling makes a huge difference in what you owe:</p>
+
+    <p><strong>Short-term gains</strong> (held less than one year) are taxed at your ordinary income rate — which could be as high as 37% at the federal level.</p>
+
+    <p><strong>Long-term gains</strong> (held more than one year) get preferential rates: 0%, 15%, or 20% depending on your income bracket. Most people fall into the 15% bracket.</p>
+
+    <p>Let me put that in real numbers. Say you made a $30,000 gain on Bitcoin:</p>
+
+    <ul>
+      <li>Short-term at 32% bracket: you owe about $9,600</li>
+      <li>Long-term at 15% bracket: you owe about $4,500</li>
+    </ul>
+
+    <p>That's a $5,100 difference just for waiting a few extra months. I've started tracking my purchase dates religiously because of this.</p>
+
+    <h2>How to Actually Calculate Your Gain or Loss</h2>
+
+    <p>The math is straightforward, but getting the numbers right is the hard part:</p>
+
+    <pre><code>Gain/Loss = Sale Price - Cost Basis</code></pre>
+
+    <p>Your cost basis is what you paid for the crypto, including fees. The sale price is what you received when you sold it, minus fees.</p>
+
+    <p>Simple enough, right? But what if you bought Bitcoin at five different prices over three years and then sold some of it? Which purchase does that sale correspond to?</p>
+
+    <p>That's where lot identification methods come in:</p>
+
+    <ol>
+      <li><strong>FIFO (First In, First Out)</strong> — The default. You're considered to have sold the oldest coins first. In a rising market, this usually means higher gains and more taxes.</li>
+      <li><strong>LIFO (Last In, First Out)</strong> — You sell the most recently purchased coins first. Can reduce short-term gains but the IRS scrutinizes this.</li>
+      <li><strong>Specific Identification</strong> — You pick exactly which lot you're selling. Most tax-efficient, but requires meticulous record-keeping.</li>
+    </ol>
+
+    <p>I use specific identification now. It saved me about $2,300 last year alone. But you need to track every single purchase — date, price, amount, and fees.</p>
+
+    <h2>What About Losses?</h2>
+
+    <p>Crypto losses can offset your gains dollar for dollar. If you made $20,000 on Bitcoin but lost $8,000 on some altcoin that went to zero, you only owe taxes on $12,000 of net gain.</p>
+
+    <p>But here's the catch: the <strong>wash sale rule</strong>. In traditional stocks, if you sell at a loss and buy the same stock back within 30 days, you can't claim the loss. As of 2026, crypto was added to the wash sale rule under the Infrastructure Investment and Jobs Act provisions that finally took effect.</p>
+
+    <p>This means you can no longer sell Bitcoin at a loss on December 28th, claim the tax deduction, and buy Bitcoin again on December 29th. You'd need to wait 31 days.</p>
+
+    <h2>The Reporting Requirements</h2>
+
+    <p>Here's what you need to file:</p>
+
+    <ul>
+      <li><strong>Form 8949</strong> — List every individual crypto transaction (buy, sell, trade) with dates, proceeds, cost basis, and gain/loss.</li>
+      <li><strong>Schedule D</strong> — Summary of all capital gains and losses from Form 8949.</li>
+      <li><strong>Schedule 1</strong> — For staking, mining, or other crypto income reported as "other income."</li>
+    </ul>
+
+    <p>Starting in 2025, exchanges are required to send you a Form 1099-DA reporting your transactions. But don't rely solely on that — the 1099-DA might not capture DeFi transactions, P2P sales, or transfers between wallets.</p>
+
+    <h2>The Mistake That Cost Me $1,200</h2>
+
+    <p>My penalty wasn't from underreporting — it was from not reporting at all. I had about $8,000 in gains that first year and just... didn't include them. The IRS caught it because the exchange I used (Coinbase) reported my transactions.</p>
+
+    <p>The penalty was 20% of the underpaid amount plus interest. On $8,000 of gains at my tax rate, I should have paid around $1,900 in taxes. Instead, I paid $1,900 plus $1,200 in penalties and interest.</p>
+
+    <p>Learn from my stupidity. Even if you're not sure about the exact amounts, report something. The penalty for an inaccurate return is much smaller than the penalty for not filing at all.</p>
+
+    <h2>Practical Tips I Wish Someone Told Me</h2>
+
+    <ol>
+      <li><strong>Track everything from day one</strong> — Every purchase, every trade, every fee. I use a spreadsheet but there are dedicated crypto tax tools too.</li>
+      <li><strong>Keep records for at least 7 years</strong> — The IRS can audit you up to 3 years normally, but 6 years if they suspect a substantial understatement. Add a buffer year.</li>
+      <li><strong>Harvest losses strategically</strong> — If you're sitting on losses, consider selling before year-end to offset gains. Just remember the wash sale rule.</li>
+      <li><strong>Don't forget about airdrops and forks</strong> — These are taxable as income at fair market value when you receive them.</li>
+      <li><strong>Use a crypto profit calculator</strong> — Before making any trade, run the numbers through a <a href="/crypto-profit-calculator">crypto profit calculator</a> to understand your potential gain and tax liability.</li>
+    </ol>
+
+    <h2>What If You Haven't Reported Past Years?</h2>
+
+    <p>If you've been skipping crypto taxes, you can file amended returns (Form 1040-X) for the past three years. The IRS is generally more lenient with people who voluntarily come forward than those they catch through exchange reporting.</p>
+
+    <p>I know it's tempting to hope they don't notice. But with 1099-DA reporting now mandatory for exchanges, they will notice. It's just a matter of time.</p>
+
+    <h2>The Bottom Line</h2>
+
+    <p>Crypto taxes aren't fun, but they're not as complicated as they seem once you understand the basics. Track your transactions, know which events are taxable, hold long enough for the lower rates when possible, and always — always — file something rather than nothing.</p>
+
+    <p>And before you make your next trade, do yourself a favor and <a href="/crypto-profit-calculator">calculate your potential gains and losses</a> so you know exactly what you're walking into.</p>
+
+  </article>
+</BaseLayout>

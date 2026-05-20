@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="The robots.txt Mistakes That Can Kill Your SEO" description="Common robots.txt errors that silently destroy your search rankings, from blocking CSS to accidentally disallowing your entire site.">
+  <article class="blog-post">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>robots.txt Mistakes Guide</span>
+    </nav>
+    
+    <h1>The robots.txt Mistakes That Can Kill Your SEO</h1>
+    
+    <div class="blog-meta">
+      <span>📅 May 17, 2026</span>
+      <span>⏱️ 7 min read</span>
+      <span>✍️ By Lu Shen</span>
+    </div>
+    
+    <img src="/images/blog/robots-txt-mistakes-hero.jpg" alt="Robot blocked by wall illustration representing robots.txt SEO mistakes" class="blog-hero-img" loading="lazy" />
+
+    <p>A few months ago, I watched a friend's e-commerce site drop from 15,000 daily organic visitors to under 2,000 in the span of two weeks. The cause? A single line in their robots.txt file that was accidentally blocking Google from crawling their product pages.</p>
+
+    <p>The worst part is they didn't even notice it themselves. I found it during a routine audit, buried in a file they hadn't touched in months. Someone on their team had added a wildcard rule thinking it only applied to a staging subdomain. It didn't.</p>
+
+    <p>That's the thing about robots.txt mistakes — they're silent killers. Your site still loads fine. Users can still browse. But Google can't see half your pages, and you won't find out until your traffic starts tanking.</p>
+
+    <h2>What robots.txt Actually Does (And Doesn't Do)</h2>
+
+    <p>Before we get into the mistakes, let's get clear on what robots.txt is and isn't:</p>
+
+    <p><strong>What it does:</strong> Tells search engine crawlers which URLs they should request from your site. It's a suggestion, not a wall — well-behaved crawlers respect it, but malicious ones ignore it.</p>
+
+    <p><strong>What it doesn't do:</strong> It does NOT prevent pages from being indexed. If Google finds a URL through a sitemap, an internal link, or an external backlink, it might index it even if robots.txt blocks crawling. If you want to prevent indexing, use the <code>noindex</code> meta tag instead.</p>
+
+    <p>This distinction is crucial, and it's where most people get confused.</p>
+
+    <h2>Mistake #1: Blocking CSS and JavaScript Files</h2>
+
+    <p>This is probably the most common robots.txt mistake I see. People block entire directories that happen to contain CSS and JS files, then wonder why their pages look different in search results.</p>
+
+    <p>Google needs to render your pages to understand them. If you block access to your CSS and JavaScript, Google sees a broken version of your page. This can directly impact your rankings because Google can't properly evaluate your content, layout, or user experience.</p>
+
+    <p>Here's the classic bad robots.txt:</p>
+
+    <pre><code>User-agent: *
+Disallow: /assets/</code></pre>
+
+    <p>That <code>/assets/</code> directory probably contains your CSS and JS. Instead, be specific:</p>
+
+    <pre><code>User-agent: *
+Disallow: /assets/images/private/
+Disallow: /assets/docs/internal/
+Allow: /assets/css/
+Allow: /assets/js/</code></pre>
+
+    <p>I learned this the hard way on one of my own sites. Blocked <code>/static/</code> thinking it only had images I didn't want indexed. It also had all my CSS. Google Search Console started showing rendering errors, and my rich snippets disappeared within a week.</p>
+
+    <h2>Mistake #2: The Disallow Slash Disaster</h2>
+
+    <p>This one's embarrassing because it's so simple, but it happens all the time:</p>
+
+    <pre><code>User-agent: *
+Disallow: /</code></pre>
+
+    <p>That single slash blocks your ENTIRE site from being crawled. Every page, every resource, everything. I've seen this happen when someone meant to block just the root admin page but forgot the rest of the path.</p>
+
+    <p>What they probably meant was:</p>
+
+    <pre><code>User-agent: *
+Disallow: /admin/</code></pre>
+
+    <p>One character difference. Massive impact. Always double-check your Disallow paths, and never use <code>Disallow: /</code> unless you genuinely want to block everything.</p>
+
+    <h2>Mistake #3: Conflicting Allow and Disallow Rules</h2>
+
+    <p>When you have both Allow and Disallow rules that apply to the same URL, the most specific rule wins — but "most specific" isn't always obvious. Different crawlers can interpret conflicting rules differently.</p>
+
+    <p>Consider this:</p>
+
+    <pre><code>User-agent: *
+Disallow: /blog/
+Allow: /blog/guides/</code></pre>
+
+    <p>Most crawlers will allow <code>/blog/guides/</code> because it's more specific than <code>/blog/</code>. But some older crawlers might just see the first matching Disallow rule and stop. The safest approach is to avoid conflicting rules entirely when possible.</p>
+
+    <h2>Mistake #4: Blocking Pages You Actually Want Indexed</h2>
+
+    <p>I see this pattern a lot with pagination, filter pages, and search results:</p>
+
+    <pre><code>User-agent: *
+Disallow: /search/
+Disallow: /page/
+Disallow: /*?*</code></pre>
+
+    <p>Sounds reasonable — you don't want Google wasting crawl budget on search result pages. But what if <code>/search/</code> is also where your helpful content hub lives? Or what if your filtered category pages (like <code>/shoes?color=red</code>) actually have unique, valuable content?</p>
+
+    <p>Before blocking anything, ask yourself: "Is there any scenario where a page matching this pattern could rank for a valuable keyword?" If yes, don't block it with robots.txt. Use <code>noindex</code> instead, which lets Google crawl the page but keeps it out of the index.</p>
+
+    <h2>Mistake #5: Not Having a robots.txt at All</h2>
+
+    <p>This isn't a "mistake" exactly — your site will work fine without one. But you're missing an opportunity. A robots.txt file lets you:</p>
+
+    <ul>
+      <li>Point crawlers to your XML sitemap</li>
+      <li>Prevent crawling of low-value pages (login, cart, checkout)</li>
+      <li>Save crawl budget on large sites</li>
+      <li>Block AI scrapers that respect robots.txt (many do now)</li>
+    </ul>
+
+    <p>For most sites, a minimal robots.txt is better than none:</p>
+
+    <pre><code>User-agent: *
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /api/
+
+Sitemap: https://yoursite.com/sitemap.xml</code></pre>
+
+    <h2>Mistake #6: Wildcard Overuse</h2>
+
+    <p>Wildcards (<code>*</code> and <code>$</code>) are powerful but dangerous. I once saw someone use this:</p>
+
+    <pre><code>User-agent: *
+Disallow: /*.pdf$</code></pre>
+
+    <p>The intention was to prevent PDF files from being crawled. But what about the product manuals and white papers that actually drive traffic? Some PDFs are incredibly valuable for SEO — they earn backlinks and can rank for competitive terms.</p>
+
+    <p>Instead of blanket-blocking file types, block specific directories:</p>
+
+    <pre><code>User-agent: *
+Disallow: /internal-reports/
+Disallow: /private-docs/</code></pre>
+
+    <h2>How to Audit Your robots.txt</h2>
+
+    <p>Here's my simple audit process that takes about 10 minutes:</p>
+
+    <ol>
+      <li><strong>Open your robots.txt</strong> — Go to yoursite.com/robots.txt. If it returns a 404, create one.</li>
+      <li><strong>Check every Disallow rule</strong> — For each one, ask: "Could this accidentally block a page I want indexed?"</li>
+      <li><strong>Verify in Google Search Console</strong> — Use the robots.txt Tester tool (under Settings) to check if specific URLs are blocked.</li>
+      <li><strong>Check the Coverage report</strong> — Look for URLs flagged as "Crawled — currently not indexed" or "Blocked by robots.txt."</li>
+      <li><strong>Test rendering</strong> — Use URL Inspection in GSC to see if Google can render your pages correctly.</li>
+    </ol>
+
+    <p>I do this audit quarterly, and I almost always find something worth fixing. Last time, it was a new blog category that someone had inadvertently blocked while updating the file.</p>
+
+    <h2>The Right Way to Generate robots.txt</h2>
+
+    <p>Writing robots.txt by hand is error-prone. I've messed it up myself, and I've been doing this for years. That's exactly why I built a <a href="/robots-txt-generator">robots.txt generator</a> — it walks you through each directive, shows you exactly what each rule does, and prevents the most common syntax errors.</p>
+
+    <p>Whether you use a generator or write it by hand, the key is to test everything before pushing it live. A single bad line in robots.txt can undo months of SEO work.</p>
+
+  </article>
+</BaseLayout>

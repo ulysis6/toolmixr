@@ -2,8 +2,11 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const posts = [
-  { title: 'Base64 Encoding Explained: What It Is and When to Use It', slug: 'base64-encoding-explained', date: 'May 15, 2026', excerpt: 'Base64 encoding is everywhere — in emails, data URLs, API tokens, and config files. Learn how it actually works, when you need it, and the common mistakes that waste 33% more space than you expect.' },
-  { title: 'URL Encoding: Why Special Characters Break Your Links', slug: 'url-encoding-guide', date: 'May 13, 2026', excerpt: 'Special characters in URLs don\'t just look wrong — they break things. Learn how percent-encoding works, when you need it, and the difference between encodeURI and encodeURIComponent.' },
+  { title: 'Crypto Tax Guide: What You Owe When You Sell', slug: 'crypto-tax-guide', date: 'May 19, 2026', excerpt: 'A practical guide to cryptocurrency taxes — what counts as a taxable event, how to calculate your gains, and the mistakes that cost people thousands in penalties.' },
+  { title: 'The robots.txt Mistakes That Can Kill Your SEO', slug: 'robots-txt-mistakes', date: 'May 17, 2026', excerpt: 'Common robots.txt errors that silently destroy your search rankings, from blocking CSS to accidentally disallowing your entire site.' },
+  { title: 'Why Your Social Media Links Look Broken (And How OG Images Fix It)', slug: 'og-image-guide', date: 'May 15, 2026', excerpt: 'Learn why your links look terrible when shared on social media and how Open Graph images can transform your social presence and click-through rates.' },
+  { title: '5 Password Myths That Are Still Getting People Hacked in 2026', slug: 'password-myths', date: 'May 13, 2026', excerpt: 'Outdated password advice is everywhere. These 5 myths are still making people vulnerable to attacks — and what you should do instead.' },
+  { title: 'The Math Behind "70% Off": How Stores Manipulate Discount Numbers', slug: 'discount-shopping-math', date: 'May 11, 2026', excerpt: 'Retailers use psychological pricing tricks and misleading discount math to make you spend more. Here\'s how to see through the numbers.' },
   { title: 'How to Calculate Your Mortgage Payment: A Complete Guide', slug: 'how-to-calculate-mortgage-payment', date: 'May 8, 2026', excerpt: 'Understanding your mortgage payment is the first step to smart homeownership. This guide breaks down every component of a mortgage payment and shows you how to calculate it accurately.' },
   { title: 'JSON Formatting Best Practices for Developers', slug: 'json-formatting-best-practices', date: 'May 7, 2026', excerpt: 'Properly formatted JSON is essential for debugging, API development, and team collaboration. Learn the best practices that will save you hours of frustration.' },
   { title: 'The Ultimate Guide to Meta Tags for SEO in 2026', slug: 'meta-tags-seo-guide', date: 'May 6, 2026', excerpt: 'Meta tags remain one of the most important on-page SEO factors. This comprehensive guide covers every meta tag you need, from basic SEO to Open Graph and Twitter Cards.' },
@@ -16,15 +19,11 @@ const posts = [
 ---
 
 <BaseLayout title="Blog" description="Articles and guides about web tools, finance calculators, SEO, and developer productivity.">
-  
   <section class="blog-list">
-    
     <nav class="breadcrumb">
       <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Blog</span>
     </nav>
-    
     <h1>📖 Blog</h1>
-    
     <p class="subtitle">Guides, tutorials, and insights about our tools and the problems they solve.</p>
     
     {posts.map((post) => (
