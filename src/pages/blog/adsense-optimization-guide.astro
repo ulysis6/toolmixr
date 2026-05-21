@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AdSense RPM: Why Your Earnings Per Pageview Are Lower Than You Think",
+  "description": "Your AdSense RPM looks decent until you realize how much of it disappears to invalid traffic, ad blockers, and viewability thresholds. Here's what's really going on.",
+  "url": "https://toolmixr.com/blog/adsense-optimization-guide",
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-05-12",
+  "author": {
+    "@type": "Person",
+    "name": "Lu Shen"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolMixr",
+    "url": "https://toolmixr.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://toolmixr.com/blog/adsense-optimization-guide"
+  },
+  "image": "https://toolmixr.com/images/blog/adsense-optimization-guide-hero.jpg"
+});
+---
+
+<BaseLayout title="AdSense RPM: Why Your Earnings Per Pageview Are Lower Than You Think" description="Your AdSense RPM looks decent until you realize how much of it disappears to invalid traffic, ad blockers, and viewability thresholds. Here's what's really going on." structuredData={structuredData}>
+  <article class="blog-post">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>AdSense Optimization Guide</span>
+    </nav>
+    
+    <h1>AdSense RPM: Why Your Earnings Per Pageview Are Lower Than You Think</h1>
+    
+    <div class="blog-meta">
+      <span>📅 May 12, 2026</span>
+      <span>⏱️ 10 min read</span>
+      <span>✍️ By Lu Shen</span>
+    </div>
+    
+    <img src="/images/blog/adsense-optimization-guide-hero.jpg" alt="AdSense revenue dashboard with RPM metrics and earnings breakdown" class="blog-hero-img" loading="lazy" />
+
+    <p>When I first set up AdSense, I did the math like everyone does: 100,000 pageviews a month at a $5 RPM means $500/month. Not life-changing, but a nice passive income stream. Then I actually got paid and it was $340. Where did the other $160 go?</p>
+
+    <p>The answer involves a bunch of factors that most AdSense guides either gloss over or completely ignore. Your reported RPM isn't what you think it is, and your actual take-home is even less. Let me walk through where the money disappears.</p>
+
+    <h2>What RPM Actually Measures</h2>
+
+    <p>RPM stands for Revenue Per Mille — revenue per thousand impressions. AdSense calculates it as: (Estimated Earnings / Pageviews) × 1000.</p>
+
+    <p>Seems straightforward, but "estimated earnings" and "pageviews" are both doing a lot of hidden work in that formula. Let me unpack each.</p>
+
+    <p><strong>Estimated earnings</strong> is not final earnings. Google withholds a portion for invalid traffic — clicks or impressions they determine are fraudulent, accidental, or otherwise not genuine. This deduction happens after the initial estimate, which means the number you see in your dashboard on day one will almost always be higher than what you actually get paid.</p>
+
+    <p><strong>Pageviews</strong> in the RPM formula counts every pageview, including ones where no ad was shown (ad blocker users, visitors from countries with no ad inventory, pages that loaded too slowly for the ad to render). So your denominator is inflated by traffic that generated zero revenue.</p>
+
+    <p>Together, these factors mean your "real" RPM — the actual dollars you receive per thousand human visitors who actually see ads — is higher than the reported RPM. But your total earnings per thousand total visitors is lower than what RPM suggests.</p>
+
+    <h2>The Seven Revenue Killers</h2>
+
+    <h3>1. Ad Blockers</h3>
+
+    <p>Roughly 27% of desktop users and 11% of mobile users run ad blockers globally. For tech-savvy audiences, that number can exceed 40%. These users generate pageviews but zero ad revenue. They count in your RPM denominator but add nothing to the numerator.</p>
+
+    <p>There's not much you can do about this besides: (a) build an audience less likely to use ad blockers, (b) implement acceptable ad programs that some ad blockers whitelist, or (c) offer an ad-free subscription as an alternative. Option C is increasingly popular and often more profitable per user than ads anyway.</p>
+
+    <h3>2. Invalid Traffic Deductions</h3>
+
+    <p>Google routinely deducts 5-15% of estimated earnings for invalid traffic. Sometimes more. This covers accidental clicks, bot traffic, click farms, and even well-intentioned users who double-click ads. You don't get to see the specific deductions — just a lump sum removed from your final payment.</p>
+
+    <p>The frustrating part: if you buy traffic from a shady source and it generates fake clicks, Google deducts the revenue AND may penalize your account. You're responsible for the quality of your traffic, even when you didn't intentionally do anything wrong.</p>
+
+    <h3>3. Viewability Thresholds</h3>
+
+    <p>An ad that loads but is never seen (below the fold, user scrolled past, page closed too quickly) is an "unviewable" impression. AdSense doesn't pay for these, and advertisers are increasingly bidding only on viewable impressions.</p>
+
+    <p>Industry average viewability is around 50-60% for display ads. That means roughly half the ads that load on your site are never actually seen by a human. If you're not optimizing for viewability, you're leaving money on the table.</p>
+
+    <p>The fix: place ads above the fold or in sticky positions where they stay visible. Lazy-loading ads below the fold can actually help, since the ad won't load until the user scrolls near it, increasing the chance it's actually seen.</p>
+
+    <h3>4. Geographic Revenue Disparity</h3>
+
+    <p>A visitor from the United States might be worth $15 RPM. A visitor from India might be worth $0.50 RPM. A visitor from Nigeria might be worth $0.10 RPM. AdSense revenue is driven by advertiser demand, and that demand varies enormously by geography.</p>
+
+    <p>If your traffic is 50% US and 50% global south, your overall RPM will look terrible compared to a US-only site with the same content quality. This isn't a reflection of your site — it's a reflection of ad market economics.</p>
+
+    <p>I've seen people panic about low RPM without realizing that 70% of their traffic comes from countries with minimal advertiser spend. Segment your RPM by geography in AdSense reports. You might find your US RPM is actually competitive.</p>
+
+    <h3>5. Smart Pricing</h3>
+
+    <p>This is Google's algorithmic adjustment that reduces your cost-per-click if your traffic doesn't convert well for advertisers. If users click ads on your site but rarely buy anything from the advertiser, Google lowers your CPC across the board.</p>
+
+    <p>Smart pricing is account-level, meaning a single low-converting site can drag down your CPC across all your sites. It's also opaque — Google doesn't tell you when or how much they've adjusted your pricing.</p>
+
+    <p>The solution is to focus on traffic quality and relevance. A niche site about camping gear will convert better for outdoor retailer ads than a general news site, and Google's algorithm rewards that relevance.</p>
+
+    <h3>6. Ad Refresh and Session RPM</h3>
+
+    <p>Some publishers use ad refresh to show new ads to users who stay on a page for an extended period. This can increase revenue per session but doesn't change your pageview RPM — it creates additional impressions within a single pageview.</p>
+
+    <p>Google allows ad refresh with restrictions, but it's a double-edged sword. More impressions per session can increase total revenue, but if the refreshed ads have lower CPCs (which they often do), your effective RPM per impression drops. Monitor session RPM alongside pageview RPM to see if refresh is actually helping.</p>
+
+    <h3>7. Revenue Share</h3>
+
+    <p>Google keeps approximately 32% of AdSense revenue for content ads. You get 68%. For search ads, you get 51%. These percentages haven't changed in years, and they're non-negotiable. Your RPM already reflects this split, but it's worth remembering that for every dollar an advertiser spends, you see 68 cents.</p>
+
+    <h2>How to Actually Improve Your RPM</h2>
+
+    <p>Now for the part you actually came for. Here are the RPM improvements that have moved the needle for me:</p>
+
+    <p><strong>Increase ad density strategically.</strong> More ads doesn't always mean more money — too many ads tank user experience and increase bounce rate. But placing one well-positioned ad above the fold, one in-content, and one at the end of articles is a solid starting point. Test different placements and measure RPM changes.</p>
+
+    <p><strong>Use auto ads with manual overrides.</strong> Google's auto ads can find optimal placements, but they sometimes put ads in awkward positions. Use auto ads as a starting point, then manually place ads where they work best and disable auto placements that interfere with content.</p>
+
+    <p><strong>Optimize for high-RPM pages.</strong> Not all pages earn equally. Check your AdSense reports by URL and you'll find that some pages earn 10x the RPM of others. Double down on creating more content like your top earners and less like your bottom ones.</p>
+
+    <p><strong>Improve page speed.</strong> Faster pages load ads faster, which means more viewable impressions and better user experience. I've seen RPM improvements of 15-20% just from optimizing page load time. Google's own research shows that pages loading in under 2.5 seconds earn significantly more per visit.</p>
+
+    <p><strong>Target high-CPC niches.</strong> Finance, insurance, legal, and technology topics consistently command higher CPCs than entertainment, gaming, or celebrity gossip. If you can create content in high-CPC niches, your RPM will naturally be higher.</p>
+
+    <p><strong>Experiment with ad sizes.</strong> The 336×280 large rectangle and 300×250 medium rectangle consistently outperform other display sizes. For mobile, the 320×100 and adaptive anchor ads tend to perform well. Test and measure — your audience may behave differently.</p>
+
+    <h2>Setting Realistic Revenue Expectations</h2>
+
+    <p>After accounting for all the factors above, here are realistic RPM ranges by niche (US traffic, content sites):</p>
+
+    <ul>
+      <li><strong>Finance/Insurance</strong>: $8-25 RPM</li>
+      <li><strong>Technology</strong>: $5-15 RPM</li>
+      <li><strong>Health</strong>: $4-12 RPM</li>
+      <li><strong>Education</strong>: $3-8 RPM</li>
+      <li><strong>Travel</strong>: $2-7 RPM</li>
+      <li><strong>Entertainment</strong>: $1-4 RPM</li>
+    </ul>
+
+    <p>If your RPM is below these ranges, there's probably room for optimization. If it's above, you're doing well — but don't assume it'll stay that way forever. RPM fluctuates seasonally (Q4 is typically highest due to holiday ad spending) and with market conditions.</p>
+
+    <h2>The Bottom Line</h2>
+
+    <p>Your AdSense dashboard shows you estimated RPM, not what you actually earn per visitor. After ad blockers, invalid traffic deductions, viewability losses, geographic disparities, and Google's revenue share, your effective earnings per real human visitor are probably 30-50% lower than what RPM suggests.</p>
+
+    <p>Knowing this doesn't mean AdSense isn't worth it — it means you can make better decisions. Focus on traffic quality, ad viewability, page speed, and high-CPC content. Those four things move the RPM needle more than any other optimization.</p>
+
+    <p>I built an <a href="/adsense-revenue-calculator">AdSense revenue calculator</a> that factors in ad blocker rates, viewability, and geographic distribution so you can project realistic earnings instead of the optimistic numbers most calculators give you. It's a bit of a reality check, but it's better to plan with real numbers.</p>
+
+  </article>
+</BaseLayout>

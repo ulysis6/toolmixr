@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "URL Encoding Bugs: The Silent Killer of Web Forms",
+  "description": "Ampersands, spaces, and emoji in your form data can break everything from email links to API calls. Here's how URL encoding works and why it keeps breaking your code.",
+  "url": "https://toolmixr.com/blog/url-encoding-bugs",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Person",
+    "name": "Lu Shen"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolMixr",
+    "url": "https://toolmixr.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://toolmixr.com/blog/url-encoding-bugs"
+  },
+  "image": "https://toolmixr.com/images/blog/url-encoding-bugs-hero.jpg"
+});
+---
+
+<BaseLayout title="URL Encoding Bugs: The Silent Killer of Web Forms" description="Ampersands, spaces, and emoji in your form data can break everything from email links to API calls. Here's how URL encoding works and why it keeps breaking your code." structuredData={structuredData}>
+  <article class="blog-post">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>URL Encoding Bugs</span>
+    </nav>
+    
+    <h1>URL Encoding Bugs: The Silent Killer of Web Forms</h1>
+    
+    <div class="blog-meta">
+      <span>📅 May 18, 2026</span>
+      <span>⏱️ 8 min read</span>
+      <span>✍️ By Lu Shen</span>
+    </div>
+    
+    <img src="/images/blog/url-encoding-bugs-hero.jpg" alt="URL encoding error breaking a web form with special characters" class="blog-hero-img" loading="lazy" />
+
+    <p>A friend of mine lost a client because of an ampersand. Their company name was "Tom & Jerry Consulting" and every time someone clicked the email link on their website, the subject line showed up as just "Tom " — everything after the ampersand vanished. The client thought they were being unprofessional. They just had a URL encoding bug.</p>
+
+    <p>This stuff happens constantly, and it's almost never obvious. URL encoding issues are the cockroaches of web development — they hide in dark corners, multiply when you're not looking, and by the time you notice them, the damage is already done.</p>
+
+    <h2>What URL Encoding Actually Does</h2>
+
+    <p>URLs can only contain a limited set of characters: letters, numbers, and a few special characters like hyphens and underscores. Everything else — spaces, ampersands, question marks, non-English characters, emoji — has to be encoded as a percent sign followed by two hexadecimal digits.</p>
+
+    <p>A space becomes <code>%20</code>. An ampersand becomes <code>%26</code>. A question mark becomes <code>%3F</code>. The letter "é" becomes <code>%C3%A9</code>. The shrug emoji 🤷 becomes <code>%F0%9F%A4%B7</code>.</p>
+
+    <p>This encoding exists because URLs have structural characters that mean specific things. The question mark starts a query string. The ampersand separates parameters. The equals sign assigns values. If your actual data contains these characters unencoded, the URL parser can't tell the difference between structure and content.</p>
+
+    <p>That's why "Tom & Jerry" in a query parameter breaks things. The parser sees the ampersand and thinks "new parameter starts here." So <code>?subject=Tom & Jerry</code> gets parsed as two parameters: <code>subject=Tom </code> (with a trailing space) and <code> Jerry</code> (a parameter with no value). The subject ends at the ampersand.</p>
+
+    <h2>The Five Most Common URL Encoding Bugs</h2>
+
+    <h3>1. The Ampersand Split</h3>
+
+    <p>This is the one I see most often. Any form data that might contain an ampersand — company names, addresses, product descriptions — will break unencoded query strings. It's especially common in mailto links and share URLs that users generate themselves.</p>
+
+    <p>The fix is simple: always encode parameter values. <code>?subject=Tom%20%26%20Jerry</code> works perfectly. But developers forget because most test data doesn't include ampersands. "John Smith" works fine. "Johnson & Johnson" does not.</p>
+
+    <h3>2. The Space Problem</h3>
+
+    <p>Spaces in URLs are weird. Technically, they should be encoded as <code>%20</code>. But in practice, many systems also accept <code>+</code> as a space substitute. This creates a mess because the two encodings aren't always interchangeable.</p>
+
+    <p>In query strings (after the <code>?</code>), <code>+</code> and <code>%20</code> both represent a space. But in the path portion of a URL (before the <code>?</code>), <code>+</code> is a literal plus sign, not a space. Only <code>%20</code> represents a space in the path.</p>
+
+    <p>I've seen APIs that encode spaces as <code>+</code> in path parameters, which then get decoded as literal plus signs by the server. Users see "Mac+Book+Pro" instead of "Mac Book Pro" and assume the site is broken. They're not wrong.</p>
+
+    <h3>3. Double Encoding</h3>
+
+    <p>This happens when something is encoded, then encoded again. <code>%20</code> becomes <code>%2520</code> because the <code>%</code> in <code>%20</code> gets encoded to <code>%25</code>.</p>
+
+    <p>Double encoding typically occurs when multiple layers of a system each apply encoding independently. The frontend encodes the data, then the backend encodes it again. Or a proxy server adds encoding on top of what the application already did.</p>
+
+    <p>The result: users see <code>%2520</code> rendered in their browser instead of a space. It looks like garbage, and it breaks links that get copy-pasted or shared.</p>
+
+    <h3>4. Unicode and International Characters</h2>
+
+    <p>Non-ASCII characters — accented letters, Chinese characters, Arabic script — require multi-byte UTF-8 encoding, which means each character can turn into multiple percent-encoded sequences. "Café" becomes <code>Caf%C3%A9</code>. "東京" becomes <code>%E6%9D%B1%E4%BA%AC</code>.</p>
+
+    <p>Problems arise when different parts of a system assume different character encodings. If one component uses UTF-8 and another uses Latin-1, you get mojibake — those garbled strings like "CafÃ©" that make your site look like it's haunted.</p>
+
+    <p>This is especially nasty in email links. Mailto URLs with non-ASCII subjects need RFC 2047 encoding, not URL encoding. Use the wrong one and the email client shows garbage in the subject line.</p>
+
+    <h3>5. Hash Fragments in Data</h3>
+
+    <p>The <code>#</code> character has a special meaning in URLs: it marks the beginning of a fragment identifier. Everything after <code>#</code> is never sent to the server — it's handled entirely by the browser.</p>
+
+    <p>If a user enters "Product #5" in a form and you put that in a URL without encoding the hash, everything after it disappears from the server's perspective. Your backend receives "Product " and has no idea there was a "#5" attached. Debugging this is a nightmare because it works fine with "Product A" but silently fails with "Product #5".</p>
+
+    <h2>Where These Bugs Hide</h2>
+
+    <p>URL encoding issues don't show up in normal testing because most test data uses simple ASCII characters. "John Doe" works fine. "José María O'Brien-Smith III" probably doesn't, but nobody tests with that.</p>
+
+    <p>Here are the places I've found encoding bugs lurking:</p>
+
+    <ul>
+      <li><strong>Mailto links</strong>: Subject lines and body text with special characters</li>
+      <li><strong>Share buttons</strong>: Facebook, Twitter, and WhatsApp share URLs with user-generated content</li>
+      <li><strong>Redirect URLs</strong>: When one URL redirects to another and passes data along</li>
+      <li><strong>API calls</strong>: Especially REST APIs where user data appears in query parameters</li>
+      <li><strong>Analytics tracking</strong>: UTM parameters with special characters get mangled</li>
+      <li><strong>Deep links</strong>: Mobile app links that pass data through URLs</li>
+      <li><strong>Email campaign links</strong>: ESPs sometimes double-encode your parameters</li>
+    </ul>
+
+    <p>The common thread: these are all places where user-generated or dynamic content gets embedded into URLs. Static URLs almost never have encoding problems. It's the dynamic ones that bite you.</p>
+
+    <h2>The Right Way to Encode</h2>
+
+    <p>Different parts of a URL need different encoding functions, and using the wrong one is a bug itself:</p>
+
+    <p><strong>For query parameter values</strong>: Use <code>encodeURIComponent()</code> in JavaScript. This encodes everything that's not safe in a query parameter, including <code>&</code>, <code>=</code>, <code>?</code>, and <code>#</code>.</p>
+
+    <p><strong>For path segments</strong>: Use <code>encodeURIComponent()</code> as well, but note that it also encodes <code>/</code>, which you may want to preserve if the path contains multiple segments.</p>
+
+    <p><strong>For an entire URL</strong>: Use <code>encodeURI()</code>. This encodes special characters but preserves URL structural characters like <code>://</code>, <code>/</code>, <code>?</code>, <code>&</code>, and <code>=</code>. Use this when you have a complete URL that might contain non-ASCII characters.</p>
+
+    <p><strong>Never</strong> use <code>encodeURI()</code> for individual parameter values, and <strong>never</strong> use <code>encodeURIComponent()</code> for complete URLs. That's the #1 mistake I see.</p>
+
+    <h2>Decoding: The Other Side of the Coin</h2>
+
+    <p>Decoding issues are just as common as encoding ones. The biggest trap is decoding in the wrong order or the wrong number of times.</p>
+
+    <p>If your data was double-encoded, you need to decode it twice. If you only decode once, you'll see percent-encoded gibberish. But if your data was correctly single-encoded and you decode twice, you'll mangle any legitimate percent signs in the original data.</p>
+
+    <p>The fix is consistency: have a single point in your request handling pipeline where URL decoding happens, and make sure it happens exactly once. Don't let different middleware, proxies, or framework layers each decode independently.</p>
+
+    <h2>Testing for Encoding Bugs</h2>
+
+    <p>Here's my personal URL encoding test string: <code>A&B C#D?E=F+G</code>. It contains an ampersand, a space, a hash, a question mark, an equals sign, and a plus sign — all characters with special URL meanings. If this string survives a round trip through your system and comes back intact, you're probably fine.</p>
+
+    <p>For international characters, test with: <code>José María café 東京 🤷</code>. If that works, your UTF-8 handling is solid.</p>
+
+    <p>And for the love of everything, test your forms with real-world data, not "Test Test" every time. Try company names with ampersands, addresses with hash symbols, and names with accented characters. That's where the bugs live.</p>
+
+    <h2>The Bottom Line</h2>
+
+    <p>URL encoding bugs are silent because they only appear with certain inputs. Your forms work fine for 95% of users, then silently fail for the 5% who have ampersands in their company name or accented characters in their name. Those users don't report bugs — they just leave.</p>
+
+    <p>The fix is straightforward: always encode dynamic values going into URLs, use the right encoding function for the right part of the URL, decode exactly once on the receiving end, and test with characters that have special meanings. Do that and these bugs disappear.</p>
+
+    <p>If you need to quickly encode or decode a URL string, I built a <a href="/url-encoder-decoder">URL encoder/decoder</a> that handles all of this — including proper UTF-8 support and detection of double-encoding. It's faster than opening a browser console every time.</p>
+
+  </article>
+</BaseLayout>

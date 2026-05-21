@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Choose the Right Color Palette for Your Website",
+  "description": "Picking colors for your website shouldn't feel like guessing. Here's how to build a color palette that looks professional, works for accessibility, and actually converts.",
+  "url": "https://toolmixr.com/blog/color-palette-guide",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Person",
+    "name": "Lu Shen"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolMixr",
+    "url": "https://toolmixr.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://toolmixr.com/blog/color-palette-guide"
+  },
+  "image": "https://toolmixr.com/images/blog/color-palette-guide-hero.jpg"
+});
+---
+
+<BaseLayout title="How to Choose the Right Color Palette for Your Website" description="Picking colors for your website shouldn't feel like guessing. Here's how to build a color palette that looks professional, works for accessibility, and actually converts." structuredData={structuredData}>
+  <article class="blog-post">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <a href="/blog">Blog</a> <span class="breadcrumb-sep">›</span> <span>Color Palette Guide</span>
+    </nav>
+    
+    <h1>How to Choose the Right Color Palette for Your Website</h1>
+    
+    <div class="blog-meta">
+      <span>📅 May 21, 2026</span>
+      <span>⏱️ 9 min read</span>
+      <span>✍️ By Lu Shen</span>
+    </div>
+    
+    <img src="/images/blog/color-palette-guide-hero.jpg" alt="Color palette selection interface with swatches and color wheel" class="blog-hero-img" loading="lazy" />
+
+    <p>I once spent three hours picking the "perfect" shade of blue for a landing page. Three hours. I compared hex codes side by side, asked friends for opinions, and second-guessed myself every five minutes. The result? It looked fine. Just fine. Not amazing, not terrible — fine.</p>
+
+    <p>That's the trap with color selection. It feels subjective, so you either overthink it or just grab something and hope for the best. But here's the thing: there's actually a method to it. Not a rigid formula, but a repeatable process that gets you to a good palette faster than guessing ever will.</p>
+
+    <h2>Start With One Color, Not Five</h2>
+
+    <p>Most people try to pick an entire palette at once. That's like trying to write a song by composing all the instruments simultaneously. It doesn't work.</p>
+
+    <p>Instead, start with your primary color — the one that represents your brand. Everything else flows from there. If you already have a logo or brand identity, your primary color is probably locked in. If not, think about what feeling you want to evoke:</p>
+
+    <ul>
+      <li><strong>Trust and stability</strong> — Blues (that's why banks and healthcare love them)</li>
+      <li><strong>Energy and urgency</strong> — Reds and oranges</li>
+      <li><strong>Growth and freshness</strong> — Greens</li>
+      <li><strong>Creativity and luxury</strong> — Purples and deep indigos</li>
+      <li><strong>Minimalism and sophistication</strong> — Black, white, and grays with one accent</li>
+    </ul>
+
+    <p>Once you have your primary, everything else is just math and a few rules.</p>
+
+    <h2>The 60-30-10 Rule (And Why It Actually Works)</h2>
+
+    <p>Interior designers have used this ratio for decades, and it translates perfectly to web design. Here's how it breaks down:</p>
+
+    <ul>
+      <li><strong>60% — Dominant color</strong>: Your background, large surface areas. Usually a neutral or very muted version of your primary.</li>
+      <li><strong>30% — Secondary color</strong>: Navigation, cards, sidebars. This supports the dominant color without competing with it.</li>
+      <li><strong>10% — Accent color</strong>: CTAs, highlights, important links. This is where your most vibrant color lives.</li>
+    </ul>
+
+    <p>Why does this work? Because it creates visual hierarchy automatically. When 60% of your page is one color, the eye knows where to settle. The 30% provides structure. And the 10% draws attention exactly where you want it — usually the "Buy Now" or "Sign Up" button.</p>
+
+    <p>I've seen too many sites where the accent color is splashed everywhere. Headers, buttons, backgrounds, borders — all screaming for attention. When everything is loud, nothing is loud. The 60-30-10 rule fixes that.</p>
+
+    <h2>Generating Your Palette From One Color</h2>
+
+    <p>Once you have your primary, you need the rest of the palette. Here are the three approaches I use most often:</p>
+
+    <p><strong>Monochromatic</strong>: Vary the lightness and saturation of your primary color. Take #2563EB (a medium blue) and create lighter and darker versions. This is the safest approach and nearly impossible to mess up. The downside? It can feel flat if you don't introduce enough contrast between shades.</p>
+
+    <p><strong>Analogous</strong>: Pick colors adjacent to your primary on the color wheel. Blue with blue-green and blue-violet, for example. This creates harmony without being as monotonous as a single-hue palette. Nature uses analogous colors constantly — think of a sunset gradient.</p>
+
+    <p><strong>Complementary</strong>: Use your primary plus the color directly opposite on the wheel. Blue and orange, red and green, purple and yellow. This gives you maximum contrast and energy, but it's the easiest to mess up. Use the complement sparingly — as your 10% accent — or it'll look like a sports jersey.</p>
+
+    <p>There are also split-complementary, triadic, and tetradic schemes, but honestly, those are overkill for most websites. If you can't make a 3-color palette look good, adding more colors won't help.</p>
+
+    <h2>The Neutral Problem</h2>
+
+    <p>Here's something most color palette guides skip: your neutrals matter more than your colors. Think about it — 60% of your page is neutral. The text you're reading right now is on a neutral background. Neutrals do the heavy lifting.</p>
+
+    <p>A common mistake is using pure black (#000000) for text on pure white (#FFFFFF). That contrast is actually too harsh for extended reading. Try #1A1A1A or #2D2D2D instead. Your eyes will thank you, and the page will look more refined.</p>
+
+    <p>For backgrounds, pure white can feel clinical. A very slight warmth — like #FAFAF8 or #F8F9FA — makes a surprising difference in how "premium" a site feels. I learned this from studying Stripe's design system. They don't use pure white anywhere.</p>
+
+    <p>And in dark mode, don't just invert. Pure black backgrounds with white text are the dark-mode equivalent of the harsh contrast problem. Use #121212 or #1A1A2E instead — Google's Material Design team has research showing these are easier on the eyes.</p>
+
+    <h2>Accessibility Is Not Optional</h2>
+
+    <p>Roughly 1 in 12 men and 1 in 200 women have some form of color vision deficiency. If your palette doesn't account for this, you're excluding millions of users — and potentially violating accessibility laws depending on your region.</p>
+
+    <p>The WCAG guidelines specify minimum contrast ratios:</p>
+
+    <ul>
+      <li><strong>Normal text</strong>: 4.5:1 contrast ratio against the background</li>
+      <li><strong>Large text</strong> (18px+ bold or 24px+ regular): 3:1 ratio</li>
+      <li><strong>UI components and graphical objects</strong>: 3:1 ratio</li>
+    </ul>
+
+    <p>There's no substitute for actually testing your colors. I can't tell you how many times I've picked a palette that looked great to me, then ran it through a contrast checker and discovered my secondary text was invisible to anyone with deuteranopia.</p>
+
+    <p>The most common accessibility failure I see? Light gray text on white backgrounds. Designers love it because it looks clean. But if your text has a contrast ratio below 4.5:1, it's literally unreadable for a significant portion of your audience.</p>
+
+    <h2>Color and Conversion: What the Data Actually Says</h2>
+
+    <p>You've probably heard that "red buttons convert better" or "blue builds trust." Let me save you some time: the research is way more nuanced than that.</p>
+
+    <p>The famous "red vs green button" A/B test by HubSpot showed red outperforming green by 21%. But the test was on a predominantly green page. The red button won because it had more contrast, not because red is inherently more "clickable."</p>
+
+    <p>What actually drives conversion is <strong>contrast against the surrounding elements</strong>. Your CTA button needs to be the most visually distinct element on the page. If your page is mostly blue, a orange or yellow button will outperform another shade of blue — not because of color psychology, but because it stands out.</p>
+
+    <p>The lesson: don't chase "high-converting colors." Chase contrast and visual hierarchy.</p>
+
+    <h2>Tools I Actually Use</h2>
+
+    <p>Here's my actual workflow for building a color palette from scratch:</p>
+
+    <ol>
+      <li><strong>Pick a primary color</strong> based on brand identity or the feeling I'm going for.</li>
+      <li><strong>Generate the palette</strong> using a <a href="/color-palette-generator">color palette generator</a> that gives me complementary, analogous, and monochromatic options automatically.</li>
+      <li><strong>Build out shades</strong> — I need at least 5-7 shades of my primary color for different UI states (hover, active, disabled, etc.).</li>
+      <li><strong>Test contrast ratios</strong> for every text/background combination.</li>
+      <li><strong>Preview in context</strong> — colors look different in a palette than they do on an actual page with real content.</li>
+    </ol>
+
+    <p>That last step is crucial. A palette that looks gorgeous in isolation can fall apart when you put it next to real content. Photos, illustrations, and user-generated content all introduce colors that interact with your palette in ways you can't predict from swatches alone.</p>
+
+    <h2>Common Mistakes I See Constantly</h2>
+
+    <p><strong>Too many colors</strong>: If your palette has more than 5 distinct hues, you probably need to cut. Most beautiful websites use 2-3 colors plus neutrals.</p>
+
+    <p><strong>Ignoring color temperature</strong>: Mixing warm and cool tones without intention creates visual tension. Sometimes that's the point, but usually it's an accident. Pick a temperature and stick with it, or use temperature contrast deliberately.</p>
+
+    <p><strong>Forgetting about dark mode</strong>: Colors that look great on white can look garish or washed out on dark backgrounds. Test both modes from the start, not as an afterthought.</p>
+
+    <p><strong>Copying without understanding</strong>: I'm all for taking inspiration from well-designed sites. But copying a hex code without understanding why it works in its original context is like wearing someone else's prescription glasses. The color worked because of its relationships to surrounding colors, not in isolation.</p>
+
+    <h2>The Bottom Line</h2>
+
+    <p>Color selection doesn't have to be a creative crisis. Start with one primary color, use the 60-30-10 rule for distribution, pick a generation strategy (monochromatic, analogous, or complementary), and validate for accessibility. That's it. The process takes 20 minutes if you're not overthinking it.</p>
+
+    <p>If you want to skip the manual work, I built a <a href="/color-palette-generator">color palette generator</a> that handles all of this — it generates complementary, analogous, and monochromatic palettes from any starting color, shows contrast ratios, and exports CSS variables ready to paste into your project. Give it your primary color and it does the rest.</p>
+
+  </article>
+</BaseLayout>
