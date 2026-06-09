@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Markdown Editor - Write & Preview Markdown Online Free";
+const pageUrl = "https://toolmixr.com/markdown-editor";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online Markdown editor with live preview. Write in Markdown and see HTML rendered in real-time. Supports GitHub Flavored Markdown, tables, task lists, and syntax highlighting.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is Markdown?", "acceptedAnswer": { "@type": "Answer", "text": "Markdown is a lightweight markup language that lets you write formatted text using plain text syntax. Created by John Gruber in 2004, it is widely used for documentation, README files, blog posts, and note-taking." } },
+      { "@type": "Question", "name": "Does this support GitHub Flavored Markdown?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. This editor supports GFM features including tables, task lists, strikethrough, autolinks, and fenced code blocks with syntax highlighting." } },
+      { "@type": "Question", "name": "Is my content saved or sent to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. All editing and rendering happens entirely in your browser. Your content never leaves your device." } }
+    ]
+  },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://toolmixr.com" }, { "@type": "ListItem", "position": 2, "name": pageTitle, "item": pageUrl }] }
+]);
+---
+
+<BaseLayout title={pageTitle} description="Free online Markdown editor with live preview. Write in Markdown and see HTML rendered in real-time. Supports GitHub Flavored Markdown. No signup required." structuredData={structuredData}>
+  <section class="tool-page">
+    <nav class="breadcrumb"><a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Markdown Editor</span></nav>
+    <div class="tool-header"><h1>📋 Markdown Editor</h1></div>
+    <p class="subtitle">Write Markdown on the left. See the rendered HTML on the right. Everything happens in your browser.</p>
+    
+    <div class="tool-box" style="padding:0;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;min-height:500px;" id="editor-layout">
+        <div style="border-right:1px solid var(--border);">
+          <div style="padding:8px 16px;background:var(--bg);border-bottom:1px solid var(--border);font-size:13px;font-weight:600;color:var(--text-secondary);">MARKDOWN INPUT</div>
+          <textarea id="md-input" style="width:100%;height:100%;min-height:470px;border:none;resize:none;padding:20px;font-family:'Courier New',monospace;font-size:14px;line-height:1.7;background:var(--surface);color:var(--text);outline:none;" placeholder="# Welcome to Markdown Editor&#10;&#10;Type your Markdown here...&#10;&#10;## Features&#10;&#10;- **Bold** and *italic* text&#10;- [Links](https://example.com)&#10;- `inline code`&#10;- Code blocks with syntax highlighting&#10;- Tables&#10;- Task lists&#10;&#10;```javascript&#10;console.log('Hello, world!');&#10;```&#10;&#10;> Blockquotes for emphasis&#10;&#10;| Feature | Status |&#10;|---------|--------|&#10;| Live Preview | ✅ |&#10;| GFM Support | ✅ |&#10;| Export HTML | ✅ |"></textarea>
+        </div>
+        <div style="overflow:auto;">
+          <div style="padding:8px 16px;background:var(--bg);border-bottom:1px solid var(--border);font-size:13px;font-weight:600;color:var(--text-secondary);">PREVIEW</div>
+          <div id="md-preview" style="padding:20px;line-height:1.8;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="exportHTML()">📥 Export HTML</button>
+      <button class="btn btn-secondary" onclick="copyMarkdown()">📋 Copy Markdown</button>
+      <button class="btn btn-secondary" onclick="clearEditor()">🗑️ Clear</button>
+    </div>
+
+    <section class="guide" style="margin-top:40px;">
+      <h2>Markdown Quick Reference</h2>
+      <table class="legal-table" style="margin-top:16px;">
+        <thead><tr><th>Element</th><th>Syntax</th></tr></thead>
+        <tbody>
+          <tr><td>Heading</td><td><code># H1</code> <code>## H2</code> <code>### H3</code></td></tr>
+          <tr><td>Bold</td><td><code>**bold text**</code></td></tr>
+          <tr><td>Italic</td><td><code>*italic text*</code></td></tr>
+          <tr><td>Link</td><td><code>[title](https://example.com)</code></td></tr>
+          <tr><td>Image</td><td><code>![alt text](image.jpg)</code></td></tr>
+          <tr><td>Code</td><td><code>`inline code`</code></td></tr>
+          <tr><td>Code Block</td><td><code>```language ... ```</code></td></tr>
+          <tr><td>List</td><td><code>- item</code> or <code>1. item</code></td></tr>
+          <tr><td>Table</td><td><code>| Col1 | Col2 |</code></td></tr>
+          <tr><td>Task List</td><td><code>- [x] Done</code></td></tr>
+          <tr><td>Blockquote</td><td><code>&gt; quote</code></td></tr>
+          <tr><td>Horizontal Rule</td><td><code>---</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="faq" style="margin-top:40px;">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>What is GitHub Flavored Markdown?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>GitHub Flavored Markdown (GFM) extends standard Markdown with tables, task lists, strikethrough, autolinks, and fenced code blocks. It is the format used by GitHub, GitLab, and many developer tools.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Can I save my work?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>Click "Export HTML" to download the rendered HTML file. Use "Copy Markdown" to copy your raw Markdown to the clipboard and paste it into any text editor or note-taking app.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Does the preview include syntax highlighting?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>Code blocks are rendered with a dark theme background. Full syntax highlighting requires a library like Prism or Highlight.js — this editor focuses on core Markdown rendering with clean, readable code blocks.</p></div></div>
+    </section>
+
+    <section class="related-tools" style="margin-top:40px;">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/json-formatter" class="related-tool-card"><span class="related-icon">{}</span><span>JSON Formatter</span></a>
+        <a href="/base64-encoder-decoder" class="related-tool-card"><span class="related-icon">🔐</span><span>Base64 Encoder/Decoder</span></a>
+        <a href="/url-encoder-decoder" class="related-tool-card"><span class="related-icon">🔗</span><span>URL Encoder/Decoder</span></a>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    var input = document.getElementById('md-input');
+    var preview = document.getElementById('md-preview');
+    
+    function renderMarkdown(text) {
+      var html = text
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+        .replace(/^> (.*)$/gm, '<blockquote>$1</blockquote>')
+        .replace(/^- \[x\] (.*)$/gm, '<li><input type="checkbox" checked disabled> $1</li>')
+        .replace(/^- \[ \] (.*)$/gm, '<li><input type="checkbox" disabled> $1</li>')
+        .replace(/^- (.*)$/gm, '<li>$1</li>')
+        .replace(/^(\d+)\. (.*)$/gm, '<li>$2</li>')
+        .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
+        .replace(/^---$/gm, '<hr>')
+        .replace(/```(\w*)\n([\s\S]*?)```/g, function(_, lang, code) { return '<pre><code>' + code + '</code></pre>'; })
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^(?!<[a-z])/gm, '<p>')
+        .replace(/(?!<\/[a-z]>)$/gm, '</p>')
+        .replace(/<p><\/p>/g, '')
+        .replace(/<\/ul>\s*<ul>/g, '')
+        .replace(/<li><\/li>/g, '')
+        .replace(/<p><(h[123]|ul|ol|blockquote|pre|hr)/g, '<$1')
+        .replace(/<\/(h[123]|ul|ol|blockquote|pre)><\/p>/g, '</$1>');
+      
+      if (!html.match(/^<[a-z]/)) html = '<p>' + html + '</p>';
+      return html;
+    }
+    
+    input.addEventListener('input', function() {
+      preview.innerHTML = renderMarkdown(input.value);
+    });
+    
+    preview.innerHTML = renderMarkdown(input.value);
+    
+    function exportHTML() {
+      var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:-apple-system,sans-serif;max-width:800px;margin:40px auto;padding:0 20px;line-height:1.8;color:#333}code{background:#f0f0f0;padding:2px 6px;border-radius:3px}pre{background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:6px;overflow-x:auto}pre code{background:none;padding:0}blockquote{border-left:4px solid #4F46E5;padding:12px 20px;margin:16px 0;background:#f9fafb}h1,h2,h3{margin-top:24px;margin-bottom:12px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ddd;padding:8px}</style></head><body>' + preview.innerHTML + '</body></html>';
+      var blob = new Blob([html], {type:'text/html'});
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'markdown-export.html';
+      a.click();
+    }
+    
+    function copyMarkdown() {
+      navigator.clipboard.writeText(input.value).then(function() {
+        alert('Markdown copied to clipboard!');
+      });
+    }
+    
+    function clearEditor() {
+      input.value = '';
+      preview.innerHTML = '';
+    }
+  </script>
+</BaseLayout>

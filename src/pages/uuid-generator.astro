@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "UUID Generator - Generate UUID v4, v7, ULID Online Free";
+const pageUrl = "https://toolmixr.com/uuid-generator";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org", "@type": "WebApplication",
+    "name": pageTitle, "url": pageUrl,
+    "description": "Free online UUID and ULID generator. Generate UUID v4, UUID v7, and ULID identifiers in batch. Copy to clipboard or download as JSON/CSV.",
+    "applicationCategory": "DeveloperApplication", "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  },
+  {
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://toolmixr.com" }, { "@type": "ListItem", "position": 2, "name": pageTitle, "item": pageUrl }]
+  }
+]);
+---
+
+<BaseLayout title={pageTitle} description="Generate UUID v4, UUID v7, and ULID identifiers. Batch generate up to 100 IDs. Copy or download as JSON/CSV. Free, no signup." structuredData={structuredData}>
+  <section class="tool-page">
+    <nav class="breadcrumb"><a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>UUID Generator</span></nav>
+    <div class="tool-header"><h1>🆔 UUID Generator</h1></div>
+    <p class="subtitle">Generate UUID v4, UUID v7 (time-sorted), and ULID identifiers. Batch up to 100 at once.</p>
+    
+    <div class="tool-box">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:end;">
+        <div class="form-group" style="flex:1;min-width:200px;">
+          <label for="idType">ID Type</label>
+          <select id="idType" onchange="generate()">
+            <option value="uuid4">UUID v4 (Random)</option>
+            <option value="uuid7">UUID v7 (Time-sorted)</option>
+            <option value="ulid">ULID (Time-sorted, 26 chars)</option>
+          </select>
+        </div>
+        <div class="form-group" style="min-width:120px;">
+          <label for="count">Count</label>
+          <input type="number" id="count" value="5" min="1" max="100" onchange="generate()" style="width:100px;">
+        </div>
+        <div style="margin-bottom:20px;">
+          <button class="btn btn-primary" onclick="generate()">Generate</button>
+        </div>
+      </div>
+      
+      <div id="result" style="margin-top:8px;">
+        <div id="id-list"></div>
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="copyAll()">📋 Copy All</button>
+        <button class="btn btn-secondary" onclick="downloadJSON()">⬇ JSON</button>
+        <button class="btn btn-secondary" onclick="downloadCSV()">⬇ CSV</button>
+      </div>
+    </div>
+
+    <section class="guide" style="margin-top:40px;">
+      <h2>When to Use Each ID Type</h2>
+      <table class="legal-table">
+        <thead><tr><th>Type</th><th>Format</th><th>Best For</th></tr></thead>
+        <tbody>
+          <tr><td><strong>UUID v4</strong></td><td><code>550e8400-e29b-41d4-a716-446655440000</code></td><td>General-purpose unique IDs, database primary keys</td></tr>
+          <tr><td><strong>UUID v7</strong></td><td><code>0192e8a0-7b11-7000-8000-123456789abc</code></td><td>Time-ordered database entries, better index performance</td></tr>
+          <tr><td><strong>ULID</strong></td><td><code>01ARZ3NDEKTSV4RRFFQ69G5FAV</code></td><td>URL-friendly, sortable IDs, shorter than UUID</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="faq" style="margin-top:40px;">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>What's the difference between UUID v4 and v7?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>UUID v4 is fully random. UUID v7 embeds a timestamp in the first 48 bits, making it sortable by creation time. This gives better database index performance for time-ordered inserts.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Are these IDs cryptographically secure?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>Yes. This tool uses the browser's crypto.getRandomValues() API, which provides cryptographically secure random numbers suitable for production use.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>When should I use ULID instead of UUID?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>Use ULID when you need shorter, URL-friendly identifiers that are still unique and sortable. ULID is 26 characters vs UUID's 36, and it's case-insensitive, making it better for public-facing IDs.</p></div></div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/json-formatter" class="related-tool-card"><span class="related-icon">{}</span><span>JSON Formatter</span></a>
+        <a href="/base64-encoder-decoder" class="related-tool-card"><span class="related-icon">🔐</span><span>Base64 Encoder/Decoder</span></a>
+        <a href="/password-generator" class="related-tool-card"><span class="related-icon">🔑</span><span>Password Generator</span></a>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    var idList = document.getElementById('id-list');
+    
+    function uuid4() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = crypto.getRandomValues(new Uint8Array(1))[0] % 16 | 0;
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+      });
+    }
+    
+    function uuid7() {
+      var bytes = crypto.getRandomValues(new Uint8Array(16));
+      var ts = BigInt(Date.now());
+      bytes[0] = Number((ts >> 40n) & 0xFFn);
+      bytes[1] = Number((ts >> 32n) & 0xFFn);
+      bytes[2] = Number((ts >> 24n) & 0xFFn);
+      bytes[3] = Number((ts >> 16n) & 0xFFn);
+      bytes[4] = Number((ts >> 8n) & 0xFFn);
+      bytes[5] = Number(ts & 0xFFn);
+      bytes[6] = 0x70 | (bytes[6] & 0x0F);
+      bytes[8] = 0x80 | (bytes[8] & 0x3F);
+      var hex = Array.from(bytes).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+      return hex.slice(0,8)+'-'+hex.slice(8,12)+'-'+hex.slice(12,16)+'-'+hex.slice(16,20)+'-'+hex.slice(20);
+    }
+    
+    function ulid() {
+      var CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+      var ts = Date.now();
+      var time = '';
+      for (var i = 9; i >= 0; i--) time += CROCKFORD.charAt(Math.floor(ts / Math.pow(32, i)) % 32);
+      var rand = '';
+      var bytes = crypto.getRandomValues(new Uint8Array(16));
+      for (var j = 0; j < 16; j++) rand += CROCKFORD.charAt(bytes[j] % 32);
+      return time + rand;
+    }
+    
+    function generate() {
+      var type = document.getElementById('idType').value;
+      var count = parseInt(document.getElementById('count').value) || 5;
+      count = Math.min(Math.max(count, 1), 100);
+      var fn = type === 'uuid4' ? uuid4 : type === 'uuid7' ? uuid7 : ulid;
+      var ids = [];
+      for (var i = 0; i < count; i++) ids.push(fn());
+      
+      idList.innerHTML = ids.map(function(id, i) {
+        return '<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-secondary);font-size:12px;min-width:32px;">' + (i+1) + '.</span><code style="flex:1;word-break:break-all;">' + id + '</code><button onclick="copyOne(\'' + id + '\',this)" style="background:none;border:1px solid var(--border);border-radius:4px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--text-secondary);">Copy</button></div>';
+      }).join('');
+    }
+    
+    function copyOne(id, btn) {
+      navigator.clipboard.writeText(id).then(function() {
+        btn.textContent = '✓';
+        setTimeout(function() { btn.textContent = 'Copy'; }, 1000);
+      });
+    }
+    
+    function copyAll() {
+      var codes = idList.querySelectorAll('code');
+      var text = Array.from(codes).map(function(c) { return c.textContent; }).join('\n');
+      navigator.clipboard.writeText(text).then(function() { alert('All IDs copied!'); });
+    }
+    
+    function getIDs() { return Array.from(idList.querySelectorAll('code')).map(function(c) { return c.textContent; }); }
+    
+    function downloadJSON() {
+      var blob = new Blob([JSON.stringify(getIDs(), null, 2)], {type:'application/json'});
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'uuids.json'; a.click();
+    }
+    
+    function downloadCSV() {
+      var csv = 'index,id\n' + getIDs().map(function(id, i) { return (i+1) + ',' + id; }).join('\n');
+      var blob = new Blob([csv], {type:'text/csv'});
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'uuids.csv'; a.click();
+    }
+    
+    generate();
+  </script>
+</BaseLayout>

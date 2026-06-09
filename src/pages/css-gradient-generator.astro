@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "CSS Gradient Generator - Create Beautiful Gradients Free";
+const pageUrl = "https://toolmixr.com/css-gradient-generator";
+const structuredData = JSON.stringify([
+  {"@context":"https://schema.org","@type":"WebApplication","name":pageTitle,"url":pageUrl,"description":"Create beautiful CSS gradients visually. Choose colors, angles, and gradient type. Export as CSS or Tailwind. Supports linear, radial, and conic gradients.","applicationCategory":"DesignApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolmixr.com"},{"@type":"ListItem","position":2,"name":pageTitle,"item":pageUrl}]}
+]);
+---
+
+<BaseLayout title={pageTitle} description="Create beautiful CSS gradients with a visual editor. Export as CSS or Tailwind. Supports linear, radial, and conic gradients." structuredData={structuredData}>
+  <section class="tool-page">
+    <nav class="breadcrumb"><a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>CSS Gradient Generator</span></nav>
+    <div class="tool-header"><h1>🌈 CSS Gradient Generator</h1></div>
+    <p class="subtitle">Create beautiful CSS gradients visually. Pick colors, adjust angle, and copy the CSS instantly.</p>
+    
+    <div class="tool-box">
+      <div style="display:flex;gap:24px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:280px;">
+          <div id="preview" style="width:100%;height:200px;border-radius:var(--radius);border:1px solid var(--border);transition:background 0.3s;"></div>
+          
+          <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;">
+            <select id="gradientType" onchange="update()" style="flex:1;min-width:140px;">
+              <option value="linear">Linear</option>
+              <option value="radial">Radial</option>
+              <option value="conic">Conic</option>
+            </select>
+            <input type="range" id="angle" min="0" max="360" value="135" oninput="document.getElementById('angleVal').textContent=this.value+'°';update()" style="width:200px;">
+            <span id="angleVal" style="font-size:13px;color:var(--text-secondary);min-width:45px;">135°</span>
+          </div>
+          
+          <div style="margin-top:16px;">
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
+              <label style="font-size:13px;font-weight:600;">Color 1</label>
+              <input type="color" id="color1" value="#4F46E5" onchange="update()" style="width:40px;height:36px;border:1px solid var(--border);border-radius:4px;cursor:pointer;padding:2px;">
+              <input type="text" id="color1Hex" value="#4F46E5" oninput="updateColor1(this.value)" style="width:90px;font-size:13px;" placeholder="#4F46E5">
+              <input type="range" id="stop1" min="0" max="100" value="0" oninput="document.getElementById('stop1Val').textContent=this.value+'%';update()" style="flex:1;">
+              <span id="stop1Val" style="font-size:12px;color:var(--text-secondary);min-width:30px;">0%</span>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <label style="font-size:13px;font-weight:600;">Color 2</label>
+              <input type="color" id="color2" value="#7C3AED" onchange="update()" style="width:40px;height:36px;border:1px solid var(--border);border-radius:4px;cursor:pointer;padding:2px;">
+              <input type="text" id="color2Hex" value="#7C3AED" oninput="updateColor2(this.value)" style="width:90px;font-size:13px;" placeholder="#7C3AED">
+              <input type="range" id="stop2" min="0" max="100" value="100" oninput="document.getElementById('stop2Val').textContent=this.value+'%';update()" style="flex:1;">
+              <span id="stop2Val" style="font-size:12px;color:var(--text-secondary);min-width:35px;">100%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div style="flex:1;min-width:280px;">
+          <div class="form-group">
+            <label>CSS Output</label>
+            <textarea id="cssOutput" readonly style="height:100px;font-family:'Courier New',monospace;font-size:13px;" onclick="this.select()"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Tailwind (bg-gradient-*)</label>
+            <textarea id="tailwindOutput" readonly style="height:70px;font-family:'Courier New',monospace;font-size:13px;" onclick="this.select()"></textarea>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-primary" onclick="copyCSS()">📋 Copy CSS</button>
+            <button class="btn btn-secondary" onclick="copyTailwind()">📋 Copy Tailwind</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="faq" style="margin-top:40px;">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>What's the difference between linear, radial, and conic gradients?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>Linear gradients transition along a straight line. Radial gradients radiate from a center point outward. Conic gradients rotate around a center point, like a color wheel. Each type creates a different visual effect.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Can I use these gradients in production?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>Yes. All major browsers support CSS gradients natively. No images, no JavaScript required — just copy the CSS and paste it into your stylesheet.</p></div></div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/color-palette-generator" class="related-tool-card"><span class="related-icon">🎨</span><span>Color Palette Generator</span></a>
+        <a href="/color-contrast-checker" class="related-tool-card"><span class="related-icon">👁️</span><span>Color Contrast Checker</span></a>
+        <a href="/og-image-generator" class="related-tool-card"><span class="related-icon">🖼️</span><span>OG Image Generator</span></a>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    function update() {
+      var type = document.getElementById('gradientType').value;
+      var angle = parseInt(document.getElementById('angle').value);
+      var c1 = document.getElementById('color1').value;
+      var c2 = document.getElementById('color2').value;
+      var s1 = parseInt(document.getElementById('stop1').value);
+      var s2 = parseInt(document.getElementById('stop2').value);
+      
+      var css = '';
+      if (type === 'linear') css = 'linear-gradient(' + angle + 'deg, ' + c1 + ' ' + s1 + '%, ' + c2 + ' ' + s2 + '%)';
+      else if (type === 'radial') css = 'radial-gradient(circle, ' + c1 + ' ' + s1 + '%, ' + c2 + ' ' + s2 + '%)';
+      else css = 'conic-gradient(from ' + angle + 'deg, ' + c1 + ' ' + s1 + '%, ' + c2 + ' ' + s2 + '%)';
+      
+      document.getElementById('preview').style.background = css;
+      document.getElementById('cssOutput').value = 'background: ' + css + ';';
+      
+      var tailwindColors = [c1, c2].map(function(c) { return '[' + c + ']'; });
+      var tw = 'bg-gradient-to-' + (type === 'linear' ? getDirection(angle) : type === 'radial' ? 'r' : type) + ' from-' + tailwindColors[0] + ' to-' + tailwindColors[1];
+      document.getElementById('tailwindOutput').value = tw;
+    }
+    
+    function getDirection(a) {
+      if (a < 45 || a >= 315) return 'r';
+      if (a < 135) return 'b';
+      if (a < 225) return 'l';
+      return 't';
+    }
+    
+    function updateColor1(v) { if (v.match(/^#[0-9a-fA-F]{6}$/)) { document.getElementById('color1').value = v; update(); } }
+    function updateColor2(v) { if (v.match(/^#[0-9a-fA-F]{6}$/)) { document.getElementById('color2').value = v; update(); } }
+    
+    document.getElementById('color1').addEventListener('input', function() { document.getElementById('color1Hex').value = this.value; update(); });
+    document.getElementById('color2').addEventListener('input', function() { document.getElementById('color2Hex').value = this.value; update(); });
+    
+    function copyCSS() { var t = document.getElementById('cssOutput'); t.select(); navigator.clipboard.writeText(t.value); }
+    function copyTailwind() { var t = document.getElementById('tailwindOutput'); t.select(); navigator.clipboard.writeText(t.value); }
+    
+    update();
+  </script>
+</BaseLayout>

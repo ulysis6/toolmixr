@@ -52,6 +52,13 @@ const tools = [
     tag: 'Design',
   },
   {
+    title: 'CSS Gradient Generator',
+    description: 'Create beautiful CSS gradients with a visual editor. Export as CSS, Tailwind, or SVG. Supports linear, radial, and conic gradients.',
+    icon: '🌈',
+    slug: 'css-gradient-generator',
+    tag: 'Design',
+  },
+  {
     title: 'JSON Formatter',
     description: 'Format, validate, and beautify JSON data instantly. Spot errors and make your JSON readable.',
     icon: '{}',
@@ -70,6 +77,27 @@ const tools = [
     description: 'Encode or decode URLs and query parameters. Handle special characters in URLs correctly.',
     icon: '🔗',
     slug: 'url-encoder-decoder',
+    tag: 'Developer',
+  },
+  {
+    title: 'Markdown Editor',
+    description: 'Write Markdown with a live preview pane. See exactly how your content renders as you type. Supports GitHub Flavored Markdown.',
+    icon: '📋',
+    slug: 'markdown-editor',
+    tag: 'Developer',
+  },
+  {
+    title: 'UUID Generator',
+    description: 'Generate UUID v4, UUID v7, and ULID identifiers in batch. Copy single values or download as JSON/CSV.',
+    icon: '🆔',
+    slug: 'uuid-generator',
+    tag: 'Developer',
+  },
+  {
+    title: 'Color Contrast Checker',
+    description: 'Check text-background color contrast against WCAG AA and AAA standards. Get pass/fail results instantly for accessibility compliance.',
+    icon: '👁️',
+    slug: 'color-contrast-checker',
     tag: 'Developer',
   },
   {
@@ -143,46 +171,11 @@ const tools = [
     tag: 'Finance',
   },
   {
-    title: 'Tip Calculator',
-    description: 'Calculate tip amounts, total bill, and split by person. Never struggle with restaurant math.',
+    title: 'Invoice Generator',
+    description: 'Create professional invoices with your branding. Fill in line items, add tax and discounts, and export as PDF.',
     icon: '🧾',
-    slug: 'tip-calculator',
+    slug: 'invoice-generator',
     tag: 'Finance',
-  },
-  {
-    title: 'Word Counter',
-    description: 'Count words, characters, sentences, and paragraphs instantly. Perfect for writers, students, and content creators.',
-    icon: '📝',
-    slug: 'word-counter',
-    tag: 'Writing',
-  },
-  {
-    title: 'Lorem Ipsum Generator',
-    description: 'Generate placeholder text for your designs and mockups. Choose paragraphs, words, or sentences.',
-    icon: '📄',
-    slug: 'lorem-ipsum-generator',
-    tag: 'Writing',
-  },
-  {
-    title: 'QR Code Generator',
-    description: 'Create QR codes for URLs, text, WiFi, email, and more. Download as PNG or SVG.',
-    icon: '📱',
-    slug: 'qr-code-generator',
-    tag: 'Utility',
-  },
-  {
-    title: 'Age Calculator',
-    description: 'Find your exact age in years, months, and days. See next birthday countdown and fun facts.',
-    icon: '🎂',
-    slug: 'age-calculator',
-    tag: 'Utility',
-  },
-  {
-    title: 'Percentage Calculator',
-    description: 'Calculate percentages three ways: find X% of Y, what percent is X of Y, and % change.',
-    icon: '🔣',
-    slug: 'percentage-calculator',
-    tag: 'Math',
   },
   {
     title: 'BMI Calculator',
@@ -191,13 +184,6 @@ const tools = [
     slug: 'bmi-calculator',
     tag: 'Health',
   },
-  {
-    title: 'Discount Calculator',
-    description: 'Calculate sale prices, savings, and final price including tax. See how much you really save.',
-    icon: '🏷️',
-    slug: 'discount-calculator',
-    tag: 'Shopping',
-  },
 ];
 ---
 
@@ -205,7 +191,7 @@ const tools = [
   
   <section class="hero">
     <h1>Free Online Web Tools</h1>
-    <p>28 free tools for AI, design, SEO, finance, development, and everyday calculations. No signup, no limits, no hassle.</p>
+    <p>26 professional tools for AI, design, SEO, finance, development, and everyday calculations. No signup, no limits, no hassle.</p>
   </section>
   
   <div class="search-bar">
@@ -220,11 +206,7 @@ const tools = [
     <button class="filter-btn" onclick="filterTools('SEO')">🔍 SEO</button>
     <button class="filter-btn" onclick="filterTools('Security')">🔒 Security</button>
     <button class="filter-btn" onclick="filterTools('Finance')">💰 Finance</button>
-    <button class="filter-btn" onclick="filterTools('Writing')">✍️ Writing</button>
-    <button class="filter-btn" onclick="filterTools('Utility')">🛠️ Utility</button>
-    <button class="filter-btn" onclick="filterTools('Math')">🔢 Math</button>
     <button class="filter-btn" onclick="filterTools('Health')">💪 Health</button>
-    <button class="filter-btn" onclick="filterTools('Shopping')">🛒 Shopping</button>
   </div>
   
   <div class="tools-grid">

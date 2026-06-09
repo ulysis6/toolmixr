@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Invoice Generator - Create Professional Invoices Free";
+const pageUrl = "https://toolmixr.com/invoice-generator";
+const structuredData = JSON.stringify([
+  {"@context":"https://schema.org","@type":"WebApplication","name":pageTitle,"url":pageUrl,"description":"Create professional invoices online. Add your company info, line items, tax, and discounts. Export as PDF or print. No signup required.","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolmixr.com"},{"@type":"ListItem","position":2,"name":pageTitle,"item":pageUrl}]}
+]);
+---
+
+<BaseLayout title={pageTitle} description="Free online invoice generator. Create professional invoices with your company branding. Add line items, tax, discounts, notes, and export as PDF." structuredData={structuredData}>
+  <section class="tool-page">
+    <nav class="breadcrumb"><a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Invoice Generator</span></nav>
+    <div class="tool-header"><h1>🧾 Invoice Generator</h1></div>
+    <p class="subtitle">Create professional invoices in seconds. Fill in your details, add line items, and export as PDF.</p>
+    
+    <div class="tool-box">
+      <!-- Sender Info -->
+      <h3 style="margin-bottom:12px;">Your Company</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+        <div class="form-group"><label>Company Name</label><input id="company" placeholder="Acme Inc."></div>
+        <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="billing@acme.com"></div>
+        <div class="form-group"><label>Address</label><input id="address" placeholder="123 Main St, City"></div>
+        <div class="form-group"><label>Phone</label><input id="phone" placeholder="+1 (555) 000-0000"></div>
+      </div>
+      
+      <!-- Client Info -->
+      <h3 style="margin:24px 0 12px;">Bill To</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+        <div class="form-group"><label>Client Name</label><input id="clientName" placeholder="Client Company"></div>
+        <div class="form-group"><label>Client Address</label><input id="clientAddress" placeholder="456 Oak Ave, Town"></div>
+      </div>
+      
+      <!-- Invoice Details -->
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;">
+        <div class="form-group" style="min-width:160px;"><label>Invoice #</label><input id="invNumber" value="INV-2026-001"></div>
+        <div class="form-group" style="min-width:160px;"><label>Date</label><input type="date" id="invDate"></div>
+        <div class="form-group" style="min-width:160px;"><label>Due Date</label><input type="date" id="dueDate"></div>
+        <div class="form-group" style="min-width:120px;"><label>Currency</label><select id="currency"><option value="$">USD ($)</option><option value="€">EUR (€)</option><option value="£">GBP (£)</option><option value="¥">JPY (¥)</option></select></div>
+      </div>
+      
+      <!-- Line Items -->
+      <h3 style="margin:24px 0 12px;">Line Items</h3>
+      <div id="items">
+        <div class="item-row" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 40px;gap:8px;align-items:end;margin-bottom:8px;">
+          <div class="form-group"><label>Description</label><input class="item-desc" value="Web Development"></div>
+          <div class="form-group"><label>Qty</label><input type="number" class="item-qty" value="1" min="1" onchange="calc()"></div>
+          <div class="form-group"><label>Rate</label><input type="number" class="item-rate" value="5000" min="0" step="0.01" onchange="calc()"></div>
+          <div class="form-group"><label>Amount</label><div class="item-total" style="padding:10px 0;font-weight:600;">$5,000.00</div></div>
+          <button onclick="removeItem(this)" style="background:none;border:none;color:#EF4444;cursor:pointer;font-size:20px;padding-bottom:10px;" title="Remove">×</button>
+        </div>
+      </div>
+      <button class="btn btn-secondary" onclick="addItem()" style="margin-top:8px;">+ Add Item</button>
+      
+      <!-- Totals -->
+      <div style="max-width:300px;margin-left:auto;margin-top:24px;">
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);gap:8px;">
+          <span>Tax (%)</span>
+          <div style="display:flex;align-items:center;gap:6px;"><input type="number" id="taxRate" value="0" min="0" max="100" onchange="calc()" style="width:60px;text-align:right;"><span>%</span></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);gap:8px;">
+          <span>Discount</span>
+          <input type="number" id="discount" value="0" min="0" step="0.01" onchange="calc()" style="width:80px;text-align:right;">
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:12px 0;font-size:20px;font-weight:800;"><span>Total</span><span id="total" style="color:var(--primary);">$0.00</span></div>
+      </div>
+      
+      <!-- Notes -->
+      <div class="form-group" style="margin-top:16px;">
+        <label>Notes / Payment Instructions</label>
+        <textarea id="notes" rows="2" placeholder="Payment due within 30 days. Bank transfer: ..."></textarea>
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="printInvoice()">🖨️ Print / Save PDF</button>
+        <button class="btn btn-secondary" onclick="resetInvoice()">🗑️ Reset</button>
+      </div>
+    </div>
+
+    <section class="faq" style="margin-top:40px;">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Is my invoice data saved anywhere?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>No. All data stays in your browser. When you print or save as PDF, the data is sent to your printer or PDF driver, not to any server. We never see your invoice data.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>How do I get a PDF?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>Click "Print / Save PDF" and choose "Save as PDF" as the printer destination in your browser's print dialog. This works on Chrome, Edge, Firefox, and Safari.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"><span>Can I add my logo?</span><span class="faq-arrow">▸</span></button><div class="faq-answer"><p>This tool focuses on the core invoice content. For logo and advanced branding, copy the content into Word or Google Docs after filling in the details, or use a dedicated invoicing service.</p></div></div>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related Tools</h2>
+      <div class="related-tools-grid">
+        <a href="/mortgage-calculator" class="related-tool-card"><span class="related-icon">🏠</span><span>Mortgage Calculator</span></a>
+        <a href="/roi-calculator" class="related-tool-card"><span class="related-icon">📈</span><span>ROI Calculator</span></a>
+        <a href="/adsense-revenue-calculator" class="related-tool-card"><span class="related-icon">💵</span><span>AdSense Revenue Calculator</span></a>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    var today = new Date().toISOString().split('T')[0];
+    var d30 = new Date(Date.now()+30*86400000).toISOString().split('T')[0];
+    document.getElementById('invDate').value = today;
+    document.getElementById('dueDate').value = d30;
+    
+    function calc() {
+      var cur = document.getElementById('currency').value;
+      var rows = document.querySelectorAll('.item-row');
+      var subtotal = 0;
+      rows.forEach(function(r) {
+        var qty = parseFloat(r.querySelector('.item-qty').value) || 0;
+        var rate = parseFloat(r.querySelector('.item-rate').value) || 0;
+        var amt = qty * rate;
+        r.querySelector('.item-total').textContent = cur + amt.toLocaleString('en', {minimumFractionDigits:2});
+        subtotal += amt;
+      });
+      var tax = subtotal * (parseFloat(document.getElementById('taxRate').value) || 0) / 100;
+      var discount = parseFloat(document.getElementById('discount').value) || 0;
+      var total = subtotal + tax - discount;
+      document.getElementById('subtotal').textContent = cur + subtotal.toLocaleString('en', {minimumFractionDigits:2});
+      document.getElementById('total').textContent = cur + total.toLocaleString('en', {minimumFractionDigits:2});
+    }
+    
+    function addItem() {
+      var div = document.createElement('div');
+      div.className = 'item-row';
+      div.style.cssText = 'display:grid;grid-template-columns:2fr 1fr 1fr 1fr 40px;gap:8px;align-items:end;margin-bottom:8px;';
+      div.innerHTML = '<div class="form-group"><label>Description</label><input class="item-desc" placeholder="Service / Product"></div><div class="form-group"><label>Qty</label><input type="number" class="item-qty" value="1" min="1" onchange="calc()"></div><div class="form-group"><label>Rate</label><input type="number" class="item-rate" value="0" min="0" step="0.01" onchange="calc()"></div><div class="form-group"><label>Amount</label><div class="item-total" style="padding:10px 0;font-weight:600;">___</div></div><button onclick="removeItem(this)" style="background:none;border:none;color:#EF4444;cursor:pointer;font-size:20px;padding-bottom:10px;" title="Remove">×</button>';
+      document.getElementById('items').appendChild(div);
+      calc();
+    }
+    
+    function removeItem(btn) {
+      var items = document.getElementById('items');
+      if (items.querySelectorAll('.item-row').length > 1) { btn.closest('.item-row').remove(); calc(); }
+    }
+    
+    function printInvoice() {
+      var cur = document.getElementById('currency').value;
+      var items = document.getElementById('items').querySelectorAll('.item-row');
+      var rows = '';
+      items.forEach(function(r) {
+        rows += '<tr><td style="padding:8px;border:1px solid #ddd;">'+r.querySelector('.item-desc').value+'</td><td style="padding:8px;border:1px solid #ddd;text-align:center;">'+r.querySelector('.item-qty').value+'</td><td style="padding:8px;border:1px solid #ddd;text-align:right;">'+r.querySelector('.item-rate').value+'</td><td style="padding:8px;border:1px solid #ddd;text-align:right;">'+r.querySelector('.item-total').textContent+'</td></tr>';
+      });
+      var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice '+document.getElementById('invNumber').value+'</title><style>body{font-family:-apple-system,sans-serif;max-width:800px;margin:40px auto;padding:20px;color:#333}table{width:100%;border-collapse:collapse;margin:20px 0}th{background:#f5f5f5;text-align:left;padding:8px}h1{font-size:24px}.company{font-size:14px;color:#666}.total-row{font-weight:700}.right{text-align:right}@media print{body{margin:20px}}</style></head><body><h1>INVOICE</h1><div class="company"><strong>'+document.getElementById('company').value+'</strong><br>'+document.getElementById('email').value+'<br>'+document.getElementById('address').value+'<br>'+document.getElementById('phone').value+'</div><br><strong>Bill To:</strong><br>'+document.getElementById('clientName').value+'<br>'+document.getElementById('clientAddress').value+'<br><br><table><tr><td><strong>Invoice #:</strong> '+document.getElementById('invNumber').value+'</td><td class="right"><strong>Date:</strong> '+document.getElementById('invDate').value+'</td></tr><tr><td><strong>Due Date:</strong> '+document.getElementById('dueDate').value+'</td><td></td></tr></table><table><thead><tr><th>Description</th><th style="text-align:center">Qty</th><th style="text-align:right">Rate</th><th style="text-align:right">Amount</th></tr></thead><tbody>'+rows+'</tbody></table><table style="max-width:320px;margin-left:auto;"><tr><td>Subtotal</td><td class="right">'+document.getElementById('subtotal').textContent+'</td></tr><tr><td>Tax ('+document.getElementById('taxRate').value+'%)</td><td class="right">'+document.getElementById('currency').value+(parseFloat(document.getElementById('subtotal').textContent.replace(/[^0-9.]/g,''))*(parseFloat(document.getElementById('taxRate').value)/100)).toLocaleString('en',{minimumFractionDigits:2})+'</td></tr><tr><td>Discount</td><td class="right">-'+document.getElementById('currency').value+parseFloat(document.getElementById('discount').value||0).toLocaleString('en',{minimumFractionDigits:2})+'</td></tr><tr class="total-row"><td><strong>Total</strong></td><td class="right"><strong>'+document.getElementById('total').textContent+'</strong></td></tr></table><p style="margin-top:30px;white-space:pre-wrap;font-size:13px;color:#666;">'+document.getElementById('notes').value+'</p></body></html>';
+      var w = window.open('','_blank');
+      w.document.write(html);
+      w.document.close();
+      setTimeout(function() { w.print(); }, 500);
+    }
+    
+    function resetInvoice() { if (confirm('Reset all fields?')) location.reload(); }
+    
+    calc();
+  </script>
+</BaseLayout>
