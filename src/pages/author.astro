@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Lu Shen",
+  "alternateName": "路申",
+  "url": "https://toolmixr.com/author",
+  "sameAs": [
+    "https://www.linkedin.com/in/shenlu-ulysis6/",
+    "https://github.com/ulysis6",
+    "https://genaipick.com/author/"
+  ],
+  "description": "Small business owner and software developer building free online tools and writing honest AI tool reviews.",
+  "knowsAbout": ["Web Development", "AI Tools", "SEO", "Online Tools", "Financial Calculators", "Astro.js", "JavaScript"]
+});
+---
+
+<BaseLayout title="Author — Lu Shen" description="Lu Shen builds free online tools at ToolMixr and writes honest AI tool reviews at GenAIPick." structuredData={structuredData}>
+  <div class="about-page" style="max-width:800px;padding:40px 0 80px;">
+    <nav class="breadcrumb"><a href="/">Home</a> <span class="breadcrumb-sep">&#8250;</span> <span>Author</span></nav>
+    
+    <div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px;">
+      <div style="width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0;">👨‍💻</div>
+      <div style="flex:1;min-width:250px;">
+        <h1 style="font-size:32px;font-weight:800;margin-bottom:4px;">Lu Shen</h1>
+        <p style="font-size:16px;color:var(--primary);font-weight:600;margin-bottom:16px;">Small Business Owner · AI Tools Enthusiast · Indie Developer</p>
+        <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">I build free online tools at <a href="/">ToolMixr</a> and write honest AI tool reviews at <a href="https://genaipick.com" target="_blank" rel="noopener">GenAIPick</a>. Before this, I was that person with 15 browser tabs open, each running a different "free" tool that required an account, uploaded my data, or hit me with a paywall. So I built what I wanted: tools that just work, right in your browser.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="https://www.linkedin.com/in/shenlu-ulysis6/" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration:none;">🔗 LinkedIn</a>
+          <a href="https://github.com/ulysis6" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration:none;">🔗 GitHub</a>
+          <a href="https://genaipick.com" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration:none;">🔗 GenAIPick</a>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top:40px;">
+      <h2 style="font-size:22px;font-weight:700;margin-bottom:16px;">What I Build</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+          <div style="font-size:28px;margin-bottom:8px;">🔧</div>
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;">ToolMixr</h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;">26 free online tools — mortgage calculator, JSON formatter, Markdown editor, CSS gradient generator, and more. All client-side, no data collection.</p>
+          <a href="/" style="font-size:13px;font-weight:600;">View tools →</a>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+          <div style="font-size:28px;margin-bottom:8px;">✍️</div>
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;">GenAIPick</h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;">Honest, hands-on AI tool reviews and tutorials. 29+ in-depth articles. No sponsorships, no fluff — just real analysis.</p>
+          <a href="https://genaipick.com" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;">View reviews →</a>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:40px;">
+      <h2 style="font-size:22px;font-weight:700;margin-bottom:16px;">The Full Story</h2>
+      <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:12px;">I started building web tools because I got tired of using free online tools that collected my data, showed too many ads, or asked me to sign up just to format some JSON.</p>
+      <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:12px;">ToolMixr was the result — every tool runs entirely in your browser. Your data never leaves your device. Your passwords, JSON, images, and financial data stay private.</p>
+      <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:12px;">Then I started GenAIPick because I noticed most AI tool reviews were either sponsored, outdated, or written by someone who clearly had not actually tested the product. I pay for my own subscriptions and write honest reviews of the tools I genuinely use.</p>
+      <p style="color:var(--text-secondary);line-height:1.8;">When I am not building tools or testing AI, I am probably reading about local AI models, tweaking my home server, or playing with the latest open source AI releases.</p>
+    </section>
+
+    <section style="margin-top:40px;">
+      <h2 style="font-size:22px;font-weight:700;margin-bottom:16px;">My Tools &amp; Tech Stack</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:13px;color:var(--text-secondary);">Astro.js</span>
+        <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:13px;color:var(--text-secondary);">JavaScript</span>
+        <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:13px;color:var(--text-secondary);">Cloudflare Pages</span>
+        <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:13px;color:var(--text-secondary);">GitHub</span>
+        <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:13px;color:var(--text-secondary);">CSS</span>
+        <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:13px;color:var(--text-secondary);">HTML</span>
+        <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:13px;color:var(--text-secondary);">Google AdSense</span>
+        <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:13px;color:var(--text-secondary);">Google Analytics</span>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .btn-secondary { display:inline-flex;align-items:center;gap:6px;padding:8px 16px;font-size:13px;font-weight:600;border-radius:6px;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);transition:all 0.2s; }
+    .btn-secondary:hover { background:var(--border); }
+  </style>
+</BaseLayout>
