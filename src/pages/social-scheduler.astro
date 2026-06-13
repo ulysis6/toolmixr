@@ -2,151 +2,343 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const gumroadUrl = 'https://ulysis.gumroad.com/l/rlmsco';
+const chromeStoreUrl = 'https://chromewebstore.google.com/detail/socialscheduler-ai';
 ---
 
-<BaseLayout title="SocialScheduler AI - Right-click to Share Any Page" description="AI-powered Chrome extension that lets you right-click any webpage and instantly share it to Twitter/X or LinkedIn with AI-rewritten content.">
-  
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    
-    <!-- Hero -->
-    <section class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
-        🚀 New Chrome Extension
+<BaseLayout 
+  title="SocialScheduler AI - Right-click to Share Any Page" 
+  description="AI-powered Chrome extension: right-click any webpage and instantly share it to Twitter/X or LinkedIn with AI-rewritten content. One click, done."
+>
+  <style>
+    .hero-gradient {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0ea5e9 100%);
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(14,165,233,0.15);
+    }
+    .screenshot-card {
+      transition: all 0.3s ease;
+      border: 1px solid rgba(14,165,233,0.2);
+    }
+    .screenshot-card:hover {
+      border-color: #0ea5e9;
+      box-shadow: 0 8px 30px rgba(14,165,233,0.2);
+      transform: scale(1.02);
+    }
+    .step-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: white;
+      flex-shrink: 0;
+    }
+  </style>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white py-20 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium mb-6">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        New Chrome Extension
       </div>
-      <h1 class="text-5xl font-bold mb-4">
-        Share Any Page in <span class="text-blue-600">One Click</span>
+      
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
+        Share Any Page in<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-400">One Click</span>
       </h1>
-      <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-        Right-click any webpage → AI rewrites it for your platform → Post to Twitter or LinkedIn instantly.
+      
+      <p class="text-lg md:text-xl text-blue-100/80 mb-8 max-w-2xl mx-auto">
+        Right-click any webpage &rarr; AI rewrites it for your platform &rarr; Post to Twitter or LinkedIn instantly.<br/>
         No more copying, pasting, and formatting.
       </p>
-      <div class="flex flex-wrap justify-center gap-4">
+
+      <div class="flex flex-wrap justify-center gap-4 mb-4">
         <a href="{chromeStoreUrl}" 
-           class="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-          </svg>
-          Add to Chrome — <span class="font-bold">Free</span>
+           class="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-blue-50 text-slate-900 rounded-xl text-lg font-bold shadow-xl hover:shadow-2xl transition-all">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          Add to Chrome &mdash; <span class="font-black">Free</span>
         </a>
-        <a href="{gumroadUrl}" 
-           class="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition">
-          🚀 Upgrade to Pro — $9/mo
+        <a href="{gumroadUrl}" target="_blank"
+           class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white rounded-xl text-lg font-bold shadow-xl hover:shadow-2xl transition-all">
+          🚀 Upgrade to Pro &mdash; $9/mo
         </a>
       </div>
-      <p class="text-sm text-gray-400 mt-3">Free plan: 5 posts/month. No credit card required.</p>
-    </section>
+      <p class="text-sm text-blue-200/60">Free plan: 5 posts/month. No credit card required.</p>
+    </div>
+  </section>
 
-    <!-- Demo / How it works -->
-    <section class="mb-16">
-      <h2 class="text-3xl font-bold text-center mb-10">How It Works</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
-          <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
-          <h3 class="font-semibold text-lg mb-2">Right-Click</h3>
-          <p class="text-gray-600 text-sm">Right-click any webpage, article, or link. Choose "Share to Twitter" or "Share to LinkedIn" from the menu.</p>
+  <!-- Main Screenshot Showcase -->
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3">See It in Action</h2>
+        <p class="text-lg text-slate-500">Right-click any page, edit the AI draft, and publish in seconds.</p>
+      </div>
+
+      <!-- Main screenshot -->
+      <div class="screenshot-card rounded-2xl overflow-hidden shadow-xl mb-8">
+        <img src="/images/social-scheduler/01-main-popup.png" alt="SocialScheduler AI popup showing AI-generated post content" class="w-full h-auto" loading="lazy" />
+      </div>
+
+      <!-- Screenshot gallery -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="screenshot-card rounded-xl overflow-hidden shadow-md">
+          <img src="/images/social-scheduler/02-context-menu.png" alt="Right-click context menu with sharing options" class="w-full h-auto" loading="lazy" />
+          <div class="p-4">
+            <h4 class="font-semibold text-slate-900">Right-Click Menu</h4>
+            <p class="text-sm text-slate-500">Share to any platform directly from the context menu.</p>
+          </div>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
-          <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
-          <h3 class="font-semibold text-lg mb-2">AI Rewrites</h3>
-          <p class="text-gray-600 text-sm">Our AI reads the page, extracts the key information, and rewrites it as an engaging social media post tailored to each platform.</p>
+        <div class="screenshot-card rounded-xl overflow-hidden shadow-md">
+          <img src="/images/social-scheduler/03-settings.png" alt="Settings page for API keys and social accounts" class="w-full h-auto" loading="lazy" />
+          <div class="p-4">
+            <h4 class="font-semibold text-slate-900">One-Time Setup</h4>
+            <p class="text-sm text-slate-500">Add your API key once. Stored locally, never sent to us.</p>
+          </div>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
-          <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
-          <h3 class="font-semibold text-lg mb-2">Post Instantly</h3>
-          <p class="text-gray-600 text-sm">Review, edit if needed, and publish. Zero context switching between reading and sharing.</p>
+        <div class="screenshot-card rounded-xl overflow-hidden shadow-md">
+          <img src="/images/social-scheduler/04-history.png" alt="Post history page" class="w-full h-auto" loading="lazy" />
+          <div class="p-4">
+            <h4 class="font-semibold text-slate-900">Post History</h4>
+            <p class="text-sm text-slate-500">Track everything you've shared. Stats included.</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Features -->
-    <section class="mb-16">
-      <h2 class="text-3xl font-bold text-center mb-10">Features</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="flex gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-          <div class="text-2xl">📎</div>
-          <div><strong>Right-Click from Any Page</strong><br/><span class="text-sm text-gray-500">No need to copy URLs. Just right-click and share.</span></div>
+  <!-- How It Works -->
+  <section class="py-20 px-4 bg-slate-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-14">How It Works</h2>
+      
+      <div class="space-y-8">
+        <div class="flex gap-6 items-start">
+          <div class="step-number">1</div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Right-Click Any Page</h3>
+            <p class="text-slate-600">Browse normally. When you find something worth sharing, right-click and choose "Share to Twitter", "Share to LinkedIn", or "Edit before posting".</p>
+          </div>
         </div>
-        <div class="flex gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-          <div class="text-2xl">🤖</div>
-          <div><strong>AI Writing Engine</strong><br/><span class="text-sm text-gray-500">Auto-generates platform-optimized posts from page content.</span></div>
+
+        <div class="flex gap-6 items-start">
+          <div class="step-number">2</div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">AI Rewrites It</h3>
+            <p class="text-slate-600">Our AI reads the page, extracts the key information, and writes a platform-optimized post. Twitter gets concise hot takes. LinkedIn gets thought-leadership style. You get both.</p>
+          </div>
         </div>
-        <div class="flex gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-          <div class="text-2xl">✏️</div>
-          <div><strong>Edit Before Posting</strong><br/><span class="text-sm text-gray-500">AI drafts, you polish. Full control over your voice.</span></div>
-        </div>
-        <div class="flex gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-          <div class="text-2xl">🔗</div>
-          <div><strong>Auto URL Embedding</strong><br/><span class="text-sm text-gray-500">The page link is always included in every post.</span></div>
-        </div>
-        <div class="flex gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-          <div class="text-2xl">🔒</div>
-          <div><strong>Your API Key, Your Data</strong><br/><span class="text-sm text-gray-500">We never see your content. Everything stays in your browser.</span></div>
-        </div>
-        <div class="flex gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-          <div class="text-2xl">📊</div>
-          <div><strong>Post History</strong><br/><span class="text-sm text-gray-500">Track everything you've shared. Review and manage from the popup.</span></div>
+
+        <div class="flex gap-6 items-start">
+          <div class="step-number">3</div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Post in One Click</h3>
+            <p class="text-slate-600">Review, make any edits, and publish. Done. The URL is automatically embedded. Zero context switching between reading and sharing.</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Pricing -->
-    <section class="mb-16">
-      <h2 class="text-3xl font-bold text-center mb-10">Pricing</h2>
-      <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-          <h3 class="text-xl font-bold mb-2">Free</h3>
-          <p class="text-3xl font-bold mb-4">$0</p>
-          <ul class="space-y-2 mb-6 text-sm">
-            <li class="flex gap-2">✓ 5 posts per month</li>
-            <li class="flex gap-2">✓ Twitter / X posting</li>
-            <li class="flex gap-2">✓ LinkedIn posting</li>
-            <li class="flex gap-2">✓ AI rewriting</li>
-            <li class="flex gap-2">✓ Post history</li>
+  <!-- Features Grid -->
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-12">Everything You Need</h2>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="feature-card p-6 rounded-xl border border-slate-100 shadow-sm transition-all duration-300">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-xl mb-4">📎</div>
+          <h3 class="font-bold text-slate-900 mb-2">Right-Click from Any Page</h3>
+          <p class="text-sm text-slate-500">No copy-pasting URLs. Just right-click and choose your platform.</p>
+        </div>
+
+        <div class="feature-card p-6 rounded-xl border border-slate-100 shadow-sm transition-all duration-300">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-xl mb-4">🤖</div>
+          <h3 class="font-bold text-slate-900 mb-2">AI Writing Engine</h3>
+          <p class="text-sm text-slate-500">Auto-generates platform-optimized posts. Supports DeepSeek &amp; OpenAI.</p>
+        </div>
+
+        <div class="feature-card p-6 rounded-xl border border-slate-100 shadow-sm transition-all duration-300">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-xl mb-4">✏️</div>
+          <h3 class="font-bold text-slate-900 mb-2">Edit Before Posting</h3>
+          <p class="text-sm text-slate-500">AI drafts, you polish. Full control over your voice and tone.</p>
+        </div>
+
+        <div class="feature-card p-6 rounded-xl border border-slate-100 shadow-sm transition-all duration-300">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-xl mb-4">𝕏</div>
+          <h3 class="font-bold text-slate-900 mb-2">Twitter / X &amp; LinkedIn</h3>
+          <p class="text-sm text-slate-500">Post directly to both platforms. More platforms coming soon.</p>
+        </div>
+
+        <div class="feature-card p-6 rounded-xl border border-slate-100 shadow-sm transition-all duration-300">
+          <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-xl mb-4">🔒</div>
+          <h3 class="font-bold text-slate-900 mb-2">Privacy First</h3>
+          <p class="text-sm text-slate-500">Your API key stays in your browser. We never see your content.</p>
+        </div>
+
+        <div class="feature-card p-6 rounded-xl border border-slate-100 shadow-sm transition-all duration-300">
+          <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-xl mb-4">📊</div>
+          <h3 class="font-bold text-slate-900 mb-2">Post History &amp; Stats</h3>
+          <p class="text-sm text-slate-500">Track everything you have shared. Review and analyze from the popup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="py-20 px-4 bg-slate-50">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-4">Simple Pricing</h2>
+      <p class="text-center text-slate-500 mb-12">Start free. Upgrade when you need more.</p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Free -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-1">Free</h3>
+          <p class="text-4xl font-black text-slate-900 mb-6">$0</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              5 posts per month
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              Twitter / X posting
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              LinkedIn posting
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              AI rewriting
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              Post history
+            </li>
           </ul>
-          <a href="{chromeStoreUrl}" class="block w-full py-2.5 text-center bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium">
+          <a href="{chromeStoreUrl}" class="block w-full py-3 text-center bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold transition">
             Add to Chrome Free
           </a>
         </div>
-        <div class="bg-white p-8 rounded-xl shadow-sm border-2 border-blue-500 relative">
-          <div class="absolute -top-3 right-4 px-3 py-1 bg-blue-600 text-white text-xs rounded-full font-medium">Popular</div>
-          <h3 class="text-xl font-bold mb-2">Pro</h3>
-          <p class="text-3xl font-bold mb-4">$9<span class="text-sm font-normal text-gray-500">/month</span></p>
-          <ul class="space-y-2 mb-6 text-sm">
-            <li class="flex gap-2">✓ Unlimited posts</li>
-            <li class="flex gap-2">✓ Twitter / X posting</li>
-            <li class="flex gap-2">✓ LinkedIn posting</li>
-            <li class="flex gap-2">✓ AI rewriting (unlimited)</li>
-            <li class="flex gap-2">✓ Multiple post variants</li>
-            <li class="flex gap-2">✓ Priority support</li>
+
+        <!-- Pro -->
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-blue-500 relative">
+          <div class="absolute -top-3 right-6 px-4 py-1 bg-gradient-to-r from-sky-500 to-blue-600 text-white text-xs font-bold rounded-full shadow-md">
+            MOST POPULAR
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-1">Pro</h3>
+          <p class="text-4xl font-black text-slate-900 mb-1">$9 <span class="text-base font-normal text-slate-400">/month</span></p>
+          <ul class="space-y-3 mb-8 mt-6">
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              <span class="font-semibold">Unlimited</span> posts
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              Unlimited AI rewriting
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              Multi-platform publishing
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              Multiple post variants
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">✓</span>
+              Priority support
+            </li>
           </ul>
-          <a href="{gumroadUrl}" class="block w-full py-2.5 text-center bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-medium">
-            Upgrade Now
+          <a href="{gumroadUrl}" target="_blank" class="block w-full py-3 text-center bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all">
+            Upgrade Now &rarr;
           </a>
         </div>
       </div>
-    </section>
 
-    <!-- FAQ -->
-    <section class="max-w-2xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-8">FAQ</h2>
-      <div class="space-y-4">
-        <details class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-          <summary class="font-medium cursor-pointer">Do I need an API key?</summary>
-          <p class="text-sm text-gray-600 mt-2">Yes, but you can use your own OpenAI or DeepSeek API key. Your data never leaves your browser. We don't charge API fees — you only pay if you upgrade to Pro for unlimited posts.</p>
+      <!-- Success notification image -->
+      <div class="mt-12 screenshot-card rounded-xl overflow-hidden shadow-md max-w-xl mx-auto">
+        <img src="/images/social-scheduler/05-success.png" alt="Success notification after posting" class="w-full h-auto" loading="lazy" />
+        <div class="p-4 text-center">
+          <p class="text-sm text-slate-500">Posting takes 1 second. A notification confirms success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-3xl font-bold text-center text-slate-900 mb-10">Frequently Asked Questions</h2>
+      
+      <div class="space-y-3">
+        <details class="group bg-slate-50 rounded-xl p-5 cursor-pointer">
+          <summary class="font-semibold text-slate-900 list-none flex justify-between items-center">
+            Do I need an API key?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-sm text-slate-600 mt-3 leading-relaxed">Yes. Bring your own OpenAI or DeepSeek API key. Your data never leaves your browser &mdash; we never see your content. The free plan gives you 5 posts/month with your own key.</p>
         </details>
-        <details class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-          <summary class="font-medium cursor-pointer">Is there a free plan?</summary>
-          <p class="text-sm text-gray-600 mt-2">Yes! 5 posts per month free. Add your own API key and try it with zero risk.</p>
+
+        <details class="group bg-slate-50 rounded-xl p-5 cursor-pointer">
+          <summary class="font-semibold text-slate-900 list-none flex justify-between items-center">
+            Is there really a free plan?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-sm text-slate-600 mt-3 leading-relaxed">Yes! 5 posts per month, completely free. Add your own API key (DeepSeek is ~$0.03 per million tokens &mdash; basically free) and try it with zero risk. No credit card required.</p>
         </details>
-        <details class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-          <summary class="font-medium cursor-pointer">Which platforms are supported?</summary>
-          <p class="text-sm text-gray-600 mt-2">Currently Twitter / X and LinkedIn. More platforms (Bluesky, Mastodon, Threads) coming soon.</p>
+
+        <details class="group bg-slate-50 rounded-xl p-5 cursor-pointer">
+          <summary class="font-semibold text-slate-900 list-none flex justify-between items-center">
+            Which platforms are supported?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-sm text-slate-600 mt-3 leading-relaxed">Currently Twitter / X and LinkedIn. More platforms (Bluesky, Mastodon, Threads) are planned based on user demand.</p>
         </details>
-        <details class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-          <summary class="font-medium cursor-pointer">Is my data private?</summary>
-          <p class="text-sm text-gray-600 mt-2">Absolutely. Everything runs in your browser. Your API key and social tokens are stored locally in Chrome. We have zero access to your content.</p>
+
+        <details class="group bg-slate-50 rounded-xl p-5 cursor-pointer">
+          <summary class="font-semibold text-slate-900 list-none flex justify-between items-center">
+            Is my data private?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-sm text-slate-600 mt-3 leading-relaxed">Absolutely. Everything runs in your browser. Your API key and social tokens are stored locally in Chrome storage. We have zero access to your content, API keys, or social media accounts.</p>
+        </details>
+
+        <details class="group bg-slate-50 rounded-xl p-5 cursor-pointer">
+          <summary class="font-semibold text-slate-900 list-none flex justify-between items-center">
+            What's the difference between Free and Pro?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-sm text-slate-600 mt-3 leading-relaxed">Free: 5 posts/month with AI rewriting. Pro ($9/mo): unlimited posts, unlimited AI rewriting, multiple post variants, and priority support. Perfect for content creators, marketers, and anyone who shares links daily.</p>
         </details>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </div>
+  <!-- CTA -->
+  <section class="hero-gradient text-white py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Start Sharing Smarter</h2>
+      <p class="text-lg text-blue-100/80 mb-8">Install the extension free. Right-click your first page. See how fast sharing can be.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="{chromeStoreUrl}" 
+           class="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-blue-50 text-slate-900 rounded-xl text-lg font-bold shadow-xl hover:shadow-2xl transition-all">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          Add to Chrome Free
+        </a>
+        <a href="{gumroadUrl}" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white rounded-xl text-lg font-bold transition-all">
+          🚀 Pro Plan $9/mo
+        </a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
