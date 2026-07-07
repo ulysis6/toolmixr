@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const structuredData = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Lu Shen",
+  "name": "Lao Lu",
   "alternateName": "路申",
   "url": "https://toolmixr.com/author",
   "sameAs": [
@@ -18,16 +18,18 @@ const structuredData = JSON.stringify({
 });
 ---
 
-<BaseLayout title="Author — Lu Shen" description="Lu Shen builds free online tools at ToolMixr and writes honest AI tool reviews at GenAIPick." structuredData={structuredData}>
+<BaseLayout title="Author — Lao Lu" description="Lao Lu builds free online tools at ToolMixr and writes honest AI tool reviews at GenAIPick." structuredData={structuredData}>
   <div class="about-page" style="max-width:800px;padding:40px 0 80px;">
     <nav class="breadcrumb"><a href="/">Home</a> <span class="breadcrumb-sep">&#8250;</span> <span>Author</span></nav>
     
     <div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px;">
-      <div style="width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0;">👨‍💻</div>
+      <div style="width:100px;height:100px;border-radius:50%;overflow:hidden;flex-shrink:0;">
+        <img src="/images/author-logo.png" alt="Lao Lu" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
       <div style="flex:1;min-width:250px;">
-        <h1 style="font-size:32px;font-weight:800;margin-bottom:4px;">Lu Shen</h1>
+        <h1 style="font-size:32px;font-weight:800;margin-bottom:4px;">Lao Lu</h1>
         <p style="font-size:16px;color:var(--primary);font-weight:600;margin-bottom:16px;">Small Business Owner · AI Tools Enthusiast · Indie Developer</p>
-        <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">I build free online tools at <a href="/">ToolMixr</a> and write honest AI tool reviews at <a href="https://genaipick.com" target="_blank" rel="noopener">GenAIPick</a>. Before this, I was that person with 15 browser tabs open, each running a different "free" tool that required an account, uploaded my data, or hit me with a paywall. So I built what I wanted: tools that just work, right in your browser.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">I build free online tools at <a href="/">ToolMixr</a> and write honest AI tool reviews at <a href="https://genaipick.com" target="_blank" rel="noopener">GenAIPick</a>. I also document the entire journey — from zero traffic to AdSense rejections — at <a href="https://lusdaily.com" target="_blank" rel="noopener">lusdaily.com</a> in Chinese. Before this, I was that person with 15 browser tabs open, each running a different "free" tool that required an account, uploaded my data, or hit me with a paywall. So I built what I wanted: tools that just work, right in your browser.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
           <a href="https://lusdaily.com" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration:none;">📝 lusdaily.com</a>
           <a href="https://www.linkedin.com/in/shenlu-ulysis6/" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration:none;">🔗 LinkedIn</a>
@@ -51,6 +53,12 @@ const structuredData = JSON.stringify({
           <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;">GenAIPick</h3>
           <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;">Honest, hands-on AI tool reviews and tutorials. 29+ in-depth articles. No sponsorships, no fluff — just real analysis.</p>
           <a href="https://genaipick.com" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;">View reviews →</a>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+          <div style="font-size:28px;margin-bottom:8px;">📝</div>
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;">lusdaily.com</h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;">My personal blog in Chinese — building websites, getting rejected by AdSense (twice!), and trying to earn $100/month from zero. Real numbers, real stories.</p>
+          <a href="https://lusdaily.com" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;">Read the blog →</a>
         </div>
       </div>
     </section>
