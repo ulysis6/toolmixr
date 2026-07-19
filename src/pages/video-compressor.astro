@@ -1,0 +1,733 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Video Compressor - Compress MP4 Free Online";
+const pageUrl = "https://toolmixr.com/video-compressor";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online video compressor. Compress MP4 files in your browser using FFmpeg WASM. No upload needed — your videos never leave your device.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is my video data sent to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All compression happens entirely in your browser using FFmpeg compiled to WebAssembly (WASM). Your videos never leave your device — no server upload, no cloud processing, no storage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is CRF and how does it affect quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CRF (Constant Rate Factor) is FFmpeg's quality-based encoding mode. Lower CRF values produce better quality but larger files. CRF 18 is visually lossless, CRF 23 is the default, and CRF 28+ shows visible compression artifacts. Our quality slider maps 0-100% to CRF 51-18."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What video formats are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This tool supports MP4 input (H.264 encoded videos). The output is also an MP4 file with H.264 video and AAC audio. If your video is in another format, convert it to MP4 first."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a file size limit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because processing happens entirely in your browser's memory, very large files may cause issues. We recommend compressing videos under 500 MB. Files larger than 500 MB will show a warning."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Free online video compressor. Compress MP4 files in your browser using FFmpeg WASM. No upload needed — your videos never leave your device."
+  structuredData={structuredData}
+>
+  <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>Video Compressor</span>
+  </nav>
+  <div class="tool-header">
+    <h1>🎬 Video Compressor</h1>
+    <div class="share-bar">
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
+  </div>
+  <p class="subtitle">Compress MP4 videos using FFmpeg WASM — your files never leave your browser</p>
+
+  <div class="privacy-badge">🔒 Your videos never leave your browser. 100% Client-Side.</div>
+
+  <div class="tool-box">
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-zone-content">
+        <span class="drop-icon">📁</span>
+        <p>Drag &amp; drop your MP4 video here</p>
+        <p class="drop-hint">or click to browse — MP4 only, max 500 MB recommended</p>
+      </div>
+      <input type="file" id="fileInput" accept="video/mp4" style="display:none;" />
+    </div>
+
+    <div class="quality-control">
+      <label for="qualitySlider">Quality: <span id="qualityVal">75</span>%</label>
+      <input type="range" id="qualitySlider" min="0" max="100" value="75" oninput="updateQuality(this.value)" />
+      <div class="quality-labels">
+        <span>0% (Smallest)</span>
+        <span>100% (Best)</span>
+      </div>
+    </div>
+
+    <div id="loadingIndicator" style="display:none;">
+      <div class="loading-spinner-container">
+        <div class="loading-spinner"></div>
+        <p id="loadingText">Loading FFmpeg WASM (~30 MB)...</p>
+      </div>
+    </div>
+
+    <div id="progressArea" style="display:none;">
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <p id="progressText" class="progress-text">Processing...</p>
+    </div>
+
+    <div id="resultArea" style="display:none;">
+      <div class="summary-bar" id="summaryBar"></div>
+      <div id="videoResult"></div>
+      <div class="batch-actions">
+        <button class="btn btn-primary" onclick="downloadVideo()">💾 Download Compressed Video</button>
+        <button class="btn btn-secondary" onclick="clearVideo()">🗑️ Clear</button>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="guide">
+    <h2>How Video Compression Works</h2>
+    <p>Video compression reduces file size by eliminating redundant data across both space and time. Modern codecs like H.264 use sophisticated techniques to achieve dramatic size reductions while maintaining visual quality.</p>
+    
+    <h3>How H.264 / AVC Encoding Works</h3>
+    <p>H.264 (also known as AVC or MPEG-4 Part 10) is the most widely used video codec. It achieves compression through several key techniques:</p>
+    <ul>
+      <li><strong>Intra-frame prediction</strong>: Within a single frame, blocks of pixels are predicted from neighboring blocks, so only the differences need to be stored.</li>
+      <li><strong>Inter-frame prediction</strong>: Motion vectors describe how blocks move between frames, eliminating redundancy across time. Only the differences between predicted and actual frames are stored.</li>
+      <li><strong>Discrete Cosine Transform (DCT)</strong>: Similar to JPEG, blocks are transformed to frequency domain, and high-frequency details (less noticeable to the eye) are discarded or coarsely quantized.</li>
+      <li><strong>Entropy coding</strong>: The remaining data is compressed using Context-Adaptive Binary Arithmetic Coding (CABAC) for maximum efficiency.</li>
+    </ul>
+
+    <h3>Understanding CRF (Constant Rate Factor)</h3>
+    <p>CRF is FFmpeg's quality-based encoding mode. Unlike bitrate-based encoding (which targets a specific file size), CRF targets a consistent perceptual quality level:</p>
+    <ul>
+      <li><strong>CRF 18-20</strong> (80-100% quality): Visually lossless or near-perceptually transparent. Use for archiving or when quality is paramount.</li>
+      <li><strong>CRF 21-24</strong> (50-79% quality): Excellent balance of quality and file size. Good for web distribution, social media.</li>
+      <li><strong>CRF 25-28</strong> (20-49% quality): Noticeable compression artifacts. Acceptable for previews or bandwidth-constrained delivery.</li>
+      <li><strong>CRF 29-51</strong> (0-19% quality): Heavy compression with significant quality loss. Use only when file size is the absolute priority.</li>
+    </ul>
+
+    <h3>Compression Ratio Formula</h3>
+    <p>The compression ratio tells you how much space you saved:</p>
+    <div class="formula-box">Compression Ratio = (1 − Compressed Size / Original Size) × 100%</div>
+    <p>For example, if a 50 MB video compresses to 15 MB, the compression ratio is (1 − 15/50) × 100% = 70%.</p>
+
+    <h3>Why Browser-Based Compression Matters</h3>
+    <p>Traditional online video compressors upload your files to a server, process them, and send them back. This means your videos (which could contain sensitive content) traverse the internet and may be stored on remote servers. This tool uses FFmpeg compiled to WebAssembly (WASM) to compress videos entirely within your browser — zero data leaves your device.</p>
+
+    <h3>Step-by-Step Guide</h3>
+    <ol>
+      <li><strong>Upload a video</strong> — Drag and drop or click to select an MP4 file (H.264 encoded). Files up to 500 MB are recommended.</li>
+      <li><strong>Adjust quality</strong> — Use the slider to set compression quality (0-100%). Higher values = better quality but larger files.</li>
+      <li><strong>Wait for processing</strong> — FFmpeg WASM processes the video entirely in your browser. Progress is shown. Larger videos take longer.</li>
+      <li><strong>Download</strong> — Once compression is complete, download your compressed MP4 file.</li>
+    </ol>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Is my video data sent to a server?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>No. All compression happens entirely in your browser using FFmpeg compiled to WebAssembly (WASM). Your videos never leave your device — no server upload, no cloud processing, no storage.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What is CRF and how does it affect quality?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>CRF (Constant Rate Factor) is FFmpeg's quality-based encoding mode. Lower CRF values produce better quality but larger files. CRF 18 is visually lossless, CRF 23 is the default, and CRF 28+ shows visible compression artifacts. Our quality slider maps 0-100% to CRF 51-18.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What video formats are supported?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>This tool supports MP4 input (H.264 encoded videos). The output is also an MP4 file with H.264 video and AAC audio. If your video is in another format, convert it to MP4 first.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Is there a file size limit?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Because processing happens entirely in your browser's memory, very large files may cause issues. We recommend compressing videos under 500 MB. Files larger than 500 MB will show a warning.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-tools">
+    <h2>Related Tools</h2>
+    <div class="related-tools-grid">
+      <a href="/image-compressor" class="related-tool-card">
+        <span class="related-icon">🗜️</span>
+        <span class="related-name">Image Compressor</span>
+      </a>
+      <a href="/pdf-compressor" class="related-tool-card">
+        <span class="related-icon">📄</span>
+        <span class="related-name">PDF Compressor</span>
+      </a>
+    </div>
+  </section>
+  </section>
+
+  <style is:global>
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ECFDF5;
+      color: #065F46;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      border: 1px solid #A7F3D0;
+    }
+    [data-theme="dark"] .privacy-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    .drop-zone {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 24px;
+      background: var(--bg);
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--primary);
+      background: rgba(79, 70, 229, 0.05);
+    }
+    [data-theme="dark"] .drop-zone:hover, [data-theme="dark"] .drop-zone.drag-over {
+      background: rgba(129, 140, 248, 0.08);
+    }
+    .drop-icon { font-size: 48px; display: block; margin-bottom: 12px; }
+    .drop-zone p { color: var(--text); font-weight: 600; margin-bottom: 4px; }
+    .drop-hint { color: var(--text-secondary); font-size: 13px; font-weight: 400; }
+    .quality-control {
+      margin-bottom: 24px;
+    }
+    .quality-control label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .quality-control input[type="range"] {
+      width: 100%;
+    }
+    .quality-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .summary-bar {
+      background: #EEF2FF;
+      color: #3730A3;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    [data-theme="dark"] .summary-bar {
+      background: rgba(129, 140, 248, 0.15);
+      color: #818CF8;
+    }
+    .video-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      background: var(--surface);
+    }
+    [data-theme="dark"] .video-item { background: var(--surface); border-color: var(--border); }
+    .video-item-info { flex: 1; min-width: 0; }
+    .video-item-name {
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .video-item-sizes {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .video-item-ratio {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+    .ratio-good { background: #ECFDF5; color: #065F46; }
+    .ratio-great { background: #EEF2FF; color: #3730A3; }
+    [data-theme="dark"] .ratio-good { background: rgba(16, 185, 129, 0.15); color: #34D399; }
+    [data-theme="dark"] .ratio-great { background: rgba(129, 140, 248, 0.15); color: #818CF8; }
+    .batch-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .formula-box {
+      background: #1E1E2E;
+      color: #CDD6F4;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      text-align: center;
+      margin: 16px 0;
+    }
+    [data-theme="dark"] .formula-box { background: #020617; }
+    .loading-spinner-container {
+      text-align: center;
+      padding: 32px;
+    }
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid var(--border);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #loadingText {
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    .progress-text {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 13px;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .file-info-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      background: var(--surface);
+    }
+    [data-theme="dark"] .file-info-card { background: var(--surface); border-color: var(--border); }
+    .file-info-card .video-icon { font-size: 32px; flex-shrink: 0; }
+    .file-info-card .file-details { flex: 1; min-width: 0; }
+    .file-info-card .file-name { font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .file-info-card .file-meta { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+    .warning-box {
+      background: #FFFBEB;
+      color: #92400E;
+      border: 1px solid #FDE68A;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    [data-theme="dark"] .warning-box {
+      background: rgba(251, 191, 36, 0.15);
+      color: #FBBF24;
+      border-color: rgba(251, 191, 36, 0.3);
+    }
+  </style>
+
+  <script is:inline>
+    var currentVideoData = null; // { name, originalSize, compressedSize, blob, crf, quality }
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(2) + ' MB';
+    }
+
+    function updateQuality(val) {
+      document.getElementById('qualityVal').textContent = val;
+    }
+
+    function setupDropZone() {
+      var dropZone = document.getElementById('dropZone');
+      var fileInput = document.getElementById('fileInput');
+
+      dropZone.addEventListener('click', function() {
+        fileInput.click();
+      });
+
+      dropZone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+      });
+
+      dropZone.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+      });
+
+      dropZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) {
+          handleFile(e.dataTransfer.files[0]);
+        }
+      });
+
+      fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+          handleFile(this.files[0]);
+        }
+        this.value = '';
+      });
+    }
+
+    function handleFile(file) {
+      // Check file type
+      if (!file.type.startsWith('video/') && !file.name.match(/\.mp4$/i)) {
+        alert('Please select an MP4 video file.');
+        return;
+      }
+
+      // Check file size — warn if > 500 MB
+      if (file.size > 500 * 1024 * 1024) {
+        var proceed = confirm(
+          'Warning: This file is larger than 500 MB (' + formatSize(file.size) + ').\n\n' +
+          'Processing very large files in the browser may cause memory issues or crashes.\n\n' +
+          'Do you want to continue anyway?'
+        );
+        if (!proceed) return;
+      }
+
+      // Hide previous results
+      document.getElementById('resultArea').style.display = 'none';
+      document.getElementById('progressArea').style.display = 'none';
+
+      // Show loading indicator
+      var loadingEl = document.getElementById('loadingIndicator');
+      loadingEl.style.display = 'block';
+      document.getElementById('loadingText').textContent = 'Loading FFmpeg WASM (~30 MB)...';
+
+      // Clear previous data
+      currentVideoData = null;
+
+      // Start compression process
+      compressWithFFmpeg(file);
+    }
+
+    function compressWithFFmpeg(file) {
+      var quality = parseInt(document.getElementById('qualitySlider').value);
+      // Map quality 0-100 to CRF 51-18
+      var crf = Math.round(51 - (quality / 100) * 33);
+      var inputName = 'input.mp4';
+      var outputName = 'output.mp4';
+
+      var loadingEl = document.getElementById('loadingIndicator');
+      var progressArea = document.getElementById('progressArea');
+      var progressBar = document.getElementById('progressBar');
+      var progressText = document.getElementById('progressText');
+
+      // Check if FFmpeg is already loaded
+      if (typeof FFmpegWASM === 'undefined' && typeof window.FFmpeg === 'undefined') {
+        // Load FFmpeg WASM scripts dynamically
+        loadFFmpegScripts(function() {
+          startFFmpegProcessing(file, inputName, outputName, crf, quality, loadingEl, progressArea, progressBar, progressText);
+        });
+      } else {
+        startFFmpegProcessing(file, inputName, outputName, crf, quality, loadingEl, progressArea, progressBar, progressText);
+      }
+    }
+
+    function loadFFmpegScripts(callback) {
+      var loadingText = document.getElementById('loadingText');
+      var scriptsLoaded = 0;
+      var totalScripts = 2;
+
+      function onScriptLoad() {
+        scriptsLoaded++;
+        if (scriptsLoaded >= totalScripts) {
+          loadingText.textContent = 'Initializing FFmpeg...';
+          // Give a tick for initialization
+          setTimeout(callback, 500);
+        }
+      }
+
+      // Load ffmpeg.js
+      var script1 = document.createElement('script');
+      script1.src = 'https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js';
+      script1.onload = onScriptLoad;
+      script1.onerror = function() {
+        loadingText.textContent = 'Failed to load FFmpeg. Please check your connection and try again.';
+      };
+      document.head.appendChild(script1);
+
+      // Load ffmpeg-core.js
+      var script2 = document.createElement('script');
+      script2.src = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js';
+      script2.onload = onScriptLoad;
+      script2.onerror = function() {
+        loadingText.textContent = 'Failed to load FFmpeg core. Please check your connection and try again.';
+      };
+      document.head.appendChild(script2);
+    }
+
+    function startFFmpegProcessing(file, inputName, outputName, crf, quality, loadingEl, progressArea, progressBar, progressText) {
+      var loadingText = document.getElementById('loadingText');
+      loadingText.textContent = 'Initializing FFmpeg engine...';
+
+      try {
+        var ffmpeg = new FFmpegWASM.FFmpeg();
+        var ffmpegReady = false;
+
+        // Set up progress callback
+        ffmpeg.setProgress(function(progress) {
+          var pct = Math.round(progress.percent * 100) / 100;
+          if (pct > 0 && pct <= 100) {
+            progressBar.style.width = Math.min(pct, 99) + '%';
+            progressText.textContent = 'Compressing... ' + pct.toFixed(1) + '%';
+          }
+        });
+
+        // Load FFmpeg
+        ffmpeg.load().then(function() {
+          ffmpegReady = true;
+          loadingEl.style.display = 'none';
+          progressArea.style.display = 'block';
+          progressBar.style.width = '0%';
+          progressText.textContent = 'Reading input file...';
+
+          // Read the input file
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            var data = new Uint8Array(e.target.result);
+            progressText.textContent = 'Writing file to FFmpeg virtual filesystem...';
+
+            // Write input file to FFmpeg's virtual filesystem
+            ffmpeg.writeFile(inputName, data).then(function() {
+              progressText.textContent = 'Compressing video (CRF ' + crf + ')...';
+
+              // Run FFmpeg command
+              return ffmpeg.exec([
+                '-i', inputName,
+                '-c:v', 'libx264',
+                '-crf', String(crf),
+                '-preset', 'fast',
+                '-c:a', 'aac',
+                '-b:a', '128k',
+                '-movflags', '+faststart',
+                outputName
+              ]);
+            }).then(function() {
+              progressText.textContent = 'Reading compressed output...';
+
+              // Read the output file
+              return ffmpeg.readFile(outputName);
+            }).then(function(outputData) {
+              progressBar.style.width = '100%';
+              progressText.textContent = 'Done!';
+
+              // Create blob from output
+              var compressedBlob = new Blob([outputData.buffer], { type: 'video/mp4' });
+
+              // Store result
+              currentVideoData = {
+                name: file.name.replace(/\.[^.]+$/, '-compressed.mp4'),
+                originalSize: file.size,
+                compressedSize: compressedBlob.size,
+                blob: compressedBlob,
+                crf: crf,
+                quality: quality
+              };
+
+              // Show results
+              renderResults();
+
+              // Clean up FFmpeg virtual filesystem
+              try { ffmpeg.deleteFile(inputName); } catch(e) {}
+              try { ffmpeg.deleteFile(outputName); } catch(e) {}
+
+            }).catch(function(err) {
+              progressArea.style.display = 'none';
+              loadingEl.style.display = 'none';
+              alert('FFmpeg processing error: ' + (err.message || 'Unknown error. Please try a different video or quality setting.'));
+            });
+          };
+
+          reader.onerror = function() {
+            loadingEl.style.display = 'none';
+            progressArea.style.display = 'none';
+            alert('Failed to read the input file. Please try again.');
+          };
+
+          reader.readAsArrayBuffer(file);
+
+        }).catch(function(err) {
+          loadingText.textContent = 'Failed to initialize FFmpeg: ' + (err.message || 'Unknown error');
+        });
+
+      } catch (err) {
+        loadingEl.style.display = 'none';
+        progressArea.style.display = 'none';
+        alert('FFmpeg initialization error: ' + (err.message || 'Unknown error. Please try refreshing the page.'));
+      }
+    }
+
+    function renderResults() {
+      if (!currentVideoData) return;
+
+      var area = document.getElementById('resultArea');
+      area.style.display = 'block';
+
+      var ratio = currentVideoData.originalSize > 0
+        ? ((1 - currentVideoData.compressedSize / currentVideoData.originalSize) * 100).toFixed(1)
+        : 0;
+      var ratioClass = parseFloat(ratio) >= 50 ? 'ratio-great' : 'ratio-good';
+
+      document.getElementById('summaryBar').textContent =
+        '1 video | Original: ' + formatSize(currentVideoData.originalSize) +
+        ' → Compressed: ' + formatSize(currentVideoData.compressedSize) +
+        ' | Saved: ' + ratio + '%' +
+        ' | CRF: ' + currentVideoData.crf;
+
+      var html =
+        '<div class="file-info-card">' +
+          '<span class="video-icon">🎬</span>' +
+          '<div class="file-details">' +
+            '<div class="file-name">' + currentVideoData.name + '</div>' +
+            '<div class="file-meta">' +
+              formatSize(currentVideoData.originalSize) + ' → ' + formatSize(currentVideoData.compressedSize) +
+              ' <span class="video-item-ratio ' + ratioClass + '">-' + ratio + '%</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+      document.getElementById('videoResult').innerHTML = html;
+      document.getElementById('progressArea').style.display = 'none';
+    }
+
+    function downloadVideo() {
+      if (!currentVideoData || !currentVideoData.blob) return;
+      var url = URL.createObjectURL(currentVideoData.blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = currentVideoData.name;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearVideo() {
+      currentVideoData = null;
+      document.getElementById('resultArea').style.display = 'none';
+      document.getElementById('videoResult').innerHTML = '';
+      document.getElementById('summaryBar').textContent = '';
+      document.getElementById('progressArea').style.display = 'none';
+      document.getElementById('loadingIndicator').style.display = 'none';
+    }
+
+    setupDropZone();
+  </script>
+</BaseLayout>

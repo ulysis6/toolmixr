@@ -1,0 +1,681 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "PDF Compressor - Compress PDF Files Free Online";
+const pageUrl = "https://toolmixr.com/pdf-compressor";
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": pageTitle,
+    "url": pageUrl,
+    "description": "Free online PDF compressor. Compress PDF files in your browser using real PDF rendering and re-encoding. No upload needed — your files never leave your device.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is my PDF data sent to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All compression happens entirely in your browser using PDF.js and pdf-lib libraries. Your PDF files never leave your device — no server upload, no cloud processing, no storage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much can I compress a PDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PDF compression results vary depending on the content. Text-heavy PDFs with primarily text content compress modestly (10-20%). PDFs with high-resolution images compress dramatically (50-80%) by re-encoding images as JPEG at the selected quality level."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does PDF compression reduce quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This tool renders each PDF page to a canvas and re-encodes it as JPEG images embedded in a new PDF. At 75-85% quality, the visual difference is minimal for most documents. For text-heavy documents, use 85%+ quality to keep text crisp. Image-heavy PDFs can use lower quality settings for substantial size savings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there any file size limits?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Since everything runs in your browser, the practical limit depends on your device's memory. Very large PDFs (100+ pages or 50+ MB) may cause performance issues. For best results, compress PDFs up to 30 MB or 50 pages at a time."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://toolmixr.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": pageTitle,
+        "item": pageUrl
+      }
+    ]
+  }
+]);
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description="Free online PDF compressor. Compress PDF files in your browser using real PDF rendering and re-encoding. No upload needed — your files never leave your device."
+  structuredData={structuredData}
+>
+  <section class="tool-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a> <span class="breadcrumb-sep">›</span> <span>PDF Compressor</span>
+  </nav>
+  <div class="tool-header">
+    <h1>📄 PDF Compressor</h1>
+    <div class="share-bar">
+      <a class="share-btn share-twitter" href="#" onclick="shareTwitter(event)" title="Share on Twitter">𝕏</a>
+      <a class="share-btn share-facebook" href="#" onclick="shareFacebook(event)" title="Share on Facebook">f</a>
+      <a class="share-btn share-linkedin" href="#" onclick="shareLinkedIn(event)" title="Share on LinkedIn">in</a>
+      <a class="share-btn share-reddit" href="#" onclick="shareReddit(event)" title="Share on Reddit">R</a>
+      <button class="share-btn share-copy" onclick="copyPageLink(event)" title="Copy link">🔗</button>
+    </div>
+  </div>
+  <p class="subtitle">Compress PDF files right in your browser — your files never leave your device</p>
+
+  <div class="privacy-badge">🔒 Your files never leave your browser. 100% Client-Side.</div>
+
+  <div class="tool-box">
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-zone-content">
+        <span class="drop-icon">📁</span>
+        <p>Drag &amp; drop PDF files here</p>
+        <p class="drop-hint">or click to browse — PDF files up to 50 pages recommended</p>
+      </div>
+      <input type="file" id="fileInput" accept="application/pdf" multiple style="display:none;" />
+    </div>
+
+    <div class="quality-control">
+      <label for="qualitySlider">Quality: <span id="qualityVal">75</span>%</label>
+      <input type="range" id="qualitySlider" min="10" max="100" value="75" oninput="updateQuality(this.value)" />
+      <div class="quality-labels">
+        <span>10% (Smallest)</span>
+        <span>100% (Best)</span>
+      </div>
+    </div>
+
+    <div id="progressArea" style="display:none;">
+      <div class="summary-bar" id="progressBar">Processing...</div>
+      <div id="progressDetails"></div>
+    </div>
+
+    <div id="resultArea" style="display:none;">
+      <div class="summary-bar" id="summaryBar"></div>
+      <div id="pdfList"></div>
+      <div class="batch-actions">
+        <button class="btn btn-primary" id="downloadBtn" onclick="downloadCompressed()">💾 Download Compressed PDF</button>
+        <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear All</button>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="guide">
+    <h2>How PDF Compression Works</h2>
+    <p>PDF compression reduces file size by re-encoding the content more efficiently. This tool uses a two-step process: rendering each page to an image, then rebuilding the PDF with JPEG-compressed images.</p>
+    
+    <h3>How It Works Under the Hood</h3>
+    <p>Traditional PDF files often contain large embedded images, fonts, and metadata that take up significant space. This compression tool uses a unique approach:</p>
+    <ol>
+      <li><strong>Parse</strong> — The original PDF is loaded using PDF.js, which reads the file and extracts each page as a separate renderable object.</li>
+      <li><strong>Render</strong> — Each page is drawn onto an HTML canvas at a moderate resolution (150 DPI). This captures all content: text, images, vector graphics, and layout.</li>
+      <li><strong>Encode</strong> — The canvas is converted to a JPEG image using <code>canvas.toBlob()</code> at your chosen quality level. JPEG is highly efficient for photographic content and works well for most PDF pages.</li>
+      <li><strong>Rebuild</strong> — A brand new PDF is created using pdf-lib, with each compressed JPEG image embedded as a full-page element. The result is a clean, optimized PDF.</li>
+    </ol>
+    <p>The rendering scale of 1.5x (150 DPI) provides an excellent balance between visual quality and file size. Text remains fully readable while image content gets significantly compressed.</p>
+
+    <h3>Compression Ratio Formula</h3>
+    <p>The compression ratio tells you how much space you saved:</p>
+    <div class="formula-box">Compression Ratio = (1 − Compressed Size / Original Size) × 100%</div>
+    <p>For example, if a 5 MB PDF compresses to 1.5 MB, the compression ratio is (1 − 1.5/5.0) × 100% = 70%.</p>
+
+    <h3>When to Use Each Quality Level</h3>
+    <ul>
+      <li><strong>85-100%</strong>: Professional documents, presentations, text-heavy PDFs — text stays crisp, minimal artifacts</li>
+      <li><strong>60-84%</strong>: General purpose web PDFs, email attachments — excellent balance of quality and size</li>
+      <li><strong>40-59%</strong>: Archive copies, internal documents — noticeable JPEG artifacts but still readable</li>
+      <li><strong>10-39%</strong>: Maximum compression — significant quality loss, use only when file size is the top priority</li>
+    </ul>
+
+    <h3>Why Browser-Based PDF Compression Matters</h3>
+    <p>Most online PDF compressors require uploading your document to a remote server, which raises privacy and security concerns — especially for sensitive documents like contracts, resumes, or financial records. This tool uses PDF.js and pdf-lib to process everything within your browser. Zero data ever leaves your device. No server upload, no cloud processing, no storage of your files.</p>
+
+    <h3>Step-by-Step Guide</h3>
+    <ol>
+      <li><strong>Upload your PDF</strong> — Drag and drop or click to select one or more PDF files. Each file is processed independently.</li>
+      <li><strong>Adjust quality</strong> — Use the slider to set JPEG compression quality (10-100%). Lower values = smaller files but more artifacts.</li>
+      <li><strong>Wait for processing</strong> — Each page is rendered and compressed. Progress is shown per page. Larger PDFs take longer.</li>
+      <li><strong>Download</strong> — Once complete, download your compressed PDF. The original file is never modified.</li>
+    </ol>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Is my PDF data sent to a server?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>No. All compression happens entirely in your browser using PDF.js and pdf-lib libraries. Your PDF files never leave your device — no server upload, no cloud processing, no storage.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>How much can I compress a PDF?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>PDF compression results vary depending on the content. Text-heavy PDFs with primarily text content compress modestly (10-20%). PDFs with high-resolution images compress dramatically (50-80%) by re-encoding images as JPEG at the selected quality level.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Does PDF compression reduce quality?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>This tool renders each PDF page to a canvas and re-encodes it as JPEG images embedded in a new PDF. At 75-85% quality, the visual difference is minimal for most documents. For text-heavy documents, use 85%+ quality to keep text crisp. Image-heavy PDFs can use lower quality settings for substantial size savings.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Are there any file size limits?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Since everything runs in your browser, the practical limit depends on your device's memory. Very large PDFs (100+ pages or 50+ MB) may cause performance issues. For best results, compress PDFs up to 30 MB or 50 pages at a time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-tools">
+    <h2>Related Tools</h2>
+    <div class="related-tools-grid">
+      <a href="/image-compressor" class="related-tool-card">
+        <span class="related-icon">🗜️</span>
+        <span class="related-name">Image Compressor</span>
+      </a>
+      <a href="/video-compressor" class="related-tool-card">
+        <span class="related-icon">🎬</span>
+        <span class="related-name">Video Compressor</span>
+      </a>
+      <a href="/image-format-converter" class="related-tool-card">
+        <span class="related-icon">🔄</span>
+        <span class="related-name">Image Format Converter</span>
+      </a>
+      <a href="/image-resizer" class="related-tool-card">
+        <span class="related-icon">📐</span>
+        <span class="related-name">Image Resizer</span>
+      </a>
+    </div>
+  </section>
+  </section>
+
+  <style is:global>
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ECFDF5;
+      color: #065F46;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      border: 1px solid #A7F3D0;
+    }
+    [data-theme="dark"] .privacy-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    .drop-zone {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 24px;
+      background: var(--bg);
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--primary);
+      background: rgba(79, 70, 229, 0.05);
+    }
+    [data-theme="dark"] .drop-zone:hover, [data-theme="dark"] .drop-zone.drag-over {
+      background: rgba(129, 140, 248, 0.08);
+    }
+    .drop-icon { font-size: 48px; display: block; margin-bottom: 12px; }
+    .drop-zone p { color: var(--text); font-weight: 600; margin-bottom: 4px; }
+    .drop-hint { color: var(--text-secondary); font-size: 13px; font-weight: 400; }
+    .quality-control {
+      margin-bottom: 24px;
+    }
+    .quality-control label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .quality-control input[type="range"] {
+      width: 100%;
+    }
+    .quality-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .summary-bar {
+      background: #EEF2FF;
+      color: #3730A3;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    [data-theme="dark"] .summary-bar {
+      background: rgba(129, 140, 248, 0.15);
+      color: #818CF8;
+    }
+    .pdf-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      background: var(--surface);
+    }
+    [data-theme="dark"] .pdf-item { background: var(--surface); border-color: var(--border); }
+    .pdf-item-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      background: #FEF2F2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .pdf-item-icon { background: rgba(239, 68, 68, 0.15); }
+    .pdf-item-info { flex: 1; min-width: 0; }
+    .pdf-item-name {
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pdf-item-sizes {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .pdf-item-ratio {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+    .ratio-good { background: #ECFDF5; color: #065F46; }
+    .ratio-great { background: #EEF2FF; color: #3730A3; }
+    [data-theme="dark"] .ratio-good { background: rgba(16, 185, 129, 0.15); color: #34D399; }
+    [data-theme="dark"] .ratio-great { background: rgba(129, 140, 248, 0.15); color: #818CF8; }
+    .pdf-item-action { flex-shrink: 0; }
+    .batch-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .formula-box {
+      background: #1E1E2E;
+      color: #CDD6F4;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      text-align: center;
+      margin: 16px 0;
+    }
+    [data-theme="dark"] .formula-box { background: #020617; }
+
+    /* Progress styles */
+    .progress-page {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .progress-page .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    .progress-page.done .spinner {
+      border-color: var(--success);
+      animation: none;
+    }
+    .progress-page.done {
+      color: var(--success);
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- PDF.js and pdf-lib from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <script is:inline>
+    // Set PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    var compressedPdfs = [];
+    var isProcessing = false;
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(2) + ' MB';
+    }
+
+    function updateQuality(val) {
+      document.getElementById('qualityVal').textContent = val;
+    }
+
+    function setupDropZone() {
+      var dropZone = document.getElementById('dropZone');
+      var fileInput = document.getElementById('fileInput');
+
+      dropZone.addEventListener('click', function() {
+        if (!isProcessing) fileInput.click();
+      });
+
+      dropZone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+      });
+
+      dropZone.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+      });
+
+      dropZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (!isProcessing) handleFiles(e.dataTransfer.files);
+      });
+
+      fileInput.addEventListener('change', function() {
+        handleFiles(this.files);
+        this.value = '';
+      });
+    }
+
+    function handleFiles(files) {
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+          compressPdf(file);
+        }
+      }
+    }
+
+    function showProgress(fileName, totalPages) {
+      var progressArea = document.getElementById('progressArea');
+      progressArea.style.display = 'block';
+      document.getElementById('progressBar').textContent = 'Processing: ' + fileName + ' (' + totalPages + ' pages)';
+      var details = document.getElementById('progressDetails');
+      details.innerHTML = '';
+      for (var i = 0; i < totalPages; i++) {
+        var div = document.createElement('div');
+        div.className = 'progress-page';
+        div.id = 'progress-page-' + i;
+        div.innerHTML = '<span class="spinner"></span> Page ' + (i + 1) + '...';
+        details.appendChild(div);
+      }
+    }
+
+    function updatePageProgress(pageIndex, status) {
+      var el = document.getElementById('progress-page-' + pageIndex);
+      if (!el) return;
+      if (status === 'done') {
+        el.className = 'progress-page done';
+        el.innerHTML = '<span class="spinner"></span> Page ' + (pageIndex + 1) + ' ✓';
+      } else if (status === 'error') {
+        el.className = 'progress-page';
+        el.style.color = '#EF4444';
+        el.innerHTML = '<span style="color:#EF4444;">✗</span> Page ' + (pageIndex + 1) + ' failed';
+      }
+    }
+
+    async function compressPdf(file) {
+      if (isProcessing) return;
+      isProcessing = true;
+
+      var quality = parseInt(document.getElementById('qualitySlider').value) / 100;
+
+      try {
+        // Read the file as ArrayBuffer
+        var arrayBuffer = await file.arrayBuffer();
+
+        // Load the PDF with PDF.js
+        var pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer.slice(0) }).promise;
+        var numPages = pdfDoc.numPages;
+
+        showProgress(file.name, numPages);
+
+        // Render each page to canvas, then to JPEG blob
+        var pageBlobs = [];
+        for (var i = 1; i <= numPages; i++) {
+          try {
+            var page = await pdfDoc.getPage(i);
+            var viewport = page.getViewport({ scale: 1.5 }); // 150 DPI equivalent
+
+            var canvas = document.createElement('canvas');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            var ctx = canvas.getContext('2d');
+
+            // White background (important for transparent/translucent content)
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            var renderContext = {
+              canvasContext: ctx,
+              viewport: viewport
+            };
+            await page.render(renderContext).promise;
+
+            // Convert canvas to JPEG blob
+            var blob = await new Promise(function(resolve) {
+              canvas.toBlob(function(b) { resolve(b); }, 'image/jpeg', quality);
+            });
+            pageBlobs.push(blob);
+            updatePageProgress(i - 1, 'done');
+          } catch (pageErr) {
+            updatePageProgress(i - 1, 'error');
+            // Push a small empty blob so indices stay aligned
+            var emptyBlob = new Blob([], { type: 'image/jpeg' });
+            pageBlobs.push(emptyBlob);
+          }
+        }
+
+        // Now rebuild PDF using pdf-lib
+        var newPdf = await PDFLib.PDFDocument.create();
+
+        for (var j = 0; j < pageBlobs.length; j++) {
+          try {
+            var jpgImageBytes = await pageBlobs[j].arrayBuffer();
+            var jpgImage = await newPdf.embedJpg(jpgImageBytes);
+            var pageDims = jpgImage.scale(1);
+            var newPage = newPdf.addPage([pageDims.width, pageDims.height]);
+            newPage.drawImage(jpgImage, {
+              x: 0,
+              y: 0,
+              width: pageDims.width,
+              height: pageDims.height
+            });
+          } catch (embedErr) {
+            // Skip failed pages
+          }
+        }
+
+        var pdfBytes = await newPdf.save();
+        var compressedBlob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+        // Store result
+        var result = {
+          name: file.name.replace(/\.pdf$/i, '-compressed.pdf'),
+          originalSize: file.size,
+          compressedSize: compressedBlob.size,
+          blob: compressedBlob,
+          numPages: numPages,
+          originalName: file.name
+        };
+        compressedPdfs.push(result);
+
+        // Hide progress, show result
+        document.getElementById('progressArea').style.display = 'none';
+        renderResults();
+
+      } catch (err) {
+        document.getElementById('progressArea').style.display = 'none';
+        alert('Error processing PDF: ' + err.message);
+      } finally {
+        isProcessing = false;
+      }
+    }
+
+    function renderResults() {
+      var area = document.getElementById('resultArea');
+      area.style.display = 'block';
+
+      var totalOriginal = 0;
+      var totalCompressed = 0;
+      for (var i = 0; i < compressedPdfs.length; i++) {
+        totalOriginal += compressedPdfs[i].originalSize;
+        totalCompressed += compressedPdfs[i].compressedSize;
+      }
+      var totalRatio = totalOriginal > 0 ? ((1 - totalCompressed / totalOriginal) * 100).toFixed(1) : 0;
+      document.getElementById('summaryBar').textContent =
+        compressedPdfs.length + ' PDF' + (compressedPdfs.length !== 1 ? 's' : '') +
+        ' | Original: ' + formatSize(totalOriginal) +
+        ' → Compressed: ' + formatSize(totalCompressed) +
+        ' | Saved: ' + totalRatio + '%';
+
+      var listHtml = '';
+      for (var i = 0; i < compressedPdfs.length; i++) {
+        var entry = compressedPdfs[i];
+        var ratio = entry.originalSize > 0 ? ((1 - entry.compressedSize / entry.originalSize) * 100).toFixed(1) : 0;
+        var ratioClass = parseFloat(ratio) >= 50 ? 'ratio-great' : 'ratio-good';
+        var ratioDisplay = parseFloat(ratio) > 0 ? ' <span class="pdf-item-ratio ' + ratioClass + '">-' + ratio + '%</span>' : '';
+        listHtml += '<div class="pdf-item">' +
+          '<div class="pdf-item-icon">📄</div>' +
+          '<div class="pdf-item-info">' +
+            '<div class="pdf-item-name">' + entry.originalName + '</div>' +
+            '<div class="pdf-item-sizes">' +
+              formatSize(entry.originalSize) + ' → ' + formatSize(entry.compressedSize) +
+              ratioDisplay +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }
+      document.getElementById('pdfList').innerHTML = listHtml;
+
+      // Update download button text
+      var btn = document.getElementById('downloadBtn');
+      if (compressedPdfs.length === 1) {
+        btn.textContent = '💾 Download ' + compressedPdfs[0].name;
+      } else {
+        btn.textContent = '💾 Download All (' + compressedPdfs.length + ' PDFs)';
+      }
+    }
+
+    function downloadCompressed() {
+      if (compressedPdfs.length === 0) return;
+      if (compressedPdfs.length === 1) {
+        // Single file download
+        var entry = compressedPdfs[0];
+        var url = URL.createObjectURL(entry.blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = entry.name;
+        a.click();
+        URL.revokeObjectURL(url);
+      } else {
+        // Multiple files - download each with a slight delay
+        for (var i = 0; i < compressedPdfs.length; i++) {
+          (function(index) {
+            setTimeout(function() {
+              var entry = compressedPdfs[index];
+              var url = URL.createObjectURL(entry.blob);
+              var a = document.createElement('a');
+              a.href = url;
+              a.download = entry.name;
+              a.click();
+              URL.revokeObjectURL(url);
+            }, index * 500);
+          })(i);
+        }
+      }
+    }
+
+    function clearAll() {
+      compressedPdfs = [];
+      document.getElementById('resultArea').style.display = 'none';
+      document.getElementById('progressArea').style.display = 'none';
+      document.getElementById('pdfList').innerHTML = '';
+      document.getElementById('summaryBar').textContent = '';
+      document.getElementById('progressBar').textContent = '';
+      document.getElementById('progressDetails').innerHTML = '';
+    }
+
+    setupDropZone();
+  </script>
+</BaseLayout>
