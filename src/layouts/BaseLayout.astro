@@ -492,20 +492,65 @@ const websiteSchema = JSON.stringify({
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 14px 18px;
+        padding: 14px 16px;
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        transition: all 0.2s;
+        text-decoration: none;
         color: var(--text);
-        font-weight: 600;
-        font-size: 14px;
+        transition: all 0.2s;
       }
       .related-tool-card:hover {
         border-color: var(--primary);
-        box-shadow: 0 2px 8px rgba(79,70,229,0.1);
-        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(79,70,229,0.08);
       }
+
+      /* ── Affiliate Section ── */
+      .affiliate-section {
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+      }
+      .affiliate-section h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: var(--text);
+      }
+      .affiliate-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 12px;
+      }
+      .affiliate-card {
+        display: block;
+        padding: 16px;
+        border-radius: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .affiliate-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 2px 8px rgba(79,70,229,0.08);
+      }
+      .affiliate-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .affiliate-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+      .affiliate-desc strong {
+        color: var(--primary);
+      }
+      .affiliate-section ~ .affiliate-section { display: none; }
+      
       [data-theme="dark"] .related-tool-card { background: var(--surface); border-color: var(--border); color: var(--text); }
       [data-theme="dark"] .related-tool-card:hover { border-color: var(--primary); }
       .related-icon { font-size: 20px; }
