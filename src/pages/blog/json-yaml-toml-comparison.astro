@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/json-yaml-toml-comparison"
   },
   "image": "https://toolmixr.com/images/blog/json-yaml-toml-comparison-hero.jpg"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="JSON vs YAML vs TOML: Which Config Format Should You Use in 2026" description="JSON, YAML, and TOML look interchangeable until you hit a 3am bug from whitespace sensitivity or implicit type coercion. Here's the practical guide to picking the right format." structuredData={structuredData}>
@@ -49,6 +50,10 @@ const structuredData = JSON.stringify({
     <h2>The Design Philosophy Behind Each Format</h2>
 
     <p>These three formats weren't created to do the same thing—they were created for different audiences and different priorities.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <h3>JSON: The Machine Wire Format</h3>
 

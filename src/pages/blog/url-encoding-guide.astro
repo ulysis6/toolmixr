@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/url-encoding-guide"
   },
   "image": "https://toolmixr.com/images/blog/url-encoding-guide-hero.webp"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="URL Encoding: Why Special Characters Break Your Links" description="Special characters in URLs don't just look wrong — they break things. Learn how percent-encoding works, when you need it, and the difference between encodeURI and encodeURIComponent." structuredData={structuredData}>
@@ -53,6 +54,10 @@ const structuredData = JSON.stringify({
     <h2>What URL Encoding Actually Does</h2>
 
     <p>URL encoding (also called percent-encoding) replaces unsafe characters with a <code>%</code> followed by two hexadecimal digits representing that character's ASCII value.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>A few common examples:</p>
 

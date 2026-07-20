@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/adsense-optimization-guide"
   },
   "image": "https://toolmixr.com/images/blog/adsense-optimization-guide-hero.jpg"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="AdSense RPM: Why Your Earnings Per Pageview Are Lower Than You Think" description="Your AdSense RPM looks decent until you realize how much of it disappears to invalid traffic, ad blockers, and viewability thresholds. Here's what's really going on." structuredData={structuredData}>
@@ -49,6 +50,10 @@ const structuredData = JSON.stringify({
     <h2>What RPM Actually Measures</h2>
 
     <p>RPM stands for Revenue Per Mille — revenue per thousand impressions. AdSense calculates it as: (Estimated Earnings / Pageviews) × 1000.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>Seems straightforward, but "estimated earnings" and "pageviews" are both doing a lot of hidden work in that formula. Let me unpack each.</p>
 

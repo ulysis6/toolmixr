@@ -1,5 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="JSON Formatting Best Practices for Developers" description="Properly formatted JSON is essential for debugging, API development, and team collaboration. Learn the best practices that will save you hours of frustration.">
@@ -22,6 +23,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <h2>The Most Common JSON Mistakes</h2>
 
     <p>Before we get to formatting best practices, let's address the mistakes that actually break JSON:</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <ul>
       <li><strong>Trailing commas</strong> — JSON doesn't allow them. <code>&#123;"name": "John",&#125;</code> will crash.</li>

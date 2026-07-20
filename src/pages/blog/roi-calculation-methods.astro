@@ -1,5 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="ROI Calculation Methods: Simple vs Annualized Returns" description="Not all ROI calculations are equal. Learn the difference between simple ROI and annualized returns, when to use each, and the common pitfalls that lead to misleading numbers.">
@@ -22,6 +23,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <h2>The Simple ROI Formula</h2>
 
     <p>Simple ROI is straightforward:</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <pre><code>ROI = (Gain from Investment - Cost of Investment) / Cost of Investment × 100%</code></pre>
 

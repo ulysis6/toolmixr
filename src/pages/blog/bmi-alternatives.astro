@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/bmi-alternatives"
   },
   "image": "https://toolmixr.com/images/blog/bmi-alternatives-hero.jpg"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="BMI Alternatives: 5 Better Ways to Measure Your Health" description="BMI has been the default health metric for decades, but it was never designed for individuals. Here are 5 measurements that tell you more about your actual health." structuredData={structuredData}>
@@ -51,6 +52,10 @@ const structuredData = JSON.stringify({
     <h2>1. Body Fat Percentage</h2>
 
     <p>This is the most direct alternative to BMI because it measures what BMI is trying to approximate: how much of your body is fat versus lean mass. The difference is precision.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>Two people with identical BMI can have wildly different body fat percentages. A sedentary person and an athlete at the same height and weight might have BMIs of 28, but one could have 30% body fat while the other has 15%. BMI says they're equally unhealthy. Body fat percentage says otherwise.</p>
 

@@ -1,5 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="BMI Calculator: What Your Number Really Means" description="BMI is widely used but often misunderstood. This guide explains what BMI measures, its limitations, when it's useful, and what better alternatives exist for assessing health.">
@@ -24,6 +25,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <h2>How BMI Is Calculated</h2>
 
     <p>The formula is simple:</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <pre><code>BMI = weight (kg) / height (m)²</code></pre>
 

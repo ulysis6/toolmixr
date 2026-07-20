@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/base64-real-world"
   },
   "image": "https://toolmixr.com/images/blog/base64-real-world-hero.jpg"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="Base64 in the Wild: 5 Places You Use It Every Day Without Knowing" description="Base64 encoding is hiding in your emails, your images, your URLs, and your authentication headers. Here's where it appears, why it exists, and when it's actually a problem." structuredData={structuredData}>
@@ -49,6 +50,10 @@ const structuredData = JSON.stringify({
     <h2>What Base64 Actually Does</h2>
 
     <p>Quick primer for anyone who's fuzzy on the details: Base64 converts binary data into ASCII text. It takes 3 bytes of binary data (24 bits) and encodes them as 4 ASCII characters. The "64" comes from the character set used: A-Z, a-z, 0-9, +, and / (with = as padding).</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>Why does this exist? Because many systems were designed to handle text, not binary data. Email servers, HTML parsers, JSON parsers, URL schemes — they all expect printable ASCII characters. Binary data (like images, encrypted tokens, or compressed files) can contain bytes that look like control characters to these systems, causing corruption or truncation.</p>
 

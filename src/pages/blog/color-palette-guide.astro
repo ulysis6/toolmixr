@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/color-palette-guide"
   },
   "image": "https://toolmixr.com/images/blog/color-palette-guide-hero.jpg"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="How to Choose the Right Color Palette for Your Website" description="Picking colors for your website shouldn't feel like guessing. Here's how to build a color palette that looks professional, works for accessibility, and actually converts." structuredData={structuredData}>
@@ -49,6 +50,10 @@ const structuredData = JSON.stringify({
     <h2>Start With One Color, Not Five</h2>
 
     <p>Most people try to pick an entire palette at once. That's like trying to write a song by composing all the instruments simultaneously. It doesn't work.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>Instead, start with your primary color — the one that represents your brand. Everything else flows from there. If you already have a logo or brand identity, your primary color is probably locked in. If not, think about what feeling you want to evoke:</p>
 

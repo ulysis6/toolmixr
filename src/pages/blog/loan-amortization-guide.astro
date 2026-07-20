@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/loan-amortization-guide"
   },
   "image": "https://toolmixr.com/images/blog/loan-amortization-guide-hero.jpg"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="Loan Amortization Explained: Why Your Early Payments Barely Touch the Principal" description="You pay thousands in the first year of a loan and barely make a dent in what you owe. Here's why amortization works this way — and how to fight back." structuredData={structuredData}>
@@ -51,6 +52,10 @@ const structuredData = JSON.stringify({
     <h2>What Amortization Actually Means</h2>
 
     <p>Amortization is just the process of spreading a loan into a series of fixed payments. Each payment covers two things: interest on the remaining balance, and a portion of the principal (the original amount you borrowed).</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>Your monthly payment stays the same for the entire term. But the <em>split</em> between interest and principal changes every single month. Early on, most of your payment goes to interest. As the balance shrinks, the interest portion shrinks too, and more of your payment attacks the principal.</p>
 

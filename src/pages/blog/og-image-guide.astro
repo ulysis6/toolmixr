@@ -1,5 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Why Your Social Media Links Look Broken (And How OG Images Fix It)" description="Learn why your links look terrible when shared on social media and how Open Graph images can transform your social presence.">
@@ -27,6 +28,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <h2>What Is Open Graph?</h2>
 
     <p>Open Graph is a protocol created by Facebook (now Meta) in 2010. It lets you control how your content appears when shared on social media platforms, messaging apps, and link preview services.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>At its core, it's a set of meta tags you add to your HTML <code>&lt;head&gt;</code>:</p>
 

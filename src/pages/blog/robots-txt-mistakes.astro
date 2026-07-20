@@ -1,5 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="The robots.txt Mistakes That Can Kill Your SEO" description="Common robots.txt errors that silently destroy your search rankings, from blocking CSS to accidentally disallowing your entire site.">
@@ -27,6 +28,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <h2>What robots.txt Actually Does (And Doesn't Do)</h2>
 
     <p>Before we get into the mistakes, let's get clear on what robots.txt is and isn't:</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p><strong>What it does:</strong> Tells search engine crawlers which URLs they should request from your site. It's a suggestion, not a wall — well-behaved crawlers respect it, but malicious ones ignore it.</p>
 

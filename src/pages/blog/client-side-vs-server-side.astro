@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/client-side-vs-server-side"
   },
   "image": "https://toolmixr.com/images/blog/client-side-vs-server-side-hero.jpg"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="Client-Side vs Server-Side: Why Your Data Is Safer in the Browser" description="When you use an online tool, where does your data actually go? Client-side processing keeps everything in your browser—here's why that matters for your privacy." structuredData={structuredData}>
@@ -49,6 +50,10 @@ const structuredData = JSON.stringify({
     <h2>What the Heck Is Client-Side Processing Anyway?</h2>
 
     <p>Let me break it down without the jargon. When you use an online tool, your data takes one of two paths:</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p><strong>Server-side processing</strong> is the traditional model. You upload a file to a website's server, the server does the processing (converting, compressing, whatever), then sends the result back to you. During that roundtrip, your data sits on someone else's computer—sometimes for seconds, sometimes for months.</p>
 

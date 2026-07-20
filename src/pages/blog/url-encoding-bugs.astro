@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/url-encoding-bugs"
   },
   "image": "https://toolmixr.com/images/blog/url-encoding-bugs-hero.jpg"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="URL Encoding Bugs: The Silent Killer of Web Forms" description="Ampersands, spaces, and emoji in your form data can break everything from email links to API calls. Here's how URL encoding works and why it keeps breaking your code." structuredData={structuredData}>
@@ -49,6 +50,10 @@ const structuredData = JSON.stringify({
     <h2>What URL Encoding Actually Does</h2>
 
     <p>URLs can only contain a limited set of characters: letters, numbers, and a few special characters like hyphens and underscores. Everything else — spaces, ampersands, question marks, non-English characters, emoji — has to be encoded as a percent sign followed by two hexadecimal digits.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>A space becomes <code>%20</code>. An ampersand becomes <code>%26</code>. A question mark becomes <code>%3F</code>. The letter "é" becomes <code>%C3%A9</code>. The shrug emoji 🤷 becomes <code>%F0%9F%A4%B7</code>.</p>
 

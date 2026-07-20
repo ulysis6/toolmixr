@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/base64-encoding-explained"
   },
   "image": "https://toolmixr.com/images/blog/base64-encoding-guide-hero.webp"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="Base64 Encoding Explained: What It Is and When to Use It" description="Base64 encoding is everywhere — in emails, data URLs, API tokens, and config files. Learn how it actually works, when you need it, and the common mistakes that waste 33% more space than you expect." structuredData={structuredData}>
@@ -53,6 +54,10 @@ const structuredData = JSON.stringify({
     <h2>What Base64 Actually Does</h2>
 
     <p>Base64 converts binary data into ASCII text. That's the whole job. It takes any sequence of bytes — text, images, compressed files, anything — and represents it using only 64 printable ASCII characters.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>Why 64? Because 64 values fit in 6 bits (2&#8310; = 64), and 6 bits is the largest power of 2 that divides evenly into 24 (3 bytes = 24 bits). This means Base64 processes input 3 bytes at a time, converting each group of 3 bytes (24 bits) into 4 Base64 characters (4 × 6 = 24 bits).</p>
 

@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/local-ai-hardware-guide"
   },
   "image": "https://toolmixr.com/images/blog/local-ai-hardware-guide-hero.webp"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="What Computer Can Run Local AI Models? Check Before You Build" description="Want to run AI models like Llama, Qwen, or DeepSeek on your own hardware? Here is exactly what GPU, RAM, and storage you need — and how to check your system before you start." structuredData={structuredData}>
@@ -53,6 +54,10 @@ const structuredData = JSON.stringify({
     <h2>The Golden Rule: VRAM Is Everything</h2>
 
     <p>When you run a local AI model, the entire set of model weights must live in memory during inference. Every single token the model generates requires a pass through all those weights. If the model fits entirely in your GPU's VRAM, you get fast, responsive output. If it does not fit, parts of the model spill into system RAM, and speed tanks dramatically.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>A model that generates 40 tokens per second in VRAM might manage 8 to 15 tokens per second from system RAM on a fast CPU setup. Both are usable, but the difference is night and day for interactive chat.</p>
 

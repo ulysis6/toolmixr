@@ -23,7 +23,8 @@ const structuredData = JSON.stringify({
     "@id": "https://toolmixr.com/blog/sitemap-seo-guide"
   },
   "image": "https://toolmixr.com/images/blog/sitemap-seo-guide-hero.jpg"
-});
+
+import AffiliateBanner from '../../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="XML Sitemaps: The SEO Feature Most Websites Get Wrong" description="Having a sitemap.xml isn't enough. Most sitemaps have errors that hurt your SEO — from stale URLs to missing lastmod dates. Here's how to fix yours." structuredData={structuredData}>
@@ -49,6 +50,10 @@ const structuredData = JSON.stringify({
     <h2>What a Sitemap Actually Does</h2>
 
     <p>A sitemap is a file that tells search engines which pages on your site you want indexed. That's it. It's not a guarantee of indexing, it's not a ranking factor, and it doesn't replace internal linking. It's a suggestion — like leaving a map on your doorstep for a delivery driver.</p>
+
+  <AffiliateBanner variant="compact" />
+
+
 
     <p>Search engines can discover pages by crawling links, and they'll do that regardless of whether you have a sitemap. But sitemaps become valuable when:</p>
 
