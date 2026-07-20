@@ -67,7 +67,8 @@ const structuredData = JSON.stringify([
       }
     ]
   }
-]);
+
+import AffiliateBanner from '../components/AffiliateBanner.astro';]);
 ---
 
 <BaseLayout 
@@ -109,6 +110,8 @@ const structuredData = JSON.stringify([
       </div>
     
 
+    <AffiliateBanner />
+    
     <section class="guide">
       <h2>Base64: Encoding vs. Encryption</h2>
       <p>Base64 is one of the most misunderstood tools in a developer's arsenal. It's not encryption — it's encoding, which means anyone can reverse it. Understanding when to use Base64 (and when not to) is essential for building secure, correct systems.</p>

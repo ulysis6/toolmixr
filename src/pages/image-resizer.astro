@@ -75,7 +75,8 @@ const structuredData = JSON.stringify([
       }
     ]
   }
-]);
+
+import AffiliateBanner from '../components/AffiliateBanner.astro';]);
 ---
 
 <BaseLayout 
@@ -184,6 +185,8 @@ const structuredData = JSON.stringify([
 
   </div>
 
+  <AffiliateBanner />
+  
   <section class="guide">
     <h2>How Image Resizing Works</h2>
     <p>Resizing changes the number of pixels in an image. When you make an image smaller (downscaling), multiple pixels are combined into fewer pixels. When you make it larger (upscaling), the computer must invent new pixels based on the existing ones.</p>

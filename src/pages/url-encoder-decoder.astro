@@ -67,7 +67,8 @@ const structuredData = JSON.stringify([
       }
     ]
   }
-]);
+
+import AffiliateBanner from '../components/AffiliateBanner.astro';]);
 ---
 
 <BaseLayout 
@@ -111,6 +112,8 @@ const structuredData = JSON.stringify([
       </div>
     
 
+    <AffiliateBanner />
+    
     <section class="guide">
       <h2>URL Encoding: The Percent Sign's Secret Life</h2>
       <p>URLs have rules. The original specification (RFC 3986) says URLs can only contain a limited set of characters: A-Z, a-z, 0-9, hyphen, underscore, period, and tilde. Everything else must be percent-encoded. Understanding why and how prevents debugging headaches.</p>

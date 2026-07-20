@@ -16,7 +16,8 @@ const structuredData = JSON.stringify([
     "@context": "https://schema.org", "@type": "BreadcrumbList",
     "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://toolmixr.com" }, { "@type": "ListItem", "position": 2, "name": pageTitle, "item": pageUrl }]
   }
-]);
+
+import AffiliateBanner from '../components/AffiliateBanner.astro';]);
 ---
 
 <BaseLayout title={pageTitle} description="Generate UUID v4, UUID v7, and ULID identifiers. Batch generate up to 100 IDs. Copy or download as JSON/CSV. Free, no signup." structuredData={structuredData}>
@@ -55,6 +56,8 @@ const structuredData = JSON.stringify([
       </div>
     </div>
 
+    <AffiliateBanner />
+    
     <section class="guide" style="margin-top:40px;">
       <h2>When to Use Each ID Type</h2>
       <table class="legal-table">

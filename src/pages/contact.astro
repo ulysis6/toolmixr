@@ -7,7 +7,8 @@ const structuredData = JSON.stringify({
   "name": "Contact ToolMixr",
   "url": "https://toolmixr.com/contact",
   "description": "Get in touch with the ToolMixr team."
-});
+
+import AffiliateBanner from '../components/AffiliateBanner.astro';});
 ---
 
 <BaseLayout title="Contact Us" description="Contact ToolMixr — report bugs, suggest new tools, or ask questions about our free online tools." structuredData={structuredData}>
@@ -47,6 +48,8 @@ const structuredData = JSON.stringify({
         </div>
       </div>
     </div>
+    
+    <AffiliateBanner />
     
     <section class="guide">
       <h2>Frequently Asked Questions</h2>

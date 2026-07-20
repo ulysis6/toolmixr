@@ -25,7 +25,8 @@ const structuredData = JSON.stringify([
     ]
   },
   { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://toolmixr.com" }, { "@type": "ListItem", "position": 2, "name": pageTitle, "item": pageUrl }] }
-]);
+
+import AffiliateBanner from '../components/AffiliateBanner.astro';]);
 ---
 
 <BaseLayout title={pageTitle} description="Free online Markdown editor with live preview. Write in Markdown and see HTML rendered in real-time. Supports GitHub Flavored Markdown. No signup required." structuredData={structuredData}>
@@ -53,6 +54,8 @@ const structuredData = JSON.stringify([
       <button class="btn btn-secondary" onclick="clearEditor()">🗑️ Clear</button>
     </div>
 
+    <AffiliateBanner />
+    
     <section class="guide" style="margin-top:40px;">
       <h2>Markdown Quick Reference</h2>
       <table class="legal-table" style="margin-top:16px;">

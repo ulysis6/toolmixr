@@ -6,7 +6,8 @@ const pageUrl = "https://toolmixr.com/color-contrast-checker";
 const structuredData = JSON.stringify([
   {"@context":"https://schema.org","@type":"WebApplication","name":pageTitle,"url":pageUrl,"description":"Check color contrast ratios for WCAG AA and AAA compliance. Enter foreground and background colors to get instant pass/fail results.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolmixr.com"},{"@type":"ListItem","position":2,"name":pageTitle,"item":pageUrl}]}
-]);
+
+import AffiliateBanner from '../components/AffiliateBanner.astro';]);
 ---
 
 <BaseLayout title={pageTitle} description="Check text-background color contrast against WCAG AA and AAA standards. Get instant pass/fail results with ratio scores. Free accessibility tool." structuredData={structuredData}>
@@ -62,6 +63,8 @@ const structuredData = JSON.stringify([
       </div>
     </div>
 
+    <AffiliateBanner />
+    
     <section class="guide" style="margin-top:40px;">
       <h2>WCAG Contrast Requirements</h2>
       <table class="legal-table">

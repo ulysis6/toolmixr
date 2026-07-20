@@ -75,7 +75,8 @@ const structuredData = JSON.stringify([
       }
     ]
   }
-]);
+
+import AffiliateBanner from '../components/AffiliateBanner.astro';]);
 ---
 
 <BaseLayout 
@@ -132,6 +133,8 @@ const structuredData = JSON.stringify([
 
   </div>
 
+  <AffiliateBanner />
+  
   <section class="guide">
     <h2>How Image Compression Works</h2>
     <p>Image compression reduces file size by eliminating redundant data. Understanding the difference between lossy and lossless compression helps you choose the right quality setting for your needs.</p>
@@ -231,19 +234,6 @@ const structuredData = JSON.stringify([
     </div>
   </section>
 
-  <section class="affiliate-section">
-    <h2>⚡ Recommended for Your Projects</h2>
-    <div class="affiliate-grid">
-      <a href="https://www.vultr.com/?ref=9908669" target="_blank" rel="sponsored noopener" class="affiliate-card">
-        <div class="affiliate-name">Vultr</div>
-        <div class="affiliate-desc">High-performance cloud servers. Get <strong>$300 free credit</strong> for new users.</div>
-      </a>
-      <a href="https://console.evoxt.com/aff.php?aff=4705" target="_blank" rel="sponsored noopener" class="affiliate-card">
-        <div class="affiliate-name">Evoxt</div>
-        <div class="affiliate-desc">Affordable VPS hosting starting at $2.99/mo. Global data centers.</div>
-      </a>
-    </div>
-  </section>
   </section>
 
   <style is:global>
