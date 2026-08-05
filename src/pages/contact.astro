@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AffiliateBanner from '../components/AffiliateBanner.astro';
 
 const structuredData = JSON.stringify({
   "@context": "https://schema.org",
@@ -7,8 +8,7 @@ const structuredData = JSON.stringify({
   "name": "Contact ToolMixr",
   "url": "https://toolmixr.com/contact",
   "description": "Get in touch with the ToolMixr team."
-
-import AffiliateBanner from '../components/AffiliateBanner.astro';});
+});
 ---
 
 <BaseLayout title="Contact Us" description="Contact ToolMixr — report bugs, suggest new tools, or ask questions about our free online tools." structuredData={structuredData}>
@@ -18,6 +18,11 @@ import AffiliateBanner from '../components/AffiliateBanner.astro';});
     </nav>
     <h1>📬 Contact Us</h1>
     <p class="subtitle">Have a question, suggestion, or found a bug? We'd love to hear from you.</p>
+
+    <div class="guide" style="margin-top:32px;">
+      <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:12px;">ToolMixr is run by one person: <a href="/author">Lao Lu</a>. There is no support team and no ticket queue &mdash; you are writing directly to the person who builds the tools. That also means a fast, personal reply to every legitimate message.</p>
+      <p style="color:var(--text-secondary);line-height:1.8;">For the fastest response, use <a href="https://t.me/ulysis6" target="_blank" rel="noopener nofollow">Telegram: @ulysis6</a>.</p>
+    </div>
     
     <div class="tool-box">
       <div class="contact-methods">
@@ -45,6 +50,13 @@ import AffiliateBanner from '../components/AffiliateBanner.astro';});
           <h3>Business Inquiries</h3>
           <p>For partnerships, sponsorships, or advertising opportunities:</p>
           <a href="mailto:contact@toolmixr.com" class="btn btn-secondary" style="margin-top:12px;">Get in Touch</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">✈️</div>
+          <h3>Telegram</h3>
+          <p>Fastest way to reach me for quick questions and feedback:</p>
+          <a href="https://t.me/ulysis6" target="_blank" rel="noopener nofollow" class="btn btn-secondary" style="margin-top:12px;">@ulysis6</a>
         </div>
       </div>
     </div>

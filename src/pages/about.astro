@@ -9,6 +9,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p class="subtitle">Free online tools that respect your privacy.</p>
 
     <div class="about-section">
+      <h2>About the Author</h2>
+      <div class="author-card">
+        <img src="/images/author-logo.png" alt="Lao Lu" class="author-avatar" />
+        <div>
+          <p><strong>Lao Lu (Lu Shen)</strong> &mdash; indie developer and small business owner. I build every tool on this site and test it myself before it ships.</p>
+          <p>I also run <a href="https://genaipick.com" target="_blank" rel="noopener">GenAIPick</a> (honest AI tool reviews) and <a href="https://lusdaily.com" target="_blank" rel="noopener">lusdaily.com</a> (my Chinese-language blog about building websites and making money online from zero).</p>
+          <p><a href="/author">Read the full story</a> &middot; <a href="https://www.linkedin.com/in/shenlu-ulysis6/" target="_blank" rel="noopener">LinkedIn</a> &middot; <a href="https://github.com/ulysis6" target="_blank" rel="noopener">GitHub</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
       <h2>What is ToolMixr?</h2>
       <p>ToolMixr is a collection of free online tools built for developers, designers, SEO specialists, and content creators. Every tool runs <strong>entirely in your browser</strong> — no data is ever sent to a server, no sign-up required, no tracking.</p>
     </div>
@@ -31,6 +43,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p>Before ToolMixr, I was that person with 15 browser tabs open, each running a different "free" tool that required an account, uploaded my data to some server I'd never heard of, or hit me with a paywall after two uses. So I built what I wanted: tools that just work, right in your browser, no strings attached.</p>
       <p>I test every tool myself before publishing it. If a calculator gives me a wrong answer or a generator produces broken output, it doesn't ship. Period.</p>
       <p>When I'm not building tools, I'm probably testing other people's AI tools over on <a href="https://genaipick.com" target="_blank" rel="noopener">GenAIPick</a>, where I write honest reviews of AI products I actually pay for.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>How Every Tool Is Tested</h2>
+      <p>Nothing ships until I have used it in real work. My testing checklist for every tool:</p>
+      <ul>
+        <li>Core function works correctly against known inputs and edge cases</li>
+        <li>Results are cross-checked against trusted sources (formulas, standards, reference tools)</li>
+        <li>Works in current Chrome, Edge, Firefox, and Safari on desktop and mobile</li>
+        <li>No data leaves the browser, even by accident</li>
+      </ul>
+      <p>Found a bug anyway? <a href="/contact">Report it</a> and I will fix it &mdash; that is the point of running a small, accountable site.</p>
     </div>
 
     <div class="about-section">
@@ -115,10 +139,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </ul>
       </div>
     </div>
-    
+
+    <div class="about-section">
+      <h2>Frequently Asked Questions</h2>
+      <h3>Are the tools really free?</h3>
+      <p>Yes. Every tool on ToolMixr is free, with no sign-up, no limits, and no paywalls. Some pages include affiliate links to services we genuinely recommend &mdash; they cost you nothing and help keep the site running.</p>
+      <h3>Is my data safe?</h3>
+      <p>All tools run 100% in your browser. Images, text, and numbers you process never leave your device.</p>
+      <h3>How do I know the tools are accurate?</h3>
+      <p>Every tool is tested before publishing, with edge cases checked against trusted sources. Found a bug? <a href="/contact">Report it</a> and it gets fixed fast.</p>
+      <h3>Can I request a new tool?</h3>
+      <p>Yes. Tell me what you need via the <a href="/contact">contact page</a> and I will evaluate it.</p>
+    </div>
+
     <div class="about-section">
       <h2>Contact</h2>
-      <p>Have questions, feedback, or feature requests? We'd love to hear from you. Reach us at <a href="mailto:contact@toolmixr.com">contact@toolmixr.com</a></p>
+      <p>Have questions, feedback, or feature requests? Reach me directly:</p>
+      <ul>
+        <li>Email: <a href="mailto:contact@toolmixr.com">contact@toolmixr.com</a></li>
+        <li>Telegram: <a href="https://t.me/ulysis6" target="_blank" rel="noopener nofollow">@ulysis6</a></li>
+        <li>More ways to reach me: <a href="/contact">contact page</a></li>
+      </ul>
     </div>
   </div>
 
@@ -141,6 +182,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--text-secondary);
     margin-bottom: 40px;
   }
+  .author-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .author-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .author-card p {
+    margin-bottom: 8px;
+  }
+  .author-card a {
+    font-weight: 600;
+  }
   .about-section {
     margin-bottom: 40px;
   }
@@ -162,6 +225,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
   .about-section ul li {
     margin-bottom: 6px;
+  }
+  .about-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 18px 0 8px;
   }
 
   .principles-grid {
