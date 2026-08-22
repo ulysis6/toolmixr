@@ -701,6 +701,23 @@ const websiteSchema = JSON.stringify({
         .cookie-banner-content { flex-direction: column; align-items: flex-start; gap: 12px; }
         .cookie-banner-buttons { margin-left: 0; }
       }
+
+      /* Sponsored Banner (all pages) */
+      .prcn-banner-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 16px 20px 0;
+        text-align: center;
+      }
+      .prcn-banner {
+        max-width: 728px;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        display: inline-block;
+        transition: opacity 0.2s;
+      }
+      .prcn-banner:hover { opacity: 0.92; }
     </style>
   </head>
   <body>
@@ -733,6 +750,14 @@ const websiteSchema = JSON.stringify({
         </nav>
       </div>
     </header>
+    
+    <!-- Sponsored Banner (all pages) -->
+    <div class="prcn-banner-wrap">
+      <a href="https://www.profitableratecpmnetwork.com/bjwzhegd78?key=753fc4b5f9e5ec27ce025669cfea9427" target="_blank" rel="sponsored noopener" aria-label="Sponsored banner">
+        <img src="/images/prcn-banner.png" alt="Free Tools That Just Work — SEO, finance & dev tools. No signup needed." width="728" height="90" class="prcn-banner" loading="lazy" />
+      </a>
+    </div>
+    <!-- /Sponsored Banner -->
     
     <main class="container">
       <slot />
