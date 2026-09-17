@@ -3,6 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const tools = [
   {
+    title: 'IP Lookup & Network Diagnostics',
+    description: 'Check your IP address and reputation, test access to AI services like ChatGPT and Gemini, run global ping tests, and detect WebRTC leaks.',
+    icon: '🌐',
+    url: 'https://ip.toolmixr.com/?lang=en',
+    tag: 'Developer',
+  },
+  {
     title: 'AI Model Checker',
     description: 'Check if your GPU and RAM can run local AI models like Qwen 3.6, Gemma 4, Llama 4, and DeepSeek V4.',
     icon: '🧠',
@@ -208,7 +215,7 @@ const tools = [
 ];
 ---
 
-<BaseLayout title="Home" description="Free online tools for SEO, finance, development, and more. Mortgage calculator, ROI calculator, JSON formatter, password generator, and 28+ other tools. No signup required.">
+<BaseLayout title="Home" description="30 free online tools for SEO, finance, development, and more. Mortgage calculator, ROI calculator, JSON formatter, password generator, IP lookup and network diagnostics. No signup required.">
   
   <section class="hero">
     <h1>Free Online Web Tools</h1>
@@ -232,7 +239,7 @@ const tools = [
   
   <div class="tools-grid">
     {tools.map((tool) => (
-      <a href={`/${tool.slug}`} class="tool-card" data-tag={tool.tag}>
+      <a href={tool.url ? tool.url : `/${tool.slug}`} class="tool-card" data-tag={tool.tag} target={tool.url ? '_blank' : undefined} rel={tool.url ? 'noopener' : undefined}>
         <div class="icon">{tool.icon}</div>
         <h3>{tool.title}</h3>
         <p>{tool.description}</p>
