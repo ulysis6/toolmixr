@@ -10,7 +10,7 @@ const structuredData = JSON.stringify([
     "@type": "WebApplication",
     "name": pageTitle,
     "url": pageUrl,
-    "description": "Check if your PC can run AAA games like GTA VI, Monster Hunter Wilds, Black Myth: Wukong, and more. Compare your GPU, CPU, and RAM against minimum and recommended system requirements.",
+    "description": "Check if your PC can run AAA games like DOOM: The Dark Ages, Borderlands 4, Clair Obscur: Expedition 33, and more. GTA VI is tracked as console-only until Rockstar publishes PC requirements. Compare your GPU, CPU, and RAM against minimum and recommended system requirements.",
     "applicationCategory": "GameApplication",
     "operatingSystem": "Any",
     "offers": {
@@ -37,6 +37,14 @@ const structuredData = JSON.stringify([
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Unfortunately, no. RAM cannot compensate for an insufficient GPU. The GPU handles rendering the game's graphics, and if it doesn't meet minimum requirements, the game may not launch or will be unplayably slow regardless of how much RAM you have. Each component (GPU, CPU, RAM) must independently meet the game's requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does GTA VI show Console only?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rockstar has only announced GTA VI for PlayStation 5 and Xbox Series X|S (November 19, 2026). No PC version, PC release date or PC system requirements have been published, and the spec tables circulating online are guesses. This checker refuses to score the game rather than showing a made-up result, and will update the row once official PC requirements exist."
         }
       },
       {
@@ -80,7 +88,7 @@ const structuredData = JSON.stringify([
 
 <BaseLayout 
   title={pageTitle} 
-  description="Check if your PC can run AAA games like GTA VI, Monster Hunter Wilds, Black Myth: Wukong, and more. Compare your GPU, CPU, and RAM against system requirements."
+  description="Check if your PC can run AAA games like DOOM: The Dark Ages, Borderlands 4, Clair Obscur: Expedition 33, and more. GTA VI is tracked as console-only until Rockstar publishes PC requirements. Compare your GPU, CPU, and RAM against system requirements."
   structuredData={structuredData}
 >
   
@@ -102,106 +110,107 @@ const structuredData = JSON.stringify([
   </div>
 
   <p class="subtitle">Check if your PC can run the latest AAA games — compare your specs against official requirements</p>
+  <p style="font-size:12.5px;color:var(--text-secondary);margin:-6px 0 18px;">Game list last reviewed: November 6, 2026 · 19 titles · specs taken from official publisher and Steam requirement listings — always confirm on the store page before buying</p>
 
   <div class="tool-box">
     <div class="form-group">
       <label for="gameGpuSelect">Your GPU / Graphics Card</label>
               <select id="gameGpuSelect">
         <optgroup label="NVIDIA RTX 50 Series">
-          <option value="32">RTX 5090 (32GB)</option>
-          <option value="16">RTX 5080 (16GB)</option>
-          <option value="16">RTX 5070 Ti (16GB)</option>
-          <option value="12">RTX 5070 (12GB)</option>
-          <option value="16">RTX 5060 Ti (16GB)</option>
-          <option value="8">RTX 5060 Ti (8GB)</option>
-          <option value="8">RTX 5060 (8GB)</option>
-          <option value="8">RTX 5050 (8GB)</option>
+          <option value="32" data-perf="200">RTX 5090 (32GB)</option>
+          <option value="16" data-perf="130">RTX 5080 (16GB)</option>
+          <option value="16" data-perf="112">RTX 5070 Ti (16GB)</option>
+          <option value="12" data-perf="95">RTX 5070 (12GB)</option>
+          <option value="16" data-perf="78">RTX 5060 Ti (16GB)</option>
+          <option value="8" data-perf="77">RTX 5060 Ti (8GB)</option>
+          <option value="8" data-perf="66">RTX 5060 (8GB)</option>
+          <option value="8" data-perf="52">RTX 5050 (8GB)</option>
         </optgroup>
         <optgroup label="NVIDIA RTX 40 Series">
-          <option value="24">RTX 4090 (24GB)</option>
-          <option value="16">RTX 4080 Super (16GB)</option>
-          <option value="16">RTX 4080 (16GB)</option>
-          <option value="16">RTX 4070 Ti Super (16GB)</option>
-          <option value="12">RTX 4070 Ti (12GB)</option>
-          <option value="12">RTX 4070 Super (12GB)</option>
-          <option value="12">RTX 4070 (12GB)</option>
-          <option value="16">RTX 4060 Ti (16GB)</option>
-          <option value="8">RTX 4060 Ti (8GB)</option>
-          <option value="8">RTX 4060 (8GB)</option>
+          <option value="24" data-perf="100">RTX 4090 (24GB)</option>
+          <option value="16" data-perf="88">RTX 4080 Super (16GB)</option>
+          <option value="16" data-perf="84">RTX 4080 (16GB)</option>
+          <option value="16" data-perf="79">RTX 4070 Ti Super (16GB)</option>
+          <option value="12" data-perf="70">RTX 4070 Ti (12GB)</option>
+          <option value="12" data-perf="71">RTX 4070 Super (12GB)</option>
+          <option value="12" data-perf="62">RTX 4070 (12GB)</option>
+          <option value="16" data-perf="53">RTX 4060 Ti (16GB)</option>
+          <option value="8" data-perf="52">RTX 4060 Ti (8GB)</option>
+          <option value="8" data-perf="42">RTX 4060 (8GB)</option>
         </optgroup>
         <optgroup label="NVIDIA RTX 30 Series">
-          <option value="24">RTX 3090 Ti (24GB)</option>
-          <option value="24">RTX 3090 (24GB)</option>
-          <option value="12">RTX 3080 Ti (12GB)</option>
-          <option value="10">RTX 3080 (10GB)</option>
-          <option value="8">RTX 3070 Ti (8GB)</option>
-          <option value="8">RTX 3070 (8GB)</option>
-          <option value="8">RTX 3060 Ti (8GB)</option>
-          <option value="12" selected>RTX 3060 (12GB)</option>
-          <option value="8">RTX 3050 (8GB)</option>
+          <option value="24" data-perf="62">RTX 3090 Ti (24GB)</option>
+          <option value="24" data-perf="58">RTX 3090 (24GB)</option>
+          <option value="12" data-perf="55">RTX 3080 Ti (12GB)</option>
+          <option value="10" data-perf="48">RTX 3080 (10GB)</option>
+          <option value="8" data-perf="42">RTX 3070 Ti (8GB)</option>
+          <option value="8" data-perf="40">RTX 3070 (8GB)</option>
+          <option value="8" data-perf="35">RTX 3060 Ti (8GB)</option>
+          <option value="12" data-perf="27" selected>RTX 3060 (12GB)</option>
+          <option value="8" data-perf="19">RTX 3050 (8GB)</option>
         </optgroup>
         <optgroup label="NVIDIA RTX 20 Series">
-          <option value="11">RTX 2080 Ti (11GB)</option>
-          <option value="8">RTX 2080 Super (8GB)</option>
-          <option value="8">RTX 2080 (8GB)</option>
-          <option value="8">RTX 2070 Super (8GB)</option>
-          <option value="8">RTX 2070 (8GB)</option>
-          <option value="8">RTX 2060 Super (8GB)</option>
-          <option value="6">RTX 2060 (6GB)</option>
+          <option value="11" data-perf="38">RTX 2080 Ti (11GB)</option>
+          <option value="8" data-perf="33">RTX 2080 Super (8GB)</option>
+          <option value="8" data-perf="31">RTX 2080 (8GB)</option>
+          <option value="8" data-perf="28">RTX 2070 Super (8GB)</option>
+          <option value="8" data-perf="25">RTX 2070 (8GB)</option>
+          <option value="8" data-perf="22">RTX 2060 Super (8GB)</option>
+          <option value="6" data-perf="18">RTX 2060 (6GB)</option>
         </optgroup>
         <optgroup label="NVIDIA GTX 10 Series">
-          <option value="11">GTX 1080 Ti (11GB)</option>
-          <option value="8">GTX 1080 (8GB)</option>
-          <option value="8">GTX 1070 (8GB)</option>
-          <option value="6">GTX 1060 (6GB)</option>
-          <option value="6">GTX 1660 (6GB)</option>
-          <option value="4">GTX 1650 (4GB)</option>
+          <option value="11" data-perf="27">GTX 1080 Ti (11GB)</option>
+          <option value="8" data-perf="20">GTX 1080 (8GB)</option>
+          <option value="8" data-perf="16">GTX 1070 (8GB)</option>
+          <option value="6" data-perf="11">GTX 1060 (6GB)</option>
+          <option value="6" data-perf="12">GTX 1660 (6GB)</option>
+          <option value="4" data-perf="7">GTX 1650 (4GB)</option>
         </optgroup>
         <optgroup label="Apple Silicon (Unified Memory)">
-          <option value="128">M5 Max (128GB unified)</option>
-          <option value="64">M5 Pro (64GB unified)</option>
-          <option value="16">M5 (16GB unified)</option>
-          <option value="48">M4 Max (48GB unified)</option>
-          <option value="24">M4 Pro (24GB unified)</option>
-          <option value="16">M4 (16GB unified)</option>
-          <option value="36">M3 Max (36GB unified)</option>
-          <option value="18">M3 Pro (18GB unified)</option>
-          <option value="8">M3 (8GB unified)</option>
-          <option value="32">M2 Max (32GB unified)</option>
-          <option value="16">M2 Pro (16GB unified)</option>
-          <option value="8">M2 (8GB unified)</option>
-          <option value="32">M1 Max (32GB unified)</option>
-          <option value="16">M1 Pro (16GB unified)</option>
-          <option value="8">M1 (8GB unified)</option>
+          <option value="128" data-perf="45">M5 Max (128GB unified)</option>
+          <option value="64" data-perf="30">M5 Pro (64GB unified)</option>
+          <option value="16" data-perf="15">M5 (16GB unified)</option>
+          <option value="48" data-perf="40">M4 Max (48GB unified)</option>
+          <option value="24" data-perf="22">M4 Pro (24GB unified)</option>
+          <option value="16" data-perf="12">M4 (16GB unified)</option>
+          <option value="36" data-perf="30">M3 Max (36GB unified)</option>
+          <option value="18" data-perf="16">M3 Pro (18GB unified)</option>
+          <option value="8" data-perf="8">M3 (8GB unified)</option>
+          <option value="32" data-perf="22">M2 Max (32GB unified)</option>
+          <option value="16" data-perf="12">M2 Pro (16GB unified)</option>
+          <option value="8" data-perf="7">M2 (8GB unified)</option>
+          <option value="32" data-perf="15">M1 Max (32GB unified)</option>
+          <option value="16" data-perf="9">M1 Pro (16GB unified)</option>
+          <option value="8" data-perf="5">M1 (8GB unified)</option>
         </optgroup>
         <optgroup label="AMD RX 9000 Series">
-          <option value="16">RX 9070 XT (16GB)</option>
-          <option value="16">RX 9070 (16GB)</option>
-          <option value="12">RX 9070 GRE (12GB)</option>
-          <option value="16">RX 9060 XT (16GB)</option>
-          <option value="8">RX 9060 XT (8GB)</option>
-          <option value="8">RX 9060 (8GB)</option>
+          <option value="16" data-perf="72">RX 9070 XT (16GB)</option>
+          <option value="16" data-perf="66">RX 9070 (16GB)</option>
+          <option value="12" data-perf="52">RX 9070 GRE (12GB)</option>
+          <option value="16" data-perf="45">RX 9060 XT (16GB)</option>
+          <option value="8" data-perf="44">RX 9060 XT (8GB)</option>
+          <option value="8" data-perf="38">RX 9060 (8GB)</option>
         </optgroup>
         <optgroup label="AMD RX 7000 Series">
-          <option value="24">RX 7900 XTX (24GB)</option>
-          <option value="20">RX 7900 XT (20GB)</option>
-          <option value="16">RX 7800 XT (16GB)</option>
-          <option value="12">RX 7700 XT (12GB)</option>
-          <option value="8">RX 7600 (8GB)</option>
+          <option value="24" data-perf="78">RX 7900 XTX (24GB)</option>
+          <option value="20" data-perf="70">RX 7900 XT (20GB)</option>
+          <option value="16" data-perf="55">RX 7800 XT (16GB)</option>
+          <option value="12" data-perf="46">RX 7700 XT (12GB)</option>
+          <option value="8" data-perf="28">RX 7600 (8GB)</option>
         </optgroup>
         <optgroup label="AMD RX 6000 Series">
-          <option value="16">RX 6800 XT (16GB)</option>
-          <option value="16">RX 6800 (16GB)</option>
-          <option value="12">RX 6700 XT (12GB)</option>
-          <option value="8">RX 6600 XT (8GB)</option>
+          <option value="16" data-perf="50">RX 6800 XT (16GB)</option>
+          <option value="16" data-perf="46">RX 6800 (16GB)</option>
+          <option value="12" data-perf="36">RX 6700 XT (12GB)</option>
+          <option value="8" data-perf="27">RX 6600 XT (8GB)</option>
         </optgroup>
         <optgroup label="Intel Arc">
-          <option value="12">Arc B580 (12GB)</option>
-          <option value="16">Arc A770 (16GB)</option>
-          <option value="8">Arc A750 (8GB)</option>
+          <option value="12" data-perf="33">Arc B580 (12GB)</option>
+          <option value="16" data-perf="26">Arc A770 (16GB)</option>
+          <option value="8" data-perf="24">Arc A750 (8GB)</option>
         </optgroup>
         <optgroup label="Other">
-          <option value="0">I don't know my GPU</option>
+          <option value="0" data-perf="0">I don't know my GPU</option>
         </optgroup>
       </select>
     </div>
@@ -312,6 +321,7 @@ const structuredData = JSON.stringify([
         <span>✅ Can Run (meets recommended specs)</span>
         <span>⚠️ May Run (meets minimum specs)</span>
         <span>❌ Cannot Run (below minimum specs)</span>
+        <span>🕹️ Console only (PC version not announced)</span>
       </div>
     </div>
   </div>
@@ -335,7 +345,7 @@ const structuredData = JSON.stringify([
       <li><strong>Select your GPU</strong> — Choose your graphics card from the dropdown. This is the most important factor for game performance. If you're not sure, check your graphics card in Windows Settings → Display → Graphics.</li>
       <li><strong>Select your CPU</strong> — Choose your processor. The CPU is especially important for open-world games and titles with complex AI or physics.</li>
       <li><strong>Select your RAM</strong> — Choose your total system memory. Modern AAA games increasingly require 16GB minimum, with some demanding 32GB.</li>
-      <li><strong>Click "Check My PC"</strong> — The tool compares your specs against the requirements of 15 popular AAA games and shows which ones you can run.</li>
+      <li><strong>Click "Check My PC"</strong> — The tool compares your specs against the requirements of 19 AAA games and shows which ones you can run.</li>
       <li><strong>Review results</strong> — Green (✅) means you meet or exceed recommended specs. Yellow (⚠️) means you meet minimum specs. Red (❌) means you're below minimum requirements.</li>
     </ol>
 
@@ -369,6 +379,16 @@ const structuredData = JSON.stringify([
       </button>
       <div class="faq-answer">
         <p>Unfortunately, no. RAM cannot compensate for an insufficient GPU. The GPU handles rendering the game's graphics, and if it doesn't meet minimum requirements, the game may not launch or will be unplayably slow regardless of how much RAM you have. Each component (GPU, CPU, RAM) must independently meet the game's requirements.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Why does GTA VI show "Console only"?</span>
+        <span class="faq-arrow">▸</span>
+      </button>
+      <div class="faq-answer">
+        <p>Because Rockstar has only announced GTA VI for PlayStation 5 and Xbox Series X|S (November 19, 2026). No PC version, no PC release date and no PC system requirements have been published. The spec tables circulating online are guesses, so this checker refuses to score the game instead of showing you a made-up ✅ or ❌. When Rockstar publishes official PC requirements, the row will be updated with real numbers.</p>
       </div>
     </div>
 
@@ -418,37 +438,38 @@ const structuredData = JSON.stringify([
 </section>
 
 <script is:inline>
-  // GPU tier scoring: higher = more powerful
-  var gpuTiers = {
-    "4": 1, "6": 2, "8": 3, "10": 4, "11": 5,
-    "12": 6, "16": 7, "18": 8, "20": 9, "24": 10, "32": 11,
-    "36": 12, "48": 13, "64": 14, "128": 15
-  };
-
-  // Game database: minGpu/recGpu are GPU tier levels, minCpu/recCpu are CPU scores, minRam/recRam in GB
+  // Game database: minPerf/recPerf are GPU performance scores taken from the *official*
+  // minimum / recommended card (see the data-perf values on the GPU dropdown, RTX 4090 = 100).
+  // minCpu/recCpu are CPU scores, minRam/recRam in GB.
+  // Source: official publisher / Steam system requirements, checked 2026-11-06.
   var games = [
-    { name: "GTA VI", minGpu: 7, recGpu: 11, minRam: 16, recRam: 32, minCpu: 1100, recCpu: 1600 },
-    { name: "Monster Hunter Wilds", minGpu: 7, recGpu: 10, minRam: 16, recRam: 32, minCpu: 900, recCpu: 1400 },
-    { name: "Black Myth: Wukong", minGpu: 6, recGpu: 9, minRam: 16, recRam: 32, minCpu: 700, recCpu: 1400 },
-    { name: "Alan Wake 2", minGpu: 7, recGpu: 10, minRam: 16, recRam: 32, minCpu: 700, recCpu: 1400 },
-    { name: "Indiana Jones: Great Circle", minGpu: 7, recGpu: 10, minRam: 16, recRam: 32, minCpu: 900, recCpu: 1600 },
-    { name: "Stalker 2", minGpu: 6, recGpu: 9, minRam: 16, recRam: 32, minCpu: 700, recCpu: 1100 },
-    { name: "Dragon Age: The Veilguard", minGpu: 6, recGpu: 9, minRam: 16, recRam: 32, minCpu: 500, recCpu: 1100 },
-    { name: "Helldivers 2", minGpu: 3, recGpu: 7, minRam: 8, recRam: 16, minCpu: 700, recCpu: 900 },
-    { name: "Cyberpunk 2077", minGpu: 3, recGpu: 7, minRam: 8, recRam: 16, minCpu: 400, recCpu: 850 },
-    { name: "Starfield", minGpu: 7, recGpu: 10, minRam: 16, recRam: 32, minCpu: 900, recCpu: 1400 },
-    { name: "Hogwarts Legacy", minGpu: 3, recGpu: 7, minRam: 16, recRam: 32, minCpu: 600, recCpu: 850 },
-    { name: "Elden Ring", minGpu: 4, recGpu: 7, minRam: 12, recRam: 16, minCpu: 700, recCpu: 850 },
-    { name: "Baldur's Gate 3", minGpu: 3, recGpu: 7, minRam: 8, recRam: 16, minCpu: 500, recCpu: 850 },
-    { name: "Red Dead Redemption 2", minGpu: 2, recGpu: 7, minRam: 8, recRam: 12, minCpu: 400, recCpu: 500 },
-    { name: "The Witcher 3 Next-Gen", minGpu: 3, recGpu: 6, minRam: 8, recRam: 16, minCpu: 400, recCpu: 550 }
+    { name: "GTA VI", consoleOnly: true },
+    { name: "Borderlands 4", minPerf: 25, recPerf: 48, minRam: 16, recRam: 32, minCpu: 1000, recCpu: 1200 },
+    { name: "DOOM: The Dark Ages", minPerf: 22, recPerf: 48, minRam: 16, recRam: 32, minCpu: 1000, recCpu: 1200 },
+    { name: "Clair Obscur: Expedition 33", minPerf: 11, recPerf: 35, minRam: 8, recRam: 16, minCpu: 850, recCpu: 1200 },
+    { name: "Elden Ring Nightreign", minPerf: 10, recPerf: 16, minRam: 12, recRam: 16, minCpu: 900, recCpu: 1000 },
+    { name: "Monster Hunter Wilds", minPerf: 12, recPerf: 22, minRam: 16, recRam: 16, minCpu: 900, recCpu: 900 },
+    { name: "Black Myth: Wukong", minPerf: 11, recPerf: 18, minRam: 16, recRam: 16, minCpu: 700, recCpu: 1000 },
+    { name: "Alan Wake 2", minPerf: 18, recPerf: 40, minRam: 16, recRam: 16, minCpu: 700, recCpu: 1100 },
+    { name: "Indiana Jones: Great Circle", minPerf: 22, recPerf: 55, minRam: 16, recRam: 32, minCpu: 1000, recCpu: 1200 },
+    { name: "Stalker 2", minPerf: 11, recPerf: 42, minRam: 16, recRam: 32, minCpu: 900, recCpu: 1100 },
+    { name: "Dragon Age: The Veilguard", minPerf: 7, recPerf: 25, minRam: 16, recRam: 16, minCpu: 700, recCpu: 1100 },
+    { name: "Helldivers 2", minPerf: 5, recPerf: 18, minRam: 8, recRam: 16, minCpu: 600, recCpu: 1000 },
+    { name: "Cyberpunk 2077", minPerf: 11, recPerf: 22, minRam: 12, recRam: 16, minCpu: 700, recCpu: 1200 },
+    { name: "Starfield", minPerf: 20, recPerf: 31, minRam: 16, recRam: 16, minCpu: 800, recCpu: 900 },
+    { name: "Hogwarts Legacy", minPerf: 5, recPerf: 27, minRam: 16, recRam: 16, minCpu: 600, recCpu: 850 },
+    { name: "Elden Ring", minPerf: 10, recPerf: 16, minRam: 12, recRam: 16, minCpu: 700, recCpu: 850 },
+    { name: "Baldur's Gate 3", minPerf: 7, recPerf: 22, minRam: 8, recRam: 16, minCpu: 500, recCpu: 850 },
+    { name: "Red Dead Redemption 2", minPerf: 3, recPerf: 11, minRam: 8, recRam: 12, minCpu: 400, recCpu: 600 },
+    { name: "The Witcher 3 Next-Gen", minPerf: 12, recPerf: 22, minRam: 12, recRam: 16, minCpu: 700, recCpu: 850 }
   ];
 
   function checkGames() {
     var gpuSelect = document.getElementById('gameGpuSelect');
-    var gpuVram = parseInt(gpuSelect.options[gpuSelect.selectedIndex].value);
-    var gpuTier = gpuTiers[gpuVram] || 0;
-    var gpuName = gpuSelect.options[gpuSelect.selectedIndex].text;
+    var gpuOpt = gpuSelect.options[gpuSelect.selectedIndex];
+    var gpuVram = parseInt(gpuOpt.value);
+    var gpuPerf = parseInt(gpuOpt.getAttribute('data-perf') || '0', 10);
+    var gpuName = gpuOpt.text;
 
     var cpuSelect = document.getElementById('cpuSelect');
     var cpuScore = parseInt(cpuSelect.options[cpuSelect.selectedIndex].value);
@@ -462,9 +483,22 @@ const structuredData = JSON.stringify([
     for (var i = 0; i < games.length; i++) {
       var g = games[i];
 
+      // Titles with no published PC version get no verdict
+      if (g.consoleOnly) {
+        var trConsole = document.createElement('tr');
+        trConsole.style.borderBottom = '1px solid var(--border)';
+        trConsole.innerHTML = '<td style="padding:10px 12px;font-weight:500;">' + g.name + '</td>' +
+          '<td style="padding:10px 12px;text-align:center;color:var(--text-secondary);">—</td>' +
+          '<td style="padding:10px 12px;text-align:center;color:var(--text-secondary);">—</td>' +
+          '<td style="padding:10px 12px;text-align:center;color:var(--text-secondary);">—</td>' +
+          '<td style="padding:10px 12px;text-align:center;color:#6366F1;font-weight:600;">🕹️ Console only</td>';
+        tbody.appendChild(trConsole);
+        continue;
+      }
+
       // Check each component
-      var gpuMeetsMin = (gpuVram === 0) || (gpuTier >= g.minGpu);
-      var gpuMeetsRec = (gpuVram === 0) || (gpuTier >= g.recGpu);
+      var gpuMeetsMin = (gpuVram === 0) || (gpuPerf >= g.minPerf);
+      var gpuMeetsRec = (gpuVram === 0) || (gpuPerf >= g.recPerf);
       var cpuMeetsMin = (cpuScore === 0) || (cpuScore >= g.minCpu);
       var cpuMeetsRec = (cpuScore === 0) || (cpuScore >= g.recCpu);
       var ramMeetsMin = ram >= g.minRam;
